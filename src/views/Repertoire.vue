@@ -70,10 +70,20 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+@media only screen and(max-width: 700px) {
+  .landing {
+    height: 150px;
+  }
+}
+@media only screen and(min-width: 701px) {
+  .landing {
+    height: 300px;
+  }
+}
+
 .landing {
   margin-top: -100px;
   padding-top: 100px;
-  height: 300px;
   position: relative;
   overflow: hidden;
   display: flex;
@@ -108,10 +118,23 @@ export default {
     font-size: 1.2em;
   }
 }
+
+@media only screen and(max-width: 700px) {
+  .tools {
+    grid-template-columns: repeat(auto-fill, minmax(8rem, 1fr));
+    padding-bottom: calc(var(--safe-area-inset-bottom) + 50px);
+  }
+}
+@media only screen and(min-width: 701px) {
+  .tools {
+    grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
+    padding-bottom: var(--safe-area-inset-bottom);
+  }
+}
+
 .tools {
   max-width: 100%;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
   grid-auto-rows: 1fr;
   grid-gap: 20px;
   margin: 20px;

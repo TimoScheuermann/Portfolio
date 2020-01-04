@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="100" height="100" viewBox="0 0 100 100">
+  <defs>
+    <clipPath id="clip-github">
+      <rect width="100" height="100"/>
+    </clipPath>
+  </defs>
+  <g id="github" clip-path="url(#clip-github)">
+    <path id="Icon_feather-github" data-name="Icon feather-github" d="M33.615,80.3C11.747,86.86,11.747,69.366,3,67.18M64.229,93.421V76.5A14.739,14.739,0,0,0,60.118,65.08c13.733-1.531,28.165-6.735,28.165-30.615a23.789,23.789,0,0,0-6.557-16.4,22.174,22.174,0,0,0-.4-16.491S76.169.046,64.229,8.05a58.518,58.518,0,0,0-30.615,0c-11.94-8-17.1-6.473-17.1-6.473a22.174,22.174,0,0,0-.394,16.488A23.792,23.792,0,0,0,9.56,34.6c0,23.7,14.433,28.909,28.165,30.615A14.739,14.739,0,0,0,33.615,76.5V93.421" transform="translate(4.5 3.04)" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="7"/>
+  </g>
+</svg>

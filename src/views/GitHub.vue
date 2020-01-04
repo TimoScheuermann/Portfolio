@@ -107,16 +107,38 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+@media only screen and(max-width: 700px) {
+  .landing {
+    flex-direction: column;
+    .loaded {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      max-width: 50%;
+
+      align-items: center;
+      flex-wrap: wrap;
+      .visit {
+        display: block;
+      }
+    }
+  }
+}
+
+@media only screen and(min-width: 701px) {
+  .landing {
+    height: 150px;
+  }
+}
+
 .landing {
   margin-top: -100px;
   padding-top: 100px;
-  height: 150px;
   position: relative;
   overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
   &::before {
     position: absolute;
     content: "";
@@ -214,8 +236,8 @@ export default {
         width: $size;
         height: $size;
         border-radius: $size;
-        overflow: hidden;
         img {
+          border-radius: $size;
           max-height: 100%;
           max-width: 100%;
         }
@@ -255,19 +277,56 @@ export default {
     }
   }
 }
+
+@media only screen and(max-width: 700px) {
+  .repositories {
+    grid-template-columns: repeat(1, 1fr);
+    padding-bottom: calc(var(--safe-area-inset-bottom) + 50px);
+  }
+}
+
+@media only screen and(min-width: 701px) {
+  .repositories {
+    grid-template-columns: repeat(2, 1fr);
+    padding-bottom: var(--safe-area-inset-bottom);
+    .repositorie {
+      &:first-child {
+        grid-column: 1 / 3;
+      }
+    }
+  }
+}
+
 .repositories {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
   grid-gap: 10px;
   margin: 10px 0px;
   .repositorie {
     background: var(--paragraph);
+    max-width: 100%;
     padding: 30px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
     position: relative;
+    max-width: 100vw;
+    overflow-y: hidden;
+
+    &:first-child {
+      background: var(--color);
+      color: var(--paragraph);
+      .changes {
+        border-top: 1px solid rgba(var(--paragraph-rgb), 0.3);
+        border-bottom: 1px solid rgba(var(--paragraph-rgb), 0.3);
+        .change {
+          &:nth-child(2) {
+            border-left: 2px solid rgba(var(--paragraph-rgb), 0.3);
+            border-right: 2px solid rgba(var(--paragraph-rgb), 0.3);
+          }
+        }
+      }
+    }
 
     .lastUpdated {
       position: absolute;
@@ -302,14 +361,14 @@ export default {
       border-top: 1px solid rgba(var(--color-rgb), 0.3);
       border-bottom: 1px solid rgba(var(--color-rgb), 0.3);
       padding: 10px 0px;
-      width: 100%;
+      width: fit-content;
       text-align: center;
 
       .change {
         padding: 10px;
         &:nth-child(2) {
-          border-left: 2px solid rgba(var(--color-rgb), 0.3);
-          border-right: 2px solid rgba(var(--color-rgb), 0.3);
+          border-left: 1px solid rgba(var(--color-rgb), 0.3);
+          border-right: 1px solid rgba(var(--color-rgb), 0.3);
         }
         .time {
           font-weight: bold;

@@ -68,10 +68,22 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+@media only screen and(max-width: 700px) {
+  .projects {
+    grid-template-columns: repeat(1, 1fr);
+    padding-bottom: calc(var(--safe-area-inset-bottom) + 50px);
+  }
+}
+@media only screen and(min-width: 701px) {
+  .projects {
+    grid-template-columns: repeat(2, 1fr);
+    padding-bottom: var(--safe-area-inset-bottom);
+  }
+}
+
 .projects {
   display: grid;
   grid-gap: 10px;
   margin: 10px 0px;
-  grid-template-columns: repeat(2, 1fr);
 }
 </style>

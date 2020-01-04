@@ -1,4 +1,5 @@
 <template lang="html">
+
   <div id="app">
     <timo-nav></timo-nav>
     <router-view></router-view>
@@ -29,6 +30,28 @@ export default {
   --paragraph: #0f0f0f;
   --paragraph-rgb: 15, 15, 15;
   --color: #fff;
+}
+
+:root {
+  @supports (top: constant(safe-area-inset-top)) {
+    --safe-area-inset-top: constant(safe-area-inset-top);
+    --safe-area-inset-right: constant(safe-area-inset-right);
+    --safe-area-inset-bottom: constant(safe-area-inset-bottom);
+    --safe-area-inset-left: constant(safe-area-inset-left);
+  }
+  @supports (top: env(safe-area-inset-top)) {
+    --safe-area-inset-top: env(safe-area-inset-top);
+    --safe-area-inset-right: env(safe-area-inset-right);
+    --safe-area-inset-bottom: env(safe-area-inset-bottom);
+    --safe-area-inset-left: env(safe-area-inset-left);
+  }
+}
+
+html {
+  font-family: -apple-system, BlinkMacSystemFont, SF Pro Display, Segoe UI,
+    Roboto, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji,
+    Segoe UI Symbol;
+  scroll-behavior: smooth;
 }
 
 body {

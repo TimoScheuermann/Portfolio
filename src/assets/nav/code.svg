@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="100" height="100" viewBox="0 0 100 100">
+  <defs>
+    <clipPath id="clip-path">
+      <rect width="50.333" height="14" fill="none"/>
+    </clipPath>
+    <clipPath id="clip-code">
+      <rect width="100" height="100"/>
+    </clipPath>
+  </defs>
+  <g id="code" clip-path="url(#clip-code)">
+    <g id="Icon_ionic-ios-code" data-name="Icon ionic-ios-code" transform="translate(1 34)">
+      <path id="Pfad_60" data-name="Pfad 60" d="M24.894,10.144a.839.839,0,0,0-.554-.23.813.813,0,0,0-.554.23L21.92,11.928a.786.786,0,0,0,0,1.162L34.87,25.459,21.92,37.827a.786.786,0,0,0,0,1.162l1.865,1.784a.813.813,0,0,0,.554.23.789.789,0,0,0,.554-.23L40.33,26.04a.786.786,0,0,0,0-1.162Z" transform="translate(57.413 -9.367)" stroke="#000" stroke-width="1"/>
+      <path id="Pfad_61" data-name="Pfad 61" d="M23.424,12.509a.8.8,0,0,0-.257-.581L21.3,10.144a.839.839,0,0,0-.554-.23.813.813,0,0,0-.554.23L4.757,24.878a.786.786,0,0,0,0,1.162L20.193,40.774a.839.839,0,0,0,.554.23.789.789,0,0,0,.554-.23l1.865-1.784a.786.786,0,0,0,0-1.162L10.218,25.459,23.167,13.091A.8.8,0,0,0,23.424,12.509Z" transform="translate(-4.5 -9.914)" stroke="#000" stroke-width="1"/>
+    </g>
+    <g id="Wiederholungsraster_2" data-name="Wiederholungsraster 2" transform="translate(25 43)" clip-path="url(#clip-path)">
+      <g transform="translate(-30 -42)">
+        <circle id="Ellipse_26" data-name="Ellipse 26" cx="7" cy="7" r="7" transform="translate(30 42)" opacity="0.5"/>
+      </g>
+      <g transform="translate(-12 -42)">
+        <circle id="Ellipse_26-2" data-name="Ellipse 26" cx="7" cy="7" r="7" transform="translate(30 42)" opacity="0.5"/>
+      </g>
+      <g transform="translate(6 -42)">
+        <circle id="Ellipse_26-3" data-name="Ellipse 26" cx="7" cy="7" r="7" transform="translate(30 42)" opacity="0.5"/>
+      </g>
+    </g>
+  </g>
+</svg>
