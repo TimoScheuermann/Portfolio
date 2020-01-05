@@ -2,21 +2,27 @@
 
   <div id="app">
     <timo-nav></timo-nav>
-    <router-view></router-view>
+    <timo-header></timo-header>
+    <div class="view">
+      <router-view></router-view>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
 import Navbar from "@/components/Navbar.vue";
+import Header from "@/components/Header.vue";
 
 export default {
   components: {
-    "timo-nav": Navbar
+    "timo-nav": Navbar,
+    "timo-header": Header
   }
 };
 </script>
 
 <style lang="scss">
+@import "variables.scss";
 :root {
   --background: #fff;
   --background-rgb: 255, 255, 255;
@@ -58,5 +64,15 @@ body {
   background-color: var(--background);
   color: var(--color);
   margin: 0;
+}
+.view {
+  padding: var(--safe-area-inset-top) var(--safe-area-inset-right)
+    var(--safe-area-inset-bottom) var(--safe-area-inset-left);
+}
+@media only screen and(max-width: $mobile) {
+  .view {
+    padding-top: calc(50px + var(--safe-area-inset-top));
+    padding-bottom: calc(50px + var(--safe-area-inset-bottom));
+  }
 }
 </style>

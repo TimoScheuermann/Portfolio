@@ -5,10 +5,21 @@
   </div>
 </template>
 <style lang="scss" scoped>
+@import "../variables.scss";
+@media only screen and(min-width: $desktop) {
+  .landing {
+    height: 300px;
+  }
+}
+@media only screen and(max-width: $mobile) {
+  .landing {
+    height: 150px;
+  }
+}
+
 .landing {
   margin-top: -100px;
   padding-top: 100px;
-  height: 300px;
   position: relative;
   overflow: hidden;
   display: flex;

@@ -31,7 +31,8 @@
 export default {};
 </script>
 <style lang="scss" scoped>
-@media only screen and (max-width: 700px) {
+@import "../variables.scss";
+@media only screen and (max-width: $mobile) {
   .nav {
     position: fixed;
     bottom: 0;
@@ -45,7 +46,9 @@ export default {};
       justify-content: space-around;
       width: 100%;
       align-items: center;
+      padding-top: 5px;
       a {
+        opacity: 0.8;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -54,11 +57,12 @@ export default {};
         text-decoration: none;
         &.router-link-exact-active {
           color: #08f;
+          opacity: 1;
         }
 
         &:nth-child(1) {
           .icon {
-            mask-image: url("../assets/nav/projects.svg");
+            mask-image: url("../assets/nav/home.svg");
           }
         }
         &:nth-child(2) {
@@ -101,7 +105,7 @@ export default {};
   }
 }
 
-@media only screen and (min-width: 701px) {
+@media only screen and (min-width: $desktop) {
   .nav {
     top: 0;
     position: sticky;

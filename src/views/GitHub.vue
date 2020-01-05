@@ -107,25 +107,28 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-@media only screen and(max-width: 700px) {
+@import "../variables.scss";
+
+@media only screen and(max-width: $mobile) {
   .landing {
     flex-direction: column;
+    .loading {
+      margin-top: -10px;
+      padding-bottom: 10px;
+    }
     .loaded {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      max-width: 50%;
-
-      align-items: center;
-      flex-wrap: wrap;
-      .visit {
-        display: block;
+      .profile {
+        padding: 15px 0px;
+        flex-direction: column;
+        .informations {
+          margin: 10px 0px;
+        }
       }
     }
   }
 }
 
-@media only screen and(min-width: 701px) {
+@media only screen and(min-width: $desktop) {
   .landing {
     height: 150px;
   }
@@ -278,17 +281,15 @@ export default {
   }
 }
 
-@media only screen and(max-width: 700px) {
+@media only screen and(max-width: $mobile) {
   .repositories {
     grid-template-columns: repeat(1, 1fr);
-    padding-bottom: calc(var(--safe-area-inset-bottom) + 50px);
   }
 }
 
-@media only screen and(min-width: 701px) {
+@media only screen and(min-width: $desktop) {
   .repositories {
     grid-template-columns: repeat(2, 1fr);
-    padding-bottom: var(--safe-area-inset-bottom);
     .repositorie {
       &:first-child {
         grid-column: 1 / 3;

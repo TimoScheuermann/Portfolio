@@ -6,10 +6,10 @@
   </defs>
   <g id="projects" clip-path="url(#clip-projects)">
     <g id="Icon_feather-grid" data-name="Icon feather-grid" transform="translate(-0.5 -0.5)">
-      <path id="Pfad_62" data-name="Pfad 62" d="M4.5,4.5H40.278V40.278H4.5Z" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="6"/>
-      <path id="Pfad_63" data-name="Pfad 63" d="M21,4.5H56.778V40.278H21Z" transform="translate(39.722)" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="6"/>
-      <path id="Pfad_64" data-name="Pfad 64" d="M21,21H56.778V56.778H21Z" transform="translate(39.722 39.722)" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="6"/>
-      <path id="Pfad_65" data-name="Pfad 65" d="M4.5,21H40.278V56.778H4.5Z" transform="translate(0 39.722)" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="6"/>
+      <path id="Pfad_62" data-name="Pfad 62" d="M4.5,4.5H40.278V40.278H4.5Z" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="6"/>
+      <path id="Pfad_63" data-name="Pfad 63" d="M21,4.5H56.778V40.278H21Z" transform="translate(39.722)" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="6"/>
+      <path id="Pfad_64" data-name="Pfad 64" d="M21,21H56.778V56.778H21Z" transform="translate(39.722 39.722)" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="6"/>
+      <path id="Pfad_65" data-name="Pfad 65" d="M4.5,21H40.278V56.778H4.5Z" transform="translate(0 39.722)" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="6"/>
     </g>
   </g>
 </svg>
