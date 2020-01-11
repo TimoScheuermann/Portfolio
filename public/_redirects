@@ -1,9 +1,0 @@
-/home /home
-/projects /projects
-/projects/Work-Gallery /projects/Work-Gallery
-/projects/Timos-Icons /projects/Timos-Icons
-/projects/Timos-Icons/:icon /projects/Timos-Icons/:icon
-/projects/:any /projects/:any
-/repertoire /repertoire
-/contact /contact
-/github /github
