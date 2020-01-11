@@ -102,7 +102,7 @@ const store = new Vuex.Store({
       {
         name: "At",
         iconName: "ti ti-at",
-        paths: 1
+        paths: 0
       },
       {
         name: "Book",

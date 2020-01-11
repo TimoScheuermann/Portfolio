@@ -45,12 +45,36 @@
           <div class="items">
             <div class="text">All {{ icons.length }} Icons</div>
             <div class="actions">
+              <div class="checkbox">
+                <input type="checkbox" name="check" id="check" />
+                <label for="check">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    width="100"
+                    height="100"
+                    viewBox="0 0 100 100"
+                  >
+                    <g id="border" fill="none" stroke="#000" stroke-width="10">
+                      <rect x="5" y="5" width="90" height="90" rx="10" fill="none" />
+                    </g>
+                    <path
+                      id="arrow"
+                      d="M1550,970.667l14.167,14.167L1601,948l-36.833,36.833Z"
+                      transform="translate(-1525 -915.917)"
+                      fill="none"
+                      stroke="#08f"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="10"
+                    />
+                  </svg>
+                  <span>Show Layer Count</span>
+                </label>
+              </div>
               <div class="action" @click="sortDirection *= -1">
                 <div class="title">Sort by name</div>
-                <div
-                  class="indicator"
-                  :class="{ alphabet: sortDirection == 1 }"
-                >
+                <div class="indicator" :class="{ alphabet: sortDirection == 1 }">
                   <i class="ti ti-arrow"></i>
                 </div>
               </div>
@@ -75,6 +99,7 @@
               </i>
             </div>
             <div class="name">{{ icon.name }}</div>
+            <div class="layers" v-if="layerChecked">Layers: {{ icon.paths }}</div>
           </div>
         </div>
       </div>
@@ -91,6 +116,10 @@ export default {
     },
     icons() {
       return this.$store.state.icons;
+    },
+    layerChecked() {
+      const elem = document.getElementById("check");
+      return (elem && elem.checked) | false;
     }
   },
   methods: {
@@ -230,6 +259,7 @@ export default {
           border: 1px solid transparent;
           cursor: pointer;
           user-select: none;
+          margin-left: 10px;
 
           &:hover {
             border-color: rgba(var(--color-rgb), 0.4);
@@ -296,6 +326,12 @@ export default {
       }
       .name {
         padding: 5px;
+      }
+      .layers {
+        opacity: 0.6;
+        font-size: 14px;
+        margin-top: -5px;
+        padding-bottom: 5px;
       }
     }
   }
