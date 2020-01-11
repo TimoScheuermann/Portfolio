@@ -11,8 +11,51 @@ const routes = [
   },
   {
     path: "/projects",
-    name: "projects",
-    component: () => import("../views/Projects.vue")
+    component: () => import("../views/EmptyRouter.vue"),
+    children: [
+      {
+        name: "projects",
+        path: "",
+        component: () => import("../views/Projects.vue")
+      },
+      {
+        name: "workgallery",
+        path: "Work-Gallery",
+        meta: {
+          scrollNav: true
+        },
+        component: () => import("../views/projects/WorkGallery.vue")
+      },
+      {
+        path: "Timos-Icons",
+        component: () => import("../views/EmptyRouter.vue"),
+        children: [
+          {
+            path: "",
+            name: "timosicons",
+            meta: {
+              scrollNav: true
+            },
+            component: () =>
+              import("../views/projects/timosIcons/TimosIcons.vue")
+          },
+          {
+            path: ":icon",
+            name: "timosiconsdetail",
+            meta: {
+              scrollNav: true
+            },
+            component: () =>
+              import("../views/projects/timosIcons/IconDetailView.vue")
+          }
+        ]
+      },
+      {
+        name: "projectNF",
+        path: "*",
+        component: () => import("../views/projects/NotFound.vue")
+      }
+    ]
   },
   {
     path: "/repertoire",

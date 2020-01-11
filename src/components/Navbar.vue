@@ -1,5 +1,5 @@
 <template>
-  <div class="nav">
+  <div class="nav" :class="{ scrollNav: scrollNav }">
     <router-link :to="{name: 'home'}" class="logo">
       <img src="../assets/logo.svg" />
     </router-link>
@@ -28,7 +28,18 @@
   </div>
 </template>
 <script>
-export default {};
+export default {
+  data: () => {
+    return {
+      scrollNav: false
+    };
+  },
+  watch: {
+    $route(to, from) {
+      this.scrollNav = to.meta.scrollNav;
+    }
+  }
+};
 </script>
 <style lang="scss" scoped>
 @import "../variables.scss";
@@ -67,7 +78,7 @@ export default {};
         }
         &:nth-child(2) {
           .icon {
-            mask-image: url("../assets/nav/projects.svg");
+            mask-image: url("../assets/nav/devices.svg");
           }
         }
         &:nth-child(3) {
@@ -112,6 +123,11 @@ export default {};
     padding: 20px 10vw;
     justify-content: space-between;
     padding-top: calc(20px + var(--safe-area-inset-top));
+
+    &.scrollNav {
+      position: relative;
+    }
+
     .logo {
       height: 100%;
       background: var(--color);
@@ -177,7 +193,7 @@ export default {};
   left: 0;
   right: 0;
   height: 50px;
-  background: rgba(var(--paragraph-rgb), 0.4);
+  background: rgba(var(--paragraph-rgb), 0.5);
   backdrop-filter: blur(30px);
   box-shadow: 4px 8px 20px rgba(0, 0, 0, 0.19);
   display: flex;

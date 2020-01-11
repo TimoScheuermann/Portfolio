@@ -3,7 +3,7 @@
     <div class="content">
       <div class="title">{{ title }}</div>
       <div class="desciption">{{ desc }}</div>
-      <div class="readMore"></div>
+      <div class="readMore" @click="$router.push({name: route})"></div>
     </div>
     <div class="background">
       <img :src="img" />
@@ -12,7 +12,7 @@
 </template>
 <script>
 export default {
-  props: ["title", "img", "desc", "dark"]
+  props: ["title", "img", "desc", "dark", "route"]
 };
 </script>
 <style lang="scss" scoped>

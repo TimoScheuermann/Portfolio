@@ -1,5 +1,5 @@
 <template>
-  <div class="container" :class="{dark: projects[cP].dark}">
+  <div class="container" :class="{ dark: projects[cP].dark }">
     <!-- <div class="headline">Projects</div> -->
     <img class="background" :src="projects[cP].images.background" />
     <div class="informations">
@@ -14,10 +14,10 @@
       <span
         v-for="index in projects.length"
         :key="index"
-        :class="{ active: (--index === cP) }"
+        :class="{ active: --index === cP }"
         @click="setToProject(index)"
       ></span>
-      <router-link :to="{name: 'projects'}">View all Projects</router-link>
+      <router-link :to="{ name: 'projects' }">View all Projects</router-link>
     </div>
   </div>
 </template>
@@ -27,56 +27,15 @@ export default {
     cP: function() {
       // return 1;
       return this.currentlyActive % this.projects.length;
+    },
+    projects() {
+      return this.$store.state.projects;
     }
   },
   data() {
     return {
       contentHidden: false,
-      currentlyActive: 0,
-      projects: [
-        {
-          dark: true,
-          title: "DHBW Richie",
-          description:
-            "Lorem ipsum Zeile 1 Lorem ipsum Zeile 2 Lorem ipsum Zeile 3 Lorem ipsum Zeile 4",
-          images: {
-            icon: "../img/projects/richie/icon-richie.png",
-            background: "../img/projects/richie/preview3-richie.png"
-          }
-        },
-        {
-          dark: false,
-          title: "Timo's Icons",
-          description:
-            "Lorem ipsum Zeile 1 Lorem ipsum Zeile 2 Lorem ipsum Zeile 3 Lorem ipsum Zeile 4",
-          images: {
-            icon: "../img/projects/icons/icon-icons.png",
-            background: "../img/projects/icons/preview2-icons.png"
-          }
-        },
-
-        {
-          dark: false,
-          title: "NHL Stats",
-          description:
-            "Lorem ipsum Zeile 1 Lorem ipsum Zeile 2 Lorem ipsum Zeile 3 Lorem ipsum Zeile 4",
-          images: {
-            icon: "../img/projects/cassy/icon-cassy.png",
-            background: "../img/projects/cassy/preview-cassy.png"
-          }
-        },
-
-        {
-          dark: true,
-          title: "AMS Pro",
-          description:
-            "Lorem ipsum Zeile 1 Lorem ipsum Zeile 2 Lorem ipsum Zeile 3 Lorem ipsum Zeile 4",
-          images: {
-            icon: "../img/projects/richie/icon-richie.png",
-            background: "../img/projects/richie/preview3-richie.png"
-          }
-        }
-      ]
+      currentlyActive: 0
     };
   },
   methods: {
@@ -104,6 +63,21 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+@import "../variables.scss";
+@media only screen and (max-width: $mobile) {
+  .container {
+    height: calc(
+      100vh - 90px - 50px - var(--safe-area-inset-bottom) -
+        var(--safe-area-inset-top)
+    );
+  }
+}
+@media only screen and (min-width: $desktop) {
+  .container {
+    height: calc(100vh - 90px);
+  }
+}
+
 .container {
   transition: 0.5s ease-in-out;
   &.dark {
@@ -117,7 +91,6 @@ export default {
     }
   }
   background: var(--paragraph);
-  height: calc(100vh - 90px);
   position: relative;
 
   .headline {

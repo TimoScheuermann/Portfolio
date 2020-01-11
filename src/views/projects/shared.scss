@@ -1,0 +1,21 @@
+.project {
+  & > .title {
+    font-size: 20px;
+    font-weight: 800;
+    padding: 0px 10%;
+    height: 50px;
+    line-height: 50px;
+    margin-top: 10px;
+    border-bottom: 1px solid rgba(17, 17, 17, 0.25);
+    background: rgba(var(--background-rgb), 0.5);
+    backdrop-filter: blur(50px);
+    position: sticky;
+    top: var(--safe-area-inset-top);
+    z-index: 300;
+    user-select: none;
+  }
+
+  .projectContent {
+    margin: 0 10%;
+  }
+}
