@@ -47,7 +47,7 @@
             <div class="actions">
               <div class="checkbox">
                 <input type="checkbox" name="check" id="check" />
-                <label for="check">
+                <label for="check" @click="layerCheckboxClicked">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -84,7 +84,7 @@
         </div>
         <div class="gallery">
           <div
-            class="item"
+            class="item item-item"
             v-for="(icon, index) in iconsSorted"
             :key="index"
             @click="openDetailView(index)"
@@ -99,7 +99,7 @@
               </i>
             </div>
             <div class="name">{{ icon.name }}</div>
-            <div class="layers" v-if="layerChecked">Layers: {{ icon.paths }}</div>
+            <div class="layers" :class="{ show: layerCheckbox }">Layers: {{ icon.paths }}</div>
           </div>
         </div>
       </div>
@@ -116,15 +116,13 @@ export default {
     },
     icons() {
       return this.$store.state.icons;
-    },
-    layerChecked() {
-      const elem = document.getElementById("check");
-      return (elem && elem.checked) | false;
     }
   },
   methods: {
+    layerCheckboxClicked() {
+      this.layerCheckbox = !this.layerCheckbox;
+    },
     openDetailView(index) {
-      console.log("Hello");
       this.$router.push({
         name: "timosiconsdetail",
         params: { icon: this.iconsSorted[index].name }
@@ -133,7 +131,8 @@ export default {
   },
   data: () => {
     return {
-      sortDirection: 1
+      sortDirection: 1,
+      layerCheckbox: false
     };
   }
 };
@@ -331,7 +330,13 @@ export default {
         opacity: 0.6;
         font-size: 14px;
         margin-top: -5px;
-        padding-bottom: 5px;
+        margin-bottom: 5px;
+        max-height: 0px;
+        overflow: hidden;
+        transition: 0.2s ease-in-out;
+        &.show {
+          max-height: 20px;
+        }
       }
     }
   }

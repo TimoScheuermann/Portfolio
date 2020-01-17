@@ -25,7 +25,7 @@
               stroke-width="10"
             />
           </svg>
-          <span>Show Layer Count</span>
+          <span>Timo's Custom Checkbox</span>
         </label>
       </div>
     </div>

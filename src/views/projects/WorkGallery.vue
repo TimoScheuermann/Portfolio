@@ -80,6 +80,11 @@ export default {
           fileName: "search.gif",
           project: "DHBW Richie",
           display: "Search Active Indicator"
+        },
+        {
+          fileName: "custom checkbox.gif",
+          project: "Portfolio",
+          display: "Animated Checkbox"
         }
       ]
     };

@@ -1,10 +1,10 @@
 <template>
   <div class="container" :class="{ dark: projects[cP].dark }">
     <!-- <div class="headline">Projects</div> -->
-    <img class="background" :src="projects[cP].images.background" />
-    <div class="informations">
+    <img class="background" :class="{ animated: animated }" :src="projects[cP].images.background" />
+    <div class="informations" :class="{ hidden: contentHidden }">
       <img class="icon" :src="projects[cP].images.icon" />
-      <div class="content" :class="{ hidden: contentHidden }">
+      <div class="content">
         <div class="title">{{ projects[cP].title }}</div>
         <div class="description">{{ projects[cP].description }}</div>
         <div class="readMore"></div>
@@ -35,6 +35,7 @@ export default {
   data() {
     return {
       contentHidden: false,
+      animated: false,
       currentlyActive: 0
     };
   },
@@ -45,6 +46,10 @@ export default {
     },
     nextProject: function() {
       this.contentHidden = true;
+      this.animated = false;
+      setTimeout(() => {
+        this.animated = true;
+      }, 10);
       setTimeout(() => {
         this.currentlyActive++;
         setTimeout(() => {
@@ -81,8 +86,11 @@ export default {
 .container {
   transition: 0.5s ease-in-out;
   &.dark {
-    background: var(--color);
     color: var(--paragraph);
+    &::before {
+      // transform: scale(1);
+      opacity: 1;
+    }
     .informations {
       background: rgba(var(--color-rgb), 0.5);
     }
@@ -90,7 +98,23 @@ export default {
       background: var(--color);
     }
   }
+
+  &::before {
+    position: absolute;
+    content: "";
+    border-radius: calc(100vw + 100vh);
+    top: -100vh;
+    left: -100vw;
+    right: -100vw;
+    bottom: -100vh;
+    background: var(--color);
+    transition: 1s ease-in-out;
+    // transform: scaleX(0.5) scaleY(0);
+    opacity: 0;
+  }
+
   background: var(--paragraph);
+  overflow: hidden;
   position: relative;
 
   .headline {
@@ -108,7 +132,6 @@ export default {
   }
 
   .informations,
-  .background,
   .icon {
     position: absolute;
     top: 50%;
@@ -116,8 +139,39 @@ export default {
     transform: translate(-50%, -50%);
   }
   .background {
+    position: absolute;
     max-width: calc(100% - 40px);
     max-height: calc(100% - 40px);
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: 0.2s ease-in-out;
+    &.animated {
+      opacity: 1;
+      animation: bgAnim 10s ease-in-out both;
+    }
+  }
+
+  @keyframes bgAnim {
+    0% {
+      top: -100vh;
+      transform: translate(-50%, -50%) scale(0.5);
+    }
+    20%,
+    90% {
+      top: 50%;
+      transform: translate(-50%, -50%) scale(0.5);
+    }
+    25%,
+    85% {
+      top: 50%;
+      transform: translate(-50%, -50%) scale(1);
+    }
+    100% {
+      top: 100vh;
+      transform: translate(-50%, -50%) scale(0.5);
+    }
   }
 
   .informations {
@@ -129,17 +183,16 @@ export default {
     width: 400px;
     max-width: calc(100% - 40px);
     text-align: center;
+    transition: transform 0.2s ease-in-out;
+    &.hidden {
+      transform: translate(-50%, -50%) rotateX(90deg);
+    }
 
     .content {
       position: relative;
-
       opacity: 1;
-      transition: all 0.2s ease-in-out;
+      transition: max-height 0.2s ease-in-out;
       max-height: 500px;
-      &.hidden {
-        opacity: 0;
-        max-height: 0px;
-      }
     }
 
     .icon {
