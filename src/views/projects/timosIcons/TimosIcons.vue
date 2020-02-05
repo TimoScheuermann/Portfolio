@@ -43,11 +43,11 @@
       <div class="iconGallery" id="gallery">
         <div class="title">
           <div class="items">
-            <div class="text">All {{ icons.length }} Icons</div>
+            <div class="text">All {{ iconsSorted.length }} Icons</div>
             <div class="actions">
               <div class="checkbox">
                 <input type="checkbox" name="check" id="check" />
-                <label for="check" @click="layerCheckboxClicked">
+                <label for="check" @click="toggleExtendedInfo">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -82,64 +82,59 @@
           </div>
           <div class="bar"></div>
         </div>
-        <div class="gallery">
-          <div
-            class="item item-item"
-            v-for="(icon, index) in iconsSorted"
-            :key="index"
-            @click="openDetailView(index)"
-          >
-            <div class="icon">
-              <i :class="icon.iconName">
-                <span
-                  v-for="(i, index) in Array(icon.paths)"
-                  :key="index"
-                  :class="'path' + ++index"
-                ></span>
-              </i>
-            </div>
-            <div class="name">{{ icon.name }}</div>
-            <div class="layers" :class="{ show: layerCheckbox }">Layers: {{ icon.paths }}</div>
-          </div>
-        </div>
+         <transition-group name="icon-trans" tag="div" class="gallery">
+          <icon-tile v-for="icon in iconsSorted" :key="icon.name" :icon="icon"></icon-tile>
+        </transition-group>
       </div>
     </div>
   </div>
 </template>
-<script>
-export default {
-  computed: {
-    iconsSorted() {
-      return this.icons.sort(
-        (a, b) => this.sortDirection * a.name.localeCompare(b.name)
-      );
-    },
-    icons() {
-      return this.$store.state.icons;
-    }
-  },
-  methods: {
-    layerCheckboxClicked() {
-      this.layerCheckbox = !this.layerCheckbox;
-    },
-    openDetailView(index) {
-      this.$router.push({
-        name: "timosiconsdetail",
-        params: { icon: this.iconsSorted[index].name }
-      });
-    }
-  },
-  data: () => {
-    return {
-      sortDirection: 1,
-      layerCheckbox: false
-    };
+
+<script lang="ts">
+import { Vue, Component } from "vue-property-decorator";
+import icons from "@/icons";
+import IconTile from "../../../components/projects/TimosIcons/IconTile.vue";
+@Component({
+  components: {
+    "icon-tile": IconTile
   }
-};
+})
+export default class TimosIcons extends Vue {
+  public sortDirection: number = 1;
+  public extendedInformation: boolean = false;
+
+  get iconsSorted() {
+    return icons.sort(
+      (a, b) => this.sortDirection * a.name.localeCompare(b.name)
+    );
+  }
+  public toggleExtendedInfo(): void {
+    this.extendedInformation = !this.extendedInformation;
+  }
+}
 </script>
+
 <style lang="scss" scoped>
 @import "../shared.scss";
-@import "../../../timosIcons/style.css";
+@import "../../../icons/style.css";
+
+.icon-trans-move {
+  transition: all 0.4s ease-in-out;
+}
+.icon-trans-enter-active,
+.icon-trans-leave-active {
+  transition: all 0.4s;
+}
+.icon-trans-enter {
+  opacity: 0;
+  transform: translateY(50px);
+}
+.icon-trans-leave-to {
+  transition: all 0.3s ease-in-out;
+  opacity: 0;
+  filter: brightness(0);
+  transform: scale(0);
+}
 
 .landing {
   margin: 10px 0px;
@@ -283,56 +278,12 @@ export default {
     }
   }
   .gallery {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    max-width: 100%;
-    .item {
-      text-align: center;
-      width: 130px;
-      margin: 10px;
-      border-radius: 5px;
-      overflow: hidden;
-      cursor: pointer;
-      transition: 0.2s ease-in-out;
-
-      &:hover {
-        background: var(--background);
-        box-shadow: 4px 8px 20px rgba(0, 0, 0, 0.19);
-        .icon {
-          background: rgba($primary, 0.75);
-          i {
-            opacity: 0.9;
-            color: #fff;
-          }
-        }
-      }
-
-      .icon {
-        padding: 10px;
-        transition: 0.2s ease-in-out;
-        i {
-          transition: 0.2s ease-in-out;
-          font-size: 3em;
-          opacity: 0.8;
-        }
-      }
-      .name {
-        padding: 5px;
-      }
-      .layers {
-        opacity: 0.6;
-        font-size: 14px;
-        margin-top: -5px;
-        margin-bottom: 5px;
-        max-height: 0px;
-        overflow: hidden;
-        transition: 0.2s ease-in-out;
-        &.show {
-          max-height: 20px;
-        }
-      }
+    display: grid;
+    grid: {
+      template-columns: repeat(6, 1fr);
+      gap: 20px;
     }
+    max-width: 100%;
   }
 }
 </style>

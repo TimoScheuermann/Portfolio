@@ -1,21 +1,32 @@
 <template>
   <div>
+    <p-landing title="Contact" blur="true"></p-landing>
     <h1>Contact</h1>
-    <tc-button :navigation="{name: 'Google.com', destiny: 'https://google.com'}"></tc-button>
-    <tc-button :navigation="{name: 'GitHub', destiny: { name: 'github' }}"></tc-button>
+    <tc-button :navigation="{ name: 'Google.com', destiny: 'https://google.com' }"></tc-button>
+    <tc-button :navigation="{ name: 'GitHub', destiny: { name: 'github' } }"></tc-button>
     <tc-card
       title="Portfolio"
       subtitle="Fun Project about my work"
-      :navigation="{name: 'GitHub', destiny: { name: 'github' }}"
+      :navigation="{ name: 'GitHub', destiny: { name: 'github' } }"
     >
       <img :src="'../img/projects/richie/preview3-richie.png'" />
     </tc-card>
     <tc-card
       title="Portfolio"
       subtitle="Fun Project about my work"
-      :navigation="{name: 'GitHub', destiny: { name: 'github' }}"
+      :navigation="{ name: 'GitHub', destiny: { name: 'github' } }"
       mode="dark"
     ></tc-card>
+
+    <div class="icons">
+      <div class="icon" v-for="(icon, index) in icons()" :key="index">
+        <div class="inde">{{ index }}</div>
+        <div class="i">
+          <span :class="icon.name"></span>
+        </div>
+        <div class="name">{{ icon.name }}</div>
+      </div>
+    </div>
   </div>
 </template>
 <script lang="ts">
@@ -23,32 +34,52 @@ import { Vue, Component } from "vue-property-decorator";
 import TCButton from "../components/shared/TC-Button.vue";
 import TCCard from "../components/shared/TC-Card.vue";
 import PNavbar from "../components/common/P-Navbar.vue";
+import PLanding from "../components/common/P-Landing.vue";
+import icons from "@/icons";
+import { Icon } from "../models/Icons/Icon.model";
 @Component({
   components: {
     "tc-button": TCButton,
-    "tc-card": TCCard
+    "tc-card": TCCard,
+    "p-landing": PLanding
   }
 })
-export default class ContactView extends Vue {}
+export default class ContactView extends Vue {
+  public icons(): Icon[] {
+    return icons;
+  }
+}
 </script>
 
 <style lang="scss" scoped>
 @import "../scss/variables";
+@import "../icons/style.css";
 h1 {
   color: $primary;
+  &::after {
+    color: $color;
+    opacity: 0.8;
+  }
 }
 @media #{$isMobile} {
   h1 {
-    &::before {
-      content: "isMobile";
+    &::after {
+      content: " isMobile";
     }
   }
 }
 @media #{$isDesktop} {
   h1 {
-    &::before {
-      content: "isDesktop";
+    &::after {
+      content: " isDesktop";
     }
+  }
+}
+.icon {
+  display: flex;
+  & > * {
+    width: 100px;
+    white-space: nowrap;
   }
 }
 </style>

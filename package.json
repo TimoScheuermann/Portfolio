@@ -1,6 +1,6 @@
 {
   "name": "portfolio",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -31,16 +31,5 @@
   "browserslist": [
     "> 1%",
     "last 2 versions"
-  ],
-  "vue": {
-    "pwa": {
-      "name": "Timo Scheuermann's Portfolio",
-      "short_name": "P",
-      "themeColor": "#f0f0f0",
-      "background_color": "#111111",
-      "display": "fullscreen",
-      "scope": ".",
-      "start_url": "."
-    }
-  }
+  ]
 }

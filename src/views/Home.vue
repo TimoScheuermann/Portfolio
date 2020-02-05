@@ -1,18 +1,31 @@
 <template>
   <div class="home">
-    <landing></landing>
-    <projects-carousel id="test"></projects-carousel>
+    <p-landing title="Timo Scheuermann" subtitle="Fullstack Webdeveloper" fullscreen="true"></p-landing>
+    <div class="projects">
+      <h1>Projects</h1>
+    </div>
   </div>
 </template>
 
-<script>
-import Landing from "@/components/Landing.vue";
-import ProjectsCarousel from "@/components/ProjectsCarousel.vue";
-
-export default {
+<script lang="ts">
+import { Vue, Component } from "vue-property-decorator";
+import PLanding from "../components/common/P-Landing.vue";
+@Component({
   components: {
-    landing: Landing,
-    "projects-carousel": ProjectsCarousel
+    "p-landing": PLanding
   }
-};
+})
+export default class Home extends Vue {}
 </script>
+<style lang="scss" scoped>
+@import "../scss/variables";
+
+.home {
+  background: #000;
+  color: $paragraph;
+  text-align: center;
+  .projects {
+    height: 200px;
+  }
+}
+</style>

@@ -1,9 +1,6 @@
 <template>
-  <div>
-    <div class="landing">
-      <div class="title">Things I Love</div>
-      <div class="subtitle">...and I am working with</div>
-    </div>
+  <div class="repertoire">
+    <p-landing title="Things I Love" subtitle="...and I am working with"></p-landing>
     <div class="tools">
       <div class="tool" v-for="(tool, index) in tools" :key="index">
         <div class="background" :style="{'background-image': `url(${tool.img})`}">
@@ -20,7 +17,11 @@
   </div>
 </template>
 <script>
+import PLanding from "../components/common/P-Landing.vue";
 export default {
+  components: {
+    "p-landing": PLanding
+  },
   data() {
     return {
       tools: [
@@ -71,54 +72,6 @@ export default {
 </script>
 <style lang="scss" scoped>
 @import "../scss/variables.scss";
-@media #{$isMobile} {
-  .landing {
-    height: 150px;
-  }
-}
-@media #{$isDesktop} {
-  .landing {
-    height: 300px;
-  }
-}
-
-.landing {
-  margin-top: -100px;
-  padding-top: 100px;
-  position: relative;
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  &::before {
-    position: absolute;
-    content: "";
-    margin-top: -100px;
-    padding-top: 100px;
-    left: -100px;
-    top: -100px;
-    bottom: -100px;
-    right: -100px;
-    filter: blur(20px);
-    background: url("../assets/tools-landing.jpg");
-    background-size: cover;
-    z-index: -1;
-  }
-
-  .title,
-  .subtitle {
-    color: #fff;
-    font-weight: 600;
-  }
-  .title {
-    font-size: 2.1em;
-  }
-  .subtitle {
-    opacity: 0.8;
-    font-size: 1.2em;
-  }
-}
 
 @media #{$isMobile} {
   .tools {

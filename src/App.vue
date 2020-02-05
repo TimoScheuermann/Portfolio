@@ -1,7 +1,7 @@
 <template lang="html">
-
   <div id="app">
     <p-navbar></p-navbar>
+    <p-tabbar></p-tabbar>
     <div class="view">
       <router-view></router-view>
     </div>
@@ -11,17 +11,19 @@
 <script lang="ts">
 import { Vue, Component } from "vue-property-decorator";
 import PNavbar from "@/components/common/P-Navbar.vue";
+import PTabbar from "./components/common/P-Tabbar.vue";
 
 @Component({
   components: {
-    "p-navbar": PNavbar
+    "p-navbar": PNavbar,
+    "p-tabbar": PTabbar
   }
 })
 export default class App extends Vue {}
 </script>
 
 <style lang="scss">
-@import "./scss/_variables.scss";
+@import "./scss/variables.scss";
 
 html {
   font-family: -apple-system, BlinkMacSystemFont, SF Pro Display, Segoe UI,
@@ -30,28 +32,17 @@ html {
   scroll-behavior: smooth;
   text-rendering: auto;
   -webkit-font-smoothing: antialiased;
-  background: red;
 }
 
 body {
   background-color: $background;
-  background: orange;
   color: $color;
   margin: 0;
+  min-height: 100vh;
 }
 
 a {
   text-decoration: none;
   color: $primary;
-}
-
-.view {
-  padding: $sa-top $sa-right $sa-bottom $sa-left;
-}
-@media only screen {
-  .view {
-    padding-top: #{50px + $sa-top};
-    padding-bottom: #{50px + $sa-bottom};
-  }
 }
 </style>

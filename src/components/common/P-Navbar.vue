@@ -1,13 +1,15 @@
 <template>
   <div class="navbar">
     <div class="container">
-      <router-link :to="{name: 'home'}" class="title">Timo Scheuermann</router-link>
+      <router-link :to="{ name: 'home' }" class="title"
+        >Timo Scheuermann</router-link
+      >
     </div>
     <div class="container routes">
-      <router-link :to="{name: 'projects'}">Projects</router-link>
-      <router-link :to="{name: 'repertoire'}">Reportoire</router-link>
-      <router-link :to="{name: 'contact'}">Contact</router-link>
-      <router-link :to="{name: 'github'}">GitHub</router-link>
+      <router-link :to="{ name: 'projects' }">Projects</router-link>
+      <router-link :to="{ name: 'repertoire' }">Reportoire</router-link>
+      <router-link :to="{ name: 'contact' }">Contact</router-link>
+      <router-link :to="{ name: 'github' }">GitHub</router-link>
     </div>
   </div>
 </template>
@@ -24,21 +26,27 @@ export default class PNavbar extends Vue {}
   @include backdrop-blur($background);
 
   display: flex;
-  position: sticky;
+  position: fixed;
   top: 0;
+  width: 80%;
   padding: 0 10%;
+  padding-top: var(--sa-top);
   height: 50px;
   box-shadow: 4px 8px 20px rgba(0, 0, 0, 0.19);
   justify-content: space-between;
   align-items: center;
   z-index: 1000;
 
+  @media #{$isMobile} {
+    justify-content: center;
+  }
   .container {
     color: $color;
 
     @media #{$isMobile} {
       .title::after {
         opacity: 0.7;
+        margin-left: 10px;
         content: "Portfolio";
       }
       &.routes {
