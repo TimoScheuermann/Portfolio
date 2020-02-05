@@ -3,7 +3,7 @@ import "es6-promise/auto";
 import Vue from "vue";
 import Vuex from "vuex";
 import App from "./App.vue";
-// import "./registerServiceWorker";
+import "./registerServiceWorker";
 import router from "./router";
 
 Vue.use(Vuex);

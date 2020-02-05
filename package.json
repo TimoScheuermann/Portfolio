@@ -19,7 +19,7 @@
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^4.1.0",
-    "@vue/cli-plugin-pwa": "^4.1.0",
+    "@vue/cli-plugin-pwa": "^4.1.2",
     "@vue/cli-plugin-router": "^4.1.0",
     "@vue/cli-plugin-typescript": "^4.1.0",
     "@vue/cli-service": "^4.1.0",
@@ -31,5 +31,16 @@
   "browserslist": [
     "> 1%",
     "last 2 versions"
-  ]
+  ],
+  "vue": {
+    "pwa": {
+      "name": "Timo Scheuermann's Portfolio",
+      "short_name": "P",
+      "themeColor": "#f0f0f0",
+      "background_color": "#111111",
+      "display": "fullscreen",
+      "scope": ".",
+      "start_url": "."
+    }
+  }
 }
