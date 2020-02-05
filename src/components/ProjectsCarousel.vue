@@ -68,8 +68,8 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-@import "../variables.scss";
-@media only screen and (max-width: $mobile) {
+@import "../scss/variables.scss";
+@media #{$isMobile} {
   .container {
     height: calc(
       100vh - 90px - 50px - var(--safe-area-inset-bottom) -
@@ -77,7 +77,7 @@ export default {
     );
   }
 }
-@media only screen and (min-width: $desktop) {
+@media #{$isDesktop} {
   .container {
     height: calc(100vh - 90px);
   }
@@ -213,8 +213,8 @@ export default {
       text-align: left;
     }
     .readMore {
-      color: #08f;
-      border: 1px solid #08f;
+      color: $primary;
+      border: 1px solid $primary;
       padding: 5px 10px;
       cursor: pointer;
       border-radius: 5px;
@@ -225,7 +225,7 @@ export default {
         content: "Read more";
       }
       &:hover {
-        background: #08f;
+        background: $primary;
         color: #fff;
       }
     }
@@ -251,7 +251,7 @@ export default {
       }
       &.active {
         opacity: 1;
-        color: #08f;
+        color: $primary;
       }
 
       opacity: 0.5;
@@ -264,7 +264,7 @@ export default {
       margin: 0px 10px;
     }
     a {
-      color: #08f;
+      color: $primary;
       margin-left: 10px;
       transition: 0.2s ease-in-out;
       text-decoration: none;

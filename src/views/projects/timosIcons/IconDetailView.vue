@@ -18,9 +18,10 @@
               <div class="code">
                 <span>&lt;i class="{{ iconName }}"></span>
                 <div class="code">
-                  <span v-for="(i, index) in paths" :key="index">
-                    &lt;span class="path{{ ++index }}">&lt;/span>
-                  </span>
+                  <span
+                    v-for="(i, index) in paths"
+                    :key="index"
+                  >&lt;span class="path{{ ++index }}">&lt;/span></span>
                 </div>
                 <span>&lt;/i></span>
               </div>
@@ -28,8 +29,8 @@
             <div class="copy">
               <i class="ti ti-add">
                 <span class="path1"></span>
-                <span class="path2"></span> </i
-              >Click to copy
+                <span class="path2"></span>
+              </i>Click to copy
             </div>
           </div>
           <!-- End HTML Code -->
@@ -52,26 +53,14 @@
         <div class="examples">
           <div class="sizes tile">
             <i :class="iconName" v-for="(i, index) in Array(5)" :key="index">
-              <span
-                v-for="(i, index) in paths"
-                :key="index"
-                :class="'path' + ++index"
-              ></span>
+              <span v-for="(i, index) in paths" :key="index" :class="'path' + ++index"></span>
             </i>
           </div>
           <!-- End Sizes -->
           <div class="backgrounds">
-            <div
-              class="border tile"
-              v-for="(i, index) in Array(4)"
-              :key="index"
-            >
+            <div class="border tile" v-for="(i, index) in Array(4)" :key="index">
               <i :class="iconName">
-                <span
-                  v-for="(i, index) in paths"
-                  :key="index"
-                  :class="'path' + ++index"
-                ></span>
+                <span v-for="(i, index) in paths" :key="index" :class="'path' + ++index"></span>
               </i>
             </div>
           </div>
@@ -79,16 +68,10 @@
           <div class="phone tile">
             <div class="title">On Mobile</div>
             <div class="img">
-              <img
-                src="../../../assets/projects/timosicons/phone-preview.png"
-              />
+              <img src="../../../assets/projects/timosicons/phone-preview.png" />
               <div class="icon">
                 <i class="ti ti-users">
-                  <span
-                    v-for="(i, index) in paths"
-                    :key="index"
-                    :class="'path' + ++index"
-                  ></span>
+                  <span v-for="(i, index) in paths" :key="index" :class="'path' + ++index"></span>
                 </i>
                 <span>{{ icon }}</span>
               </div>
@@ -128,9 +111,7 @@
             The Icon you are looking for might have been removed, had its name
             changed or is temporarily unavailable.
           </p>
-          <div class="button" @click="$router.push({ name: 'timosicons' })">
-            Icon Overview
-          </div>
+          <div class="button" @click="$router.push({ name: 'timosicons' })">Icon Overview</div>
         </div>
       </div>
     </div>
@@ -165,13 +146,7 @@ export default {
 
 <style lang="scss" scoped>
 @import "../shared.scss";
-@import "../../../variables.scss";
 @import "../../../timosIcons/style.css";
-
-@media only screen and (max-width: $mobile) {
-}
-@media only screen and (min-width: $desktop) {
-}
 
 img {
   user-select: none;
@@ -207,16 +182,16 @@ img {
       opacity: 0.8;
     }
     .button {
-      border: 1px solid #08f;
+      border: 1px solid $primary;
       padding: 5px 10px;
       border-radius: 5px;
-      color: #08f;
+      color: $primary;
       display: inline-block;
       cursor: pointer;
       transition: 0.2s ease-in-out;
       &:hover {
         color: #fff;
-        background: #08f;
+        background: $primary;
       }
     }
   }
@@ -231,7 +206,7 @@ img {
 
 .title {
   .iconName {
-    color: #08f;
+    color: $primary;
     margin-left: 10px;
     padding-left: 10px;
     border-left: 1px solid rgba(var(--color-rgb), 0.5);
@@ -247,7 +222,7 @@ img {
     &:hover {
       opacity: 1;
       i {
-        color: #08f;
+        color: $primary;
       }
     }
   }
@@ -283,8 +258,8 @@ img {
         display: inline-block;
         margin-top: 10px;
         color: #fff;
-        background: #08f;
-        border: 1px solid #08f;
+        background: $primary;
+        border: 1px solid $primary;
         padding: 5px 10px;
         border-radius: 5px;
         cursor: pointer;
@@ -309,15 +284,15 @@ img {
       .copy {
         user-select: none;
         margin-top: 10px;
-        color: #08f;
-        border: 1px solid #08f;
+        color: $primary;
+        border: 1px solid $primary;
         padding: 5px 10px;
         border-radius: 5px;
         cursor: pointer;
         transition: 0.2s ease-in-out;
         &:hover {
           color: #fff;
-          background: #08f;
+          background: $primary;
         }
         i {
           margin-right: 10px;
@@ -434,7 +409,7 @@ img {
         &:nth-child(3) {
           i {
             color: #fff;
-            background: #08f;
+            background: $primary;
           }
         }
         &:nth-child(4) {

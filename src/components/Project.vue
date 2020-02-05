@@ -40,14 +40,14 @@ export default {
     .readMore {
       display: inline-block;
       cursor: pointer;
-      color: #08f;
-      border: 1px solid #08f;
+      color: $primary;
+      border: 1px solid $primary;
       margin: 10px;
       padding: 5px 10px;
       border-radius: 5px;
       transition: 0.2s ease-in;
       &:hover {
-        background: #08f;
+        background: $primary;
         color: #fff;
       }
       &::before {

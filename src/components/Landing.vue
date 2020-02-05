@@ -5,13 +5,13 @@
   </div>
 </template>
 <style lang="scss" scoped>
-@import "../variables.scss";
-@media only screen and(min-width: $desktop) {
+@import "../scss/variables.scss";
+@media #{$isDesktop} {
   .landing {
     height: 300px;
   }
 }
-@media only screen and(max-width: $mobile) {
+@media #{$isMobile} {
   .landing {
     height: 150px;
   }

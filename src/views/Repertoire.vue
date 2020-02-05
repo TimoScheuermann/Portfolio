@@ -70,13 +70,13 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-@import "../variables.scss";
-@media only screen and(max-width: $mobile) {
+@import "../scss/variables.scss";
+@media #{$isMobile} {
   .landing {
     height: 150px;
   }
 }
-@media only screen and(min-width: $desktop) {
+@media #{$isDesktop} {
   .landing {
     height: 300px;
   }
@@ -120,12 +120,12 @@ export default {
   }
 }
 
-@media only screen and(max-width: $mobile) {
+@media #{$isMobile} {
   .tools {
     grid-template-columns: repeat(auto-fill, minmax(6rem, 1fr));
   }
 }
-@media only screen and(min-width: $desktop) {
+@media #{$isDesktop} {
   .tools {
     grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
   }

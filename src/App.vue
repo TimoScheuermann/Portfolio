@@ -1,8 +1,7 @@
 <template lang="html">
 
   <div id="app">
-    <timo-nav></timo-nav>
-    <timo-header></timo-header>
+    <p-navbar></p-navbar>
     <div class="view">
       <router-view></router-view>
     </div>
@@ -10,69 +9,49 @@
 </template>
 
 <script lang="ts">
-import Navbar from "@/components/Navbar.vue";
-import Header from "@/components/Header.vue";
+import { Vue, Component } from "vue-property-decorator";
+import PNavbar from "@/components/common/P-Navbar.vue";
 
-export default {
+@Component({
   components: {
-    "timo-nav": Navbar,
-    "timo-header": Header
+    "p-navbar": PNavbar
   }
-};
+})
+export default class App extends Vue {}
 </script>
 
 <style lang="scss">
-@import "variables.scss";
-:root {
-  --background: #fff;
-  --background-rgb: 255, 255, 255;
-  --paragraph: #f0f0f0;
-  --paragraph-rgb: 240, 240, 240;
-  --color: #111;
-  --color-rgb: 17, 17, 17;
-}
-:roots {
-  --background: #000;
-  --paragraph: #0f0f0f;
-  --paragraph-rgb: 15, 15, 15;
-  --color: #fff;
-}
-
-:root {
-  @supports (top: constant(safe-area-inset-top)) {
-    --safe-area-inset-top: constant(safe-area-inset-top);
-    --safe-area-inset-right: constant(safe-area-inset-right);
-    --safe-area-inset-bottom: constant(safe-area-inset-bottom);
-    --safe-area-inset-left: constant(safe-area-inset-left);
-  }
-  @supports (top: env(safe-area-inset-top)) {
-    --safe-area-inset-top: env(safe-area-inset-top);
-    --safe-area-inset-right: env(safe-area-inset-right);
-    --safe-area-inset-bottom: env(safe-area-inset-bottom);
-    --safe-area-inset-left: env(safe-area-inset-left);
-  }
-}
+@import "./scss/_variables.scss";
 
 html {
   font-family: -apple-system, BlinkMacSystemFont, SF Pro Display, Segoe UI,
     Roboto, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji,
     Segoe UI Symbol;
   scroll-behavior: smooth;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  background: red;
 }
 
 body {
-  background-color: var(--background);
-  color: var(--color);
+  background-color: $background;
+  background: orange;
+  color: $color;
   margin: 0;
 }
-.view {
-  padding: var(--safe-area-inset-top) var(--safe-area-inset-right)
-    var(--safe-area-inset-bottom) var(--safe-area-inset-left);
+
+a {
+  text-decoration: none;
+  color: $primary;
 }
-@media only screen and(max-width: $mobile) {
+
+.view {
+  padding: $sa-top $sa-right $sa-bottom $sa-left;
+}
+@media only screen {
   .view {
-    padding-top: calc(50px + var(--safe-area-inset-top));
-    padding-bottom: calc(50px + var(--safe-area-inset-bottom));
+    padding-top: #{50px + $sa-top};
+    padding-bottom: #{50px + $sa-bottom};
   }
 }
 </style>

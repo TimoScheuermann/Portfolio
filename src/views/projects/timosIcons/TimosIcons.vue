@@ -63,7 +63,7 @@
                       d="M1550,970.667l14.167,14.167L1601,948l-36.833,36.833Z"
                       transform="translate(-1525 -915.917)"
                       fill="none"
-                      stroke="#08f"
+                      stroke="$primary"
                       stroke-linecap="round"
                       stroke-linejoin="round"
                       stroke-width="10"
@@ -139,13 +139,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 @import "../shared.scss";
-@import "../../../variables.scss";
 @import "../../../timosIcons/style.css";
-
-@media only screen and (max-width: $mobile) {
-}
-@media only screen and (min-width: $desktop) {
-}
 
 .landing {
   margin: 10px 0px;
@@ -207,7 +201,7 @@ export default {
         &[gallery] {
           span {
             color: #fff;
-            background: #08f;
+            background: $primary;
           }
           &::before {
             position: absolute;
@@ -218,7 +212,7 @@ export default {
             top: 50%;
             transform: translate(-50%, -50%);
             z-index: -1;
-            background: linear-gradient(to bottom right, #08f, #fff);
+            background: linear-gradient(to bottom right, $primary, #fff);
             animation: anim-loading 1s linear infinite both;
           }
         }
@@ -274,7 +268,7 @@ export default {
           .indicator {
             transition: 0.5s ease-in-out;
             margin-left: 5px;
-            color: #08f;
+            color: $primary;
             transform: rotate(90deg) rotateY(180deg);
             &.alphabet {
               transform: rotate(90deg);
@@ -306,7 +300,7 @@ export default {
         background: var(--background);
         box-shadow: 4px 8px 20px rgba(0, 0, 0, 0.19);
         .icon {
-          background: rgba(#08f, 0.75);
+          background: rgba($primary, 0.75);
           i {
             opacity: 0.9;
             color: #fff;

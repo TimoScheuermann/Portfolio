@@ -19,7 +19,7 @@
               d="M1550,970.667l14.167,14.167L1601,948l-36.833,36.833Z"
               transform="translate(-1525 -915.917)"
               fill="none"
-              stroke="#08f"
+              stroke="$primary"
               stroke-linecap="round"
               stroke-linejoin="round"
               stroke-width="10"

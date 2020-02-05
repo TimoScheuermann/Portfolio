@@ -93,14 +93,14 @@ export default {
 </script>
 <style lang="scss" scoped>
 @import "./shared.scss";
-@import "../../variables.scss";
+@import "../../scss/variables.scss";
 
-@media only screen and (max-width: $mobile) {
+@media #{$isMobile} {
   .gallery {
     columns: 1;
   }
 }
-@media only screen and (min-width: $desktop) {
+@media #{$isDesktop} {
   .gallery {
     columns: 3;
   }
@@ -137,7 +137,7 @@ $spaceing: 40px;
       text-align: center;
       .project {
         display: inline-block;
-        color: #08f;
+        color: $primary;
         text-align: center;
         padding: 5px 10px;
         border-radius: 5px;

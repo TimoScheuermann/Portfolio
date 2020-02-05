@@ -1,38 +1,40 @@
 <template>
   <div class="projects">
-    <project
-      v-for="(proj, index) in projects"
-      :key="index"
-      :img="proj.images.background"
+    <tc-card
+      v-for="proj in projects"
+      :key="proj.title"
       :title="proj.title"
-      :desc="proj.description"
-      :dark="proj.dark"
-      :route="proj.routeName"
-    ></project>
+      :subtitle="proj.description"
+      :mode="proj.mode"
+      :navigation="{ name: 'Read more', destiny: {name: proj.routeName}}"
+    >
+      <img :src="proj.images.background" />
+    </tc-card>
   </div>
 </template>
-<script>
-import Project from "@/components/Project";
-
-export default {
+<script lang="ts">
+import { Vue, Component } from "vue-property-decorator";
+import TCCard from "../components/shared/TC-Card.vue";
+import projects from "@/projects";
+import { Project } from "../models/Projects/Project.model";
+@Component({
   components: {
-    project: Project
-  },
-  computed: {
-    projects() {
-      return this.$store.state.projects;
-    }
+    "tc-card": TCCard
   }
-};
+})
+export default class Projects extends Vue {
+  public readonly projects: Project[] = projects;
+}
 </script>
+
 <style lang="scss" scoped>
-@import "../variables.scss";
-@media only screen and(max-width: $mobile) {
+@import "../scss/variables.scss";
+@media #{$isMobile} {
   .projects {
     grid-template-columns: repeat(1, 1fr);
   }
 }
-@media only screen and(min-width: $desktop) {
+@media #{$isDesktop} {
   .projects {
     grid-template-columns: repeat(2, 1fr);
   }

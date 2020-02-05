@@ -27,12 +27,14 @@
       </div>
     </div>
     <div class="repositories" v-if="loaded">
-      <div class="repositorie" v-for="(repo, index) in getRepos" :key="index">
+      <tc-card
+        v-for="(repo, index) in getRepos"
+        :key="index"
+        :title="repo.name"
+        :subtitle="repo.description"
+        :navigation="{name: 'View Repository on GitHub', destiny: repo.svn_url}"
+      >
         <div v-if="index === 0" class="lastUpdated">latest updates</div>
-        <div class="title">{{ repo.name }}</div>
-        <!-- <div class="description">{{ repo.size }}</div> -->
-        <div class="description">{{ repo.description }}</div>
-        <a :href="repo.svn_url" class="visit" target="_blank" rel="noopener noreferrer"></a>
         <div class="changes">
           <div class="change">
             <div class="time">{{ convertDate(repo.created_at) }}</div>
@@ -53,63 +55,77 @@
           <li>Lang: {{ repo.language }}</li>
           <li>CloneURLS...</li>
         </ul>
-      </div>
+      </tc-card>
     </div>
   </div>
 </template>
-<script>
-export default {
-  computed: {
-    creationDate: function() {
-      return this.convertDate(this.profile.created_at);
-    },
-    getRepos: function() {
-      return this.repositories.sort(
-        (b, a) =>
-          this.getLongFromDate(a.updated_at) -
-          this.getLongFromDate(b.updated_at)
-      );
-    }
-  },
-  data() {
-    return {
-      loaded: false,
-      profile: {},
-      repositories: []
-    };
-  },
+<script lang="ts">
+import { Vue, Component } from "vue-property-decorator";
+import TCCard from "../components/shared/TC-Card.vue";
+@Component({
+  components: {
+    "tc-card": TCCard
+  }
+})
+export default class GitHubView extends Vue {
+  [x: string]: any;
+
+  public loaded: boolean = false;
+  public profile: any = {};
+  public repositories: any[] = [];
+
   async mounted() {
     await this.loadRepos();
     await this.loadProfile();
     this.loaded = true;
-  },
-  methods: {
-    loadRepos: async function() {
+  }
+
+  get creationDate() {
+    return this.convertDate(this.profile.created_at);
+  }
+  get getRepos() {
+    return this.repositories.sort(
+      (b, a) =>
+        this.getLongFromDate(a.updated_at) - this.getLongFromDate(b.updated_at)
+    );
+  }
+
+  public async loadRepos(): Promise<void> {
+    if (!this.$store.state.repositories) {
       const { data } = await this.$axios.get(
         "https://api.github.com/users/timoscheuermann/repos"
       );
       this.repositories = data;
-    },
-    loadProfile: async function() {
+      this.$store.state.repositories = data;
+    } else {
+      this.repositories = this.$store.state.repositories;
+    }
+  }
+
+  public async loadProfile(): Promise<void> {
+    if (!this.$store.state.profile) {
       const { data } = await this.$axios.get(
         "https://api.github.com/users/timoscheuermann"
       );
       this.profile = data;
-    },
-    convertDate: function(dateString) {
-      const date = new Date(dateString);
-      return `${date.getDate()}.${date.getMonth() + 1}.${date.getFullYear()}`;
-    },
-    getLongFromDate: function(dateString) {
-      return new Date(dateString).getTime();
+      this.$store.state.profile = data;
+    } else {
+      this.profile = this.$store.state.profile;
     }
   }
-};
+  public convertDate(dateString: string): string {
+    const date = new Date(dateString);
+    return `${date.getDate()}.${date.getMonth() + 1}.${date.getFullYear()}`;
+  }
+  public getLongFromDate(dateString: string): number {
+    return new Date(dateString).getTime();
+  }
+}
 </script>
 <style lang="scss" scoped>
-@import "../variables.scss";
+@import "../scss/variables.scss";
 
-@media only screen and(max-width: $mobile) {
+@media #{$isMobile} {
   .landing {
     flex-direction: column;
     .loading {
@@ -128,7 +144,7 @@ export default {
   }
 }
 
-@media only screen and(min-width: $desktop) {
+@media #{$isDesktop} {
   .landing {
     height: 150px;
   }
@@ -281,16 +297,16 @@ export default {
   }
 }
 
-@media only screen and(max-width: $mobile) {
+@media #{$isMobile} {
   .repositories {
     grid-template-columns: repeat(1, 1fr);
   }
 }
 
-@media only screen and(min-width: $desktop) {
+@media #{$isDesktop} {
   .repositories {
     grid-template-columns: repeat(2, 1fr);
-    .repositorie {
+    .tc-card {
       &:first-child {
         grid-column: 1 / 3;
       }
@@ -302,28 +318,19 @@ export default {
   display: grid;
   grid-gap: 10px;
   margin: 10px 0px;
-  .repositorie {
-    background: var(--paragraph);
-    max-width: 100%;
-    padding: 30px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
+  .tc-card {
     position: relative;
-    max-width: 100vw;
-    overflow-y: hidden;
 
     &:first-child {
-      background: var(--color);
-      color: var(--paragraph);
+      background: $color;
+      color: $paragraph;
       .changes {
-        border-top: 1px solid rgba(var(--paragraph-rgb), 0.3);
-        border-bottom: 1px solid rgba(var(--paragraph-rgb), 0.3);
+        border-top: 1px solid rgba($paragraph, 0.3);
+        border-bottom: 1px solid rgba($paragraph, 0.3);
         .change {
           &:nth-child(2) {
-            border-left: 2px solid rgba(var(--paragraph-rgb), 0.3);
-            border-right: 2px solid rgba(var(--paragraph-rgb), 0.3);
+            border-left: 2px solid rgba($paragraph, 0.3);
+            border-right: 2px solid rgba($paragraph, 0.3);
           }
         }
       }
@@ -344,23 +351,11 @@ export default {
       transform: scale(0.8);
     }
 
-    .title,
-    .description,
-    .visit {
-      margin-bottom: 10px;
-    }
-
-    .title {
-      font-weight: bold;
-      font-size: 20px;
-    }
-    // .description {
-    // }
     .changes {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      border-top: 1px solid rgba(var(--color-rgb), 0.3);
-      border-bottom: 1px solid rgba(var(--color-rgb), 0.3);
+      border-top: 1px solid rgba($color, 0.3);
+      border-bottom: 1px solid rgba($color, 0.3);
       padding: 10px 0px;
       width: fit-content;
       text-align: center;
@@ -368,8 +363,8 @@ export default {
       .change {
         padding: 10px;
         &:nth-child(2) {
-          border-left: 1px solid rgba(var(--color-rgb), 0.3);
-          border-right: 1px solid rgba(var(--color-rgb), 0.3);
+          border-left: 1px solid rgba($color, 0.3);
+          border-right: 1px solid rgba($color, 0.3);
         }
         .time {
           font-weight: bold;
@@ -377,25 +372,9 @@ export default {
         }
         .name {
           margin-top: 2px;
-          color: #08f;
+          color: $primary;
           font-weight: 500;
         }
-      }
-    }
-    .visit {
-      &::before {
-        content: "View Repository on GitHub";
-      }
-      text-decoration: none;
-      display: inline-block;
-      color: #08f;
-      border: 1px solid #08f;
-      padding: 5px 10px;
-      border-radius: 5px;
-      transition: 0.2s ease-in-out;
-      &:hover {
-        background: #08f;
-        color: #fff;
       }
     }
     ul {

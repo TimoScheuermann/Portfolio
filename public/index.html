@@ -2,10 +2,10 @@
 <html lang="en">
   <head>
     <base href="/" />
-    <meta charset="utf-8" />
+    <meta charset="UTF-8" />
     <meta
       name="viewport"
-      content="width=device-width, height=device-height, initial-scale=1, user-scalable=0, viewport-fit=cover"
+      content="width=device-width, initial-scale=1, user-scalable=0, viewport-fit=cover"
     />
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -13,18 +13,24 @@
     <meta name="apple-mobile-web-app-title" content="Portfolio" />
     <meta name="msapplication-starturl" content="./" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link rel="icon" href="<%= BASE_URL %>favicon.ico" />
+    <link rel="manifest" href="./manifest.webmanifest" />
     <meta
       name="apple-mobile-web-app-status-bar-style"
       content="black-translucent"
     />
-    <link rel="manifest" href="manifest.json" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="512x512"
+      href="./assets/logo.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      type="image/png"
+      sizes="512x512"
+      href="./assets/logo.png"
+    />
     <title>Portfolio</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.14.1/lodash.min.js"></script>
-    <!-- <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/gh/TimoScheuermann/Timos-Icons@latest/docs/v2/style.css"
-    /> -->
   </head>
   <body>
     <noscript>
