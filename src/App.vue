@@ -22,6 +22,7 @@ import PTabbar from "./components/common/P-Tabbar.vue";
 export default class App extends Vue {}
 </script>
 
+
 <style lang="scss">
 @import "./scss/variables.scss";
 

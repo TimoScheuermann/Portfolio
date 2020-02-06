@@ -82,7 +82,7 @@
           </div>
           <div class="bar"></div>
         </div>
-         <transition-group name="icon-trans" tag="div" class="gallery">
+        <transition-group name="icon-trans" tag="div" class="gallery">
           <icon-tile v-for="icon in iconsSorted" :key="icon.name" :icon="icon"></icon-tile>
         </transition-group>
       </div>
@@ -92,7 +92,7 @@
 
 <script lang="ts">
 import { Vue, Component } from "vue-property-decorator";
-import icons from "@/icons";
+import icons from "@/icon5";
 import IconTile from "../../../components/projects/TimosIcons/IconTile.vue";
 @Component({
   components: {
@@ -116,7 +116,7 @@ export default class TimosIcons extends Vue {
 
 <style lang="scss" scoped>
 @import "../shared.scss";
-@import "../../../icons/style.css";
+// @import "../../../icons/style.css";
 
 .icon-trans-move {
   transition: all 0.4s ease-in-out;
@@ -258,7 +258,8 @@ export default class TimosIcons extends Vue {
             display: inline-block;
           }
           .title {
-            font-weight: 500;
+            font-weight: bold;
+            opacity: 0.8;
           }
           .indicator {
             transition: 0.5s ease-in-out;

@@ -22,10 +22,14 @@
       <div class="icon" v-for="(icon, index) in icons()" :key="index">
         <div class="inde">{{ index }}</div>
         <div class="i">
-          <span :class="icon.name"></span>
+          <span :class="'ti-' + icon.name"></span>
         </div>
         <div class="name">{{ icon.name }}</div>
       </div>
+    </div>
+    <div class="filter">
+      <tc-checkbox title="Hallo Welt"></tc-checkbox>
+      <tc-direction title="Richtung"></tc-direction>
     </div>
   </div>
 </template>
@@ -35,12 +39,16 @@ import TCButton from "../components/shared/TC-Button.vue";
 import TCCard from "../components/shared/TC-Card.vue";
 import PNavbar from "../components/common/P-Navbar.vue";
 import PLanding from "../components/common/P-Landing.vue";
-import icons from "@/icons";
+import icons from "@/icon5";
 import { Icon } from "../models/Icons/Icon.model";
+import TCCheckbox from "../components/shared/filter/TC-Checkbox.vue";
+import TCDirection from "../components/shared/filter/TC-Direction.vue";
 @Component({
   components: {
     "tc-button": TCButton,
     "tc-card": TCCard,
+    "tc-checkbox": TCCheckbox,
+    "tc-direction": TCDirection,
     "p-landing": PLanding
   }
 })
@@ -53,7 +61,7 @@ export default class ContactView extends Vue {
 
 <style lang="scss" scoped>
 @import "../scss/variables";
-@import "../icons/style.css";
+// @import "../icons/style.css";
 h1 {
   color: $primary;
   &::after {
@@ -81,5 +89,9 @@ h1 {
     width: 100px;
     white-space: nowrap;
   }
+}
+.filter {
+  display: flex;
+  align-items: center;
 }
 </style>

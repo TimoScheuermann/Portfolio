@@ -146,7 +146,7 @@ export default {
 
 <style lang="scss" scoped>
 @import "../shared.scss";
-@import "../../../icons/style.css";
+// @import "../../../icons/style.css";
 
 img {
   user-select: none;
