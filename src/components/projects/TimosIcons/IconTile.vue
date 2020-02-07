@@ -21,7 +21,7 @@ import TCButton from "../../shared/TC-Button.vue";
 import { Icon } from "../../../models/Icons/Icon.model";
 @Component({
   components: {
-    "tc-button": TCButton,
+    "tc-button": TCButton
   }
 })
 export default class IconTile extends Vue {
@@ -39,9 +39,9 @@ export default class IconTile extends Vue {
   background: $paragraph;
   border-radius: $border-radius;
   padding: 20px;
-  transition: .2s ease-in-out;
+  transition: 0.2s ease-in-out;
   &:hover {
-    box-shadow: 4px 8px 20px rgba(0,0,0,.19);
+    box-shadow: 4px 8px 20px rgba(0, 0, 0, 0.1);
   }
   .icon {
     span {
@@ -50,26 +50,24 @@ export default class IconTile extends Vue {
     }
   }
   .name {
-      margin: 5px 0;
-      font-weight: bold;
-      opacity: .8;
+    margin: 5px 0;
+    font-weight: bold;
+    opacity: 0.8;
   }
   .css {
-
-      width: 100%;
+    width: 100%;
     display: flex;
     justify-content: space-around;
     align-items: center;
     margin-bottom: 10px;
     padding: 5px 0;
 
-    $border: 1px solid rgba($color, .4);
+    $border: 1px solid rgba($color, 0.4);
     border: {
-        bottom: $border;
-        top: $border;
+      bottom: $border;
+      top: $border;
     }
     .text {
-
     }
     .glyph {
       .span {

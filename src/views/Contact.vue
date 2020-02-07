@@ -2,6 +2,7 @@
   <div>
     <p-landing title="Contact" blur="true"></p-landing>
     <h1>Contact</h1>
+    <p-slideshow :images="slides()"></p-slideshow>
     <tc-button :navigation="{ name: 'Google.com', destiny: 'https://google.com' }"></tc-button>
     <tc-button :navigation="{ name: 'GitHub', destiny: { name: 'github' } }"></tc-button>
     <tc-card
@@ -40,21 +41,27 @@ import TCCard from "../components/shared/TC-Card.vue";
 import PNavbar from "../components/common/P-Navbar.vue";
 import PLanding from "../components/common/P-Landing.vue";
 import icons from "@/icon5";
+import projects from "@/projects";
 import { Icon } from "../models/Icons/Icon.model";
 import TCCheckbox from "../components/shared/filter/TC-Checkbox.vue";
 import TCDirection from "../components/shared/filter/TC-Direction.vue";
+import PSlideshow from "../components/home/P-Slideshow.vue";
 @Component({
   components: {
     "tc-button": TCButton,
     "tc-card": TCCard,
     "tc-checkbox": TCCheckbox,
     "tc-direction": TCDirection,
-    "p-landing": PLanding
+    "p-landing": PLanding,
+    "p-slideshow": PSlideshow
   }
 })
 export default class ContactView extends Vue {
   public icons(): Icon[] {
     return icons;
+  }
+  public slides(): string[] {
+    return projects.map(x => x.images.background);
   }
 }
 </script>
