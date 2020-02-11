@@ -1,9 +1,9 @@
 import { ProjectImages } from "./ProjectImages.model";
+import { RouteOptions } from "./RouteOptions.model";
 
 export class Project {
-  mode: string = "light";
   title: string = "%title%";
-  routeName: string = "home";
   description: string = "%description%";
   images: ProjectImages = new ProjectImages();
+  routeOptions: RouteOptions = new RouteOptions();
 }

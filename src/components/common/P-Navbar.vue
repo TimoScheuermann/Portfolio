@@ -26,6 +26,7 @@ export default class PNavbar extends Vue {}
   @include backdrop-blur($background);
 
   display: flex;
+  display: none;
   position: fixed;
   top: 0;
   width: 80%;

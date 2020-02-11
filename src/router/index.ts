@@ -1,3 +1,6 @@
+import { Project } from "@/models/Projects/Project.model";
+import { RouteOptions } from "@/models/Projects/RouteOptions.model";
+import projects from "@/projects";
 import EmptyRouter from "@/views/EmptyRouter.vue";
 import Vue from "vue";
 import VueRouter from "vue-router";
@@ -11,54 +14,6 @@ const router = new VueRouter({
       path: "/",
       name: "home",
       component: () => import("../views/Home.vue")
-    },
-    {
-      path: "/projects",
-      component: EmptyRouter,
-      children: [
-        {
-          name: "projects",
-          path: "",
-          component: () => import("../views/Projects.vue")
-        },
-        {
-          name: "workgallery",
-          path: "Work-Gallery",
-          meta: {
-            scrollNav: true
-          },
-          component: () => import("../views/projects/WorkGallery.vue")
-        },
-        {
-          path: "Timos-Icons",
-          component: EmptyRouter,
-          children: [
-            {
-              path: "",
-              name: "timosicons",
-              meta: {
-                scrollNav: true
-              },
-              component: () =>
-                import("../views/projects/timosIcons/TimosIcons.vue")
-            },
-            {
-              path: ":icon",
-              name: "timosiconsdetail",
-              meta: {
-                scrollNav: true
-              },
-              component: () =>
-                import("../views/projects/timosIcons/IconDetailView.vue")
-            }
-          ]
-        },
-        {
-          name: "projectNF",
-          path: "*",
-          component: () => import("../views/projects/NotFound.vue")
-        }
-      ]
     },
     {
       path: "/repertoire",
@@ -81,5 +36,61 @@ const router = new VueRouter({
     }
   ]
 });
+
+let children = [
+  {
+    name: "projects",
+    path: "",
+    component: () => import("../views/Projects.vue")
+  }
+];
+projects.forEach((x: Project) => {
+  if (x.routeOptions.subPages!.length > 0) {
+    const subPages = [
+      {
+        name: x.routeOptions.name,
+        path: "",
+        component: () =>
+          import(`@/views/projects/${x.routeOptions.component}.vue`),
+        meta: x.routeOptions.meta
+      }
+    ];
+    x.routeOptions.subPages!.forEach((y: RouteOptions) => {
+      subPages.push({
+        name: y.name,
+        path: y.path,
+        component: () => import(`@/views/projects/${y.component}.vue`),
+        meta: y.meta
+      });
+    });
+    children.push({
+      path: x.routeOptions.path,
+      component: () => import("@/views/EmptyRouter.vue"),
+      meta: x.routeOptions.meta,
+      children: subPages
+    });
+  } else {
+    children.push({
+      name: x.routeOptions.name,
+      component: () =>
+        import(`@/views/projects/${x.routeOptions.component}.vue`),
+      path: x.routeOptions.path,
+      meta: x.routeOptions.meta
+    });
+  }
+});
+children.push({
+  name: "projectNF",
+  path: "*",
+  component: () => import("../views/projects/NotFound.vue")
+});
+
+router.addRoutes([
+  {
+    path: "/projects",
+    component: EmptyRouter,
+    children: children
+  }
+]);
 
 export default router;

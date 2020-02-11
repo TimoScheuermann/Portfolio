@@ -1,5 +1,37 @@
 <template lang="html">
   <div id="app">
+    <tc-sidebar v-if="showSidebar()">
+      <b slot="header">Title</b>
+
+      <tc-sidebar-item icon="house" name="Home" :to="{ name: 'home' }" />
+
+      <tc-sidebar-group icon="book-p" name="Projects">
+        <tc-sidebar-item
+          icon="book-p"
+          name="Projects"
+          :to="{ name: 'projects' }"
+        /><tc-sidebar-item
+          v-for="proj in projects"
+          :icon="proj.images.tiIcon"
+          :name="proj.title"
+          :to="{ name: proj.routeOptions.name }"
+        />
+      </tc-sidebar-group>
+
+      <tc-sidebar-item
+        icon="tools"
+        name="Reportoire"
+        :to="{ name: 'repertoire' }"
+      />
+      <tc-sidebar-item
+        icon="user-card"
+        name="Contact"
+        :to="{ name: 'contact' }"
+      />
+      <tc-sidebar-item name="GitHub" :to="{ name: 'github' }" />
+
+      <b slot="footer">Footer</b>
+    </tc-sidebar>
     <p-navbar></p-navbar>
     <p-tabbar></p-tabbar>
     <div class="view">
@@ -11,17 +43,31 @@
 <script lang="ts">
 import { Vue, Component } from "vue-property-decorator";
 import PNavbar from "@/components/common/P-Navbar.vue";
-import PTabbar from "./components/common/P-Tabbar.vue";
+import PTabbar from "@/components/common/P-Tabbar.vue";
+import TCSidebar from "@/components/tc/sidebar/TC-Sidebar.vue";
+import TCSidebarGroup from "@/components/tc/sidebar/TS-Sidebar-Group.vue";
+import TCSidebarItem from "@/components/tc/sidebar/TC-Sidebar-Item.vue";
+import projects from "@/projects";
+import { Project } from "@/models/Projects/Project.model";
 
 @Component({
   components: {
     "p-navbar": PNavbar,
-    "p-tabbar": PTabbar
+    "p-tabbar": PTabbar,
+    "tc-sidebar": TCSidebar,
+    "tc-sidebar-group": TCSidebarGroup,
+    "tc-sidebar-item": TCSidebarItem
   }
 })
-export default class App extends Vue {}
+export default class App extends Vue {
+  get projects(): Project[] {
+    return projects;
+  }
+  showSidebar() {
+    return !this.$route.meta.customSidebar;
+  }
+}
 </script>
-
 
 <style lang="scss">
 @import "./scss/variables.scss";
