@@ -14,7 +14,7 @@
           v-for="proj in projects"
           :icon="proj.images.tiIcon"
           :name="proj.title"
-          :to="{ name: proj.routeOptions.name }"
+          :to="{ name: proj.routeName }"
         />
       </tc-sidebar-group>
 
@@ -60,9 +60,8 @@ import { Project } from "@/models/Projects/Project.model";
   }
 })
 export default class App extends Vue {
-  get projects(): Project[] {
-    return projects;
-  }
+  public projects: Project[] = projects;
+
   showSidebar() {
     return !this.$route.meta.customSidebar;
   }

@@ -1,15 +1,10 @@
+import constants from "@/constants";
 import { Project } from "@/models/Projects/Project.model";
 
 const projects: Project[] = [
   {
+    routeName: constants.projectRoutes.dhbw_richie,
     title: "DHBW Richie",
-    routeOptions: {
-      meta: {},
-      name: "dhbwrichie",
-      path: "DHBW-Richie",
-      subPages: [],
-      component: "WorkGallery"
-    },
     description:
       "Lorem ipsum Zeile 1 Lorem ipsum Zeile 2 Lorem ipsum Zeile 3 Lorem ipsum Zeile 4",
     images: {
@@ -19,21 +14,8 @@ const projects: Project[] = [
     }
   },
   {
+    routeName: constants.projectRoutes.timos_icons,
     title: "Timos Icons",
-    routeOptions: {
-      meta: {},
-      name: "timosicons",
-      path: "Timos-Icons",
-      component: "timosIcons/TimosIcons",
-      subPages: [
-        {
-          meta: {},
-          name: "iconDetailview",
-          path: ":icon",
-          component: "timosIcons/IconDetailView"
-        }
-      ]
-    },
     description:
       "Lorem ipsum Zeile 1 Lorem ipsum Zeile 2 Lorem ipsum Zeile 3 Lorem ipsum Zeile 4",
     images: {
@@ -43,14 +25,8 @@ const projects: Project[] = [
     }
   },
   {
+    routeName: constants.projectRoutes.work_gallery,
     title: "Work Gallery",
-    routeOptions: {
-      meta: {},
-      name: "workgallery",
-      path: "Work-Gallery",
-      subPages: [],
-      component: "WorkGallery"
-    },
     description:
       "Lorem ipsum Zeile 1 Lorem ipsum Zeile 2 Lorem ipsum Zeile 3 Lorem ipsum Zeile 4",
     images: {
@@ -60,14 +36,8 @@ const projects: Project[] = [
     }
   },
   {
+    routeName: constants.projectRoutes.nhl_stats,
     title: "NHL Stats",
-    routeOptions: {
-      meta: {},
-      name: "nhlstats",
-      path: "NHL-Stats",
-      subPages: [],
-      component: "WorkGallery"
-    },
     description:
       "Lorem ipsum Zeile 1 Lorem ipsum Zeile 2 Lorem ipsum Zeile 3 Lorem ipsum Zeile 4",
     images: {
@@ -77,14 +47,8 @@ const projects: Project[] = [
     }
   },
   {
+    routeName: constants.projectRoutes.ams_pro,
     title: "AMS Pro",
-    routeOptions: {
-      meta: {},
-      name: "amspro",
-      path: "AMS-Pro",
-      subPages: [],
-      component: "WorkGallery"
-    },
     description:
       "Lorem ipsum Zeile 1 Lorem ipsum Zeile 2 Lorem ipsum Zeile 3 Lorem ipsum Zeile 4",
     images: {
@@ -94,25 +58,8 @@ const projects: Project[] = [
     }
   },
   {
+    routeName: constants.projectRoutes.timos_components,
     title: "TI Components",
-    routeOptions: {
-      meta: {
-        customSidebar: true
-      },
-      name: "ticomponents",
-      path: "TI-Components",
-      component: "ti-components/TI-Components",
-      subPages: [
-        {
-          meta: {
-            customSidebar: true
-          },
-          name: "ticomponentsDetail",
-          path: ":comp",
-          component: "ti-components/TI-Components"
-        }
-      ]
-    },
     description:
       "Lorem ipsum Zeile 1 Lorem ipsum Zeile 2 Lorem ipsum Zeile 3 Lorem ipsum Zeile 4",
     images: {
