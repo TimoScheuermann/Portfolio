@@ -77,13 +77,13 @@ const router = new VueRouter({
               name: "",
               path: "",
               component: () =>
-                import("@/views/projects/timosicons/IconDetailview.vue")
+                import("@/views/projects/timosIcons/IconDetailView.vue")
             },
             {
               name: "",
               path: "",
               component: () =>
-                import("@/views/projects/timosicons/TimosIcons.vue")
+                import("@/views/projects/timosIcons/TimosIcons.vue")
             }
           ]
         },
