@@ -56,6 +56,7 @@ export default class TCSidebar extends Vue {}
       }
     }
   }
+  // min-width: 200px;
   .content {
     padding-left: 10px;
   }

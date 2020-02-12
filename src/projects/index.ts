@@ -19,7 +19,7 @@ const projects: Project[] = [
     description:
       "Lorem ipsum Zeile 1 Lorem ipsum Zeile 2 Lorem ipsum Zeile 3 Lorem ipsum Zeile 4",
     images: {
-      tiIcon: "book",
+      tiIcon: "heart",
       icon: "../img/projects/icons/icon-icons.png",
       background: "../img/projects/icons/preview2-icons.png"
     }
@@ -63,7 +63,7 @@ const projects: Project[] = [
     description:
       "Lorem ipsum Zeile 1 Lorem ipsum Zeile 2 Lorem ipsum Zeile 3 Lorem ipsum Zeile 4",
     images: {
-      tiIcon: "book",
+      tiIcon: "components",
       icon: "../img/projects/richie/icon-richie.png",
       background: "../img/projects/richie/preview3-richie.png"
     }

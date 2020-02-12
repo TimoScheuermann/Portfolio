@@ -33,6 +33,11 @@ const router = new VueRouter({
       component: EmptyRouter,
       children: [
         {
+          path: "",
+          name: constants.routes.projects,
+          component: () => import("@/views/Projects.vue")
+        },
+        {
           path: "/amspro",
           name: constants.projectRoutes.ams_pro,
           component: () => import("@/views/projects/NotFound.vue")
@@ -50,19 +55,19 @@ const router = new VueRouter({
         {
           path: "/timoscomponents",
           component: EmptyRouter,
-          meta: {
-            customSidebar: true
-          },
+
           children: [
             {
-              name: "",
-              path: constants.projectRoutes.timos_components,
+              path: "",
+              name: constants.projectRoutes.timos_components,
+              meta: { customSidebar: true },
               component: () =>
                 import("@/views/projects/ti-components/TI-Components.vue")
             },
             {
-              name: ":comp",
-              path: constants.projectRoutes.timos_components,
+              path: ":comp",
+              name: constants.projectRoutes.timos_components_detail,
+              meta: { customSidebar: true },
               component: () =>
                 import("@/views/projects/ti-components/TI-Components.vue")
             }
@@ -70,20 +75,19 @@ const router = new VueRouter({
         },
         {
           path: "/timosicons",
-          name: constants.projectRoutes.timos_icons,
-          component: () => import("@/views/projects/NotFound.vue"),
+          component: EmptyRouter,
           children: [
             {
-              name: "",
-              path: "",
-              component: () =>
-                import("@/views/projects/timosIcons/IconDetailView.vue")
-            },
-            {
-              name: "",
+              name: constants.projectRoutes.timos_icons,
               path: "",
               component: () =>
                 import("@/views/projects/timosIcons/TimosIcons.vue")
+            },
+            {
+              name: constants.projectRoutes.timos_icons_detail,
+              path: ":icon",
+              component: () =>
+                import("@/views/projects/timosIcons/IconDetailView.vue")
             }
           ]
         },

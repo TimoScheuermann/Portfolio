@@ -25,7 +25,7 @@ export default class TCSidebarGroup extends Vue {
   @Prop() name!: string;
   @Prop() icon!: string;
 
-  public expanded: boolean = false;
+  public expanded: boolean = true;
 }
 </script>
 <style lang="scss" scoped>
@@ -66,6 +66,7 @@ export default class TCSidebarGroup extends Vue {
       .expander {
         transition: 0.2s ease-in-out;
         i {
+          color: inherit;
         }
       }
     }

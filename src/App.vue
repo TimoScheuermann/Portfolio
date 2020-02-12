@@ -12,6 +12,7 @@
           :to="{ name: 'projects' }"
         /><tc-sidebar-item
           v-for="proj in projects"
+          :key="proj.title"
           :icon="proj.images.tiIcon"
           :name="proj.title"
           :to="{ name: proj.routeName }"
@@ -28,7 +29,7 @@
         name="Contact"
         :to="{ name: 'contact' }"
       />
-      <tc-sidebar-item name="GitHub" :to="{ name: 'github' }" />
+      <tc-sidebar-item icon="github" name="GitHub" :to="{ name: 'github' }" />
 
       <b slot="footer">Footer</b>
     </tc-sidebar>

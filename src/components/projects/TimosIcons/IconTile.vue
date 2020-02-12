@@ -1,17 +1,20 @@
 <template>
   <div class="iconTile">
     <div class="icon">
-      <span :class="'ti-' + icon.name"></span>
+      <i :class="'ti-' + icon.name"></i>
     </div>
     <div class="name">{{ icon.name }}</div>
     <div class="css">
       <div class="text">\{{ icon.css }}</div>
       <div class="glyph">
-        <span :class="'ti-' + icon.name"></span>
+        <i :class="'ti-' + icon.name"></i>
       </div>
     </div>
     <tc-button
-      :navigation="{ name: 'More', destiny: {name: 'timosiconsdetail', params: { icon: icon.name } } }"
+      :navigation="{
+        name: 'More',
+        destiny: { name: 'timosiconsdetail', params: { icon: icon.name } }
+      }"
     ></tc-button>
   </div>
 </template>
@@ -68,9 +71,11 @@ export default class IconTile extends Vue {
       top: $border;
     }
     .text {
+      color: inherit;
     }
     .glyph {
       .span {
+        color: inherit;
       }
     }
   }

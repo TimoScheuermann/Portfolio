@@ -12,6 +12,7 @@ export default {
     timos_icons: "timosicons",
     timos_icons_detail: "timosiconsdetail",
     timos_components: "timoscomponents",
+    timos_components_detail: "timoscomponentsdetail",
     ams_pro: "amspro",
     not_found: "projectsNF"
   }

@@ -6,30 +6,29 @@
       <tc-sidebar-item
         name="Other Projects"
         icon="book-p"
-        :to="{ name: 'projects' }"
+        :to="{ name: constants.routes.projects }"
       ></tc-sidebar-item>
       <tc-divider></tc-divider>
       <tc-sidebar-item
         name="Home"
-        icon="house"
-        :to="{ name: 'ticomponents' }"
+        icon="heart"
+        :to="{ name: constants.projectRoutes.timos_components }"
       />
 
-      <tc-divider position="center" icon="save" name="Components"></tc-divider>
+      <tc-divider
+        position="center"
+        icon="components"
+        name="Components"
+      ></tc-divider>
       <tc-sidebar-item
-        name="Input"
-        icon="list-check"
-        :to="{ name: 'ticomponentsDetail', params: { comp: 'Input' } }"
-      />
-      <tc-sidebar-item
-        name="Card"
-        icon="user-card"
-        :to="{ name: 'ticomponentsDetail', params: { comp: 'Card' } }"
-      />
-      <tc-sidebar-item
-        name="Button"
-        icon="lens"
-        :to="{ name: 'ticomponentsDetail', params: { comp: 'Button' } }"
+        v-for="tcc in tcComponents"
+        :key="tcc.name"
+        :name="tcc.name"
+        :icon="tcc.icon"
+        :to="{
+          name: constants.projectRoutes.timos_components_detail,
+          params: { comp: tcc.name }
+        }"
       />
     </tc-sidebar>
     <div class="content">
@@ -53,22 +52,31 @@ import TCSidebar from "@/components/tc/sidebar/TC-Sidebar.vue";
 import TCSidebarGroup from "@/components/tc/sidebar/TS-Sidebar-Group.vue";
 import TCSidebarItem from "@/components/tc/sidebar/TC-Sidebar-Item.vue";
 import TCDivider from "@/components/tc/divider/TC-Divider.vue";
+import tcComponents from "@/components/tc";
+import { TCComponent } from "../../../models/TCComponents/TCComponent.model";
+import constants from "@/constants";
+
 @Component({
   components: {
     "tc-sidebar": TCSidebar,
     "tc-sidebar-group": TCSidebarGroup,
     "tc-sidebar-item": TCSidebarItem,
     "tc-divider": TCDivider,
-    "TI-Input--view": TIInputs,
-    "TI-Card--view": TICards
+    "input--view": TIInputs,
+    "card--view": TICards
   }
 })
 export default class TIComponents extends Vue {
+  public tcComponents: TCComponent[] = tcComponents.sort((a, b) =>
+    a.name.localeCompare(b.name)
+  );
+  public constants: {} = constants;
+
   isComponent(): boolean {
     return !!this.$route.params.comp;
   }
   getComponent() {
-    return `TI-${this.$route.params.comp || "unknown"}--view`;
+    return `${this.$route.params.comp.toLowerCase() || "unknown"}--view`;
   }
 
   loadedComponents() {
