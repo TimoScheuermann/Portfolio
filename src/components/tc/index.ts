@@ -28,6 +28,10 @@ const tcComponents: TCComponent[] = [
   {
     name: "Link",
     icon: "arrow-down-right"
+  },
+  {
+    name: "Select",
+    icon: "list"
   }
 ];
 

@@ -3,12 +3,12 @@
     <tc-header title="Timos Icons">
       <tc-button icon="components" name="Examples"></tc-button>
       <tc-button icon="questionmark" name="Usage"></tc-button>
-      <tc-button icon="server" name="Download"></tc-button>
+      <tc-button icon="download" name="Download"></tc-button>
     </tc-header>
 
     <div class="hero">
       <div class="logo">
-        <img :src="'../../../assets/projects/timosicons/timosicons.svg'" />
+        <img src="../../../assets/projects/timosicons/timosicons.svg" />
       </div>
 
       <tc-card rounded title="Timo's Icons">
@@ -18,10 +18,10 @@
           illo corrupti recusandae nobis possimus. Temporibus deleniti eligendi
           ex rem fuga.
         </p>
-        <div class="buttons">
-          <tc-button to="#gallery" name="View Gallery"></tc-button>
-          <tc-button to="#" name="How to use"></tc-button>
-        </div>
+        <img src="img/projects/icons/preview2-icons.png" />
+
+        <tc-button to="#gallery" name="View Gallery"></tc-button>
+        <tc-button to="#" name="How to use"></tc-button>
       </tc-card>
     </div>
 
@@ -130,6 +130,6 @@ export default class TimosIcons extends Vue {
 .gallery {
   display: grid;
   grid-gap: 20px;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
 }
 </style>

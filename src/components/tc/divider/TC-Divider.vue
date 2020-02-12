@@ -1,10 +1,11 @@
 <template>
-  <div class="tc-divider" :style="{ 'text-align': alignment }">
-    <div class="bar"></div>
+  <div class="tc-divider">
+    <div class="bar" v-if="position != 'left'"></div>
     <div class="content" v-if="icon || name">
       <i v-if="icon" :class="'ti-' + icon"></i>
       <span v-if="name" class="name">{{ name }}</span>
     </div>
+    <div class="bar" v-if="position != 'right'"></div>
   </div>
 </template>
 <script lang="ts">
@@ -22,30 +23,25 @@ export default class TCDivider extends Vue {
 </script>
 <style lang="scss" scoped>
 .tc-divider {
-  position: relative;
+  display: flex;
   margin: 5px 10px;
   min-height: 10px;
+  align-items: center;
   .bar {
-    position: absolute;
     background: #000;
     height: 1px;
     opacity: 0.3;
-    width: 100%;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: -1;
+    flex-grow: 1;
   }
   .content {
-    z-index: 2;
-    background: #fff;
     padding: 0 5px;
     display: inline-block;
-
     .icon,
     .name {
       user-select: none;
       opacity: 0.8;
       padding: 0 3px;
+      font-weight: 500;
     }
   }
 }
