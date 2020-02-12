@@ -24,6 +24,10 @@ const tcComponents: TCComponent[] = [
   {
     name: "Checkbox",
     icon: "checkbox"
+  },
+  {
+    name: "Link",
+    icon: "arrow-down-right"
   }
 ];
 

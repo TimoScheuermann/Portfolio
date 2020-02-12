@@ -85,6 +85,7 @@ export default class TCSidebarGroup extends Vue {
 
     &.expanded {
       max-height: 300px;
+      margin-top: 5px;
     }
 
     .divider {

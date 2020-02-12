@@ -1,30 +1,28 @@
 <template>
-  <div class="iconTile">
+  <tc-card rounded hover :title="icon.name" class="iconTile">
     <div class="icon">
       <i :class="'ti-' + icon.name"></i>
     </div>
-    <div class="name">{{ icon.name }}</div>
     <div class="css">
       <div class="text">\{{ icon.css }}</div>
-      <div class="glyph">
-        <i :class="'ti-' + icon.name"></i>
-      </div>
+      <i :class="'ti-' + icon.name"></i>
     </div>
+    <div class="spacer"></div>
     <tc-button
-      :navigation="{
-        name: 'More',
-        destiny: { name: 'timosiconsdetail', params: { icon: icon.name } }
-      }"
+      name="More"
+      :to="{ name: 'timosiconsdetail', params: { icon: icon.name } }"
     ></tc-button>
-  </div>
+  </tc-card>
 </template>
 <script lang="ts">
 import { Vue, Component, Prop } from "vue-property-decorator";
-import TCButton from "../../shared/TC-Button.vue";
-import { Icon } from "../../../models/Icons/Icon.model";
+import { Icon } from "@/models/Icons/Icon.model";
+import TCButton from "@/components/tc/button/TC-Button.vue";
+import TCCard from "@/components/tc/card/TC-Card.vue";
 @Component({
   components: {
-    "tc-button": TCButton
+    "tc-button": TCButton,
+    "tc-card": TCCard
   }
 })
 export default class IconTile extends Vue {
@@ -34,49 +32,34 @@ export default class IconTile extends Vue {
 </script>
 <style lang="scss" scoped>
 @import "../../../scss/variables";
-
 .iconTile {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background: $paragraph;
-  border-radius: $border-radius;
-  padding: 20px;
-  transition: 0.2s ease-in-out;
-  &:hover {
-    box-shadow: 4px 8px 20px rgba(0, 0, 0, 0.1);
+  /deep/ .slot {
+    height: calc(100% - 40px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .spacer {
+    flex-grow: 1 !important;
   }
   .icon {
-    span {
+    i {
       color: $primary;
       font-size: 35px;
     }
-  }
-  .name {
-    margin: 5px 0;
-    font-weight: bold;
-    opacity: 0.8;
   }
   .css {
     width: 100%;
     display: flex;
     justify-content: space-around;
     align-items: center;
-    margin-bottom: 10px;
+    margin: 10px 0;
     padding: 5px 0;
 
     $border: 1px solid rgba($color, 0.4);
     border: {
       bottom: $border;
       top: $border;
-    }
-    .text {
-      color: inherit;
-    }
-    .glyph {
-      .span {
-        color: inherit;
-      }
     }
   }
 }

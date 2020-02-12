@@ -1,43 +1,60 @@
 <template>
-  <project title="Timo's Icons">
+  <div class="content">
+    <tc-header title="Timos Icons">
+      <tc-button icon="components" name="Examples"></tc-button>
+      <tc-button icon="questionmark" name="Usage"></tc-button>
+      <tc-button icon="server" name="Download"></tc-button>
+    </tc-header>
+
     <div class="hero">
       <div class="logo">
-        <img src="../../../assets/projects/timosicons/timosicons.svg" />
+        <img :src="'../../../assets/projects/timosicons/timosicons.svg'" />
       </div>
 
-      <tc-card title="Timo's Icons">
-        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatibus quos ratione porro commodi quo fuga, numquam nostrum eos repellendus illo corrupti recusandae nobis possimus. Temporibus deleniti eligendi ex rem fuga.</p>
+      <tc-card rounded title="Timo's Icons">
+        <p>
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatibus
+          quos ratione porro commodi quo fuga, numquam nostrum eos repellendus
+          illo corrupti recusandae nobis possimus. Temporibus deleniti eligendi
+          ex rem fuga.
+        </p>
         <div class="buttons">
-          <tc-button important="true" :navigation="{name: 'View Gallery', destiny: '#gallery'}"></tc-button>
-          <tc-button :navigation="{name: 'How to use', destiny: '#'}"></tc-button>
+          <tc-button to="#gallery" name="View Gallery"></tc-button>
+          <tc-button to="#" name="How to use"></tc-button>
         </div>
       </tc-card>
     </div>
 
-    <div class="section">
-      <div class="sectionHead">
-        <div class="title">All {{ iconsSorted.length }} Icons</div>
-        <div class="filter">
-          <tc-checkbox title="Additional Info"></tc-checkbox>
-          <tc-direction title="Sort by name" @toggle="toggleDirection"></tc-direction>
-        </div>
-      </div>
-      <transition-group name="icon-trans" tag="div" class="gallery">
-        <icon-tile v-for="icon in iconsSorted" :key="icon.name" :icon="icon"></icon-tile>
-      </transition-group>
-    </div>
-  </project>
+    <tc-headline :title="'All ' + iconsSorted.length + ' Icons'">
+      <!-- <tc-checkbox title="Additional Info"></tc-checkbox>
+      <tc-direction
+        title="Sort by name"
+        @toggle="toggleDirection"
+      ></tc-direction> -->
+    </tc-headline>
+
+    <transition-group name="icon-trans" tag="div" class="gallery">
+      <icon-tile
+        v-for="icon in iconsSorted"
+        :key="icon.name"
+        :icon="icon"
+      ></icon-tile>
+    </transition-group>
+  </div>
 </template>
 
 <script lang="ts">
 import { Vue, Component } from "vue-property-decorator";
 import icons from "@/icon5";
-import IconTile from "../../../components/projects/TimosIcons/IconTile.vue";
-import TCCard from "../../../components/shared/TC-Card.vue";
-import TCButton from "../../../components/shared/TC-Button.vue";
-import TCCheckbox from "../../../components/shared/filter/TC-Checkbox.vue";
-import TCDirection from "../../../components/shared/filter/TC-Direction.vue";
-import Project from "../../../components/projects/Project.vue";
+import IconTile from "@/components/projects/TimosIcons/IconTile.vue";
+import TCCheckbox from "@/components/shared/filter/TC-Checkbox.vue";
+import TCDirection from "@/components/shared/filter/TC-Direction.vue";
+import Project from "@/components/projects/Project.vue";
+import TCButton from "@/components/tc/button/TC-Button.vue";
+import TCCard from "@/components/tc/card/TC-Card.vue";
+import TCHeader from "@/components/tc/header/TC-Header.vue";
+import TCHeadline from "@/components/tc/headline/TC-Headline.vue";
+
 @Component({
   components: {
     "icon-tile": IconTile,
@@ -45,6 +62,8 @@ import Project from "../../../components/projects/Project.vue";
     "tc-button": TCButton,
     "tc-checkbox": TCCheckbox,
     "tc-direction": TCDirection,
+    "tc-header": TCHeader,
+    "tc-headline": TCHeadline,
     project: Project
   }
 })
@@ -71,6 +90,13 @@ export default class TimosIcons extends Vue {
 <style lang="scss" scoped>
 @import "../shared.scss";
 
+.content {
+  padding: 20px 5vw {
+    left: calc(5vw + 45px);
+    top: 50px;
+  }
+}
+
 .icon-trans-move {
   transition: all 0.4s ease-in-out;
 }
@@ -90,33 +116,20 @@ export default class TimosIcons extends Vue {
 }
 
 .hero {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  margin-top: 30px;
+  grid-gap: 20px;
   .logo {
-    margin-right: 20px;
     img {
-      max-width: 30vw;
-    }
-  }
-  .tc-card {
-    border-radius: $border-radius;
-    .buttons {
-      button {
-        &:not(:last-child) {
-          margin-right: 10px;
-        }
-      }
+      max-width: 100%;
     }
   }
 }
 
 .gallery {
   display: grid;
-  grid: {
-    template-columns: repeat(6, 1fr);
-    gap: 20px;
-  }
-  max-width: 100%;
+  grid-gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 }
 </style>
