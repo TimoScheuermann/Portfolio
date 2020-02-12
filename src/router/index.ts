@@ -38,24 +38,23 @@ const router = new VueRouter({
           component: () => import("@/views/projects/Projects.vue")
         },
         {
-          path: "/amspro",
+          path: "amspro",
           name: constants.projectRoutes.ams_pro,
-          component: () => import("@/views/projects/NotFound.vue")
+          component: () => import("@/views/projects/amspro/AMSPro.vue")
         },
         {
-          path: "/dhbwrichie",
+          path: "dhbwrichie",
           name: constants.projectRoutes.dhbw_richie,
-          component: () => import("@/views/projects/NotFound.vue")
+          component: () => import("@/views/projects/dhbwrichie/DHBWRichie.vue")
         },
         {
-          path: "/nhlstats",
+          path: "nhlstats",
           name: constants.projectRoutes.nhl_stats,
-          component: () => import("@/views/projects/NotFound.vue")
+          component: () => import("@/views/projects/nhlstats/NHLStats.vue")
         },
         {
-          path: "/timoscomponents",
+          path: "timoscomponents",
           component: EmptyRouter,
-
           children: [
             {
               path: "",
@@ -92,7 +91,7 @@ const router = new VueRouter({
           ]
         },
         {
-          path: "/workgallery",
+          path: "workgallery",
           name: constants.projectRoutes.work_gallery,
           component: () =>
             import("@/views/projects/workgallery/WorkGallery.vue")

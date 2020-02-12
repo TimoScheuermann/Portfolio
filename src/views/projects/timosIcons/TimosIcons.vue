@@ -11,7 +11,7 @@
         <img src="../../../assets/projects/timosicons/timosicons.svg" />
       </div>
 
-      <tc-card rounded title="Timo's Icons">
+      <tc-card rounded="true" title="Timo's Icons">
         <p>
           Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatibus
           quos ratione porro commodi quo fuga, numquam nostrum eos repellendus
@@ -89,13 +89,6 @@ export default class TimosIcons extends Vue {
 
 <style lang="scss" scoped>
 @import "../shared.scss";
-
-.content {
-  padding: 20px 5vw {
-    left: calc(5vw + 45px);
-    top: 50px;
-  }
-}
 
 .icon-trans-move {
   transition: all 0.4s ease-in-out;

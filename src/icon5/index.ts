@@ -1,6 +1,10 @@
 import { Icon } from "@/models/Icons/Icon.model";
 
 const icons: Icon[] = [
+  { name: "modal", css: "e965" },
+  { name: "phone", css: "e967" },
+  { name: "tabbar", css: "e969" },
+  { name: "table", css: "e96b" },
   { name: "add", css: "e900" },
   { name: "amspro", css: "e902" },
   { name: "arrow-down", css: "e904" },

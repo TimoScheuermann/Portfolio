@@ -1,6 +1,6 @@
 <template>
   <div class="content">
-    <tc-header title="Not Found"></tc-header>
+    <tc-header title="NHL Stats"></tc-header>
   </div>
 </template>
 <script lang="ts">
@@ -11,6 +11,6 @@ import TCHeader from "@/components/tc/header/TC-Header.vue";
     "tc-header": TCHeader
   }
 })
-export default class ProjectNotFound extends Vue {}
+export default class NHLStats extends Vue {}
 </script>
 <style lang="scss" scoped></style>

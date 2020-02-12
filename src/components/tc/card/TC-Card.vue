@@ -31,10 +31,10 @@ export default class TCCard extends Vue {
   padding: 30px;
   text-align: center;
 
-  &[rounded] {
+  &[rounded="true"] {
     border-radius: $border-radius;
   }
-  &[hover] {
+  &[hover="true"] {
     transition: 0.2s ease-in-out;
     &:hover {
       box-shadow: $shadow;

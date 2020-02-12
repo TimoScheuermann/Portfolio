@@ -31,12 +31,20 @@
         }"
       />
     </tc-sidebar>
-    <div class="content">
+
+    <div content>
+      <tc-header :title="getHeaderTitle()"></tc-header>
+
       <div v-if="isComponent()">
         <div v-if="!componentExists(getComponent())">
           Doesnt exists
         </div>
-        <component v-else class="appear" :is="getComponent()"></component>
+        <component
+          v-else
+          class="appear"
+          :tcComponent="getTCComponent()"
+          :is="getComponent()"
+        ></component>
       </div>
       <div v-else>
         Timos Components Home
@@ -55,12 +63,14 @@ import TCDivider from "@/components/tc/divider/TC-Divider.vue";
 import tcComponents from "@/components/tc";
 import { TCComponent } from "@/models/TCComponents/TCComponent.model";
 import constants from "@/constants";
+import TCHeader from "../../../components/tc/header/TC-Header.vue";
 
 @Component({
   components: {
     "tc-sidebar": TCSidebar,
     "tc-sidebar-group": TCSidebarGroup,
     "tc-sidebar-item": TCSidebarItem,
+    "tc-header": TCHeader,
     "tc-divider": TCDivider,
     "input--view": TCInputs,
     "card--view": TCCards
@@ -71,6 +81,19 @@ export default class TIComponents extends Vue {
     a.name.localeCompare(b.name)
   );
   public constants: {} = constants;
+
+  getTCComponent(): TCComponent {
+    return this.tcComponents.filter(x =>
+      this.getComponent().startsWith(x.name.toLowerCase())
+    )[0];
+  }
+
+  getHeaderTitle(): string {
+    if (!this.isComponent()) return "Timo's Components";
+    if (!this.componentExists(this.getComponent())) return "Not Found";
+    const name = this.$route.params.comp.toLowerCase();
+    return name.charAt(0).toUpperCase() + name.slice(1);
+  }
 
   isComponent(): boolean {
     return !!this.$route.params.comp;

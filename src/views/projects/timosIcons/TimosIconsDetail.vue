@@ -32,7 +32,7 @@
     <div v-else>
       <tc-headline :title="icon.name"></tc-headline>
       <div class="gallery">
-        <tc-card rounded title="How to use">
+        <tc-card rounded="true" title="How to use">
           <div>
             <tc-divider name="HTML" icon="components"></tc-divider>
             <div class="codeContainer">
@@ -59,7 +59,7 @@
           </p>
           <tc-button name="Start using Timo's Icons"></tc-button>
         </tc-card>
-        <tc-card rounded title="Examples">
+        <tc-card rounded="true" title="Examples">
           <tc-divider name="Sizes"></tc-divider>
           <div class="innerGrid">
             <div

@@ -85,11 +85,17 @@ body {
   background-color: $background;
   color: $color;
   margin: 0;
-  min-height: 100vh;
 }
 
 a {
   text-decoration: none;
   color: $primary;
+}
+
+[content] {
+  padding: 20px 5vw {
+    left: calc(5vw + 45px);
+    top: 50px;
+  }
 }
 </style>
