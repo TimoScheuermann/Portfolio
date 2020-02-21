@@ -1,5 +1,6 @@
 <template>
-  <div>
+  <div content>
+    <tc-header title="GitHub"></tc-header>
     <div class="landing">
       <div class="loading" v-if="!loaded">
         <div class="spinner">
@@ -70,10 +71,12 @@
 <script lang="ts">
 import { Vue, Component } from "vue-property-decorator";
 import TCCard from "@/components/tc/card/TC-Card.vue";
+import TCHeader from "@/components/tc/header/TC-Header.vue";
 
 @Component({
   components: {
-    "tc-card": TCCard
+    "tc-card": TCCard,
+    "tc-header": TCHeader
   }
 })
 export default class GitHubView extends Vue {

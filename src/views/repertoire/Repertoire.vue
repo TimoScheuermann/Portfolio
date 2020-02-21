@@ -1,9 +1,7 @@
 <template>
-  <div class="repertoire">
-    <p-landing
-      title="Things I Love"
-      subtitle="...and I am working with"
-    ></p-landing>
+  <div content class="repertoire">
+    <tc-header title="Repertoire"></tc-header>
+
     <div class="tools">
       <div class="tool" v-for="(tool, index) in tools" :key="index">
         <div
@@ -23,10 +21,10 @@
   </div>
 </template>
 <script>
-import PLanding from "@/components/common/P-Landing.vue";
+import TCHeader from "@/components/tc/header/TC-Header.vue";
 export default {
   components: {
-    "p-landing": PLanding
+    "tc-header": TCHeader
   },
   data() {
     return {

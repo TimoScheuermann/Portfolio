@@ -1,6 +1,6 @@
 <template>
   <div>
-    <tc-headline title="Card"></tc-headline>
+    <tc-headline title="Hero"></tc-headline>
   </div>
 </template>
 <script lang="ts">
@@ -11,6 +11,6 @@ import TCHeadline from "@/components/tc/headline/TC-Headline.vue";
     "tc-headline": TCHeadline
   }
 })
-export default class TCCards extends Vue {}
+export default class TCHeros extends Vue {}
 </script>
 <style lang="scss" scoped></style>

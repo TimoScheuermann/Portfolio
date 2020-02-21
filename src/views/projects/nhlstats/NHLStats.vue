@@ -1,5 +1,5 @@
 <template>
-  <div class="content">
+  <div content>
     <tc-header title="NHL Stats"></tc-header>
   </div>
 </template>

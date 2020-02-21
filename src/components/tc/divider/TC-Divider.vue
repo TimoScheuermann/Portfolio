@@ -3,7 +3,7 @@
     <div class="bar" v-if="position != 'left'"></div>
     <div class="content" v-if="icon || name">
       <i v-if="icon" :class="'ti-' + icon"></i>
-      <span v-if="name" class="name">{{ name }}</span>
+      <span v-if="name">{{ name }}</span>
     </div>
     <div class="bar" v-if="position != 'right'"></div>
   </div>
@@ -29,15 +29,17 @@ export default class TCDivider extends Vue {
   align-items: center;
   .bar {
     background: #000;
+    border-radius: 5px;
     height: 1px;
     opacity: 0.3;
     flex-grow: 1;
   }
   .content {
     padding: 0 5px;
-    display: inline-block;
-    .icon,
-    .name {
+    display: flex;
+    align-items: center;
+    i,
+    span {
       user-select: none;
       opacity: 0.8;
       padding: 0 3px;

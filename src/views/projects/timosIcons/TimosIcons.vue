@@ -1,7 +1,7 @@
 <template>
-  <div class="content">
+  <div content>
     <tc-header title="Timos Icons">
-      <tc-button icon="components" name="Examples"></tc-button>
+      <tc-button icon="component" name="Examples"></tc-button>
       <tc-button icon="questionmark" name="Usage"></tc-button>
       <tc-button icon="download" name="Download"></tc-button>
     </tc-header>
@@ -25,12 +25,21 @@
       </tc-card>
     </div>
 
-    <tc-headline :title="'All ' + iconsSorted.length + ' Icons'">
+    <tc-headline
+      :title="'Showing ' + iconsSorted.length + '/' + totalIcons() + ' Icons'"
+    >
       <!-- <tc-checkbox title="Additional Info"></tc-checkbox>
       <tc-direction
         title="Sort by name"
         @toggle="toggleDirection"
       ></tc-direction> -->
+
+      <tc-input
+        v-model="searchQuery"
+        type="text"
+        placeholder="Icon"
+        icon="lens"
+      ></tc-input>
     </tc-headline>
 
     <transition-group name="icon-trans" tag="div" class="gallery">
@@ -49,11 +58,12 @@ import icons from "@/icon5";
 import IconTile from "@/components/projects/TimosIcons/IconTile.vue";
 import TCCheckbox from "@/components/shared/filter/TC-Checkbox.vue";
 import TCDirection from "@/components/shared/filter/TC-Direction.vue";
-import Project from "@/components/projects/Project.vue";
 import TCButton from "@/components/tc/button/TC-Button.vue";
 import TCCard from "@/components/tc/card/TC-Card.vue";
 import TCHeader from "@/components/tc/header/TC-Header.vue";
 import TCHeadline from "@/components/tc/headline/TC-Headline.vue";
+import TCInput from "@/components/tc/input/TC-Input.vue";
+import { Icon } from "../../../models/Icons/Icon.model";
 
 @Component({
   components: {
@@ -64,20 +74,25 @@ import TCHeadline from "@/components/tc/headline/TC-Headline.vue";
     "tc-direction": TCDirection,
     "tc-header": TCHeader,
     "tc-headline": TCHeadline,
-    project: Project
+    "tc-input": TCInput
   }
 })
 export default class TimosIcons extends Vue {
   public sortDirection: number = 1;
   public extendedInformation: boolean = false;
+  public searchQuery: string = "";
 
-  get iconsSorted() {
-    return icons.sort(
-      (a, b) => this.sortDirection * a.name.localeCompare(b.name)
-    );
+  get iconsSorted(): Icon[] {
+    return icons
+      .filter(x => x.name.includes(this.searchQuery.toLowerCase()))
+      .sort((a, b) => this.sortDirection * a.name.localeCompare(b.name));
   }
 
-  public toggleDirection() {
+  public totalIcons(): number {
+    return icons.length;
+  }
+
+  public toggleDirection(): void {
     this.sortDirection *= -1;
   }
 

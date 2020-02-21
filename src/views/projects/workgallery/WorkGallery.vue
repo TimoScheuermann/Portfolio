@@ -1,30 +1,32 @@
 <template>
-  <div class="project">
-    <div class="title">Work Gallery</div>
-    <div class="projectContent">
-      <div class="gallery">
-        <div
-          class="item"
-          v-for="(file, index) in files"
-          :key="index"
-          :class="{ fullscreen: file.fullscreen }"
-        >
-          <div class="img">
-            <img :src="'../img/workgallery/' + file.fileName" />
+  <div content>
+    <tc-header title="Work Gallery"></tc-header>
+    <div class="gallery">
+      <div
+        class="item"
+        v-for="(file, index) in files"
+        :key="index"
+        :class="{ fullscreen: file.fullscreen }"
+      >
+        <div class="img">
+          <img :src="'../img/workgallery/' + file.fileName" />
+        </div>
+        <div class="content">
+          <div class="project" :class="{ undefinded: !file.project }">
+            {{ file.project }}
           </div>
-          <div class="content">
-            <div class="project" :class="{ undefinded: !file.project }">
-              {{ file.project }}
-            </div>
-            <div class="display">{{ file.display }}</div>
-          </div>
+          <div class="display">{{ file.display }}</div>
         </div>
       </div>
     </div>
   </div>
 </template>
 <script>
+import TCHeader from "@/components/tc/header/TC-Header.vue";
 export default {
+  components: {
+    "tc-header": TCHeader
+  },
   data: () => {
     return {
       fullScreen: -1,

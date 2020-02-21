@@ -1,5 +1,5 @@
 <template>
-  <div class="content">
+  <div content>
     <tc-header title="DHBW Richie"></tc-header>
   </div>
 </template>

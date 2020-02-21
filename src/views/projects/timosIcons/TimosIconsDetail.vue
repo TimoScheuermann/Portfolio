@@ -1,5 +1,5 @@
 <template>
-  <div class="content">
+  <div content>
     <tc-header :title="'Timos Icons » ' + (icon ? icon.name : 'Not Found')">
       <tc-button
         icon="arrow-left"
@@ -34,7 +34,7 @@
       <div class="gallery">
         <tc-card rounded="true" title="How to use">
           <div>
-            <tc-divider name="HTML" icon="components"></tc-divider>
+            <tc-divider name="HTML" icon="component"></tc-divider>
             <div class="codeContainer">
               <div class="code">&lt;i class="ti-{{ icon.name }}">&lt;/i></div>
             </div>
@@ -131,13 +131,6 @@ export default class TimosIconsDetail extends Vue {
 <style lang="scss" scoped>
 @import "../shared.scss";
 
-.content {
-  padding: 20px 5vw {
-    left: calc(5vw + 45px);
-    top: 50px;
-  }
-}
-
 img {
   user-select: none;
   -webkit-user-drag: none;
@@ -183,10 +176,10 @@ img {
         background: $primary;
       }
       &:nth-child(3) {
-        background: rgb(236, 49, 102);
+        background: hsl(343, 83%, 56%);
       }
       &:nth-child(4) {
-        background: #111;
+        background: $color;
       }
     }
   }

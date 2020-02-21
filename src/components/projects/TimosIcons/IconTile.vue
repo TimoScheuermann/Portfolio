@@ -1,5 +1,5 @@
 <template>
-  <tc-card rounded="true" :hover="true" :title="icon.name" class="iconTile">
+  <tc-card rounded="true" :title="icon.name" class="iconTile">
     <div class="icon">
       <i :class="'ti-' + icon.name"></i>
     </div>

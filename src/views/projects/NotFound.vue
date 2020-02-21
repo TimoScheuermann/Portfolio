@@ -1,5 +1,5 @@
 <template>
-  <div class="content">
+  <div content>
     <tc-header title="Not Found"></tc-header>
   </div>
 </template>

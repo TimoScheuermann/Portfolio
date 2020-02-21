@@ -1,15 +1,16 @@
 <template>
   <div>
-    <h1>Inputs</h1>
+    <tc-headline title="Input"></tc-headline>
   </div>
 </template>
 <script lang="ts">
 import { Vue, Component } from "vue-property-decorator";
-@Component
-export default class TIInputs extends Vue {}
+import TCHeadline from "@/components/tc/headline/TC-Headline.vue";
+@Component({
+  components: {
+    "tc-headline": TCHeadline
+  }
+})
+export default class TCInputs extends Vue {}
 </script>
-<style lang="scss" scoped>
-h1 {
-  text-align: center;
-}
-</style>
+<style lang="scss" scoped></style>

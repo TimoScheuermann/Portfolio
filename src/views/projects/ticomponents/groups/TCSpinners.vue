@@ -1,16 +1,19 @@
 <template>
   <div>
-    <tc-headline title="Card"></tc-headline>
+    <tc-headline title="Spinner"></tc-headline>
+    <tc-spinner></tc-spinner>
   </div>
 </template>
 <script lang="ts">
 import { Vue, Component } from "vue-property-decorator";
 import TCHeadline from "@/components/tc/headline/TC-Headline.vue";
+import TCSpinner from "@/components/tc/spinner/TC-Spinner.vue";
 @Component({
   components: {
-    "tc-headline": TCHeadline
+    "tc-headline": TCHeadline,
+    "tc-spinner": TCSpinner
   }
 })
-export default class TCCards extends Vue {}
+export default class TCSpinners extends Vue {}
 </script>
 <style lang="scss" scoped></style>

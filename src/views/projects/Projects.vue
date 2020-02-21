@@ -1,5 +1,6 @@
 <template>
-  <div class="safeAreaWrapper">
+  <div content>
+    <tc-header title="Projects"></tc-header>
     <div class="projects">
       <tc-card
         v-for="proj in projects"
@@ -18,9 +19,11 @@ import { Vue, Component } from "vue-property-decorator";
 import TCCard from "@/components/tc/card/TC-Card.vue";
 import projects from "@/projects";
 import { Project } from "@/models/Projects/Project.model";
+import TCHeader from "../../components/tc/header/TC-Header.vue";
 @Component({
   components: {
-    "tc-card": TCCard
+    "tc-card": TCCard,
+    "tc-header": TCHeader
   }
 })
 export default class Projects extends Vue {
@@ -31,21 +34,10 @@ export default class Projects extends Vue {
 <style lang="scss" scoped>
 @import "../../scss/variables.scss";
 
-.safeAreaWrapper {
-  margin: {
-    top: var(--sa-top);
-    right: var(--sa-right);
-    bottom: var(--sa-bottom);
-    left: var(--sa-left);
-  }
-}
-
 .projects {
   display: grid;
   grid-gap: 10px;
-  margin: 10px 0px {
-    top: 60px;
-  }
+  margin-top: 20px;
   @media #{$isMobile} {
     grid-template-columns: repeat(1, 1fr);
     margin-bottom: 60px;

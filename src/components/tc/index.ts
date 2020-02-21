@@ -42,7 +42,26 @@ const tcComponents: TCComponent[] = [
   {
     name: "Divider",
     icon: "divider",
-    api: []
+    api: [
+      {
+        name: "name",
+        type: "String",
+        description: "Text to be displayed"
+      },
+      {
+        name: "icon",
+        type: "String",
+        description: "Icon to be displayed",
+        parameters: "Timo's Icon"
+      },
+      {
+        name: "position",
+        type: "String",
+        description: "Name/Icon Position",
+        parameters: "left, center, right",
+        default: "center"
+      }
+    ]
   },
   {
     name: "Button",
@@ -87,6 +106,31 @@ const tcComponents: TCComponent[] = [
   {
     name: "Scroll Up",
     icon: "arrow-up",
+    api: []
+  },
+  {
+    name: "Preview",
+    icon: "windows",
+    api: []
+  },
+  {
+    name: "Switch",
+    icon: "toggle",
+    api: []
+  },
+  {
+    name: "Spinner",
+    icon: "dot",
+    api: []
+  },
+  {
+    name: "Hero",
+    icon: "dot",
+    api: []
+  },
+  {
+    name: "Revealer",
+    icon: "cross",
     api: []
   }
 ];

@@ -1,7 +1,14 @@
 <template>
-  <div>
-    <p-landing title="Contact" blur="true"></p-landing>
+  <div content>
+    <tc-header title="Contact"></tc-header>
     <h1>Contact</h1>
+    <h2>Toggle</h2>
+    <tc-toggle></tc-toggle>
+    <tc-toggle></tc-toggle>
+    <h2>Rainbow</h2>
+    <div class="rainbow" :style="{ background: 'hsl(' + i + ', 216%, 56%)' }">
+      <h2>Hallo</h2>
+    </div>
     <p-slideshow :images="slides()"></p-slideshow>
     <tc-button
       :navigation="{ name: 'Google.com', destiny: 'https://google.com' }"
@@ -25,9 +32,9 @@
 
     <div class="icons">
       <div class="icon" v-for="(icon, index) in icons()" :key="index">
-        <div class="inde">{{ index }}</div>
+        <div class="inde">{{ icon.css }}</div>
         <div class="i">
-          <span :class="'ti-' + icon.name"></span>
+          <i :class="'ti-' + icon.name"></i>
         </div>
         <div class="name">{{ icon.name }}</div>
       </div>
@@ -42,7 +49,6 @@
 import { Vue, Component } from "vue-property-decorator";
 import TCButton from "@/components/tc/button/TC-Button.vue";
 import PNavbar from "@/components/common/P-Navbar.vue";
-import PLanding from "@/components/common/P-Landing.vue";
 import icons from "@/icon5";
 import projects from "@/projects";
 import { Icon } from "@/models/Icons/Icon.model";
@@ -50,6 +56,7 @@ import TCCheckbox from "@/components/shared/filter/TC-Checkbox.vue";
 import TCDirection from "@/components/shared/filter/TC-Direction.vue";
 import PSlideshow from "@/components/home/P-Slideshow.vue";
 import TCCard from "@/components/tc/card/TC-Card.vue";
+import TCHeader from "@/components/tc/header/TC-Header.vue";
 
 @Component({
   components: {
@@ -57,16 +64,27 @@ import TCCard from "@/components/tc/card/TC-Card.vue";
     "tc-card": TCCard,
     "tc-checkbox": TCCheckbox,
     "tc-direction": TCDirection,
-    "p-landing": PLanding,
-    "p-slideshow": PSlideshow
+    "p-slideshow": PSlideshow,
+    "tc-header": TCHeader
   }
 })
 export default class ContactView extends Vue {
   public icons(): Icon[] {
-    return icons;
+    return icons.sort((a, b) => a.name.localeCompare(b.name));
   }
   public slides(): string[] {
     return projects.map(x => x.images.background);
+  }
+  public i: number = 0;
+
+  created() {
+    this.l();
+  }
+  l() {
+    this.i++;
+    setTimeout(() => {
+      this.l();
+    }, 50);
   }
 }
 </script>
@@ -105,5 +123,10 @@ h1 {
 .filter {
   display: flex;
   align-items: center;
+}
+.rainbow {
+  text-align: center;
+  padding: 20px;
+  color: #fff;
 }
 </style>

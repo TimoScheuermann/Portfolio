@@ -1,5 +1,5 @@
 <template>
-  <div class="content">
+  <div content>
     <tc-header title="AMS Pro"></tc-header>
     <tc-card
       title="AMS Pro"
@@ -32,7 +32,7 @@ export default class AMSPro extends Vue {
 }
 </script>
 <style lang="scss" scoped>
-.content {
+[content] {
   display: flex;
   justify-content: center;
   .tc-card {

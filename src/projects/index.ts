@@ -3,6 +3,16 @@ import { Project } from "@/models/Projects/Project.model";
 
 const projects: Project[] = [
   {
+    description: "",
+    images: {
+      tiIcon: "book",
+      icon: "../img/projects/icons/preview-icons.svg",
+      background: "../img/projects/richie/preview3-richie.png"
+    },
+    routeName: "",
+    title: ""
+  },
+  {
     routeName: constants.projectRoutes.dhbw_richie,
     title: "DHBW Richie",
     description:
@@ -63,7 +73,7 @@ const projects: Project[] = [
     description:
       "Lorem ipsum Zeile 1 Lorem ipsum Zeile 2 Lorem ipsum Zeile 3 Lorem ipsum Zeile 4",
     images: {
-      tiIcon: "components",
+      tiIcon: "component",
       icon: "../img/projects/richie/icon-richie.png",
       background: "../img/projects/richie/preview3-richie.png"
     }
