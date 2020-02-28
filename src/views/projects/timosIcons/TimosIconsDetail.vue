@@ -1,11 +1,15 @@
 <template>
   <div content>
-    <tc-header :title="'Timos Icons » ' + (icon ? icon.name : 'Not Found')">
-      <tc-button
-        icon="arrow-left"
-        name="Overview"
-        :to="{ name: constants.projectRoutes.timos_icons }"
-      ></tc-button>
+    <tc-header>
+      <div slot="title" class="tiicons--header">
+        <router-link :to="{ name: constants.projectRoutes.timos_icons }">
+          <i class="ti-arrow-left"></i>
+          <span>Icons</span>
+        </router-link>
+        <div class="title">
+          {{ "Timos Icons » " + (icon ? icon.name : "Not Found") }}
+        </div>
+      </div>
     </tc-header>
 
     <div v-if="!icon" class="notFound">
@@ -130,10 +134,23 @@ export default class TimosIconsDetail extends Vue {
 
 <style lang="scss" scoped>
 @import "../shared.scss";
+@import "../../../scss/variables";
 
-img {
-  user-select: none;
-  -webkit-user-drag: none;
+.tiicons--header {
+  flex-wrap: nowrap;
+  display: flex;
+  overflow: hidden;
+  a {
+    @media #{$isMobile} {
+      margin-right: 20px;
+    }
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    i {
+      margin-right: 5px;
+    }
+  }
 }
 
 .innerGrid {
@@ -188,7 +205,7 @@ img {
 .gallery {
   display: grid;
   grid-gap: 20px;
-  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 
   .codeContainer {
     margin: {
@@ -221,6 +238,7 @@ img {
   .img,
   .content {
     width: 400px;
+    max-width: 90vw;
   }
   .img {
     img {

@@ -36,7 +36,7 @@ export default class Projects extends Vue {
 
 .projects {
   display: grid;
-  grid-gap: 10px;
+  grid-gap: 30px;
   margin-top: 20px;
   @media #{$isMobile} {
     grid-template-columns: repeat(1, 1fr);

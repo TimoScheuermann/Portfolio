@@ -26,12 +26,14 @@ export default class TCHeader extends Vue {
   box-shadow: $shadow;
   top: 0;
   right: 0;
-  left: 45px;
-  height: 50px;
+  left: 0px;
+  min-height: 50px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 5vw;
+  padding: 0 5vw {
+    top: env(safe-area-inset-top);
+  }
   z-index: 999;
   .title {
     font-weight: bold;

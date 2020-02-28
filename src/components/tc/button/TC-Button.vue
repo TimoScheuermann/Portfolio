@@ -1,9 +1,17 @@
 <template>
-  <router-link class="tc-button" tag="button" :to="to">
-    <span class="wrapper">
-      <i v-if="iconExists()" :class="'ti-' + icon"></i>
-      <span class="name" v-if="name">{{ name }}</span>
-    </span>
+  <a
+    v-if="href"
+    class="tc-button"
+    :href="href"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    <i v-if="iconExists()" :class="'ti-' + icon"></i>
+    <span class="name" v-if="name">{{ name }}</span>
+  </a>
+  <router-link v-else class="tc-button" tag="button" :to="to">
+    <i v-if="iconExists()" :class="'ti-' + icon"></i>
+    <span class="name" v-if="name">{{ name }}</span>
   </router-link>
 </template>
 <script lang="ts">
@@ -12,7 +20,14 @@ import icons from "@/icon5";
 
 @Component
 export default class TCButton extends Vue {
-  @Prop({ default: "_blank" }) to!: string | object;
+  @Prop({
+    default: () => {
+      return { name: "home" };
+    },
+    type: Object
+  })
+  to!: object;
+  @Prop() href!: string;
   @Prop() name!: string;
   @Prop() icon!: string;
 
@@ -36,15 +51,9 @@ export default class TCButton extends Vue {
   cursor: pointer;
   transition: 0.2s ease-in-out;
 
-  .wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    i,
-    .name {
-      margin: 0 3px;
-    }
+  i,
+  .name {
+    margin: 0 3px;
   }
 
   &:hover {

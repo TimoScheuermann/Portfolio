@@ -73,7 +73,7 @@ const router = new VueRouter({
           ]
         },
         {
-          path: "/timosicons",
+          path: "timosicons",
           component: EmptyRouter,
           children: [
             {
@@ -81,6 +81,22 @@ const router = new VueRouter({
               path: "",
               component: () =>
                 import("@/views/projects/timosicons/TimosIcons.vue")
+            },
+            {
+              name: constants.projectRoutes.timos_icons_versions,
+              path: "resources/versions",
+              component: () =>
+                import(
+                  "@/views/projects/timosicons/resources/TimosIcons--Versions.vue"
+                )
+            },
+            {
+              name: constants.projectRoutes.timos_icons_download,
+              path: "resources/download",
+              component: () =>
+                import(
+                  "@/views/projects/timosicons/resources/TimosIcons--Download.vue"
+                )
             },
             {
               name: constants.projectRoutes.timos_icons_detail,

@@ -27,9 +27,13 @@ export default class TCCard extends Vue {
 @import "../../../scss/variables";
 
 .tc-card {
-  background: $paragraph;
+  background: $background;
+  box-shadow: $shadow;
+  border-radius: $border-radius;
   padding: 30px;
   text-align: center;
+  max-width: 100%;
+  overflow: auto;
 
   &[rounded="true"] {
     border-radius: $border-radius;
@@ -37,7 +41,7 @@ export default class TCCard extends Vue {
   &[hover="true"] {
     transition: 0.2s ease-in-out;
     &:hover {
-      box-shadow: $shadow;
+      box-shadow: $shadow-hover;
     }
   }
 

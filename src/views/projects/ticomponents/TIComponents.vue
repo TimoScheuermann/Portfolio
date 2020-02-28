@@ -1,7 +1,10 @@
 <template>
   <div class="container">
     <tc-sidebar>
-      <b slot="header">Header</b>
+      <div slot="header" class="tc-sidebar--header">
+        <div class="icon"><i class="ti-component"></i></div>
+        <div class="title">Timo's Components</div>
+      </div>
 
       <tc-sidebar-item
         name="Other Projects"
@@ -32,15 +35,25 @@
       />
     </tc-sidebar>
 
-    <div content>
-      <tc-header :title="getHeaderTitle()"></tc-header>
+    <div>
+      <tc-header :titles="getHeaderTitle()">
+        <div slot="title" class="ticomponents--header">
+          <router-link
+            v-if="isComponent()"
+            :to="{ name: constants.projectRoutes.timos_components }"
+          >
+            <i class="ti-arrow-left"></i>
+            <span>Components</span>
+          </router-link>
+          <div class="title">{{ getHeaderTitle() }}</div>
+        </div>
+      </tc-header>
 
       <div v-if="isComponent()">
         <div v-if="!componentExists()">
-          Doesnt exists
-          <p>{{ getComponent() }}</p>
+          <ti-compononents-notfound />
         </div>
-        <div v-else class="appear">
+        <div v-else content class="appear">
           <component
             class="appear"
             :tcComponent="getTCComponent()"
@@ -66,7 +79,7 @@
         </div>
       </div>
       <div v-else>
-        Timos Components Home
+        <ti-compononents-home />
       </div>
     </div>
   </div>
@@ -100,9 +113,15 @@ import TCSwitchs from "./groups/TCSwitchs.vue";
 import TCTabbars from "./groups/TCTabbbars.vue";
 import TCTables from "./groups/TCTables.vue";
 import TCRevealers from "./groups/TCRevealers.vue";
+import TCProgressBars from "./groups/TCProgressBars.vue";
+import TCQuotes from "./groups/TCQuotes.vue";
+import TIComponentsHome from "./TIComponents-Home.vue";
+import TIComponentsNotFound from "./TIComponents-NotFound.vue";
 
 @Component({
   components: {
+    "ti-compononents-home": TIComponentsHome,
+    "ti-compononents-notfound": TIComponentsNotFound,
     "tc-sidebar": TCSidebar,
     "tc-sidebar-group": TCSidebarGroup,
     "tc-sidebar-item": TCSidebarItem,
@@ -126,7 +145,9 @@ import TCRevealers from "./groups/TCRevealers.vue";
     "switch--view": TCSwitchs,
     "tabbar--view": TCTabbars,
     "table--view": TCTables,
-    "revealer--view": TCRevealers
+    "revealer--view": TCRevealers,
+    "progress--view": TCProgressBars,
+    "quote--view": TCQuotes
   }
 })
 export default class TIComponents extends Vue {
@@ -180,9 +201,8 @@ export default class TIComponents extends Vue {
 }
 </script>
 <style lang="scss" scoped>
-.content {
-  padding-left: 45px;
-}
+@import "../../../scss/variables";
+
 .appear {
   animation: appear 1s ease-in-out;
 }
@@ -193,6 +213,24 @@ export default class TIComponents extends Vue {
   }
   to {
     opacity: 1;
+  }
+}
+
+.ticomponents--header {
+  flex-wrap: nowrap;
+  display: flex;
+  overflow: hidden;
+  a {
+    @media #{$isDesktop} {
+      display: none;
+    }
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 20px;
+    i {
+      margin-right: 5px;
+    }
   }
 }
 </style>

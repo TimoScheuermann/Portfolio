@@ -2,7 +2,7 @@
   <div class="tc-revealer">
     <input type="checkbox" :id="'tc-revealer_' + uuid" />
     <label :for="'tc-revealer_' + uuid">
-      <tc-headline title="Reveal text inside me">
+      <tc-headline :title="title" :icon="icon">
         <div class="iconWrapper">
           <div class="icon">
             <i class="ti-cross"></i>
@@ -12,13 +12,13 @@
     </label>
     <div class="content">
       <slot>
-        <div data-not-set-inside-revealer>Nothing available to reveal</div>
+        <div data-not-set-inside-revealer>Nothing here to reveal :(</div>
       </slot>
     </div>
   </div>
 </template>
 <script lang="ts">
-import { Vue, Component } from "vue-property-decorator";
+import { Vue, Component, Prop } from "vue-property-decorator";
 
 import TCHeadline from "../headline/TC-Headline.vue";
 import uuid from "../uuid.vue";
@@ -28,7 +28,10 @@ import uuid from "../uuid.vue";
   },
   mixins: [uuid]
 })
-export default class TCRevealer extends Vue {}
+export default class TCRevealer extends Vue {
+  @Prop({ default: "Revealer", type: String }) title!: string;
+  @Prop() icon!: string;
+}
 </script>
 <style lang="scss" scoped>
 @import "../../../scss/variables";

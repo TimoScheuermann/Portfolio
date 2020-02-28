@@ -1,35 +1,121 @@
 <template>
-  <div class="home">
-    <p-landing
-      title="Timo Scheuermann"
-      subtitle="Fullstack Webdeveloper"
-      fullscreen="true"
-    ></p-landing>
-    <div class="projects">
-      <h1>Projects</h1>
+  <div>
+    <tc-hero :hasFixedHeader="false">
+      <img src="../../assets/landing/background.jpg" slot="background" />
+      <div class="title">Timo Scheuermann</div>
+      <div class="subtitle">UI / UX Designer from Mannheim, Germany</div>
+    </tc-hero>
+    <div content class="home">
+      <tc-headline title="My Work" />
+      <div class="projects">
+        <router-link
+          tag="div"
+          v-for="proj in projects"
+          :key="proj.title"
+          :to="{ name: proj.routeName }"
+        >
+          <tc-card :title="proj.title">
+            <img :src="proj.images.background" alt="" />
+          </tc-card>
+        </router-link>
+      </div>
+      <tc-button :to="{ name: 'projects' }" icon="book-p" name="All Projects" />
+      <tc-headline title="Resume" />
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam minus
+      deleniti ut vitae tempore nulla error aperiam quis pariatur omnis adipisci
+      reprehenderit, optio deserunt, minima facilis corporis ipsum aspernatur
+      temporibus!
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import { Vue, Component } from "vue-property-decorator";
-import PLanding from "@/components/common/P-Landing.vue";
+import TCHero from "@/components/tc/hero/TC-Hero.vue";
+import TCHeader from "@/components/tc/header/TC-Header.vue";
+import TCHeadline from "@/components/tc/headline/TC-Headline.vue";
+import TCButton from "@/components/tc/button/TC-Button.vue";
+import TCCard from "@/components/tc/card/TC-Card.vue";
+import projects from "@/projects";
+import { Project } from "../../models/Projects/Project.model";
 @Component({
   components: {
-    "p-landing": PLanding
+    "tc-hero": TCHero,
+    "tc-header": TCHeader,
+    "tc-headline": TCHeadline,
+    "tc-button": TCButton,
+    "tc-card": TCCard
   }
 })
-export default class Home extends Vue {}
+export default class Home extends Vue {
+  public projects: Project[] = projects;
+}
 </script>
 <style lang="scss" scoped>
 @import "../../scss/variables";
 
+.tc-hero {
+  .title {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #fff;
+  }
+  .subtitle {
+    color: $primary;
+    white-space: nowrap;
+  }
+}
+
 .home {
+  padding-top: 5px;
   background: #000;
   color: $paragraph;
-  text-align: center;
+  ::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+    position: absolute !important;
+    border-radius: 4px;
+    transition: 0.2s ease;
+  }
+
+  ::-webkit-scrollbar:hover {
+    width: 4px;
+  }
+
+  ::-webkit-scrollbar-track {
+    display: none;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #666;
+    border-radius: 4px;
+    transition: 0.2s ease;
+    &:hover {
+      background: #888;
+      transition: 0.2s ease;
+      cursor: grabbing;
+    }
+  }
   .projects {
-    height: 200px;
+    display: flex;
+    overflow: hidden {
+      x: auto;
+    }
+    margin-bottom: 20px;
+
+    .tc-card {
+      background: #111;
+      color: $paragraph;
+      margin: 0 5px;
+      height: 100%;
+      @media #{$isMobile} {
+        min-width: 200px;
+      }
+      @media #{$isDesktop} {
+        min-width: 400px;
+      }
+      overflow: visible;
+    }
   }
 }
 </style>

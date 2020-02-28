@@ -1,9 +1,16 @@
 <template>
   <div content>
     <tc-header title="Timos Icons">
-      <tc-button icon="component" name="Examples"></tc-button>
-      <tc-button icon="questionmark" name="Usage"></tc-button>
-      <tc-button icon="download" name="Download"></tc-button>
+      <tc-button
+        icon="save"
+        name="Versions"
+        :to="{ name: constants.projectRoutes.timos_icons_versions }"
+      ></tc-button>
+      <tc-button
+        icon="download"
+        name="Download"
+        :to="{ name: constants.projectRoutes.timos_icons_download }"
+      ></tc-button>
     </tc-header>
 
     <div class="hero">
@@ -28,12 +35,6 @@
     <tc-headline
       :title="'Showing ' + iconsSorted.length + '/' + totalIcons() + ' Icons'"
     >
-      <!-- <tc-checkbox title="Additional Info"></tc-checkbox>
-      <tc-direction
-        title="Sort by name"
-        @toggle="toggleDirection"
-      ></tc-direction> -->
-
       <tc-input
         v-model="searchQuery"
         type="text"
@@ -63,7 +64,8 @@ import TCCard from "@/components/tc/card/TC-Card.vue";
 import TCHeader from "@/components/tc/header/TC-Header.vue";
 import TCHeadline from "@/components/tc/headline/TC-Headline.vue";
 import TCInput from "@/components/tc/input/TC-Input.vue";
-import { Icon } from "../../../models/Icons/Icon.model";
+import { Icon } from "@/models/Icons/Icon.model";
+import constants from "@/constants";
 
 @Component({
   components: {
@@ -78,26 +80,16 @@ import { Icon } from "../../../models/Icons/Icon.model";
   }
 })
 export default class TimosIcons extends Vue {
-  public sortDirection: number = 1;
-  public extendedInformation: boolean = false;
   public searchQuery: string = "";
+  public constants: object = constants;
 
   get iconsSorted(): Icon[] {
     return icons
       .filter(x => x.name.includes(this.searchQuery.toLowerCase()))
-      .sort((a, b) => this.sortDirection * a.name.localeCompare(b.name));
+      .sort((a, b) => a.name.localeCompare(b.name));
   }
-
   public totalIcons(): number {
     return icons.length;
-  }
-
-  public toggleDirection(): void {
-    this.sortDirection *= -1;
-  }
-
-  public toggleExtendedInfo(): void {
-    this.extendedInformation = !this.extendedInformation;
   }
 }
 </script>
@@ -128,6 +120,13 @@ export default class TimosIcons extends Vue {
   grid-template-columns: 1fr 2fr;
   margin-top: 30px;
   grid-gap: 20px;
+
+  @media #{$isMobile} {
+    grid-template-columns: 1fr;
+    .logo {
+      display: none;
+    }
+  }
   .logo {
     img {
       max-width: 100%;
@@ -137,7 +136,7 @@ export default class TimosIcons extends Vue {
 
 .gallery {
   display: grid;
-  grid-gap: 20px;
+  grid-gap: 30px;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
 }
 </style>

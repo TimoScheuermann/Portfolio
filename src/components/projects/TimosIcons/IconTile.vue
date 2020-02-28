@@ -1,30 +1,16 @@
 <template>
-  <tc-card rounded="true" :title="icon.name" class="iconTile">
-    <div class="icon">
-      <i :class="'ti-' + icon.name"></i>
-    </div>
-    <div class="css">
-      <div class="text">\{{ icon.css }}</div>
-      <i :class="'ti-' + icon.name"></i>
-    </div>
-    <div class="spacer"></div>
-    <tc-button
-      name="More"
-      :to="{ name: 'timosiconsdetail', params: { icon: icon.name } }"
-    ></tc-button>
-  </tc-card>
+  <router-link
+    class="timosicons--icontile"
+    :to="{ name: 'timosiconsdetail', params: { icon: icon.name } }"
+  >
+    <i :class="'ti-' + icon.name"></i>
+    <div class="name">{{ icon.name }}</div>
+  </router-link>
 </template>
 <script lang="ts">
 import { Vue, Component, Prop } from "vue-property-decorator";
 import { Icon } from "@/models/Icons/Icon.model";
-import TCButton from "@/components/tc/button/TC-Button.vue";
-import TCCard from "@/components/tc/card/TC-Card.vue";
-@Component({
-  components: {
-    "tc-button": TCButton,
-    "tc-card": TCCard
-  }
-})
+@Component
 export default class IconTile extends Vue {
   @Prop() icon!: Icon;
   @Prop() detailView!: boolean;
@@ -32,35 +18,32 @@ export default class IconTile extends Vue {
 </script>
 <style lang="scss" scoped>
 @import "../../../scss/variables";
-.iconTile {
-  /deep/ .slot {
-    height: calc(100% - 40px);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  .spacer {
-    flex-grow: 1 !important;
-  }
-  .icon {
+
+.timosicons--icontile {
+  color: $color;
+  padding: 20px;
+  text-align: center;
+  &:hover {
     i {
       color: $primary;
-      font-size: 35px;
+    }
+    .name,
+    i {
+      opacity: 0.8;
     }
   }
-  .css {
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    margin: 10px 0;
-    padding: 5px 0;
-
-    $border: 1px solid rgba($color, 0.4);
-    border: {
-      bottom: $border;
-      top: $border;
-    }
+  i,
+  .name {
+    transition: 0.2s ease-in-out;
+  }
+  i {
+    opacity: 0.8;
+    font-size: 35px;
+  }
+  .name {
+    opacity: 0.4;
+    margin-top: 5px;
+    font-weight: bold;
   }
 }
 </style>

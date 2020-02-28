@@ -8,7 +8,7 @@
         in veritatis ex neque temporibus voluptatum provident, praesentium
         minus.
       </p>
-      <tc-revealer />
+      <tc-revealer title="Revealer inside" icon="share" />
       <tc-headline title="Hallo" />
       <p>
         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Facere, ut
@@ -26,7 +26,7 @@
 import { Vue, Component } from "vue-property-decorator";
 import TCHeadline from "@/components/tc/headline/TC-Headline.vue";
 import TCSwitch from "@/components/tc/switch/TC-Switch.vue";
-import TCRevealer from "../../../../components/tc/revealer/TC-Revealer.vue";
+import TCRevealer from "@/components/tc/revealer/TC-Revealer.vue";
 @Component({
   components: {
     "tc-headline": TCHeadline,

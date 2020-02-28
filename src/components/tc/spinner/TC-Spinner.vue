@@ -1,19 +1,26 @@
 <template>
-  <div class="tc-spinner">
+  <div class="tc-spinner" :style="styleAttr">
     <div v-for="(i, index) in Array(10)" :key="'s_' + index" />
   </div>
 </template>
 <script lang="ts">
-import { Vue, Component } from "vue-property-decorator";
+import { Vue, Component, Prop } from "vue-property-decorator";
 @Component
-export default class TCSpinner extends Vue {}
+export default class TCSpinner extends Vue {
+  @Prop({ default: 30, type: String }) size!: number;
+  get styleAttr() {
+    return {
+      width: this.size + "px",
+      height: this.size / 2 + "px",
+      "padding-top": this.size / 2 + "px"
+    };
+  }
+}
 </script>
 <style lang="scss" scoped>
 .tc-spinner {
   position: relative;
   display: inline-block;
-  width: 30px;
-  height: 30px;
   div {
     &::after {
       content: "";
@@ -22,7 +29,7 @@ export default class TCSpinner extends Vue {}
       width: 5px;
       height: 5px;
       border-radius: 10px;
-      background: #111;
+      background: currentColor;
     }
 
     @for $i from 1 through 10 {

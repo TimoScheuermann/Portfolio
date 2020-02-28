@@ -3,18 +3,8 @@ import { Project } from "@/models/Projects/Project.model";
 
 const projects: Project[] = [
   {
-    description: "",
-    images: {
-      tiIcon: "book",
-      icon: "../img/projects/icons/preview-icons.svg",
-      background: "../img/projects/richie/preview3-richie.png"
-    },
-    routeName: "",
-    title: ""
-  },
-  {
     routeName: constants.projectRoutes.dhbw_richie,
-    title: "DHBW Richie",
+    title: "DHBW Richie (WIP)",
     description:
       "Lorem ipsum Zeile 1 Lorem ipsum Zeile 2 Lorem ipsum Zeile 3 Lorem ipsum Zeile 4",
     images: {
@@ -47,7 +37,7 @@ const projects: Project[] = [
   },
   {
     routeName: constants.projectRoutes.nhl_stats,
-    title: "NHL Stats",
+    title: "NHL Stats (WIP)",
     description:
       "Lorem ipsum Zeile 1 Lorem ipsum Zeile 2 Lorem ipsum Zeile 3 Lorem ipsum Zeile 4",
     images: {

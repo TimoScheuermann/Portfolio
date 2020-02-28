@@ -120,17 +120,32 @@ const tcComponents: TCComponent[] = [
   },
   {
     name: "Spinner",
-    icon: "dot",
+    icon: "spinner",
     api: []
   },
   {
     name: "Hero",
-    icon: "dot",
+    icon: "",
     api: []
   },
   {
     name: "Revealer",
     icon: "cross",
+    api: []
+  },
+  {
+    name: "Progress",
+    icon: "",
+    api: []
+  },
+  {
+    name: "Quote",
+    icon: "",
+    api: []
+  },
+  {
+    name: "Header",
+    icon: "",
     api: []
   }
 ];
