@@ -4,7 +4,7 @@
     :to="{ name: 'timosiconsdetail', params: { icon: icon.name } }"
   >
     <i :class="'ti-' + icon.name"></i>
-    <div class="name">{{ icon.name }}</div>
+    <div class="name">{{ icon.name.split("-").join(" ") }}</div>
   </router-link>
 </template>
 <script lang="ts">

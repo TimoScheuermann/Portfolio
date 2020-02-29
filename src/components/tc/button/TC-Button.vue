@@ -9,7 +9,13 @@
     <i v-if="iconExists()" :class="'ti-' + icon"></i>
     <span class="name" v-if="name">{{ name }}</span>
   </a>
-  <router-link v-else class="tc-button" tag="button" :to="to">
+  <router-link
+    v-else
+    class="tc-button"
+    :disabled="disabled"
+    tag="button"
+    :to="to"
+  >
     <i v-if="iconExists()" :class="'ti-' + icon"></i>
     <span class="name" v-if="name">{{ name }}</span>
   </router-link>
@@ -30,6 +36,7 @@ export default class TCButton extends Vue {
   @Prop() href!: string;
   @Prop() name!: string;
   @Prop() icon!: string;
+  @Prop() disabled!: boolean;
 
   public iconExists(): boolean {
     return icons.filter(x => x.name == this.icon).length > 0;
@@ -51,12 +58,19 @@ export default class TCButton extends Vue {
   cursor: pointer;
   transition: 0.2s ease-in-out;
 
+  &:disabled {
+    color: $color;
+    border-color: $color;
+    opacity: 0.6;
+    cursor: default;
+  }
+
   i,
   .name {
     margin: 0 3px;
   }
 
-  &:hover {
+  &:not(:disabled):hover {
     background: $primary;
     color: #fff;
   }

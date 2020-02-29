@@ -1,8 +1,11 @@
 <template>
   <div class="tc-card">
-    <div v-if="title" class="title">{{ title }}</div>
+    <div v-if="title" class="title" :class="{ noSubtitle: !subtitle }">
+      {{ title }}
+    </div>
+    <div v-else class="titleSlot"><slot name="header" /></div>
     <div v-if="subtitle" class="subtitle">{{ subtitle }}</div>
-    <tc-button v-if="to" :to="to" name="Read more"></tc-button>
+    <div class="media"><slot name="media" /></div>
     <div class="slot">
       <slot></slot>
     </div>
@@ -20,7 +23,6 @@ import TCButton from "../button/TC-Button.vue";
 export default class TCCard extends Vue {
   @Prop() title!: string;
   @Prop() subtitle!: string;
-  @Prop() to!: string | object;
 }
 </script>
 <style lang="scss" scoped>
@@ -30,10 +32,12 @@ export default class TCCard extends Vue {
   background: $background;
   box-shadow: $shadow;
   border-radius: $border-radius;
-  padding: 30px;
   text-align: center;
   max-width: 100%;
   overflow: auto;
+  padding: 30px {
+    top: 0;
+  }
 
   &[rounded="true"] {
     border-radius: $border-radius;
@@ -46,18 +50,29 @@ export default class TCCard extends Vue {
   }
 
   .title {
+    padding-top: 30px;
     font-size: 20px;
     font-weight: bold;
+    &.noSubtitle {
+      margin-bottom: 20px;
+    }
   }
   .subtitle {
-    margin: 10px 0;
+    line-height: 40px;
   }
+  .media,
   .slot {
-    margin-top: 20px;
-
-    img {
+    img,
+    video {
       max-width: 100%;
       max-height: 100%;
+    }
+  }
+  .media {
+    margin: 0 -30px;
+    img,
+    video {
+      width: 100%;
     }
   }
 }

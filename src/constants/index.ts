@@ -6,6 +6,7 @@ export default {
     contact: "contact"
   },
   projectRoutes: {
+    portfolio: "home",
     nhl_stats: "nhlstats",
     work_gallery: "workgallery",
     dhbw_richie: "dhbwrichie",
