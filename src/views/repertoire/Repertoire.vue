@@ -1,15 +1,20 @@
 <template>
   <div content class="repertoire">
-    <tc-header title="Repertoire"></tc-header>
+    <tc-header title="Repertoire" />
+    <tc-hero>
+      <img
+        slot="background"
+        src="http://10012.com.s154554.gridserver.com/wp-content/uploads/2018/09/07a.png"
+      />
+    </tc-hero>
 
-    <div class="tools">
+    <tc-headline title="I am working with" />
+    <tc-grid minWidth="150">
       <div class="tool" v-for="(tool, index) in tools" :key="index">
         <div
           class="background"
           :style="{ 'background-image': `url(${tool.img})` }"
-        >
-          <!-- <img :src="tool.img" /> -->
-        </div>
+        ></div>
         <div class="content">
           <div class="logo">
             <img :src="tool.img" />
@@ -17,83 +22,35 @@
           <div class="title">{{ tool.name }}</div>
         </div>
       </div>
-    </div>
+    </tc-grid>
   </div>
 </template>
-<script>
+<script lang="ts">
+import { Vue, Component, Prop } from "vue-property-decorator";
 import TCHeader from "@/components/tc/header/TC-Header.vue";
-export default {
+import TCHero from "@/components/tc/hero/TC-Hero.vue";
+import tools from "@/tools";
+import { Tool } from "@/models/Tools/Tool";
+import TCHeadline from "@/components/tc/headline/TC-Headline.vue";
+import TCGrid from "@/components/tc/layout/grid/TC-Grid.vue";
+
+@Component({
   components: {
-    "tc-header": TCHeader
-  },
-  data() {
-    return {
-      tools: [
-        {
-          name: "Adobe XD",
-          img: "../img/tools/adobexd.png"
-        },
-        {
-          name: "VS Code",
-          img: "../img/tools/vscode.png"
-        },
-        {
-          name: "Photoshop",
-          img: "../img/tools/photoshop.svg"
-        },
-        {
-          name: "CSS 3",
-          img: "../img/tools/css.png"
-        },
-        {
-          name: "HTML 5",
-          img: "../img/tools/html.png"
-        },
-        {
-          name: "JavaScript",
-          img: "../img/tools/js.png"
-        },
-        {
-          name: "TypeScript",
-          img: "../img/tools/ts.png"
-        },
-        {
-          name: "Vue.js",
-          img: "../img/tools/vuejs.png"
-        },
-        {
-          name: "Angular",
-          img: "../img/tools/angular.png"
-        },
-        {
-          name: "Nest.js",
-          img: "../img/tools/nest.svg"
-        }
-      ]
-    };
+    "tc-header": TCHeader,
+    "tc-hero": TCHero,
+    "tc-headline": TCHeadline,
+    "tc-grid": TCGrid
   }
-};
+})
+export default class TCCard extends Vue {
+  public tools: Tool[] = tools;
+}
 </script>
 <style lang="scss" scoped>
 @import "../../scss/variables.scss";
 
-@media #{$isMobile} {
-  .tools {
-    grid-template-columns: repeat(auto-fill, minmax(6rem, 1fr));
-  }
-}
-@media #{$isDesktop} {
-  .tools {
-    grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
-  }
-}
-
-.tools {
-  max-width: 100%;
-  display: grid;
+.tc-grid {
   grid-auto-rows: 1fr;
-  grid-gap: 20px;
-  margin: 20px;
   &::before {
     content: "";
     width: 0;

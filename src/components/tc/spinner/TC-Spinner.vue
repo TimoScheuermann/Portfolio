@@ -7,7 +7,7 @@
 import { Vue, Component, Prop } from "vue-property-decorator";
 @Component
 export default class TCSpinner extends Vue {
-  @Prop({ default: 30, type: String }) size!: number;
+  @Prop({ default: 30 }) size!: number;
   get styleAttr() {
     return {
       width: this.size + "px",

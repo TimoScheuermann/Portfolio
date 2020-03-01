@@ -1,21 +1,30 @@
 <template>
-  <div class="tc-tabbar">
+  <div class="tc-tabbar" :class="{ dark: dark, light: !dark }">
     <div class="items">
       <slot />
     </div>
   </div>
 </template>
 <script lang="ts">
-import { Vue, Component } from "vue-property-decorator";
+import { Vue, Component, Prop } from "vue-property-decorator";
 @Component
-export default class TCTabbar extends Vue {}
+export default class TCTabbar extends Vue {
+  @Prop({ type: Boolean, default: false }) dark!: boolean;
+}
 </script>
 <style lang="scss" scoped>
 @import "../../../scss/mixins";
 @import "../../../scss/variables";
 
 .tc-tabbar {
-  @include backdrop-blur($background);
+  &.dark {
+    @include backdrop-blur($color);
+    color: #fff;
+  }
+  &.light {
+    @include backdrop-blur($background);
+    color: $color;
+  }
   position: fixed;
   box-shadow: $shadow;
   bottom: 0;
@@ -26,6 +35,7 @@ export default class TCTabbar extends Vue {}
     bottom: env(safe-area-inset-bottom);
   }
   .items {
+    color: inherit;
     height: 50px;
     display: flex;
     justify-content: space-between;

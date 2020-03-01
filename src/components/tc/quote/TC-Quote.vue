@@ -1,7 +1,10 @@
 <template>
   <div class="tc-quote">
     <div class="content">
-      <div v-if="title" class="title">{{ title }}</div>
+      <div v-if="title" class="title">
+        <i class="ti-quote-right"></i>
+        <span>{{ title }}</span>
+      </div>
 
       <slot v-else name="title" />
       <div class="text">
@@ -27,20 +30,23 @@ export default class TCQuote extends Vue {
   }
   padding: 15px;
   margin: 10px 0;
-  .title {
-    font-weight: bold;
-    margin-bottom: 10px;
-  }
-  .text {
-    &::before,
-    &::after {
-      content: '"';
+  & > .content {
+    & > .title {
       font-weight: bold;
-      color: $primary;
+      margin-bottom: 10px;
+      i {
+        margin-right: 10px;
+        color: $primary;
+      }
     }
-  }
-  .s {
-    color: red;
+    & > .text {
+      &::before,
+      &::after {
+        content: '"';
+        font-weight: bold;
+        color: $primary;
+      }
+    }
   }
 }
 </style>

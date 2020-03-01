@@ -15,18 +15,38 @@
       Vero, iste?
 
       <tc-headline title="All Components" />
-      <router-link
-        :to="{
-          name: constants.projectRoutes.timos_components_detail,
-          params: { comp: comp.name }
-        }"
-        class="componentButton"
-        v-for="comp in getComponents()"
-        :key="comp.name"
-      >
-        <i :class="'ti-' + comp.icon"></i>
-        <span>{{ comp.name }}</span>
-      </router-link>
+      <tc-grid minWidth="250">
+        <router-link
+          v-for="comp in getComponents()"
+          :key="comp.name"
+          :to="{
+            name: constants.projectRoutes.timos_components_detail,
+            params: { comp: comp.name }
+          }"
+        >
+          <tc-card>
+            <i :class="'ti-' + comp.icon"></i>
+            <span>{{ comp.name }}</span>
+          </tc-card>
+        </router-link>
+      </tc-grid>
+
+      <tc-headline title="Layout" />
+      <tc-grid minWidth="250">
+        <router-link
+          v-for="layout in getLayouts()"
+          :key="layout.name"
+          :to="{
+            name: constants.projectRoutes.timos_components_detail,
+            params: { comp: layout.name }
+          }"
+        >
+          <tc-card>
+            <i :class="'ti-' + layout.icon"></i>
+            <span>{{ layout.name }}</span>
+          </tc-card>
+        </router-link>
+      </tc-grid>
     </div>
   </div>
 </template>
@@ -36,16 +56,19 @@ import TCHeadline from "@/components/tc/headline/TC-Headline.vue";
 import TCHero from "@/components/tc/hero/TC-Hero.vue";
 import TCCard from "@/components/tc/card/TC-Card.vue";
 import tcComps from "@/components/tc";
+import tcLayouts from "@/components/tc/layout";
 import constants from "@/constants";
 import { Icon } from "@/models/Icons/Icon.model";
 import { TCComponent } from "@/models/TCComponents/TCComponent.model";
 import TCButton from "@/components/tc/button/TC-Button.vue";
+import TCGrid from "@/components/tc/layout/grid/TC-Grid.vue";
 @Component({
   components: {
     "tc-headline": TCHeadline,
     "tc-hero": TCHero,
     "tc-card": TCCard,
-    "tc-button": TCButton
+    "tc-button": TCButton,
+    "tc-grid": TCGrid
   }
 })
 export default class TIComponentsHome extends Vue {
@@ -53,6 +76,9 @@ export default class TIComponentsHome extends Vue {
 
   getComponents(): TCComponent[] {
     return tcComps.sort((a, b) => a.name.localeCompare(b.name));
+  }
+  getLayouts(): TCComponent[] {
+    return tcLayouts.sort((a, b) => a.name.localeCompare(b.name));
   }
 }
 </script>
@@ -81,14 +107,7 @@ export default class TIComponentsHome extends Vue {
     font-size: 1.2em;
   }
 }
-.componentButton {
-  padding: 20px;
-  box-shadow: $shadow;
-  margin-bottom: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  color: $color;
+.tc-card {
   i,
   span {
     display: block;
@@ -99,6 +118,7 @@ export default class TIComponentsHome extends Vue {
     margin-bottom: 10px;
   }
   span {
+    color: $color;
     font-weight: bold;
     opacity: 0.8;
   }

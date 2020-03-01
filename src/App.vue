@@ -33,9 +33,9 @@
         :to="{ name: 'contact' }"
       />
       <tc-sidebar-item icon="github" name="GitHub" :to="{ name: 'github' }" />
-      <div class="footer" slot="footer">v0.1.4</div>
+      <div class="footer" slot="footer">v0.1.5</div>
     </tc-sidebar>
-    <tc-tabbar class="app--tabbar">
+    <tc-tabbar :dark="darkTabbar" class="app--tabbar">
       <tc-tabbar-item />
       <tc-tabbar-item title="Projects" icon="book-p" routeName="projects" />
       <tc-tabbar-item title="Repertoire" icon="tools" routeName="repertoire" />
@@ -43,7 +43,9 @@
       <tc-tabbar-item title="GitHub" icon="github" routeName="github" />
     </tc-tabbar>
     <div class="view">
-      <router-view></router-view>
+      <!-- <transition name="router-anim"> -->
+      <router-view />
+      <!-- </transition> -->
     </div>
   </div>
 </template>
@@ -73,11 +75,29 @@ export default class App extends Vue {
   showSidebar() {
     return !this.$route.meta.customSidebar;
   }
+  get darkTabbar(): boolean {
+    return this.$route.name === "home";
+  }
 }
 </script>
 
 <style lang="scss">
 @import "./scss/variables.scss";
+@import "./scss/mixins";
+.router-anim-enter-active,
+.router-anim-leave-active {
+  transition-property: opacity;
+  transition-duration: 0.25s;
+}
+
+.router-anim-enter-active {
+  transition-delay: 0.25s;
+}
+
+.router-anim-enter,
+.router-anim-leave-active {
+  opacity: 0;
+}
 
 html {
   font-family: -apple-system, BlinkMacSystemFont, SF Pro Display, Segoe UI,
@@ -99,7 +119,6 @@ a {
   text-decoration: none;
   color: $primary;
 }
-
 @media #{$isMobile} {
   .tc-sidebar {
     display: none !important;

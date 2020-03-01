@@ -1,9 +1,13 @@
 <template>
-  <div class="tc-card">
+  <div class="tc-card" :class="{ frosted: frosted }">
     <div v-if="title" class="title" :class="{ noSubtitle: !subtitle }">
       {{ title }}
     </div>
-    <div v-else class="titleSlot"><slot name="header" /></div>
+    <div v-else class="titleSlot">
+      <slot name="header">
+        <div tc-card-header-title-placeholder></div>
+      </slot>
+    </div>
     <div v-if="subtitle" class="subtitle">{{ subtitle }}</div>
     <div class="media"><slot name="media" /></div>
     <div class="slot">
@@ -23,10 +27,12 @@ import TCButton from "../button/TC-Button.vue";
 export default class TCCard extends Vue {
   @Prop() title!: string;
   @Prop() subtitle!: string;
+  @Prop({ type: Boolean, default: false }) frosted!: boolean;
 }
 </script>
 <style lang="scss" scoped>
 @import "../../../scss/variables";
+@import "../../../scss/mixins";
 
 .tc-card {
   background: $background;
@@ -39,6 +45,10 @@ export default class TCCard extends Vue {
     top: 0;
   }
 
+  &.frosted {
+    @include backdrop-blur($background);
+  }
+
   &[rounded="true"] {
     border-radius: $border-radius;
   }
@@ -47,6 +57,9 @@ export default class TCCard extends Vue {
     &:hover {
       box-shadow: $shadow-hover;
     }
+  }
+  [tc-card-header-title-placeholder] {
+    height: 30px;
   }
 
   .title {
@@ -58,7 +71,7 @@ export default class TCCard extends Vue {
     }
   }
   .subtitle {
-    line-height: 40px;
+    padding: 10px 0;
   }
   .media,
   .slot {
@@ -74,6 +87,18 @@ export default class TCCard extends Vue {
     video {
       width: 100%;
     }
+  }
+  z-index: 10;
+  animation: slide-in-bck-center 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+@keyframes slide-in-bck-center {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
   }
 }
 </style>

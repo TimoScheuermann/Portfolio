@@ -1,12 +1,12 @@
 <template>
   <div>
-    <tc-hero height="100" unit="vh">
+    <tc-hero height="100" unit="vh" :hasFixedHeader="false">
       <img id="hero" slot="background" />
-      <div class="hero">
-        <div class="title">Timo's Components</div>
-        <div class="subtitle">Custom Vue Components</div>
-        <tc-card title="Not Found"></tc-card>
-      </div>
+      <tc-card
+        frosted
+        title="Component Not Found"
+        subtitle="The Component you are looking for might have been removed, had its name changed or is temporarily unavailable."
+      ></tc-card>
     </tc-hero>
   </div>
 </template>

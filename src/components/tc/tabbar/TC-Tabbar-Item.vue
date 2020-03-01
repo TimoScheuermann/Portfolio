@@ -20,7 +20,7 @@ export default class TCTabbarItem extends Vue {
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: $color;
+  color: inherit;
   margin: 0 2.5px;
   i,
   span {

@@ -64,5 +64,8 @@ export default class TCSidebar extends Vue {}
   .spacer {
     flex-grow: 1 !important;
   }
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 </style>

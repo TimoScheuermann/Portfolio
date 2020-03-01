@@ -1,8 +1,5 @@
 <template>
-  <div
-    class="tc-hero"
-    :style="{ height: height + (hasFixedHeader ? 50 : 0) + unit }"
-  >
+  <div class="tc-hero" :style="{ height: getHeight() + unit }">
     <div class="background">
       <slot name="background" />
     </div>
@@ -16,9 +13,12 @@ import { Vue, Component, Prop } from "vue-property-decorator";
 import TCHeadline from "@/components/tc/headline/TC-Headline.vue";
 @Component
 export default class TCHero extends Vue {
-  @Prop({ default: 200, type: Number }) height!: number;
+  @Prop({ default: 200 }) height!: string | number;
   @Prop({ default: "px", type: String }) unit!: string;
   @Prop({ default: true, type: Boolean }) hasFixedHeader!: boolean;
+  getHeight(): number {
+    return +this.height + (this.hasFixedHeader ? 50 : 0);
+  }
 }
 </script>
 <style lang="scss" scoped>

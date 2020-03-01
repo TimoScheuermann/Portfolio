@@ -1,7 +1,7 @@
 <template>
   <tc-card :title="repo.name" :subtitle="repo.description">
     <tc-button name="View on GitHub" :href="repo.html_url" />
-    <tc-headline title="Stats" icon="chart-line"></tc-headline>
+    <tc-divider name="Stats" icon="chart-line" />
     <div class="statistics">
       <div class="statistic" v-for="change in changes" :key="change.attr">
         <i :class="'ti-' + change.icon"></i>
@@ -20,14 +20,14 @@
 <script lang="ts">
 import { Vue, Component, Prop } from "vue-property-decorator";
 import TCCard from "@/components/tc/card/TC-Card.vue";
-import TCHeadline from "@/components/tc/headline/TC-Headline.vue";
 import TCButton from "@/components/tc/button/TC-Button.vue";
+import TCDivider from "@/components/tc/divider/TC-Divider.vue";
 
 @Component({
   components: {
     "tc-card": TCCard,
     "tc-button": TCButton,
-    "tc-headline": TCHeadline
+    "tc-divider": TCDivider
   }
 })
 export default class GitHubRepoTile extends Vue {
@@ -36,7 +36,7 @@ export default class GitHubRepoTile extends Vue {
     {
       icon: "gears",
       attr: "created_at",
-      title: "created"
+      title: "Created"
     },
     {
       icon: "tools",
@@ -59,10 +59,15 @@ export default class GitHubRepoTile extends Vue {
 <style lang="scss" scoped>
 @import "../../scss/variables.scss";
 
+.tc-divider {
+  margin: {
+    bottom: 15px;
+    top: 20px;
+  }
+}
 .statistics {
   display: flex;
   justify-content: space-around;
-
   .statistic {
     i {
       font-size: 2em;

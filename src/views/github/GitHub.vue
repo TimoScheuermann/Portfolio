@@ -28,9 +28,9 @@
       </div>
     </tc-hero>
 
-    <div content class="repositories" v-if="loaded">
+    <tc-grid content minWidth="330" class="__repositories" v-if="loaded">
       <github-repo-tile v-for="repo in getRepos" :repo="repo" :key="repo.id" />
-    </div>
+    </tc-grid>
   </div>
 </template>
 <script lang="ts">
@@ -40,6 +40,7 @@ import TCHeader from "@/components/tc/header/TC-Header.vue";
 import TCHero from "@/components/tc/hero/TC-Hero.vue";
 import TCSpinner from "@/components/tc/spinner/TC-Spinner.vue";
 import GitHubRepoTile from "./GitHub--Repotile.vue";
+import TCGrid from "@/components/tc/layout/grid/TC-Grid.vue";
 
 @Component({
   components: {
@@ -47,6 +48,7 @@ import GitHubRepoTile from "./GitHub--Repotile.vue";
     "tc-header": TCHeader,
     "tc-hero": TCHero,
     "tc-spinner": TCSpinner,
+    "tc-grid": TCGrid,
     "github-repo-tile": GitHubRepoTile
   }
 })
@@ -107,6 +109,7 @@ export default class GitHubView extends Vue {
 </script>
 <style lang="scss" scoped>
 @import "../../scss/variables.scss";
+@import "../../scss/mixins.scss";
 
 .loading,
 .loaded {
@@ -168,8 +171,7 @@ export default class GitHubView extends Vue {
     border-radius: 5px;
     text-decoration: none;
     color: inherit;
-    backdrop-filter: blur(50px);
-    background: rgba(255, 255, 255, 0.19);
+    @include backdrop-blur(#fff);
     font-weight: bold;
     transition: 0.2s ease-in-out;
     border: 1px solid transparent;
@@ -178,28 +180,14 @@ export default class GitHubView extends Vue {
     }
   }
 }
-
-.repositories {
-  display: grid;
-  grid-gap: 30px;
-
-  .tc-card:first-child {
+.tc-grid {
+  .tc-card:nth-child(1) {
     color: $background;
     background: $color;
+    grid-column: 1 / -1;
   }
-
   @media #{$isMobile} {
-    padding-top: 5vw;
-    grid-template-columns: repeat(1, 1fr);
-  }
-  @media #{$isDesktop} {
-    padding-top: 30px;
-    grid-template-columns: repeat(2, 1fr);
-    .tc-card {
-      &:first-child {
-        grid-column: 1 / 3;
-      }
-    }
+    padding-top: 20px;
   }
 }
 </style>

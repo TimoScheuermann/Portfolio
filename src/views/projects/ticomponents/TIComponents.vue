@@ -11,20 +11,28 @@
         icon="book-p"
         :to="{ name: constants.routes.projects }"
       ></tc-sidebar-item>
-      <tc-divider></tc-divider>
+      <tc-divider />
       <tc-sidebar-item
         name="Home"
         icon="house"
         :to="{ name: constants.projectRoutes.timos_components }"
       />
 
-      <tc-divider
-        position="center"
-        icon="component"
-        name="Components"
-      ></tc-divider>
+      <tc-divider icon="component" name="Components" />
       <tc-sidebar-item
         v-for="tcc in tcComponents"
+        :key="tcc.name"
+        :name="tcc.name"
+        :icon="tcc.icon"
+        :to="{
+          name: constants.projectRoutes.timos_components_detail,
+          params: { comp: tcc.name }
+        }"
+      />
+
+      <tc-divider icon="chart-empty" name="Layout" />
+      <tc-sidebar-item
+        v-for="tcc in tcLayouts"
         :key="tcc.name"
         :name="tcc.name"
         :icon="tcc.icon"
@@ -53,29 +61,32 @@
         <div v-if="!componentExists()">
           <ti-compononents-notfound />
         </div>
-        <div v-else content class="appear">
-          <component
-            class="appear"
-            :tcComponent="getTCComponent()"
-            :is="getComponent()"
-          ></component>
-          <tc-headline title="API" />
-          <tc-table>
-            <tr>
-              <th>Name</th>
-              <th>Type</th>
-              <th>Parameters</th>
-              <th>Description</th>
-              <th>Default</th>
-            </tr>
-            <tr v-for="api in getTCComponent().api" :key="api.name">
-              <td>{{ api.name }}</td>
-              <td>{{ api.type }}</td>
-              <td>{{ api.parameters }}</td>
-              <td>{{ api.description }}</td>
-              <td>{{ api.default }}</td>
-            </tr>
-          </tc-table>
+        <div v-else class="appear">
+          <component-hero :component="getTCComponent()" />
+          <div content>
+            <component
+              class="appear"
+              :tcComponent="getTCComponent()"
+              :is="getComponent()"
+            ></component>
+            <tc-headline title="API" />
+            <tc-table>
+              <tr>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Parameters</th>
+                <th>Description</th>
+                <th>Default</th>
+              </tr>
+              <tr v-for="api in getTCComponent().api" :key="api.name">
+                <td>{{ api.name }}</td>
+                <td>{{ api.type }}</td>
+                <td>{{ api.parameters }}</td>
+                <td>{{ api.description }}</td>
+                <td>{{ api.default }}</td>
+              </tr>
+            </tc-table>
+          </div>
         </div>
       </div>
       <div v-else>
@@ -93,6 +104,7 @@ import TCSidebarGroup from "@/components/tc/sidebar/TS-Sidebar-Group.vue";
 import TCSidebarItem from "@/components/tc/sidebar/TC-Sidebar-Item.vue";
 import TCDivider from "@/components/tc/divider/TC-Divider.vue";
 import tcComponents from "@/components/tc";
+import tcLayouts from "@/components/tc/layout";
 import { TCComponent } from "@/models/TCComponents/TCComponent.model";
 import constants from "@/constants";
 import TCHeader from "@/components/tc/header/TC-Header.vue";
@@ -117,6 +129,7 @@ import TCProgressBars from "./groups/TCProgressBars.vue";
 import TCQuotes from "./groups/TCQuotes.vue";
 import TIComponentsHome from "./TIComponents-Home.vue";
 import TIComponentsNotFound from "./TIComponents-NotFound.vue";
+import ComponentHero from "@/components/projects/TIComponents/ComponentHero.vue";
 
 @Component({
   components: {
@@ -147,11 +160,15 @@ import TIComponentsNotFound from "./TIComponents-NotFound.vue";
     "table--view": TCTables,
     "revealer--view": TCRevealers,
     "progress--view": TCProgressBars,
-    "quote--view": TCQuotes
+    "quote--view": TCQuotes,
+    "component-hero": ComponentHero
   }
 })
 export default class TIComponents extends Vue {
   public tcComponents: TCComponent[] = tcComponents.sort((a, b) =>
+    a.name.localeCompare(b.name)
+  );
+  public tcLayouts: TCComponent[] = tcLayouts.sort((a, b) =>
     a.name.localeCompare(b.name)
   );
   public constants: {} = constants;
@@ -215,7 +232,9 @@ export default class TIComponents extends Vue {
     opacity: 1;
   }
 }
-
+[content] {
+  padding-top: 0;
+}
 .ticomponents--header {
   flex-wrap: nowrap;
   display: flex;

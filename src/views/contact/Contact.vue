@@ -43,6 +43,15 @@
       <tc-checkbox title="Hallo Welt"></tc-checkbox>
       <tc-direction title="Richtung"></tc-direction>
     </div>
+    <tc-hero>
+      <img
+        slot="background"
+        src="https://www.shutterstock.com/blog/wp-content/uploads/sites/5/2018/05/Gradient-Roundup-Illustrator-02.jpg"
+      />
+    </tc-hero>
+    <tc-hero>
+      <tc-compHero slot="background" />
+    </tc-hero>
   </div>
 </template>
 <script lang="ts">
@@ -57,6 +66,9 @@ import TCDirection from "@/components/shared/filter/TC-Direction.vue";
 import PSlideshow from "@/components/home/P-Slideshow.vue";
 import TCCard from "@/components/tc/card/TC-Card.vue";
 import TCHeader from "@/components/tc/header/TC-Header.vue";
+import TCHero from "@/components/tc/hero/TC-Hero.vue";
+import TCSwitch from "@/components/tc/switch/TC-Switch.vue";
+import TCComponentHero from "@/components/projects/TIComponents/ComponentHero.vue";
 
 @Component({
   components: {
@@ -65,7 +77,10 @@ import TCHeader from "@/components/tc/header/TC-Header.vue";
     "tc-checkbox": TCCheckbox,
     "tc-direction": TCDirection,
     "p-slideshow": PSlideshow,
-    "tc-header": TCHeader
+    "tc-header": TCHeader,
+    "tc-hero": TCHero,
+    "tc-toggle": TCSwitch,
+    "tc-compHero": TCComponentHero
   }
 })
 export default class ContactView extends Vue {

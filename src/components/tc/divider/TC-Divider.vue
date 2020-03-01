@@ -28,7 +28,7 @@ export default class TCDivider extends Vue {
   min-height: 10px;
   align-items: center;
   .bar {
-    background: #000;
+    background: currentColor;
     border-radius: 5px;
     height: 1px;
     opacity: 0.3;

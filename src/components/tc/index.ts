@@ -125,7 +125,7 @@ const tcComponents: TCComponent[] = [
   },
   {
     name: "Hero",
-    icon: "",
+    icon: "painting",
     api: []
   },
   {
@@ -135,17 +135,22 @@ const tcComponents: TCComponent[] = [
   },
   {
     name: "Progress",
-    icon: "",
+    icon: "bar-progress",
     api: []
   },
   {
     name: "Quote",
-    icon: "",
+    icon: "quote-right",
     api: []
   },
   {
     name: "Header",
-    icon: "",
+    icon: "bar",
+    api: []
+  },
+  {
+    name: "Headline",
+    icon: "bar",
     api: []
   }
 ];
