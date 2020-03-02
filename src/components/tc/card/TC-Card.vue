@@ -27,7 +27,7 @@ import TCButton from "../button/TC-Button.vue";
 export default class TCCard extends Vue {
   @Prop() title!: string;
   @Prop() subtitle!: string;
-  @Prop({ type: Boolean, default: false }) frosted!: boolean;
+  @Prop({ default: false }) frosted!: boolean;
 }
 </script>
 <style lang="scss" scoped>
@@ -59,7 +59,7 @@ export default class TCCard extends Vue {
     }
   }
   [tc-card-header-title-placeholder] {
-    height: 30px;
+    // height: 30px;
   }
 
   .title {

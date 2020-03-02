@@ -18,7 +18,15 @@ export default class TCTabbarItem extends Vue {
 .tc-tabbar--item {
   flex: 1 1 0px;
   display: flex;
-  flex-direction: column;
+  @media only screen and(max-width: 800px) {
+    flex-direction: column;
+  }
+  @media only screen and(min-width: 801px) {
+    margin: 0 15px;
+    i {
+      margin-right: 10px;
+    }
+  }
   align-items: center;
   color: inherit;
   margin: 0 2.5px;

@@ -10,16 +10,20 @@
       </label>
     </div>
     <div class="tc-sidebar--items" :class="{ expanded: expanded }">
-      <slot></slot>
-      <div class="divider"></div>
+      <slot />
+      <tc-divider />
     </div>
   </div>
 </template>
 <script lang="ts">
 import { Vue, Component, Prop } from "vue-property-decorator";
 import uuidVue from "../uuid.vue";
+import TCDivider from "../divider/TC-Divider.vue";
 @Component({
-  mixins: [uuidVue]
+  mixins: [uuidVue],
+  components: {
+    "tc-divider": TCDivider
+  }
 })
 export default class TCSidebarGroup extends Vue {
   @Prop() name!: string;
@@ -86,13 +90,6 @@ export default class TCSidebarGroup extends Vue {
     &.expanded {
       max-height: 300px;
       margin-top: 5px;
-    }
-
-    .divider {
-      height: 1px;
-      background: $color;
-      opacity: 0.3;
-      margin: 5px 0;
     }
   }
 }

@@ -71,7 +71,7 @@ import TCGrid from "@/components/tc/layout/grid/TC-Grid.vue";
     "tc-grid": TCGrid
   }
 })
-export default class TIComponentsHome extends Vue {
+export default class TCComponentsHome extends Vue {
   public constants: {} = constants;
 
   getComponents(): TCComponent[] {
@@ -83,7 +83,7 @@ export default class TIComponentsHome extends Vue {
 }
 </script>
 <style lang="scss" scoped>
-@import "../../../scss/variables";
+@import "../../../../scss/variables";
 [content] {
   @media #{$isDesktop} {
     padding-top: 10px;

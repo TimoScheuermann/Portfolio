@@ -59,7 +59,7 @@ const projects: Project[] = [
   },
   {
     routeName: constants.projectRoutes.timos_components,
-    title: "TI Components",
+    title: "TC Components",
     description:
       "Lorem ipsum Zeile 1 Lorem ipsum Zeile 2 Lorem ipsum Zeile 3 Lorem ipsum Zeile 4",
     images: {

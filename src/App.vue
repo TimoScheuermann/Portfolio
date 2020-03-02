@@ -1,6 +1,6 @@
 <template lang="html">
   <div id="app">
-    <tc-sidebar v-if="showSidebar()">
+    <tc-sidebar :dark="darkTabbar" v-if="showSidebar()">
       <div slot="header" class="tc-sidebar--header">
         <div class="icon">P</div>
         <div class="title">Portfolio</div>

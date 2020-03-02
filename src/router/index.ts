@@ -61,14 +61,14 @@ const router = new VueRouter({
               name: constants.projectRoutes.timos_components,
               meta: { customSidebar: true },
               component: () =>
-                import("@/views/projects/ticomponents/TIComponents.vue")
+                import("@/views/projects/tccomponents/TC-Components.vue")
             },
             {
               path: ":comp",
               name: constants.projectRoutes.timos_components_detail,
               meta: { customSidebar: true },
               component: () =>
-                import("@/views/projects/ticomponents/TIComponents.vue")
+                import("@/views/projects/tccomponents/TC-Components.vue")
             }
           ]
         },

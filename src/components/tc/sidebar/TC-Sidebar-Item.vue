@@ -21,7 +21,7 @@ export default class TCSidebarItem extends Vue {
   display: flex;
   align-items: center;
   flex-wrap: nowrap;
-  color: $color;
+  color: inherit;
   opacity: 0.6;
   transition: 0.2s ease-in-out;
   padding: 5px {
