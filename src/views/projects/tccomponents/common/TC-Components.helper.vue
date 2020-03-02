@@ -22,7 +22,6 @@ export default class TCComponentHelper extends Vue {
 
   getHeaderTitle(): string {
     if (!this.isComponent()) return "Timo's Components";
-    if (!this.componentExists()) return "Not Found";
     const name = this.$route.params.comp.toLowerCase();
     return name.charAt(0).toUpperCase() + name.slice(1);
   }
@@ -33,24 +32,6 @@ export default class TCComponentHelper extends Vue {
 
   getComponent(): string {
     return this.compQuery.charAt(0).toUpperCase() + this.compQuery.slice(1);
-  }
-
-  loadedComponents() {
-    var loaded = [];
-    var components = this.$options.components;
-    for (var key in components) {
-      loaded.push(key);
-    }
-    return loaded;
-  }
-
-  componentExists() {
-    return true;
-    var components = this.loadedComponents.call(this);
-    if (components.indexOf(this.getComponent()) !== -1) {
-      return true;
-    }
-    return false;
   }
 }
 </script>

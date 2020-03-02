@@ -1,5 +1,5 @@
 <template>
-  <div class="tc-header">
+  <div class="tc-header" :class="{ dark: dark, light: !dark }">
     <div class="title" v-if="title">{{ title }}</div>
     <div v-else>
       <slot name="title" />
@@ -14,6 +14,7 @@ import { Vue, Component, Prop } from "vue-property-decorator";
 @Component
 export default class TCHeader extends Vue {
   @Prop() title!: string;
+  @Prop({ default: false }) dark!: boolean;
 }
 </script>
 <style lang="scss" scoped>
@@ -21,7 +22,14 @@ export default class TCHeader extends Vue {
 @import "../../../scss/variables";
 
 .tc-header {
-  @include backdrop-blur($background);
+  &.dark {
+    @include backdrop-blur($color);
+    color: #fff;
+  }
+  &.light {
+    @include backdrop-blur($background);
+    color: $color;
+  }
   position: fixed;
   box-shadow: $shadow;
   top: 0;

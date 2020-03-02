@@ -9,7 +9,7 @@
 import { Vue, Component, Prop } from "vue-property-decorator";
 @Component
 export default class TCTabbar extends Vue {
-  @Prop({ type: Boolean, default: false }) dark!: boolean;
+  @Prop({ default: false }) dark!: boolean;
 }
 </script>
 <style lang="scss" scoped>
