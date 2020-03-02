@@ -1,10 +1,6 @@
 <template>
-  <div>
-    {{ getComponent() }}
-    <div>{{ r() }}</div>
-    <component :is="comp">
-      Hallo
-    </component>
+  <div style="margin-left: 200px">
+    <component :is="currentComponent" />
   </div>
 </template>
 <script lang="ts">
@@ -17,32 +13,13 @@ import TCComponentsNotFound from "./TC-Components-NotFound.vue";
   mixins: [TCComponentHelper]
 })
 export default class TCComponentsDetail extends Vue {
-  // Zum testen: TC-Components-Detail--Button.vue
-  // Fallback soll sein: TCComponentsNotFound
-  // Loading: TCSpinner
-  [x: string]: any;
-  public comp: any = "";
-
-  r(): string {
-    return `@/views/projects/tccomponents/views/details/TC-Components-Detail--${this.getComponent()}.vue`;
-  }
-
-  //   Troy
-  created() {
-    try {
-      const test = import(
-        `@/views/projects/tccomponents/views/details/TC-Components-Detail--${this.getComponent()}.vue`
+  get currentComponent() {
+    return () =>
+      import(
+        `@/views/projects/tccomponents/views/details/TC-Components-Detail--${this.$route.params.comp}.vue`
+      ).catch(() =>
+        import("@/views/projects/tccomponents/views/TC-Components-NotFound.vue")
       );
-      console.log("Comp", this.getComponent());
-      console.log(this.r());
-      console.log(test);
-      console.log(!!test);
-      console.log(typeof test);
-      this.comp = test;
-    } catch (error) {
-      console.log("Error");
-    }
   }
-  // Troy
 }
 </script>
