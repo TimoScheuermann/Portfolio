@@ -49,9 +49,8 @@
         src="https://www.shutterstock.com/blog/wp-content/uploads/sites/5/2018/05/Gradient-Roundup-Illustrator-02.jpg"
       />
     </tc-hero>
-    <tc-hero>
-      <tc-compHero slot="background" />
-    </tc-hero>
+    <tc-link>Hallo Welt</tc-link>
+    <tc-link><i class="ti-peace" /> Was geht ab</tc-link>
   </div>
 </template>
 <script lang="ts">
@@ -69,6 +68,7 @@ import TCHeader from "@/components/tc/header/TC-Header.vue";
 import TCHero from "@/components/tc/hero/TC-Hero.vue";
 import TCSwitch from "@/components/tc/switch/TC-Switch.vue";
 import TCComponentHero from "@/components/projects/TIComponents/ComponentHero.vue";
+import TCLink from "@/components/tc/link/TC-Link.vue";
 
 @Component({
   components: {
@@ -80,6 +80,7 @@ import TCComponentHero from "@/components/projects/TIComponents/ComponentHero.vu
     "tc-header": TCHeader,
     "tc-hero": TCHero,
     "tc-toggle": TCSwitch,
+    "tc-link": TCLink,
     "tc-compHero": TCComponentHero
   }
 })

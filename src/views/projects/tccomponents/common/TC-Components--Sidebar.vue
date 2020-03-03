@@ -49,7 +49,7 @@ import TCSidebarGroup from "@/components/tc/sidebar/TS-Sidebar-Group.vue";
 import TCSidebarItem from "@/components/tc/sidebar/TC-Sidebar-Item.vue";
 import TCDivider from "@/components/tc/divider/TC-Divider.vue";
 import tcComponents from "@/components/tc";
-import tcLayouts from "@/components/tc/layout";
+import tcLayouts from "@/components/tc/_layout";
 import constants from "@/constants";
 import { TCComponent } from "@/models/TCComponents/TCComponent.model";
 

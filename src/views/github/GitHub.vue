@@ -40,7 +40,7 @@ import TCHeader from "@/components/tc/header/TC-Header.vue";
 import TCHero from "@/components/tc/hero/TC-Hero.vue";
 import TCSpinner from "@/components/tc/spinner/TC-Spinner.vue";
 import GitHubRepoTile from "./GitHub--Repotile.vue";
-import TCGrid from "@/components/tc/layout/grid/TC-Grid.vue";
+import TCGrid from "@/components/tc/_layout/grid/TC-Grid.vue";
 
 @Component({
   components: {

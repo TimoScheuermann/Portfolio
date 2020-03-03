@@ -2,14 +2,17 @@
   <div content>
     <tc-header title="Work Gallery"></tc-header>
     <div class="gallery">
-      <tc-card v-for="item in gallery" :key="item.fileName">
+      <tc-card
+        v-for="item in gallery"
+        :key="item.fileName"
+        :title="item.display"
+      >
         <img slot="media" :src="'../img/workgallery/' + item.fileName" />
         <tc-button
           :disabled="!item.project"
           :to="{ name: constants.projectRoutes[item.project] }"
           :name="item.project || 'Not Specific'"
         ></tc-button>
-        <div class="fileName">{{ item.display }}</div>
       </tc-card>
     </div>
   </div>
@@ -53,9 +56,11 @@ export default class WorkGallery extends Vue {
   column-gap: 30px;
   .tc-card {
     margin: 30px 0;
-    .fileName {
-      font-weight: bold;
-      margin-top: 10px;
+    button {
+      margin: {
+        top: 20px;
+        bottom: -10px;
+      }
     }
   }
 }

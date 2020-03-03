@@ -1,7 +1,7 @@
 <template>
-  <div class="tc-header" :class="{ dark: dark, light: !dark }">
+  <div class="tc-header" :style="getStyles()" :class="getClasses()">
     <div class="title" v-if="title">{{ title }}</div>
-    <div v-else>
+    <div class="titleSlot" v-else>
       <slot name="title" />
     </div>
     <div class="tc-header--items">
@@ -15,6 +15,23 @@ import { Vue, Component, Prop } from "vue-property-decorator";
 export default class TCHeader extends Vue {
   @Prop() title!: string;
   @Prop({ default: false }) dark!: boolean;
+  @Prop({ default: "fixed" }) variant!: "fixed" | "floating" | "sticky";
+  @Prop({ default: "0" }) top!: string;
+
+  getClasses() {
+    return {
+      dark: this.dark,
+      light: !this.dark,
+      fixed: !(this.variant == "floating" || this.variant == "sticky"),
+      sticky: this.variant == "sticky",
+      floating: this.variant == "floating"
+    };
+  }
+  getStyles() {
+    return {
+      top: (this.variant == "floating" ? 40 : 0) + +this.top + "px"
+    };
+  }
 }
 </script>
 <style lang="scss" scoped>
@@ -30,24 +47,35 @@ export default class TCHeader extends Vue {
     @include backdrop-blur($background);
     color: $color;
   }
-  position: fixed;
+  &.sticky {
+    position: sticky;
+    padding: 0 5vw;
+  }
+  &.fixed {
+    position: fixed;
+    padding: 0 5vw {
+      top: env(safe-area-inset-top);
+    }
+  }
+  &.floating {
+    position: fixed;
+    margin: 0 10vw;
+    padding: 0 20px;
+    border-radius: $border-radius;
+  }
   box-shadow: $shadow;
-  top: 0;
   right: 0;
-  left: 0px;
+  left: 0;
   min-height: 50px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 5vw {
-    top: env(safe-area-inset-top);
-  }
   z-index: 999;
-  .title {
+  & > .title {
     font-weight: bold;
     font-size: 18px;
   }
-  .tc-header--items {
+  & > .tc-header--items {
     writing-mode: inherit;
   }
 }

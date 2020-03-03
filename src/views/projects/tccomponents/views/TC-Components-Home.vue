@@ -56,12 +56,12 @@ import TCHeadline from "@/components/tc/headline/TC-Headline.vue";
 import TCHero from "@/components/tc/hero/TC-Hero.vue";
 import TCCard from "@/components/tc/card/TC-Card.vue";
 import tcComps from "@/components/tc";
-import tcLayouts from "@/components/tc/layout";
+import tcLayouts from "@/components/tc/_layout";
 import constants from "@/constants";
 import { Icon } from "@/models/Icons/Icon.model";
 import { TCComponent } from "@/models/TCComponents/TCComponent.model";
 import TCButton from "@/components/tc/button/TC-Button.vue";
-import TCGrid from "@/components/tc/layout/grid/TC-Grid.vue";
+import TCGrid from "@/components/tc/_layout/grid/TC-Grid.vue";
 @Component({
   components: {
     "tc-headline": TCHeadline,

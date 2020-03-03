@@ -81,7 +81,6 @@ const icons: Icon[] = [
   { name: "list-check", css: "e957" },
   { name: "moped-license-plate", css: "e959" },
   { name: "offer", css: "e95a" },
-  { name: "scale -in -path1", css: "e95b" },
   { name: "scale-out", css: "e95d" },
   { name: "arrow-right", css: "e95f" },
   { name: "at", css: "e960" },

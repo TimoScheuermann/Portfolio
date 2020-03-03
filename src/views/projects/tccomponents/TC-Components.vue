@@ -2,7 +2,7 @@
   <div class="tc-components--view">
     <tc-components--sidebar />
     <tc-components--header />
-    <tc-components-home v-if="!isComponent()" />
+    <tc-components-home v-if="!isComponent" />
     <tc-components-detail v-else />
   </div>
 </template>
@@ -10,9 +10,8 @@
 import { Vue, Component, Watch } from "vue-property-decorator";
 import { TCComponent } from "@/models/TCComponents/TCComponent.model";
 import tcComponents from "@/components/tc";
-import tcLayouts from "@/components/tc/layout";
+import tcLayouts from "@/components/tc/_layout";
 import constants from "@/constants";
-import TCComponentHelper from "./common/TC-Components.helper.vue";
 import TCComponentsHeader from "./common/TC-Components--Header.vue";
 import TCComponentsSidebar from "./common/TC-Components--Sidebar.vue";
 import TCComponentsHome from "./views/TC-Components-Home.vue";
@@ -26,8 +25,16 @@ import TCComponentsDetail from "./views/TC-Components-Detail.vue";
     "tc-components-home": TCComponentsHome,
     "tc-components-not-found": TCComponentsNotFound,
     "tc-components-detail": TCComponentsDetail
-  },
-  mixins: [TCComponentHelper]
+  }
 })
-export default class TCComponents extends Vue {}
+export default class TCComponents extends Vue {
+  get component() {
+    const comp = this.$route.params.comp;
+    if (comp) return comp;
+    return "";
+  }
+  get isComponent() {
+    return this.component.length > 0;
+  }
+}
 </script>

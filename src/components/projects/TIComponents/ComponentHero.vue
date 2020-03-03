@@ -16,7 +16,7 @@
 
 <script lang="ts">
 import { Vue, Component, Prop } from "vue-property-decorator";
-import TCGrid from "@/components/tc/layout/grid/TC-Grid.vue";
+import TCGrid from "@/components/tc/_layout/grid/TC-Grid.vue";
 import TCHero from "../../tc/hero/TC-Hero.vue";
 import { TCComponent } from "@/models/TCComponents/TCComponent.model";
 @Component({

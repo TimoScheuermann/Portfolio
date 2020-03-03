@@ -32,7 +32,7 @@ import TCHero from "@/components/tc/hero/TC-Hero.vue";
 import tools from "@/tools";
 import { Tool } from "@/models/Tools/Tool";
 import TCHeadline from "@/components/tc/headline/TC-Headline.vue";
-import TCGrid from "@/components/tc/layout/grid/TC-Grid.vue";
+import TCGrid from "@/components/tc/_layout/grid/TC-Grid.vue";
 
 @Component({
   components: {

@@ -1,32 +1,46 @@
 <template>
-  <tc-header :titles="getHeaderTitle()">
+  <tc-header>
     <div slot="title" class="tcComponents--header">
       <router-link
-        v-if="isComponent()"
+        v-if="tcComponent"
         :to="{ name: constants.projectRoutes.timos_components }"
       >
         <i class="ti-arrow-left"></i>
         <span>Components</span>
       </router-link>
-      <div class="title">{{ getHeaderTitle() }}</div>
+      <div class="title">{{ headerTitle }}</div>
     </div>
   </tc-header>
 </template>
 <script lang="ts">
 import { Vue, Component, Watch } from "vue-property-decorator";
 import { TCComponent } from "@/models/TCComponents/TCComponent.model";
-import TCComponentHelper from "./TC-Components.helper.vue";
 import TCHeader from "@/components/tc/header/TC-Header.vue";
 import constants from "@/constants";
+import tcComponents from "@/components/tc";
 
 @Component({
-  mixins: [TCComponentHelper],
   components: {
     "tc-header": TCHeader
   }
 })
 export default class TCComponentsHeader extends Vue {
   public constants: object = constants;
+  public tcComponents: TCComponent[] = tcComponents;
+
+  get headerTitle(): string {
+    return this.tcComponent ? this.tcComponent.name : "Timo's Components";
+  }
+
+  get component(): string {
+    const comp = this.$route.params.comp;
+    if (comp) return comp;
+    return "";
+  }
+
+  get tcComponent(): TCComponent | undefined {
+    return this.tcComponents.filter(x => x.name === this.component)[0];
+  }
 }
 </script>
 <style lang="scss" scoped>
@@ -35,6 +49,10 @@ export default class TCComponentsHeader extends Vue {
   flex-wrap: nowrap;
   display: flex;
   overflow: hidden;
+  .title {
+    font-weight: bold;
+    font-size: 18px;
+  }
   a {
     @media #{$isDesktop} {
       display: none;

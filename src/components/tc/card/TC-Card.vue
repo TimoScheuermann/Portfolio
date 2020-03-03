@@ -59,7 +59,7 @@ export default class TCCard extends Vue {
     }
   }
   [tc-card-header-title-placeholder] {
-    // height: 30px;
+    height: 30px;
   }
 
   .title {
