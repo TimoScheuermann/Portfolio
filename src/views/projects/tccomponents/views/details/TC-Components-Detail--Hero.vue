@@ -1,6 +1,6 @@
 <template>
   <div>
-    <tc-headline title="Link"></tc-headline>
+    <tc-headline title="Hero"></tc-headline>
   </div>
 </template>
 <script lang="ts">
@@ -11,6 +11,5 @@ import TCHeadline from "@/components/tc/headline/TC-Headline.vue";
     "tc-headline": TCHeadline
   }
 })
-export default class TCLinks extends Vue {}
+export default class TCComponentsHero extends Vue {}
 </script>
-<style lang="scss" scoped></style>

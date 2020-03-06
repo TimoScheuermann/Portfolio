@@ -57,7 +57,6 @@
 import { Vue, Component } from "vue-property-decorator";
 import icons from "@/icon5";
 import IconTile from "@/components/projects/TimosIcons/IconTile.vue";
-import TCCheckbox from "@/components/shared/filter/TC-Checkbox.vue";
 import TCDirection from "@/components/shared/filter/TC-Direction.vue";
 import TCButton from "@/components/tc/button/TC-Button.vue";
 import TCCard from "@/components/tc/card/TC-Card.vue";
@@ -72,7 +71,6 @@ import constants from "@/constants";
     "icon-tile": IconTile,
     "tc-card": TCCard,
     "tc-button": TCButton,
-    "tc-checkbox": TCCheckbox,
     "tc-direction": TCDirection,
     "tc-header": TCHeader,
     "tc-headline": TCHeadline,

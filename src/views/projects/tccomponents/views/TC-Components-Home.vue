@@ -14,7 +14,7 @@
       voluptates commodi consequatur aliquid modi explicabo nam quasi provident?
       Vero, iste?
 
-      <tc-headline title="All Components" />
+      <tc-headline :title="'All ' + getComponents().length + ' Components'" />
       <tc-grid minWidth="250">
         <router-link
           v-for="comp in getComponents()"

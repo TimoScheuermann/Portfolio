@@ -1,6 +1,7 @@
 <template>
   <div>
-    <tc-headline title="Preview" />
+    <tc-headline title="Preview"></tc-headline>
+
     <tc-headline title="1" />
     <tc-preview />
     <tc-headline title="2" />
@@ -17,7 +18,7 @@ import TCPreview from "@/components/tc/preview/TC-Preview.vue";
     "tc-preview": TCPreview
   }
 })
-export default class TCPreviews extends Vue {}
+export default class TCComponentsDetailPreview extends Vue {}
 </script>
 <style lang="scss" scoped>
 .grid {

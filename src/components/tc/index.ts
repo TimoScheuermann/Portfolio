@@ -84,11 +84,6 @@ const tcComponents: TCComponent[] = [
     api: []
   },
   {
-    name: "Select",
-    icon: "list",
-    api: []
-  },
-  {
     name: "Modal",
     icon: "modal",
     api: []
@@ -136,7 +131,39 @@ const tcComponents: TCComponent[] = [
   {
     name: "Progress",
     icon: "bar-progress",
-    api: []
+    api: [
+      {
+        name: "percent",
+        type: "number",
+        default: "0",
+        description: "Percentage to be displayed"
+      },
+      {
+        name: "type",
+        type: "string",
+        default: "bar",
+        parameters: "bar | ring",
+        description: "Progress Type"
+      },
+      {
+        name: "barHeight",
+        type: "number",
+        default: "4",
+        description: "Determines the height of the progress bar"
+      },
+      {
+        name: "ringSize",
+        type: "number",
+        default: "70",
+        description: "Determines the size of the progress ring"
+      },
+      {
+        name: "ringWidth",
+        type: "number",
+        default: "8",
+        description: "Determines the width of the ring of the progress ring"
+      }
+    ]
   },
   {
     name: "Quote",
@@ -151,6 +178,26 @@ const tcComponents: TCComponent[] = [
   {
     name: "Headline",
     icon: "bar",
+    api: []
+  },
+  {
+    name: "Segments",
+    icon: "dot",
+    api: []
+  },
+  {
+    name: "Slider",
+    icon: "dot",
+    api: []
+  },
+  {
+    name: "Navbar",
+    icon: "dot",
+    api: []
+  },
+  {
+    name: "Picker",
+    icon: "list",
     api: []
   }
 ];

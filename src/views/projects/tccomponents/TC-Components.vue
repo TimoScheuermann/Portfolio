@@ -2,8 +2,8 @@
   <div class="tc-components--view">
     <tc-components--sidebar />
     <tc-components--header />
-    <tc-components-home v-if="!isComponent" />
-    <tc-components-detail v-else />
+    <tc-components-home v-if="!isComponent()" />
+    <tc-components-detail :key="getComponent()" v-else />
   </div>
 </template>
 <script lang="ts">
@@ -28,13 +28,13 @@ import TCComponentsDetail from "./views/TC-Components-Detail.vue";
   }
 })
 export default class TCComponents extends Vue {
-  get component() {
+  getComponent(): string {
     const comp = this.$route.params.comp;
     if (comp) return comp;
     return "";
   }
-  get isComponent() {
-    return this.component.length > 0;
+  isComponent(): boolean {
+    return this.getComponent().length > 0;
   }
 }
 </script>

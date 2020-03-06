@@ -11,6 +11,5 @@ import TCHeadline from "@/components/tc/headline/TC-Headline.vue";
     "tc-headline": TCHeadline
   }
 })
-export default class TCModals extends Vue {}
+export default class TCComponentsDetailModal extends Vue {}
 </script>
-<style lang="scss" scoped></style>

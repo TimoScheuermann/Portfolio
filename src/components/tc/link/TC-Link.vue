@@ -7,7 +7,7 @@ import { Vue, Component, Prop } from "vue-property-decorator";
 @Component
 export default class TCLink extends Vue {
   @Prop() to!: any;
-  @Prop() href!: string;
+  @Prop({ default: "#" }) href!: string;
 }
 </script>
 <style lang="scss" scoped>

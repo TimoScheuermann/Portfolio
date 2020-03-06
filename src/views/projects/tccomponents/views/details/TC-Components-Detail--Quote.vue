@@ -1,6 +1,6 @@
 <template>
   <div>
-    <tc-headline title="Quotes" />
+    <tc-headline title="Quote"></tc-headline>
     <tc-quote title="Hallo Welt">
       Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur in
       commodi corrupti id distinctio sequi temporibus tempore, architecto
@@ -19,13 +19,12 @@
 <script lang="ts">
 import { Vue, Component } from "vue-property-decorator";
 import TCHeadline from "@/components/tc/headline/TC-Headline.vue";
-import TCQuote from "../../../../components/tc/quote/TC-Quote.vue";
+import TCQuote from "@/components/tc/quote/TC-Quote.vue";
 @Component({
   components: {
     "tc-headline": TCHeadline,
     "tc-quote": TCQuote
   }
 })
-export default class TCQuotes extends Vue {}
+export default class TCComponentsDetailQuote extends Vue {}
 </script>
-<style lang="scss" scoped></style>

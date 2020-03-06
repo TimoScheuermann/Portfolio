@@ -29,8 +29,7 @@ export default class TCButton extends Vue {
   @Prop({
     default: () => {
       return { name: "home" };
-    },
-    type: Object
+    }
   })
   to!: object;
   @Prop() href!: string;

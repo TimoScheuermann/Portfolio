@@ -1,6 +1,6 @@
 <template>
   <div>
-    <tc-headline title="Button"></tc-headline>
+    <tc-headline title="Buttons"></tc-headline>
     <tc-button name="Button"></tc-button>
     <tc-button icon="heart"></tc-button>
     <tc-button icon="share" name="Share"></tc-button>
@@ -17,7 +17,5 @@ import TCButton from "@/components/tc/button/TC-Button.vue";
     "tc-button": TCButton
   }
 })
-export default class TCComponentsDetailButton extends Vue {
-  //TC-Components-Detail--Button.vue
-}
+export default class TCComponentsDetailButton extends Vue {}
 </script>

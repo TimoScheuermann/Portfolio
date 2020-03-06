@@ -1,6 +1,6 @@
 <template>
   <div>
-    <tc-headline title="Input"></tc-headline>
+    <tc-headline title="Header"></tc-headline>
   </div>
 </template>
 <script lang="ts">
@@ -11,6 +11,5 @@ import TCHeadline from "@/components/tc/headline/TC-Headline.vue";
     "tc-headline": TCHeadline
   }
 })
-export default class TCInputs extends Vue {}
+export default class TCComponentsDetailHeader extends Vue {}
 </script>
-<style lang="scss" scoped></style>

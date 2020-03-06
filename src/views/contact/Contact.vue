@@ -2,9 +2,16 @@
   <div content>
     <tc-header title="Contact"></tc-header>
     <h1>Contact</h1>
+    <h2>Slider</h2>
+    <tc-slider v-model="sliderVal"></tc-slider>
+    {{ sliderVal }}
     <h2>Toggle</h2>
-    <tc-toggle></tc-toggle>
-    <tc-toggle></tc-toggle>
+    <tc-switch v-model="switchOne" />
+    {{ switchOne }}
+    <h2>Checkbox</h2>
+    <tc-checkbox v-model="checkbox" />
+    <tc-checkbox title="Hallo" v-model="checkbox" />
+    {{ checkbox }}
     <h2>Rainbow</h2>
     <div class="rainbow" :style="{ background: 'hsl(' + i + ', 216%, 56%)' }">
       <h2>Hallo</h2>
@@ -60,7 +67,6 @@ import PNavbar from "@/components/common/P-Navbar.vue";
 import icons from "@/icon5";
 import projects from "@/projects";
 import { Icon } from "@/models/Icons/Icon.model";
-import TCCheckbox from "@/components/shared/filter/TC-Checkbox.vue";
 import TCDirection from "@/components/shared/filter/TC-Direction.vue";
 import PSlideshow from "@/components/home/P-Slideshow.vue";
 import TCCard from "@/components/tc/card/TC-Card.vue";
@@ -69,6 +75,8 @@ import TCHero from "@/components/tc/hero/TC-Hero.vue";
 import TCSwitch from "@/components/tc/switch/TC-Switch.vue";
 import TCComponentHero from "@/components/projects/TIComponents/ComponentHero.vue";
 import TCLink from "@/components/tc/link/TC-Link.vue";
+import TCSlider from "@/components/tc/slider/TC-Slider.vue";
+import TCCheckbox from "@/components/tc/checkbox/TC-Checkbox.vue";
 
 @Component({
   components: {
@@ -79,9 +87,10 @@ import TCLink from "@/components/tc/link/TC-Link.vue";
     "p-slideshow": PSlideshow,
     "tc-header": TCHeader,
     "tc-hero": TCHero,
-    "tc-toggle": TCSwitch,
+    "tc-switch": TCSwitch,
     "tc-link": TCLink,
-    "tc-compHero": TCComponentHero
+    "tc-compHero": TCComponentHero,
+    "tc-slider": TCSlider
   }
 })
 export default class ContactView extends Vue {
@@ -92,6 +101,9 @@ export default class ContactView extends Vue {
     return projects.map(x => x.images.background);
   }
   public i: number = 0;
+  sliderVal: number = 33;
+  switchOne: boolean = true;
+  checkbox: boolean = false;
 
   created() {
     this.l();

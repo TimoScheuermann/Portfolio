@@ -40,6 +40,7 @@ export default class TCCard extends Vue {
   border-radius: $border-radius;
   text-align: center;
   max-width: 100%;
+  height: fit-content;
   overflow: auto;
   padding: 30px {
     top: 0;

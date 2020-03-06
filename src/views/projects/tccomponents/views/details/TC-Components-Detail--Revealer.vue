@@ -25,7 +25,6 @@
 <script lang="ts">
 import { Vue, Component } from "vue-property-decorator";
 import TCHeadline from "@/components/tc/headline/TC-Headline.vue";
-import TCSwitch from "@/components/tc/switch/TC-Switch.vue";
 import TCRevealer from "@/components/tc/revealer/TC-Revealer.vue";
 @Component({
   components: {
@@ -33,6 +32,5 @@ import TCRevealer from "@/components/tc/revealer/TC-Revealer.vue";
     "tc-revealer": TCRevealer
   }
 })
-export default class TCRevealers extends Vue {}
+export default class TCComponentsDetailRevealer extends Vue {}
 </script>
-<style lang="scss" scoped></style>

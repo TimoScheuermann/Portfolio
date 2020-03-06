@@ -1,6 +1,6 @@
 <template>
   <div>
-    <tc-headline title="Table"></tc-headline>
+    <tc-headline title="Navbar"></tc-headline>
   </div>
 </template>
 <script lang="ts">
@@ -11,6 +11,5 @@ import TCHeadline from "@/components/tc/headline/TC-Headline.vue";
     "tc-headline": TCHeadline
   }
 })
-export default class TCTables extends Vue {}
+export default class TCComponentsDetailNavbar extends Vue {}
 </script>
-<style lang="scss" scoped></style>

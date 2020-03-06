@@ -1,6 +1,6 @@
 <template>
   <div>
-    <tc-headline title="Select"></tc-headline>
+    <tc-headline title="Sidebar"></tc-headline>
   </div>
 </template>
 <script lang="ts">
@@ -11,6 +11,5 @@ import TCHeadline from "@/components/tc/headline/TC-Headline.vue";
     "tc-headline": TCHeadline
   }
 })
-export default class TCSelects extends Vue {}
+export default class TCComponentsDetailSidebar extends Vue {}
 </script>
-<style lang="scss" scoped></style>

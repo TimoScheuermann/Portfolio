@@ -1,10 +1,10 @@
 <template>
   <div v-if="compFound">
-    <component-hero :component="tcComponent" />
+    <component-hero v-if="getTCComponent()" :component="getTCComponent()" />
     <div content>
       <component :is="currentComponent" />
       <tc-headline title="API" />
-      <tc-table>
+      <tc-table v-if="getTCComponent()">
         <tr>
           <th>Name</th>
           <th>Type</th>
@@ -12,7 +12,7 @@
           <th>Description</th>
           <th>Default</th>
         </tr>
-        <tr v-for="api in tcComponent.api" :key="api.name">
+        <tr v-for="api in getTCComponent().api" :key="api.name">
           <td>{{ api.name }}</td>
           <td>{{ api.type }}</td>
           <td>{{ api.parameters }}</td>
@@ -43,19 +43,17 @@ import { TCComponent } from "@/models/TCComponents/TCComponent.model";
   }
 })
 export default class TCComponentsDetail extends Vue {
-  [x: string]: any;
   public compFound: boolean = true;
   public tcComponents: TCComponent[] = tcComponents;
 
-  get component() {
+  getComponent() {
     const comp = this.$route.params.comp;
     if (comp) return comp;
     return "";
   }
-
-  get tcComponent() {
+  getTCComponent(): TCComponent {
     return this.tcComponents.filter(
-      x => x.name.toLowerCase() === this.component.toLowerCase()
+      x => x.name.toLowerCase() === this.getComponent().toLowerCase()
     )[0];
   }
 
@@ -63,7 +61,9 @@ export default class TCComponentsDetail extends Vue {
     this.compFound = true;
     return () =>
       import(
-        `@/views/projects/tccomponents/views/details/TC-Components-Detail--${this.component}.vue`
+        `@/views/projects/tccomponents/views/details/TC-Components-Detail--${this.getComponent()
+          .split(" ")
+          .join("")}.vue`
       ).catch(() => {
         this.compFound = false;
       });

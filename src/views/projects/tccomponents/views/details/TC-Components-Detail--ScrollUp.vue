@@ -17,14 +17,5 @@ import TCScrollUp from "@/components/tc/scrollup/TC-Scroll-Up.vue";
     "tc-scroll-up": TCScrollUp
   }
 })
-export default class TCScrollUps extends Vue {}
+export default class TCComponentsDetailScrollUp extends Vue {}
 </script>
-<style lang="scss" scoped>
-.tc-scrollup--special {
-  position: relative;
-  display: inline-block;
-  margin: 3px;
-  right: unset;
-  bottom: unset;
-}
-</style>
