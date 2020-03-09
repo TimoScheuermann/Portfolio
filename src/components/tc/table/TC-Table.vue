@@ -38,14 +38,20 @@ export default class TCTable extends Vue {}
         td {
           white-space: nowrap;
         }
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
         &:nth-child(ODD) {
           td {
-            background: $paragraph;
+            // background: $paragraph;
           }
         }
         &:hover {
-          td {
-            background: rgba($primary, 0.5);
+          &:not(:first-child) {
+            box-shadow: $shadow;
+            transform: translateY(-5px);
+            background: $background;
+            td {
+              background: rgba($paragraph, 0.5);
+            }
           }
         }
       }

@@ -47,7 +47,7 @@ export default class Projects extends Vue {
   @media #{$isDesktop} {
     grid-template-columns: repeat(2, 1fr);
   }
-  button {
+  .tc-button {
     margin-bottom: 20px;
   }
 }

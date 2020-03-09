@@ -29,7 +29,12 @@
     </tc-hero>
 
     <tc-grid content minWidth="330" class="__repositories" v-if="loaded">
-      <github-repo-tile v-for="repo in getRepos" :repo="repo" :key="repo.id" />
+      <github-repo-tile
+        v-for="(repo, index) in getRepos"
+        :dark="index === 0"
+        :repo="repo"
+        :key="repo.id"
+      />
     </tc-grid>
   </div>
 </template>
@@ -182,8 +187,6 @@ export default class GitHubView extends Vue {
 }
 .tc-grid {
   .tc-card:nth-child(1) {
-    color: $background;
-    background: $color;
     grid-column: 1 / -1;
   }
   @media #{$isMobile} {

@@ -17,29 +17,45 @@
       :to="{ name: constants.projectRoutes.timos_components }"
     />
 
-    <tc-divider icon="component" name="Components" />
-    <tc-sidebar-item
-      v-for="tcc in tcComponents"
-      :key="tcc.name"
-      :name="tcc.name"
-      :icon="tcc.icon"
-      :to="{
-        name: constants.projectRoutes.timos_components_detail,
-        params: { comp: tcc.name }
-      }"
-    />
+    <tc-sidebar-group icon="chart-empty" name="Layout">
+      <tc-sidebar-item
+        v-for="tcc in tcLayouts"
+        :key="tcc.name"
+        :name="tcc.name"
+        :icon="tcc.icon"
+        :to="{
+          name: constants.projectRoutes.timos_components_detail,
+          params: { comp: tcc.name }
+        }"
+      />
+    </tc-sidebar-group>
 
-    <tc-divider icon="chart-empty" name="Layout" />
-    <tc-sidebar-item
-      v-for="tcc in tcLayouts"
-      :key="tcc.name"
-      :name="tcc.name"
-      :icon="tcc.icon"
-      :to="{
-        name: constants.projectRoutes.timos_components_detail,
-        params: { comp: tcc.name }
-      }"
-    />
+    <tc-sidebar-group icon="dot" name="Theme">
+      <tc-sidebar-item
+        name="Colors"
+        icon="dot"
+        :to="{ name: constants.projectRoutes.timos_icons }"
+      />
+
+      <tc-sidebar-item
+        name="Icon"
+        icon="heart"
+        :to="{ name: constants.projectRoutes.timos_icons }"
+      />
+    </tc-sidebar-group>
+
+    <tc-sidebar-group maxHeight="700px" icon="component" name="Components">
+      <tc-sidebar-item
+        v-for="tcc in tcComponents"
+        :key="tcc.name"
+        :name="tcc.name"
+        :icon="tcc.icon"
+        :to="{
+          name: constants.projectRoutes.timos_components_detail,
+          params: { comp: tcc.name }
+        }"
+      />
+    </tc-sidebar-group>
   </tc-sidebar>
 </template>
 <script lang="ts">

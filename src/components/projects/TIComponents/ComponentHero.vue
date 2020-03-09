@@ -10,7 +10,9 @@
         <i :class="'ti-' + component.icon"></i>
       </div>
     </tc-grid>
-    <div class="title">{{ component.name }}</div>
+    <div class="title">
+      {{ component.name }}
+    </div>
   </tc-hero>
 </template>
 

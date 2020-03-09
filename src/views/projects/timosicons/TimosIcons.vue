@@ -55,7 +55,7 @@
 
 <script lang="ts">
 import { Vue, Component } from "vue-property-decorator";
-import icons from "@/icon5";
+import icons from "@/icons";
 import IconTile from "@/components/projects/TimosIcons/IconTile.vue";
 import TCDirection from "@/components/shared/filter/TC-Direction.vue";
 import TCButton from "@/components/tc/button/TC-Button.vue";

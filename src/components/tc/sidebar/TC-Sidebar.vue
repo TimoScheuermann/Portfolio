@@ -1,5 +1,5 @@
 <template>
-  <div class="tc-sidebar" :class="{ dark: dark }">
+  <div class="tc-sidebar" :style="defaultStyle" :class="{ dark: dark }">
     <div class="header">
       <slot name="header"></slot>
     </div>
@@ -14,10 +14,11 @@
 </template>
 <script lang="ts">
 import { Vue, Component, Prop } from "vue-property-decorator";
-@Component
-export default class TCSidebar extends Vue {
-  @Prop({ default: false }) dark!: boolean;
-}
+import TCComponent from "../tccomponent.vue";
+@Component({
+  mixins: [TCComponent]
+})
+export default class TCSidebar extends Vue {}
 </script>
 <style lang="scss" scoped>
 @import "../../../scss/variables";
@@ -38,10 +39,8 @@ export default class TCSidebar extends Vue {
   left: 0;
   bottom: 0;
   width: 200px;
-  overflow: {
-    x: hidden;
-    y: auto;
-  }
+  overflow: hidden;
+
   max-width: 35px;
   min-width: 45px;
   border: {
@@ -66,13 +65,17 @@ export default class TCSidebar extends Vue {
   // min-width: 200px;
   .content {
     padding-left: 10px;
+    overflow: {
+      x: hidden;
+      y: auto;
+    }
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
 
   .spacer {
     flex-grow: 1 !important;
-  }
-  &::-webkit-scrollbar {
-    display: none;
   }
 }
 </style>

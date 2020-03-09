@@ -9,7 +9,11 @@
         </div>
       </label>
     </div>
-    <div class="tc-sidebar--items" :class="{ expanded: expanded }">
+    <div
+      class="tc-sidebar--items"
+      :class="{ expanded: expanded }"
+      :style="maxheight"
+    >
       <slot />
       <tc-divider />
     </div>
@@ -28,8 +32,14 @@ import TCDivider from "../divider/TC-Divider.vue";
 export default class TCSidebarGroup extends Vue {
   @Prop() name!: string;
   @Prop() icon!: string;
+  @Prop({ default: "300px" }) maxHeight!: string;
 
   public expanded: boolean = true;
+  get maxheight(): {} {
+    return {
+      "max-height": this.expanded ? this.maxHeight : "0px"
+    };
+  }
 }
 </script>
 <style lang="scss" scoped>
@@ -77,7 +87,6 @@ export default class TCSidebarGroup extends Vue {
   }
 
   .tc-sidebar--items {
-    max-height: 0px;
     overflow: {
       x: hidden;
       y: auto;
@@ -88,7 +97,6 @@ export default class TCSidebarGroup extends Vue {
     transition: 0.3s ease-in-out;
 
     &.expanded {
-      max-height: 300px;
       margin-top: 5px;
     }
   }

@@ -1,16 +1,9 @@
 <template>
-  <tc-header>
-    <div slot="title" class="tcComponents--header">
-      <router-link
-        v-if="tcComponent"
-        :to="{ name: constants.projectRoutes.timos_components }"
-      >
-        <i class="ti-arrow-left"></i>
-        <span>Components</span>
-      </router-link>
-      <div class="title">{{ headerTitle }}</div>
-    </div>
-  </tc-header>
+  <tc-header
+    :title="headerTitle"
+    backName="Overview"
+    :backTo="{ name: constants.projectRoutes.timos_components }"
+  />
 </template>
 <script lang="ts">
 import { Vue, Component, Watch } from "vue-property-decorator";
@@ -29,7 +22,8 @@ export default class TCComponentsHeader extends Vue {
   public tcComponents: TCComponent[] = tcComponents;
 
   get headerTitle(): string {
-    return this.tcComponent ? this.tcComponent.name : "Timo's Components";
+    return "Timo's Components";
+    // return this.tcComponent ? this.tcComponent.name : "Timo's Components";
   }
 
   get component(): string {
@@ -45,25 +39,4 @@ export default class TCComponentsHeader extends Vue {
 </script>
 <style lang="scss" scoped>
 @import "../../../../scss/variables";
-.tcComponents--header {
-  flex-wrap: nowrap;
-  display: flex;
-  overflow: hidden;
-  .title {
-    font-weight: bold;
-    font-size: 18px;
-  }
-  a {
-    @media #{$isDesktop} {
-      display: none;
-    }
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-right: 20px;
-    i {
-      margin-right: 5px;
-    }
-  }
-}
 </style>

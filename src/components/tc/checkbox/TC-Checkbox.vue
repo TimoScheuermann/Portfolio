@@ -1,5 +1,5 @@
 <template>
-  <div class="tc-checkbox">
+  <div class="tc-checkbox tc-container">
     <input
       @input="updateVal()"
       v-model="checked"
@@ -23,6 +23,7 @@
           d="M1550,970.667l14.167,14.167L1601,948l-36.833,36.833Z"
           transform="translate(-1525 -915.917)"
           fill="none"
+          :stroke="color ? color : '#08f'"
           stroke-linecap="round"
           stroke-linejoin="round"
           stroke-width="10"
@@ -41,6 +42,7 @@ import uuid from "../uuid.vue";
 export default class TCCheckbox extends Vue {
   @Prop({ default: false }) value!: boolean;
   @Prop() title!: string;
+  @Prop() color!: string;
 
   checked: boolean = this.value;
   updateVal() {
@@ -50,21 +52,8 @@ export default class TCCheckbox extends Vue {
 </script>
 <style lang="scss" scoped>
 @import "../../../scss/variables";
+@import "../tc-container";
 .tc-checkbox {
-  background: $paragraph;
-  border-radius: $border-radius;
-  display: inline-block;
-  user-select: none;
-  transition: 0.2s ease-in-out;
-  border: 1px solid transparent;
-  cursor: pointer;
-  user-select: none;
-  margin: 3px;
-
-  &:hover {
-    border-color: rgba($color, 0.4);
-  }
-
   input {
     display: none;
   }
@@ -88,7 +77,6 @@ export default class TCCheckbox extends Vue {
     }
   }
   label {
-    padding: 5px;
     cursor: pointer;
     display: grid;
     grid-template-columns: 20px auto;
@@ -98,7 +86,7 @@ export default class TCCheckbox extends Vue {
       width: 100%;
 
       #arrow {
-        stroke: $primary {
+        stroke: {
           dasharray: 172px;
           dashoffset: 172px;
         }

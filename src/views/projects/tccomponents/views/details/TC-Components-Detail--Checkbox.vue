@@ -3,7 +3,7 @@
     <tc-headline title="Checkbox"></tc-headline>
     <tc-checkbox />
     <div></div>
-    <tc-checkbox title="Hello World" />
+    <tc-checkbox color="green" title="Hello World" />
   </div>
 </template>
 <script lang="ts">

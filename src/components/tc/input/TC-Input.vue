@@ -1,12 +1,12 @@
 <template>
   <div class="tc-input">
     <div class="title">{{ title }}</div>
-    <div class="input">
+    <div class="input tc-container">
       <label v-if="iconExists()" :for="'tc-input_' + uuid">
         <i :class="'ti-' + icon"></i>
       </label>
       <input
-        v-model="value"
+        v-model="innerValue"
         :type="type"
         :id="'tc-input_' + uuid"
         :placeholder="placeholder"
@@ -18,7 +18,7 @@
 <script lang="ts">
 import { Vue, Component, Prop } from "vue-property-decorator";
 import uuid from "../uuid.vue";
-import icons from "@/icon5";
+import icons from "@/icons";
 @Component({
   mixins: [uuid]
 })
@@ -29,17 +29,20 @@ export default class TCInput extends Vue {
   @Prop({ default: "text" }) type!: string;
   @Prop() value!: any;
 
+  innerValue: any = this.value;
+
   iconExists(): boolean {
     return icons.filter(x => x.name == this.icon).length > 0;
   }
 
   update() {
-    this.$emit("input", this.value);
+    this.$emit("input", this.innerValue);
   }
 }
 </script>
 <style lang="scss" scoped>
 @import "../../../scss/variables";
+@import "../tc-container";
 .tc-input {
   .title {
     font-weight: 500;

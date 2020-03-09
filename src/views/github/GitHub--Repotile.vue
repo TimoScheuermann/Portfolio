@@ -1,5 +1,5 @@
 <template>
-  <tc-card :title="repo.name" :subtitle="repo.description">
+  <tc-card :dark="dark" :title="repo.name" :subtitle="repo.description">
     <tc-button name="View on GitHub" :href="repo.html_url" />
     <tc-divider name="Stats" icon="chart-line" />
     <div class="statistics">
@@ -32,6 +32,8 @@ import TCDivider from "@/components/tc/divider/TC-Divider.vue";
 })
 export default class GitHubRepoTile extends Vue {
   @Prop() repo!: any;
+  @Prop({ default: false }) dark!: boolean;
+
   public changes: any = [
     {
       icon: "gears",
@@ -42,13 +44,13 @@ export default class GitHubRepoTile extends Vue {
       icon: "tools",
       attr: "updated_at",
       title: "Updated"
-    },
-    {
-      icon: "share",
-      attr: "pushed_at",
-      title: "Pushed"
     }
   ];
+  // {
+  //   icon: "share",
+  //   attr: "pushed_at",
+  //   title: "Pushed"
+  // }
 
   public convertDate(dateString: string): string {
     const date = new Date(dateString);

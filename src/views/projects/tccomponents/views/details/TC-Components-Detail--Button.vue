@@ -1,10 +1,10 @@
 <template>
   <div>
     <tc-headline title="Buttons"></tc-headline>
-    <tc-button name="Button"></tc-button>
-    <tc-button icon="heart"></tc-button>
-    <tc-button icon="share" name="Share"></tc-button>
-    <tc-button name="Button"></tc-button>
+    <tc-button disabled="true" name="Button" />
+    <tc-button icon="heart" />
+    <tc-button icon="share" variant="filled" name="Share" />
+    <tc-button name="Button" variant="filled" disabled="true" />
   </div>
 </template>
 <script lang="ts">

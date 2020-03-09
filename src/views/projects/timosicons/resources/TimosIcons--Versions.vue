@@ -28,7 +28,7 @@
 import { Vue, Component } from "vue-property-decorator";
 import TCHeader from "@/components/tc/header/TC-Header.vue";
 import TCHeadline from "@/components/tc/headline/TC-Headline.vue";
-import icons from "@/icon5";
+import icons from "@/icons";
 import TCCard from "@/components/tc/card/TC-Card.vue";
 import IconTile from "@/components/projects/TimosIcons/IconTile.vue";
 import { Icon } from "@/models/Icons/Icon.model";

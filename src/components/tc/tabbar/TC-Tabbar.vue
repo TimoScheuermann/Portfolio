@@ -1,5 +1,9 @@
 <template>
-  <div class="tc-tabbar" :class="{ dark: dark, light: !dark }">
+  <div
+    class="tc-tabbar"
+    :style="defaultStyle"
+    :class="{ dark: dark, light: !dark }"
+  >
     <div class="items">
       <slot />
     </div>
@@ -7,10 +11,11 @@
 </template>
 <script lang="ts">
 import { Vue, Component, Prop } from "vue-property-decorator";
-@Component
-export default class TCTabbar extends Vue {
-  @Prop({ default: false }) dark!: boolean;
-}
+import TCComponent from "../tccomponent.vue";
+@Component({
+  mixins: [TCComponent]
+})
+export default class TCTabbar extends Vue {}
 </script>
 <style lang="scss" scoped>
 @import "../../../scss/mixins";

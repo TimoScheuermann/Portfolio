@@ -53,10 +53,15 @@ export default class WorkGallery extends Vue {
 }
 
 .gallery {
+  margin-top: 30px;
   column-gap: 30px;
+
   .tc-card {
-    margin: 30px 0;
-    button {
+    break-inside: avoid-column;
+    &:not(:first-child) {
+      margin-top: 30px;
+    }
+    .tc-button {
       margin: {
         top: 20px;
         bottom: -10px;

@@ -29,6 +29,7 @@ export default class TCHeadline extends Vue {
   margin: 20px 0;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
   position: relative;
   .bar {
     position: absolute;
@@ -42,6 +43,7 @@ export default class TCHeadline extends Vue {
   .title {
     font-weight: bold;
     font-size: 18px;
+    white-space: nowrap;
     opacity: 0.8;
     i {
       color: $primary;

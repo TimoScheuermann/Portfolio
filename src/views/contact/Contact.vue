@@ -2,6 +2,10 @@
   <div content>
     <tc-header title="Contact"></tc-header>
     <h1>Contact</h1>
+    <h2>Mobile View</h2>
+    <tc-card>
+      <p-mobile-view></p-mobile-view>
+    </tc-card>
     <h2>Slider</h2>
     <tc-slider v-model="sliderVal"></tc-slider>
     {{ sliderVal }}
@@ -16,7 +20,7 @@
     <div class="rainbow" :style="{ background: 'hsl(' + i + ', 216%, 56%)' }">
       <h2>Hallo</h2>
     </div>
-    <p-slideshow :images="slides()"></p-slideshow>
+    <!-- <p-slideshow :images="slides()"></p-slideshow> -->
     <tc-button
       :navigation="{ name: 'Google.com', destiny: 'https://google.com' }"
     ></tc-button>
@@ -63,12 +67,10 @@
 <script lang="ts">
 import { Vue, Component } from "vue-property-decorator";
 import TCButton from "@/components/tc/button/TC-Button.vue";
-import PNavbar from "@/components/common/P-Navbar.vue";
-import icons from "@/icon5";
+import icons from "@/icons";
 import projects from "@/projects";
 import { Icon } from "@/models/Icons/Icon.model";
 import TCDirection from "@/components/shared/filter/TC-Direction.vue";
-import PSlideshow from "@/components/home/P-Slideshow.vue";
 import TCCard from "@/components/tc/card/TC-Card.vue";
 import TCHeader from "@/components/tc/header/TC-Header.vue";
 import TCHero from "@/components/tc/hero/TC-Hero.vue";
@@ -77,6 +79,7 @@ import TCComponentHero from "@/components/projects/TIComponents/ComponentHero.vu
 import TCLink from "@/components/tc/link/TC-Link.vue";
 import TCSlider from "@/components/tc/slider/TC-Slider.vue";
 import TCCheckbox from "@/components/tc/checkbox/TC-Checkbox.vue";
+import PMobileView from "@/components/shared/mobileView/P-MobileView.vue";
 
 @Component({
   components: {
@@ -84,13 +87,13 @@ import TCCheckbox from "@/components/tc/checkbox/TC-Checkbox.vue";
     "tc-card": TCCard,
     "tc-checkbox": TCCheckbox,
     "tc-direction": TCDirection,
-    "p-slideshow": PSlideshow,
     "tc-header": TCHeader,
     "tc-hero": TCHero,
     "tc-switch": TCSwitch,
     "tc-link": TCLink,
     "tc-compHero": TCComponentHero,
-    "tc-slider": TCSlider
+    "tc-slider": TCSlider,
+    "p-mobile-view": PMobileView
   }
 })
 export default class ContactView extends Vue {
@@ -119,7 +122,6 @@ export default class ContactView extends Vue {
 
 <style lang="scss" scoped>
 @import "../../scss/variables";
-// @import "../icons/style.css";
 h1 {
   color: $primary;
   &::after {

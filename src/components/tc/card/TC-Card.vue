@@ -1,5 +1,9 @@
 <template>
-  <div class="tc-card" :class="{ frosted: frosted }">
+  <div
+    class="tc-card"
+    :style="defaultStyle"
+    :class="{ frosted: frosted, dark: dark }"
+  >
     <div v-if="title" class="title" :class="{ noSubtitle: !subtitle }">
       {{ title }}
     </div>
@@ -18,11 +22,13 @@
 <script lang="ts">
 import { Vue, Component, Prop } from "vue-property-decorator";
 import TCButton from "../button/TC-Button.vue";
+import TCComponent from "../tccomponent.vue";
 
 @Component({
   components: {
     "tc-button": TCButton
-  }
+  },
+  mixins: [TCComponent]
 })
 export default class TCCard extends Vue {
   @Prop() title!: string;
@@ -48,6 +54,13 @@ export default class TCCard extends Vue {
 
   &.frosted {
     @include backdrop-blur($background);
+  }
+  &.dark {
+    background: $color;
+    color: #fff;
+    &.frosted {
+      @include backdrop-blur($color);
+    }
   }
 
   &[rounded="true"] {

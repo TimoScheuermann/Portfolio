@@ -14,7 +14,7 @@
           :key="proj.title"
           :to="{ name: proj.routeName }"
         >
-          <tc-card :title="proj.title">
+          <tc-card dark="true" :title="proj.title">
             <img :src="proj.images.background" alt="" />
           </tc-card>
         </router-link>
@@ -55,6 +55,9 @@ export default class Home extends Vue {
 @import "../../scss/variables";
 
 .tc-hero {
+  @media #{$isDesktop} {
+    text-align: center;
+  }
   .title {
     font-size: 1.5em;
     font-weight: bold;
@@ -69,7 +72,7 @@ export default class Home extends Vue {
 .home {
   padding-top: 5px;
   background: #000;
-  color: $paragraph;
+  color: #fff;
   ::-webkit-scrollbar {
     width: 4px;
     height: 4px;
@@ -98,21 +101,23 @@ export default class Home extends Vue {
   }
   .projects {
     display: flex;
+    align-items: center;
     overflow: hidden {
       x: auto;
     }
     margin-bottom: 20px;
 
     .tc-card {
-      background: #111;
-      color: $paragraph;
       margin: 0 5px;
-      height: 100%;
+      // height: 100%;
       @media #{$isMobile} {
         min-width: 200px;
       }
       @media #{$isDesktop} {
         min-width: 400px;
+      }
+      img {
+        max-height: 124px;
       }
       overflow: visible;
     }

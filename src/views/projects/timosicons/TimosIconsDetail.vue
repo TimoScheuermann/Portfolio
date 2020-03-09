@@ -1,16 +1,10 @@
 <template>
   <div content>
-    <tc-header>
-      <div slot="title" class="tiicons--header">
-        <router-link :to="{ name: constants.projectRoutes.timos_icons }">
-          <i class="ti-arrow-left"></i>
-          <span>Icons</span>
-        </router-link>
-        <div class="title">
-          {{ "Timos Icons » " + (icon ? icon.name : "Not Found") }}
-        </div>
-      </div>
-    </tc-header>
+    <tc-header
+      :title="icon ? icon.name : 'Not Found'"
+      :backTo="{ name: constants.projectRoutes.timos_icons }"
+      backName="Icons"
+    />
 
     <div v-if="!icon" class="notFound">
       <div class="img">
@@ -97,7 +91,7 @@
 
 <script lang="ts">
 import { Vue, Component } from "vue-property-decorator";
-import icons from "@/icon5";
+import icons from "@/icons";
 import TCHeader from "@/components/tc/header/TC-Header.vue";
 import TCButton from "@/components/tc/button/TC-Button.vue";
 import constants from "@/constants";
@@ -135,23 +129,6 @@ export default class TimosIconsDetail extends Vue {
 <style lang="scss" scoped>
 @import "../shared.scss";
 @import "../../../scss/variables";
-
-.tiicons--header {
-  flex-wrap: nowrap;
-  display: flex;
-  overflow: hidden;
-  a {
-    @media #{$isMobile} {
-      margin-right: 20px;
-    }
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    i {
-      margin-right: 5px;
-    }
-  }
-}
 
 .innerGrid {
   margin: 10px 0;
