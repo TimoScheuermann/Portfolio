@@ -43,15 +43,13 @@
       <tc-tabbar-item title="GitHub" icon="github" routeName="github" />
     </tc-tabbar>
     <div class="view">
-      <!-- <transition name="router-anim"> -->
       <router-view />
-      <!-- </transition> -->
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { Vue, Component } from "vue-property-decorator";
+import { Vue, Component, Watch } from "vue-property-decorator";
 import TCSidebar from "@/components/tc/sidebar/TC-Sidebar.vue";
 import TCSidebarGroup from "@/components/tc/sidebar/TS-Sidebar-Group.vue";
 import TCSidebarItem from "@/components/tc/sidebar/TC-Sidebar-Item.vue";
@@ -78,26 +76,22 @@ export default class App extends Vue {
   get darkTabbar(): boolean {
     return this.$route.name === "home";
   }
+
+  @Watch("$route.name")
+  changed(to: any, from: any) {
+    if (to === "home") {
+      console.log("dark");
+      document.body.style.background = "#000";
+      return;
+    }
+    document.body.style.background = "inherit";
+  }
 }
 </script>
 
 <style lang="scss">
 @import "./scss/variables.scss";
 @import "./scss/mixins";
-.router-anim-enter-active,
-.router-anim-leave-active {
-  transition-property: opacity;
-  transition-duration: 0.25s;
-}
-
-.router-anim-enter-active {
-  transition-delay: 0.25s;
-}
-
-.router-anim-enter,
-.router-anim-leave-active {
-  opacity: 0;
-}
 
 html {
   font-family: -apple-system, BlinkMacSystemFont, SF Pro Display, Segoe UI,

@@ -1,15 +1,29 @@
 <template>
   <div>
     <tc-headline title="Inputs"></tc-headline>
+    <tc-input />
+    <tc-input placeholder="placeholder" />
+    <tc-input icon="user-circle" placeholder="Username" />
+    <tc-input icon="save" />
+    <tc-input title="Username" icon="user" />
+    <tc-input type="number" />
+    <tc-input type="number" buttons="true" />
   </div>
 </template>
 <script lang="ts">
 import { Vue, Component } from "vue-property-decorator";
 import TCHeadline from "@/components/tc/headline/TC-Headline.vue";
+import TCInput from "@/components/tc/input/TC-Input.vue";
 @Component({
   components: {
-    "tc-headline": TCHeadline
+    "tc-headline": TCHeadline,
+    "tc-input": TCInput
   }
 })
 export default class TCComponentsDetailInput extends Vue {}
 </script>
+<style lang="scss" scoped>
+.tc-input {
+  max-width: 200px;
+}
+</style>

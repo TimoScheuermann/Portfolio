@@ -103,6 +103,7 @@ export default class TCHeader extends Vue {
       @media #{$isMobile} {
         margin-right: 20px;
       }
+      cursor: pointer;
       color: $primary;
       display: flex;
       justify-content: center;

@@ -1,15 +1,10 @@
 <template>
   <div content>
-    <tc-header>
-      <div slot="title" class="tiicons--header">
-        <router-link :to="{ name: constants.projectRoutes.timos_icons }">
-          <i class="ti-arrow-left"></i>
-          <span>Icons</span>
-        </router-link>
-        <div class="title">Versions</div>
-      </div>
-    </tc-header>
-
+    <tc-header
+      title="Versions"
+      backName="Icons"
+      :backTo="{ name: constants.projectRoutes.timos_icons }"
+    />
     <div v-for="version in getVersions()" :key="version">
       <tc-headline :title="version"></tc-headline>
       <tc-card

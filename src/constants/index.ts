@@ -12,7 +12,7 @@ export default {
     dhbw_richie: "dhbwrichie",
     timos_icons: "timosicons",
     timos_icons_detail: "timosiconsdetail",
-    timos_icons_download: "timosiconsdownload",
+    timos_icons_getting_started: "timosiconsgettingstarted",
     timos_icons_versions: "timosiconsversion",
     timos_components: "timoscomponents",
     timos_components_detail: "timoscomponentsdetail",

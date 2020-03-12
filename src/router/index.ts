@@ -38,6 +38,12 @@ const router = new VueRouter({
           component: () => import("@/views/projects/Projects.vue")
         },
         {
+          path: "cc",
+          name: "cc",
+          meta: { customSidebar: true },
+          component: () => import("@/views/projects/codingchallenge/index.vue")
+        },
+        {
           path: "amspro",
           name: constants.projectRoutes.ams_pro,
           component: () => import("@/views/projects/amspro/AMSPro.vue")
@@ -91,11 +97,11 @@ const router = new VueRouter({
                 )
             },
             {
-              name: constants.projectRoutes.timos_icons_download,
-              path: "resources/download",
+              name: constants.projectRoutes.timos_icons_getting_started,
+              path: "resources/howto",
               component: () =>
                 import(
-                  "@/views/projects/timosicons/resources/TimosIcons--Download.vue"
+                  "@/views/projects/timosicons/resources/TimosIcons--GettingStarted.vue"
                 )
             },
             {
