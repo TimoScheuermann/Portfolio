@@ -15,7 +15,6 @@
         :key="'E_' + index"
         :start="e.start"
         :end="e.end"
-        :id="index"
       />
     </div>
   </div>

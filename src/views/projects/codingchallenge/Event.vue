@@ -37,6 +37,7 @@ export default class Event extends Vue {
   padding: 0 10px;
   background: #fff;
   white-space: nowrap;
+  grid-column: 1 / -1;
   .inner {
     display: flex;
     flex-direction: column;
