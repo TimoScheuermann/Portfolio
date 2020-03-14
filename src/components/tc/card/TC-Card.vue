@@ -43,7 +43,6 @@ export default class TCCard extends Vue {
 .tc-card {
   background: $background;
   box-shadow: $shadow;
-  border-radius: $border-radius;
   text-align: center;
   max-width: 100%;
   height: fit-content;

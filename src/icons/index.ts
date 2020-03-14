@@ -1,6 +1,15 @@
 import { Icon } from "@/models/Icons/Icon.model";
 
 const icons: Icon[] = [
+  { name: "key", css: "e9b3", version: "2.9" },
+  { name: "lock-closed", css: "e9b5", version: "2.9" },
+  { name: "lock-opened", css: "e9b7", version: "2.9" },
+  { name: "alarm", css: "e9b9", version: "2.9" },
+  { name: "minus", css: "e9bb", version: "2.9" },
+  { name: "plus", css: "e9bc", version: "2.9" },
+  { name: "segment", css: "e9bd", version: "2.9" },
+  { name: "slider", css: "e9bf", version: "2.9" },
+  { name: "tooltip", css: "e9c1", version: "2.9" },
   { name: "dice-4", css: "e98e", version: "2.8" },
   { name: "dice-5", css: "e990", version: "2.8" },
   { name: "bar", css: "e992", version: "2.8" },

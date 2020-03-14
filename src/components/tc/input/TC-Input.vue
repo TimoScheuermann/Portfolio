@@ -1,26 +1,29 @@
 <template>
   <div class="tc-input">
     <div class="title">{{ title }}</div>
+    <!-- {{ arrows || buttonsVisible() ? "j" : "n" }} -->
     <div
       class="tc-container"
       :class="{ 'tc-container--buttons': buttonsVisible() }"
     >
       <div v-if="buttonsVisible()" class="numberButton" @click="changeVal(-1)">
-        <span>-</span>
+        <i class="ti-minus" />
       </div>
       <label v-if="iconExists() && !buttonsVisible()" :for="'tc-input_' + uuid">
         <i :class="'ti-' + icon" />
       </label>
       <input
         v-model="innerValue"
-        :type="type"
+        :type="type || 'text'"
         :id="'tc-input_' + uuid"
         :placeholder="placeholder"
         :class="{ hideArrows: !arrowsVisible() }"
+        :inputmode="inputMode()"
+        :pattern="inputPattern()"
         @input="update()"
       />
       <div v-if="buttonsVisible()" class="numberButton" @click="changeVal(1)">
-        <span>+</span>
+        <i class="ti-plus" />
       </div>
     </div>
   </div>
@@ -36,13 +39,19 @@ export default class TCInput extends Vue {
   @Prop() icon!: string;
   @Prop() placeholder!: string;
   @Prop() title!: string;
-  @Prop({ default: "text" }) type!: string;
+  @Prop() type!: string;
   @Prop() value!: any;
   @Prop() buttons!: boolean;
   @Prop() arrows!: boolean;
 
   innerValue: any = this.value || this.type === "number" ? 0 : "";
 
+  inputMode(): string {
+    return this.type == "number" ? "numeric" : "";
+  }
+  inputPattern(): string {
+    return this.type == "number" ? "[0-9]*" : "";
+  }
   arrowsVisible(): boolean {
     return !this.buttonsVisible() && this.arrows;
   }
@@ -76,15 +85,21 @@ export default class TCInput extends Vue {
 
   .tc-container {
     .numberButton {
+      &:active {
+        filter: brightness(110%);
+      }
+
       background: $primary;
       text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       color: #fff;
       border-radius: 3.4px;
-      line-height: 29px;
       height: 29px;
       width: 29px;
       margin: -5px;
-      span {
+      i {
         font-size: 20px;
       }
     }
@@ -110,7 +125,6 @@ export default class TCInput extends Vue {
       -moz-appearance: textfield;
     }
     input {
-      background: none;
       outline: none;
       font: inherit;
       font-size: 16px;
@@ -120,6 +134,7 @@ export default class TCInput extends Vue {
       border: none {
         radius: 5px;
       }
+      background: $paragraph;
       margin: 5px;
       padding: 0 5px;
     }

@@ -182,12 +182,12 @@ const tcComponents: TCComponent[] = [
   },
   {
     name: "Segments",
-    icon: "dot",
+    icon: "segment",
     api: []
   },
   {
     name: "Slider",
-    icon: "dot",
+    icon: "slider",
     api: []
   },
   {
@@ -198,6 +198,11 @@ const tcComponents: TCComponent[] = [
   {
     name: "Picker",
     icon: "list",
+    api: []
+  },
+  {
+    name: "Tooltip",
+    icon: "tooltip",
     api: []
   }
 ];

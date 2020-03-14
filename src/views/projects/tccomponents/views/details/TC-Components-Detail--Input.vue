@@ -8,6 +8,23 @@
     <tc-input title="Username" icon="user" />
     <tc-input type="number" />
     <tc-input type="number" buttons="true" />
+
+    <label for="cars">Choose a car:</label>
+
+    <select id="cars">
+      <option value="volvo">Volvo</option>
+      <option value="saab">Saab</option>
+      <option value="mercedes">Mercedes</option>
+      <option value="audi">Audi</option>
+    </select>
+
+    <tc-input
+      title="Date"
+      type="date"
+      icon="calendar"
+      placeholder="Hallo"
+      v-model="dateInput"
+    />
   </div>
 </template>
 <script lang="ts">
@@ -20,7 +37,9 @@ import TCInput from "@/components/tc/input/TC-Input.vue";
     "tc-input": TCInput
   }
 })
-export default class TCComponentsDetailInput extends Vue {}
+export default class TCComponentsDetailInput extends Vue {
+  dateInput: string = "2000-04-17";
+}
 </script>
 <style lang="scss" scoped>
 .tc-input {
