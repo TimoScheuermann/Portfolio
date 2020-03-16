@@ -1,7 +1,7 @@
 <template>
   <div>
     <tc-headline title="Colors" />
-    <tc-grid>
+    <tc-grid minWidth="150">
       <tc-card
         v-for="(c, index) in colors"
         :key="c.name"

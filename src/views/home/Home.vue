@@ -1,12 +1,21 @@
 <template>
   <div>
     <tc-hero :hasFixedHeader="false">
-      <img src="../../assets/landing/background.jpg" slot="background" />
+      <img
+        src="https://wallpapersite.com/images/wallpapers/mountains-2880x1920-asus-zenfone-stock-hd-5813.jpg"
+        slot="background"
+      />
       <div class="title">Timo Scheuermann</div>
       <div class="subtitle">UI / UX Designer from Mannheim, Germany</div>
     </tc-hero>
     <div content class="home">
-      <tc-headline title="My Work" />
+      <tc-headline title="My Work">
+        <tc-button
+          :to="{ name: 'projects' }"
+          icon="book-p"
+          name="All Projects"
+        />
+      </tc-headline>
       <div class="projects">
         <router-link
           tag="div"
@@ -19,7 +28,6 @@
           </tc-card>
         </router-link>
       </div>
-      <tc-button :to="{ name: 'projects' }" icon="book-p" name="All Projects" />
       <tc-headline title="Resume" />
       Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam minus
       deleniti ut vitae tempore nulla error aperiam quis pariatur omnis adipisci
@@ -58,10 +66,13 @@ export default class Home extends Vue {
   @media #{$isDesktop} {
     text-align: center;
   }
+  img {
+    filter: brightness(70%);
+  }
+  color: #fff;
   .title {
     font-size: 1.5em;
     font-weight: bold;
-    color: #fff;
   }
   .subtitle {
     color: $primary;
@@ -109,12 +120,11 @@ export default class Home extends Vue {
 
     .tc-card {
       margin: 0 5px;
-      // height: 100%;
       @media #{$isMobile} {
-        min-width: 200px;
+        width: 200px;
       }
       @media #{$isDesktop} {
-        min-width: 400px;
+        width: 400px;
       }
       img {
         max-height: 124px;

@@ -14,6 +14,29 @@
       voluptates commodi consequatur aliquid modi explicabo nam quasi provident?
       Vero, iste?
 
+      <div class="themeSection">
+        <tc-headline title="Theme" />
+        <tc-grid minWidth="150">
+          <router-link
+            :to="{
+              name: constants.projectRoutes.timos_components_detail,
+              params: { comp: 'Colors' }
+            }"
+          >
+            <tc-card>
+              <i class="ti-dot"></i>
+              <span>Colors</span>
+            </tc-card>
+          </router-link>
+          <router-link :to="{ name: constants.projectRoutes.timos_icons }">
+            <tc-card>
+              <i class="ti-heart"></i>
+              <span>Icons</span>
+            </tc-card>
+          </router-link>
+        </tc-grid>
+      </div>
+
       <tc-headline :title="'All ' + getComponents().length + ' Components'" />
       <tc-grid minWidth="250">
         <router-link
@@ -87,6 +110,9 @@ export default class TCComponentsHome extends Vue {
 [content] {
   @media #{$isDesktop} {
     padding-top: 10px;
+    .themeSection {
+      display: none;
+    }
   }
   @media #{$isMobile} {
     padding-top: 0px;
