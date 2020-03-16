@@ -35,10 +35,10 @@
 <script lang="ts">
 import { Vue, Component } from "vue-property-decorator";
 import constants from "@/constants";
-import TCHeader from "@/components/tc/header/TC-Header.vue";
 import TCButton from "@/components/tc/button/TC-Button.vue";
 import TCCard from "@/components/tc/card/TC-Card.vue";
 import IconGallery from "@/components/projects/TimosIcons/IconGallery.vue";
+import TCHeader from "@/components/tc/header/TC-Header.vue";
 
 @Component({
   components: {
@@ -54,7 +54,7 @@ export default class TimosIcons extends Vue {
 </script>
 
 <style lang="scss" scoped>
-@import "../shared.scss";
+@import "../../../scss/variables.scss";
 
 .hero {
   display: grid;

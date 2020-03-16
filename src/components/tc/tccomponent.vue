@@ -7,7 +7,7 @@ export default class TCComponent extends Vue {
   @Prop() background!: string;
 
   get defaultStyle(): any {
-    var style: any = {};
+    var style: any = { bg: this.background };
     if (this.color) style.color = this.color;
     if (this.background) style.background = this.background;
     return style;

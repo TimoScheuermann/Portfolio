@@ -34,7 +34,10 @@
       <tc-sidebar-item
         name="Colors"
         icon="dot"
-        :to="{ name: constants.projectRoutes.timos_icons }"
+        :to="{
+          name: constants.projectRoutes.timos_components_detail,
+          params: { comp: 'Colors' }
+        }"
       />
 
       <tc-sidebar-item

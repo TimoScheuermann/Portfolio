@@ -4,4 +4,5 @@ export class TCComponent {
   name: string = "";
   icon: string = "";
   api: TCComponentApi[] = [];
+  customAPI?: boolean;
 }

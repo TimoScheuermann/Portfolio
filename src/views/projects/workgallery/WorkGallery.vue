@@ -38,7 +38,6 @@ export default class WorkGallery extends Vue {
 }
 </script>
 <style lang="scss" scoped>
-@import "../shared.scss";
 @import "../../../scss/variables.scss";
 
 @media #{$isMobile} {

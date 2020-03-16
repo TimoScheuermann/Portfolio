@@ -3,7 +3,7 @@
     class="tc-button"
     :style="defaultStyle"
     :class="getClasses()"
-    @click="clicked()"
+    @click="clicked($event)"
   >
     <div v-if="iconExists()" class="icon">
       <i :class="'ti-' + icon" />
@@ -49,8 +49,9 @@ export default class TCButton extends Vue {
     return classes;
   }
 
-  public clicked(): void {
+  public clicked(event: Event): void {
     if (!this.disabled) {
+      this.$emit("click", event);
       if (this.to) {
         this.$router.push(this.to);
       } else if (this.href) {
@@ -64,6 +65,7 @@ export default class TCButton extends Vue {
 @import "../../../scss/variables";
 .tc-button {
   display: inline-block;
+  text-align: center;
   margin: 3px;
   height: 20px;
   line-height: 20px;

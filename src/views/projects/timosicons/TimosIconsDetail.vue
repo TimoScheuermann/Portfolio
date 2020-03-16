@@ -127,7 +127,6 @@ export default class TimosIconsDetail extends Vue {
 </script>
 
 <style lang="scss" scoped>
-@import "../shared.scss";
 @import "../../../scss/variables";
 
 .innerGrid {

@@ -2,6 +2,46 @@
   <div content>
     <tc-header title="Contact"></tc-header>
     <h1>Contact</h1>
+    <tc-button
+      :icon="modal ? 'heart' : 'share'"
+      name="Open modal"
+      @click="modal = true"
+    ></tc-button>
+    <div>
+      <b>{{ modal }}</b>
+    </div>
+    <tc-modal
+      v-model="modal"
+      title="Title djawidjwiadjioawjdij diawjda jidjwaid iawjdoa"
+      subtitle="Subtitle"
+    >
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro autem
+      itaque sapiente et cum doloribus, ipsam sit voluptatem illo nulla
+      exercitationem sint, non obcaecati nostrum laboriosam corporis ex quia
+      iste.
+      <tc-card title="Hallo"></tc-card>
+      <tc-card title="Hallo"></tc-card>
+      <tc-card title="Hallo"></tc-card>
+      <tc-card title="Hallo"></tc-card>
+      <tc-card title="Hallo"></tc-card>
+      <div slot="buttons">
+        <tc-button icon="checkmark" name="Accept" />
+        <tc-button name="Deny" />
+      </div>
+    </tc-modal>
+
+    <h2>Grid Test</h2>
+    <div class="grid-test">
+      <div class="a">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut repellat
+        cumque nobis ducimus tenetur deleniti saepe aliquam voluptas nam iure.
+        Fugiat illum id inventore, minus corporis voluptas esse eaque quaerat!
+      </div>
+      <div class="b">
+        <tc-button icon="checkmark" name="Accept" />
+        <tc-button name="Deny" />
+      </div>
+    </div>
     <h2>Mobile View</h2>
     <tc-card>
       <p-mobile-view></p-mobile-view>
@@ -80,6 +120,7 @@ import TCLink from "@/components/tc/link/TC-Link.vue";
 import TCSlider from "@/components/tc/slider/TC-Slider.vue";
 import TCCheckbox from "@/components/tc/checkbox/TC-Checkbox.vue";
 import PMobileView from "@/components/shared/mobileView/P-MobileView.vue";
+import TCModal from "@/components/tc/modal/TC-Modal.vue";
 
 @Component({
   components: {
@@ -93,7 +134,8 @@ import PMobileView from "@/components/shared/mobileView/P-MobileView.vue";
     "tc-link": TCLink,
     "tc-compHero": TCComponentHero,
     "tc-slider": TCSlider,
-    "p-mobile-view": PMobileView
+    "p-mobile-view": PMobileView,
+    "tc-modal": TCModal
   }
 })
 export default class ContactView extends Vue {
@@ -107,6 +149,7 @@ export default class ContactView extends Vue {
   sliderVal: number = 33;
   switchOne: boolean = true;
   checkbox: boolean = false;
+  modal: boolean = false;
 
   created() {
     this.l();
@@ -158,5 +201,23 @@ h1 {
   text-align: center;
   padding: 20px;
   color: #fff;
+}
+.grid-test {
+  background: red;
+  width: 200px;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  max-height: 200px;
+  .a {
+    background: orange;
+    max-height: 200px;
+    overflow: auto;
+  }
+  .b {
+    background: green;
+    .tc-button {
+      display: block;
+    }
+  }
 }
 </style>
