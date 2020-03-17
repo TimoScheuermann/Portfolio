@@ -1,6 +1,6 @@
 <template>
   <div class="tc-modal" :class="{ 'tc-modal--opened': opened }">
-    <div class="background"></div>
+    <div class="background" @click="close()"></div>
     <div class="container">
       <div class="close" @click="close()">
         <i class="ti-cross" />
@@ -73,6 +73,10 @@ export default class TCModal extends Vue {
 .tc-modal {
   position: fixed;
   z-index: 1000;
+  visibility: hidden;
+  &.tc-modal--opened {
+    visibility: visible;
+  }
 
   @media #{$isMobile} {
     .container {
@@ -153,7 +157,7 @@ export default class TCModal extends Vue {
     display: grid;
     grid-template-rows: auto minmax(0, 1fr) auto;
     z-index: 1001;
-    background: $paragraph;
+    background: $background;
 
     padding: {
       top: 10px;
@@ -178,7 +182,10 @@ export default class TCModal extends Vue {
     }
     .content {
       padding: 20px 0;
-      overflow: auto;
+      overflow: {
+        y: auto;
+        x: visible;
+      }
       &::-webkit-scrollbar {
         display: none;
       }

@@ -19,14 +19,14 @@
       itaque sapiente et cum doloribus, ipsam sit voluptatem illo nulla
       exercitationem sint, non obcaecati nostrum laboriosam corporis ex quia
       iste.
-      <tc-card title="Hallo"></tc-card>
-      <tc-card title="Hallo"></tc-card>
-      <tc-card title="Hallo"></tc-card>
-      <tc-card title="Hallo"></tc-card>
-      <tc-card title="Hallo"></tc-card>
+      <tc-card class="cTCC" title="Hallo"></tc-card>
+      <tc-card class="cTCC" title="Hallo"></tc-card>
+      <tc-card class="cTCC" title="Hallo"></tc-card>
+      <tc-card class="cTCC" title="Hallo"></tc-card>
+      <tc-card class="cTCC" title="Hallo"></tc-card>
       <div slot="buttons">
-        <tc-button icon="checkmark" name="Accept" />
-        <tc-button name="Deny" />
+        <tc-button variant="filled" icon="checkmark" name="Accept" />
+        <tc-button variant="filled" disabled="true" name="Deny" />
       </div>
     </tc-modal>
 
@@ -38,7 +38,7 @@
         Fugiat illum id inventore, minus corporis voluptas esse eaque quaerat!
       </div>
       <div class="b">
-        <tc-button icon="checkmark" name="Accept" />
+        <tc-button variant="filled" icon="checkmark" name="Accept" />
         <tc-button name="Deny" />
       </div>
     </div>
@@ -219,5 +219,8 @@ h1 {
       display: block;
     }
   }
+}
+.cTCC {
+  margin: 10px 5px;
 }
 </style>

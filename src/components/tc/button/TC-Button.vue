@@ -29,7 +29,7 @@ export default class TCButton extends Vue {
   @Prop() disabled!: boolean;
   @Prop() variant!: string;
 
-  public variants: string[] = ["filled", "border"];
+  public variants: string[] = ["opaque", "border", "filled"];
 
   public iconExists(): boolean {
     return icons.filter(x => x.name == this.icon).length > 0;
@@ -93,7 +93,7 @@ export default class TCButton extends Vue {
       font-size: 12px;
     }
   }
-  &.tc-button--filled {
+  &.tc-button--opaque {
     color: $primary;
     border: 1px solid $primary;
     position: relative;
@@ -111,6 +111,11 @@ export default class TCButton extends Vue {
       opacity: 0.25;
     }
   }
+  &.tc-button--filled {
+    color: #fff;
+    border: 1px solid $primary;
+    background: $primary;
+  }
   &.tc-button--border {
     color: $primary;
     border: 1px solid $primary;
@@ -120,20 +125,31 @@ export default class TCButton extends Vue {
     border-color: $color;
     opacity: 0.6;
     cursor: default;
-    &.tc-button--filled {
+    &.tc-button--opaque {
       &::before {
         background: $color;
       }
     }
+    &.tc-button--filled {
+      color: #fff;
+      border-color: $color;
+      background: $color;
+    }
   }
 
   &:not(.tc-button--disabled) {
+    &:active {
+      filter: brightness(120%);
+    }
     &:hover {
+      &.tc-button--filled {
+        box-shadow: 2px 4px 8px rgba($primary, 0.3);
+      }
       &.tc-button--border {
         background: $primary;
         color: #fff;
       }
-      &.tc-button--filled {
+      &.tc-button--opaque {
         color: #fff;
         &::before {
           opacity: 1;
