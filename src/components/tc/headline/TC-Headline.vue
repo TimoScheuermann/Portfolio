@@ -23,7 +23,6 @@ export default class TCHeadline extends Vue {
 <style lang="scss" scoped>
 @import "../../../scss/variables";
 .tc-headline {
-  min-height: 35px;
   display: flex;
   padding: 0 20px;
   margin: 20px 0;
@@ -33,7 +32,7 @@ export default class TCHeadline extends Vue {
   position: relative;
   .bar {
     position: absolute;
-    bottom: 0;
+    bottom: -5px;
     right: 0;
     left: 0;
     height: 1px;
@@ -42,6 +41,7 @@ export default class TCHeadline extends Vue {
   }
   .title {
     font-weight: bold;
+    margin-left: 3px;
     font-size: 18px;
     white-space: nowrap;
     opacity: 0.8;

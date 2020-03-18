@@ -75,6 +75,7 @@ export default class IconGallery extends Vue {
 }
 
 .gallery {
+  user-select: none;
   display: grid;
   grid-gap: 30px;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));

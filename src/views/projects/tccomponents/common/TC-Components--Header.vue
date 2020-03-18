@@ -1,9 +1,11 @@
 <template>
   <tc-header
+    v-if="component.length > 0"
     :title="headerTitle"
     backName="Overview"
     :backTo="{ name: constants.projectRoutes.timos_components }"
   />
+  <tc-header v-else :title="headerTitle" />
 </template>
 <script lang="ts">
 import { Vue, Component, Watch } from "vue-property-decorator";

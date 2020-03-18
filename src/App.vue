@@ -69,17 +69,18 @@ import TCTabbarItem from "./components/tc/tabbar/TC-Tabbar-Item.vue";
 })
 export default class App extends Vue {
   public projects: Project[] = projects;
+  public darkRoutes: string[] = ["home", "repertoire"];
 
   showSidebar() {
     return !this.$route.meta.customSidebar;
   }
   get darkTabbar(): boolean {
-    return this.$route.name === "home";
+    return this.darkRoutes.includes(this.$route.name as string);
   }
 
   @Watch("$route.name")
-  changed(to: any, from: any) {
-    if (to === "home") {
+  changed(to: string, from: string) {
+    if (this.darkRoutes.includes(to)) {
       console.log("dark");
       document.body.style.background = "#000";
       return;

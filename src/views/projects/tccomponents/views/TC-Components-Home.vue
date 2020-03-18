@@ -1,7 +1,10 @@
 <template>
   <div>
     <tc-hero>
-      <img slot="background" src="/assets/projects/ticomponents/landing.jpg" />
+      <img
+        slot="background"
+        src="https://image.freepik.com/free-vector/gradient-colorful-particles-background_52683-28459.jpg"
+      />
       <div class="hero">
         <div class="title">Timo's Components</div>
         <div class="subtitle">Custom Vue Components</div>

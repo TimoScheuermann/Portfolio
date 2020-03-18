@@ -104,7 +104,7 @@ const tcComponents: TCComponent[] = [
     api: []
   },
   {
-    name: "Preview",
+    name: "Image",
     icon: "windows",
     api: []
   },

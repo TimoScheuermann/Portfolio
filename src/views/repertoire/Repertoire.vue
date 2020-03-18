@@ -1,28 +1,32 @@
 <template>
-  <div content class="repertoire">
-    <tc-header title="Repertoire" />
+  <div class="view--repertoire">
+    <tc-header dark="true" title="Repertoire" />
     <tc-hero>
       <img
         slot="background"
-        src="http://10012.com.s154554.gridserver.com/wp-content/uploads/2018/09/07a.png"
+        src="https://www.swri.org/sites/default/files/styles/client_services_banner/public/industries/AdobeStock_111975726.jpeg"
       />
     </tc-hero>
-
-    <tc-headline title="I am working with" />
-    <tc-grid minWidth="150">
-      <div class="tool" v-for="(tool, index) in tools" :key="index">
-        <div
-          class="background"
-          :style="{ 'background-image': `url(${tool.img})` }"
-        ></div>
-        <div class="content">
-          <div class="logo">
-            <img :src="tool.img" />
+    <div content>
+      <h2>WIP</h2>
+      <tc-headline title="I am working with" />
+      <div class="toolSection" v-for="(tool, index) in tools" :key="index">
+        <div class="tool">
+          <div
+            class="background"
+            :style="{ 'background-image': `url(${tool.img})` }"
+          ></div>
+          <div class="content">
+            <div class="logo">
+              <img :src="tool.img" />
+            </div>
           </div>
+        </div>
+        <div class="toolContent">
           <div class="title">{{ tool.name }}</div>
         </div>
       </div>
-    </tc-grid>
+    </div>
   </div>
 </template>
 <script lang="ts">
@@ -48,24 +52,37 @@ export default class TCCard extends Vue {
 </script>
 <style lang="scss" scoped>
 @import "../../scss/variables.scss";
-
-.tc-grid {
-  grid-auto-rows: 1fr;
-  &::before {
-    content: "";
-    width: 0;
-    padding-bottom: 100%;
-    grid-row: 1 / 1;
-    grid-column: 1 / 1;
+.view--repertoire {
+  color: #fff;
+}
+.toolSection {
+  display: grid;
+  grid-gap: 20px;
+  margin-top: 50px;
+  grid-template-columns: 100px auto;
+  &:nth-child(ODD) {
+    grid-template-columns: auto 100px;
+    background: $color;
+    .tool {
+      grid-column: 2 / 3;
+    }
+    .toolContent {
+      grid-column: 0 / 1;
+    }
   }
-  & > *:first-child {
-    grid-row: 1 / 1;
-    grid-column: 1 / 1;
+
+  .toolContent {
+    .title {
+      font-weight: bold;
+      font-size: 1.2em;
+      opacity: 0.8;
+    }
   }
 
   .tool {
     position: relative;
     border-radius: 10px;
+    height: 50px;
     overflow: hidden;
     box-shadow: 4px 8px 20px rgba(0, 0, 0, 0.19);
     background: var(--paragraph);
@@ -97,11 +114,6 @@ export default class TCCard extends Vue {
           max-width: $size;
           max-height: $size;
         }
-      }
-      .title {
-        font-weight: 600;
-        margin-top: 10px;
-        color: #fff;
       }
     }
   }
