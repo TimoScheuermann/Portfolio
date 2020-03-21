@@ -8,13 +8,13 @@
       </div>
 
       <tc-card rounded="true" title="Timo's Icons">
-        <p>
+        <div>
           Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatibus
           quos ratione porro commodi quo fuga, numquam nostrum eos repellendus
           illo corrupti recusandae nobis possimus. Temporibus deleniti eligendi
           ex rem fuga.
-        </p>
-        <img src="img/projects/icons/preview2-icons.png" />
+        </div>
+        <!-- <img slot="media" src="img/projects/icons/preview2-icons.png" /> -->
 
         <tc-button
           icon="save"

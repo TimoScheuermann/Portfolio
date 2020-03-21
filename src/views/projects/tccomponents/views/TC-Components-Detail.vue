@@ -65,6 +65,14 @@ export default class TCComponentsDetail extends Vue {
         api: []
       };
     }
+    if (this.getComponent().toLowerCase() === "defaulttags") {
+      return {
+        customAPI: true,
+        name: "Default Tags",
+        icon: "component",
+        api: []
+      };
+    }
     component = this.tcComponents.filter(
       x => x.name.toLowerCase() === this.getComponent().toLowerCase()
     )[0];
@@ -90,7 +98,13 @@ export default class TCComponentsDetail extends Vue {
 }
 </script>
 <style lang="scss" scoped>
+@import "../../../../scss/variables";
 [content] {
   padding-top: 0px;
+}
+@media #{$isMobile} {
+  /deep/ .portfolio--codeexample {
+    margin: 0 -5vw;
+  }
 }
 </style>

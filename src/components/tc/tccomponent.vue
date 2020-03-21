@@ -6,6 +6,10 @@ export default class TCComponent extends Vue {
   @Prop() color!: string;
   @Prop() background!: string;
 
+  get usedSlots(): string[] {
+    return Object.keys(this.$slots!);
+  }
+
   get defaultStyle(): any {
     var style: any = { bg: this.background };
     if (this.color) style.color = this.color;

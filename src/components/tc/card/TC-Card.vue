@@ -1,20 +1,38 @@
 <template>
-  <div
-    class="tc-card"
-    :style="defaultStyle"
-    :class="{ frosted: frosted, dark: dark }"
-  >
-    <div v-if="title" class="title" :class="{ noSubtitle: !subtitle }">
+  <div class="tc-card" :style="defaultStyle" :class="classes">
+    <div
+      v-if="title"
+      class="tc-card--title__prestyled"
+      :class="{ 'tc-card--title__hasSubtitle': subtitle }"
+    >
       {{ title }}
     </div>
-    <div v-else class="titleSlot">
-      <slot name="header">
-        <div tc-card-header-title-placeholder></div>
-      </slot>
+    <div v-else class="tc-card--title">
+      <slot name="header"></slot>
     </div>
-    <div v-if="subtitle" class="subtitle">{{ subtitle }}</div>
-    <div class="media"><slot name="media" /></div>
-    <div class="slot">
+    <div
+      v-if="subtitle"
+      class="tc-card--subtitle__prestyled"
+      :class="{
+        'tc-card--subtitle__withoutContent': !(
+          usedSlots.includes('default') || usedSlots.includes('media')
+        )
+      }"
+    >
+      {{ subtitle }}
+    </div>
+    <div class="tc-card--media" v-if="usedSlots.includes('media')">
+      <slot name="media" />
+    </div>
+    <div
+      class="tc-card--content"
+      :class="{
+        'tc-card--content__hasMedia': usedSlots.includes('media'),
+        'tc-card--content__hasTitle':
+          usedSlots.includes('title') || title || subtitle
+      }"
+      v-if="usedSlots.includes('default')"
+    >
       <slot></slot>
     </div>
   </div>
@@ -33,72 +51,91 @@ import TCComponent from "../tccomponent.vue";
 export default class TCCard extends Vue {
   @Prop() title!: string;
   @Prop() subtitle!: string;
-  @Prop({ default: false }) frosted!: boolean;
+  @Prop() frosted!: boolean;
+  @Prop({ default: true }) shadow!: boolean;
+  @Prop() rounded!: boolean;
+  @Prop() hover!: boolean;
+  dark!: boolean;
+
+  get classes() {
+    return {
+      "tc-card__frosted": this.frosted,
+      "tc-card__shadow": this.shadow,
+      "tc-card__rounded": this.rounded,
+      "tc-card__hover": this.hover,
+      "tc-card__dark": this.dark
+    };
+  }
 }
 </script>
 <style lang="scss" scoped>
 @import "../../../scss/variables";
 @import "../../../scss/mixins";
-
+.fun {
+  background: #000;
+  color: #fff;
+}
 .tc-card {
   background: $background;
-  box-shadow: $shadow;
   text-align: center;
-  max-width: 100%;
   height: fit-content;
-  overflow: auto;
-  padding: 30px {
-    top: 0;
-  }
+  overflow: hidden;
 
-  &.frosted {
+  &.tc-card__frosted {
     @include backdrop-blur($background);
   }
-  &.dark {
+  &.tc-card__dark {
     background: $color;
     color: #fff;
-    &.frosted {
+    &.tc-card__frosted {
       @include backdrop-blur($color);
     }
   }
 
-  &[rounded="true"] {
+  &.tc-card__shadow {
+    box-shadow: $shadow;
+  }
+  &.tc-card__rounded {
     border-radius: $border-radius;
   }
-  &[hover="true"] {
+  &.tc-card__hover {
     transition: 0.2s ease-in-out;
     &:hover {
       box-shadow: $shadow-hover;
     }
   }
-  [tc-card-header-title-placeholder] {
-    height: 30px;
-  }
 
-  .title {
-    padding-top: 30px;
+  .tc-card--title__prestyled {
+    padding: 20px 30px;
     font-size: 20px;
     font-weight: bold;
-    &.noSubtitle {
-      margin-bottom: 20px;
+    &.tc-card--title__hasSubtitle {
+      padding-bottom: 0px;
     }
   }
-  .subtitle {
+  .tc-card--subtitle__prestyled {
     padding: 10px 0;
-  }
-  .media,
-  .slot {
-    img,
-    video {
-      max-width: 100%;
-      max-height: 100%;
+    &.tc-card--subtitle__withoutContent {
+      padding-bottom: 30px;
     }
   }
-  .media {
-    margin: 0 -30px;
+  .tc-card--media,
+  .tc-card--content {
     img,
     video {
       width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+  }
+
+  .tc-card--content {
+    padding: 30px;
+    &.tc-card--content__hasTitle {
+      padding-top: 0px;
+    }
+    &.tc-card--content__hasMedia {
+      padding-top: 10px;
     }
   }
   z-index: 10;

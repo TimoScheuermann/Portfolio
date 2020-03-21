@@ -69,7 +69,7 @@ import TCTabbarItem from "./components/tc/tabbar/TC-Tabbar-Item.vue";
 })
 export default class App extends Vue {
   public projects: Project[] = projects;
-  public darkRoutes: string[] = ["home", "repertoire"];
+  public darkRoutes: string[] = ["home", "repertoire_"];
 
   showSidebar() {
     return !this.$route.meta.customSidebar;
@@ -114,6 +114,18 @@ a {
   text-decoration: none;
   color: $primary;
 }
+
+@for $i from 1 through 6 {
+  h#{$i} {
+    margin: 0 {
+      bottom: 10px;
+    }
+  }
+}
+h3 {
+  opacity: 0.6;
+}
+
 @media #{$isMobile} {
   .tc-sidebar {
     display: none !important;

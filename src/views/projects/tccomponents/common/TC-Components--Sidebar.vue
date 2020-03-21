@@ -30,7 +30,15 @@
       />
     </tc-sidebar-group>
 
-    <tc-sidebar-group icon="dot" name="Theme">
+    <tc-sidebar-group icon="dot" name="Fundamentals">
+      <tc-sidebar-item
+        name="Default Tags"
+        icon="component"
+        :to="{
+          name: constants.projectRoutes.timos_components_detail,
+          params: { comp: 'DefaultTags' }
+        }"
+      />
       <tc-sidebar-item
         name="Colors"
         icon="dot"
@@ -41,7 +49,7 @@
       />
 
       <tc-sidebar-item
-        name="Icon"
+        name="Icons"
         icon="heart"
         :to="{ name: constants.projectRoutes.timos_icons }"
       />

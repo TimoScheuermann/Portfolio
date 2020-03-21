@@ -71,7 +71,6 @@ export default class TCSegments extends Vue {
   padding: 20px 0 {
     top: 0.1px;
   }
-  width: 400px;
   max-width: 100%;
 
   &.tc-segments--dark {
