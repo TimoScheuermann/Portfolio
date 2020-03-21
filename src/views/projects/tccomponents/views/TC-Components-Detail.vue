@@ -30,7 +30,7 @@
 import { Vue, Component, Watch } from "vue-property-decorator";
 import TCSpinner from "@/components/tc/spinner/TC-Spinner.vue";
 import TCComponentsNotFound from "./TC-Components-NotFound.vue";
-import ComponentHero from "@/components/projects/TIComponents/ComponentHero.vue";
+import ComponentHero from "@/components/projects/TCComponents/ComponentHero.vue";
 import TCHeadline from "@/components/tc/headline/TC-Headline.vue";
 import TCTable from "@/components/tc/table/TC-Table.vue";
 import tcComponents from "@/components/tc";

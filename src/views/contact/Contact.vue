@@ -115,7 +115,7 @@ import TCCard from "@/components/tc/card/TC-Card.vue";
 import TCHeader from "@/components/tc/header/TC-Header.vue";
 import TCHero from "@/components/tc/hero/TC-Hero.vue";
 import TCSwitch from "@/components/tc/switch/TC-Switch.vue";
-import TCComponentHero from "@/components/projects/TIComponents/ComponentHero.vue";
+import TCComponentHero from "@/components/projects/TCComponents/ComponentHero.vue";
 import TCLink from "@/components/tc/link/TC-Link.vue";
 import TCSlider from "@/components/tc/slider/TC-Slider.vue";
 import TCCheckbox from "@/components/tc/checkbox/TC-Checkbox.vue";
