@@ -42,6 +42,12 @@
         <tc-button name="Deny" />
       </div>
     </div>
+
+    <h2>Img test</h2>
+    <div class="img-test">
+      <img src="assets/card.png" />
+    </div>
+
     <h2>Mobile View</h2>
     <tc-card>
       <p-mobile-view></p-mobile-view>
@@ -222,5 +228,14 @@ h1 {
 }
 .cTCC {
   margin: 10px 5px;
+}
+
+.img-test {
+  // background: gray;
+  img {
+    transform-origin: 50% 100%;
+    transform: perspective(350px) rotateX(25deg) translateY(0px);
+    filter: drop-shadow(4px 8px 20px rgba(0, 0, 0, 0.19));
+  }
 }
 </style>
