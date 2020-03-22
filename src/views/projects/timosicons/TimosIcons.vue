@@ -7,14 +7,15 @@
         <img src="../../../assets/projects/timosicons/timosicons.svg" />
       </div>
 
-      <tc-card rounded="true" title="Timo's Icons">
+      <tc-card rounded="true" title="Timo's Icons" class="card">
+        <img class="card-image" src="assets/icons.png" />
         <div>
           Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatibus
           quos ratione porro commodi quo fuga, numquam nostrum eos repellendus
           illo corrupti recusandae nobis possimus. Temporibus deleniti eligendi
           ex rem fuga.
         </div>
-        <!-- <img slot="media" src="img/projects/icons/preview2-icons.png" /> -->
+        <br />
 
         <tc-button
           icon="save"
@@ -55,12 +56,23 @@ export default class TimosIcons extends Vue {
 
 <style lang="scss" scoped>
 @import "../../../scss/variables.scss";
-
+.card {
+  max-width: 600px;
+  .card-image {
+    filter: drop-shadow(4px 8px 20px rgba(0, 0, 0, 0.19));
+  }
+}
 .hero {
-  display: grid;
-  grid-template-columns: 1fr 2fr;
+  // display: grid;
+  // grid-template-columns: 1fr 2fr;
+  // grid-gap: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin-top: 30px;
-  grid-gap: 20px;
+  .logo {
+    max-width: 400px;
+  }
 
   @media #{$isMobile} {
     grid-template-columns: 1fr;

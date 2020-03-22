@@ -9,7 +9,7 @@
 
     <tc-headline title="Variants" />
 
-    <tc-grid minWidth="350">
+    <tc-grid minWidth="320">
       <portfolio-code-example tag="tc-divider" title="Simple Line">
         <tc-divider />
       </portfolio-code-example>
@@ -41,7 +41,7 @@
 
     <tc-headline title="Alignment" />
 
-    <tc-grid minWidth="350">
+    <tc-grid minWidth="320">
       <portfolio-code-example
         tag="tc-divider"
         title="Left-Alignment"

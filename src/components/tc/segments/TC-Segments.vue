@@ -102,6 +102,7 @@ export default class TCSegments extends Vue {
       height: 25px;
       top: 5px;
       transition: 0.2s ease-in-out;
+      box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.1);
     }
     .items {
       z-index: 1;

@@ -30,7 +30,7 @@ export default class TCImage extends Vue {
       "https://www.ithaca.edu/sites/default/files/2018-09/Sea%20otters%20holding%20hands%20by%20Ken%20Conger_0.jpg"
   })
   img!: string;
-  expanded: boolean = true;
+  expanded: boolean = false;
 }
 </script>
 <style lang="scss" scoped>

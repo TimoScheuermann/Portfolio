@@ -11,7 +11,7 @@
 
     <tc-headline title="Variants" />
 
-    <tc-grid minWidth="350">
+    <tc-grid minWidth="320">
       <portfolio-code-example
         v-for="variant in variants"
         :title="variant"

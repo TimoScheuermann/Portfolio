@@ -10,7 +10,7 @@
 
     <tc-headline title="Variants" />
 
-    <tc-grid minWidth="350">
+    <tc-grid minWidth="320">
       <portfolio-code-example tag="tc-checkbox" title="Simple Checkbox">
         <tc-checkbox />
       </portfolio-code-example>

@@ -15,7 +15,7 @@
 
     <tc-headline title="Options" />
 
-    <tc-grid minWidth="350">
+    <tc-grid minWidth="320">
       <portfolio-code-example
         title="Simple Card"
         tag="tc-card"
