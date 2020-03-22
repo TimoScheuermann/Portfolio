@@ -24,8 +24,9 @@ export default class TCComponentsHeader extends Vue {
   public tcComponents: TCComponent[] = tcComponents;
 
   get headerTitle(): string {
-    return "Timo's Components";
-    // return this.tcComponent ? this.tcComponent.name : "Timo's Components";
+    return this.tcComponent
+      ? "TC-" + this.tcComponent.name
+      : "Timo's Components";
   }
 
   get component(): string {

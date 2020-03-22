@@ -1,15 +1,15 @@
 <template>
   <div class="tc-headline">
-    <div class="title" v-if="title">
+    <div class="tc-headline--title__prestyled" v-if="title">
       <i v-if="icon" :class="'ti-' + icon"></i>{{ title }}
     </div>
-    <div v-else>
+    <div class="tc-headline--title" v-else>
       <slot name="title" />
     </div>
     <div class="tc-headline--items">
       <slot />
     </div>
-    <div class="bar"></div>
+    <div class="tc-headline--bar"></div>
   </div>
 </template>
 <script lang="ts">
@@ -30,7 +30,7 @@ export default class TCHeadline extends Vue {
   align-items: center;
   flex-wrap: wrap;
   position: relative;
-  .bar {
+  .tc-headline--bar {
     position: absolute;
     bottom: -5px;
     right: 0;
@@ -39,7 +39,7 @@ export default class TCHeadline extends Vue {
     background: currentColor;
     opacity: 0.3;
   }
-  .title {
+  .tc-headline--title__prestyled {
     font-weight: bold;
     margin-left: 3px;
     font-size: 18px;
@@ -51,7 +51,7 @@ export default class TCHeadline extends Vue {
     }
   }
   &:hover {
-    .title {
+    .tc-headline--title__prestyled {
       opacity: 1;
     }
   }

@@ -289,7 +289,16 @@ const tcComponents: TCComponent[] = [
   {
     name: "Headline",
     icon: "bar",
-    api: []
+    api: [
+      { name: "title", type: "string", description: "Sets a prestyled title" },
+      {
+        name: "icon",
+        type: "string",
+        description:
+          "Inserts a Icon in front of Headline title (only visible with default title)",
+        parameters: "Timo's Icons"
+      }
+    ]
   },
   {
     name: "Segments",
