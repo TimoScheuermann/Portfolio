@@ -10,23 +10,23 @@
     <div>
       <b>{{ modal }}</b>
     </div>
-    <tc-modal
-      v-model="modal"
-      title="Title djawidjwiadjioawjdij diawjda jidjwaid iawjdoa"
-      subtitle="Subtitle"
-    >
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro autem
-      itaque sapiente et cum doloribus, ipsam sit voluptatem illo nulla
-      exercitationem sint, non obcaecati nostrum laboriosam corporis ex quia
-      iste.
-      <tc-card class="cTCC" title="Hallo"></tc-card>
-      <tc-card class="cTCC" title="Hallo"></tc-card>
-      <tc-card class="cTCC" title="Hallo"></tc-card>
-      <tc-card class="cTCC" title="Hallo"></tc-card>
-      <tc-card class="cTCC" title="Hallo"></tc-card>
+    <tc-modal v-model="modal" title="Modal Title" subtitle="Subtitle">
+      <p>
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Recusandae
+        modi libero reprehenderit. Laudantium, harum earum est rerum sit labore
+        eveniet exercitationem corporis culpa quae, doloremque dolor quam modi?
+        Perspiciatis, omnis?
+      </p>
+      <tc-divider></tc-divider>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat
+        explicabo consequuntur aperiam ea illum ut eaque sint vel quasi.
+        Consectetur, minus doloribus. Iste delectus animi similique cum culpa
+        deleniti sint?
+      </p>
       <div slot="buttons">
         <tc-button variant="filled" icon="checkmark" name="Accept" />
-        <tc-button variant="filled" disabled="true" name="Deny" />
+        <tc-button variant="filled" name="Deny" />
       </div>
     </tc-modal>
 
@@ -43,9 +43,13 @@
       </div>
     </div>
 
+    <h2>Img test 2</h2>
+    <div class="img-test2">
+      <img src="assets/final_trans.png" />
+    </div>
     <h2>Img test</h2>
     <div class="img-test">
-      <img src="assets/card.png" />
+      <img src="assets/final.png" />
     </div>
 
     <h2>Mobile View</h2>
@@ -127,6 +131,7 @@ import TCSlider from "@/components/tc/slider/TC-Slider.vue";
 import TCCheckbox from "@/components/tc/checkbox/TC-Checkbox.vue";
 import PMobileView from "@/components/shared/mobileView/P-MobileView.vue";
 import TCModal from "@/components/tc/modal/TC-Modal.vue";
+import TCDivider from "../../components/tc/divider/TC-Divider.vue";
 
 @Component({
   components: {
@@ -141,7 +146,8 @@ import TCModal from "@/components/tc/modal/TC-Modal.vue";
     "tc-compHero": TCComponentHero,
     "tc-slider": TCSlider,
     "p-mobile-view": PMobileView,
-    "tc-modal": TCModal
+    "tc-modal": TCModal,
+    "tc-divider": TCDivider
   }
 })
 export default class ContactView extends Vue {
@@ -229,12 +235,25 @@ h1 {
 .cTCC {
   margin: 10px 5px;
 }
-
+.img-test2 {
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+}
 .img-test {
   // background: gray;
+  // overflow: hidden;
+  // max-height: 300px;
   img {
+    width: 100%;
+    height: 100%;
+    // max-height: 600px;
+    object-fit: contain;
     transform-origin: 50% 100%;
-    transform: perspective(350px) rotateX(25deg) translateY(0px);
+    transform: perspective(350px) rotateX(25deg) translateY(0px) rotateZ(-10deg);
+
     filter: drop-shadow(4px 8px 20px rgba(0, 0, 0, 0.19));
   }
 }

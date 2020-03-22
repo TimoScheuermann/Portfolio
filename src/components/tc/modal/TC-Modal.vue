@@ -195,6 +195,11 @@ export default class TCModal extends Vue {
       }
     }
     .buttons {
+      @media #{$isMobile} {
+        .tc-button {
+          height: 30px;
+        }
+      }
       text-align: center;
     }
   }

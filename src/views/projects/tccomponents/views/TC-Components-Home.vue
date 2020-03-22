@@ -1,11 +1,8 @@
 <template>
   <div>
     <tc-hero>
-      <img
-        slot="background"
-        src="https://image.freepik.com/free-vector/gradient-colorful-particles-background_52683-28459.jpg"
-      />
-      <div class="hero">
+      <img slot="background" src="assets/final_trans.png" />
+      <div v-if="false" class="hero">
         <div class="title">Timo's Components</div>
         <div class="subtitle">Custom Vue Components</div>
       </div>
@@ -124,7 +121,7 @@ export default class TCComponentsHome extends Vue {
 .hero {
   display: flex;
   flex-direction: column;
-  color: #fff;
+  // color: #fff;
   text-align: center;
   font-weight: bold;
   .title {
