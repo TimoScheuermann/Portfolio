@@ -1,9 +1,12 @@
 <template>
-  <div class="tc-hero" :style="{ height: getHeight() + unit }">
-    <div class="background">
+  <div class="tc-hero" :style="style">
+    <div class="tc-hero--background">
       <slot name="background" />
     </div>
-    <div class="hero" :class="{ fixedHeader: hasFixedHeader }">
+    <div
+      class="tc-hero--hero"
+      :class="{ 'tc-hero--hero__fixedHeader': hasFixedHeader }"
+    >
       <slot />
     </div>
   </div>
@@ -14,19 +17,31 @@ import TCHeadline from "@/components/tc/headline/TC-Headline.vue";
 @Component
 export default class TCHero extends Vue {
   @Prop({ default: 200 }) height!: string | number;
-  @Prop({ default: "px", type: String }) unit!: string;
-  @Prop({ default: true, type: Boolean }) hasFixedHeader!: boolean;
-  getHeight(): number {
-    return +this.height + (this.hasFixedHeader ? 50 : 0);
+  @Prop({ default: "px" }) unit!: string;
+  @Prop({ default: true }) hasFixedHeader!: boolean;
+  @Prop() background!: string;
+
+  get style(): any {
+    return {
+      background: this.background,
+      height:
+        "calc(" +
+        +this.height +
+        this.unit +
+        " + " +
+        (this.hasFixedHeader ? 50 : 0) +
+        "px)"
+    };
   }
 }
 </script>
 <style lang="scss" scoped>
 .tc-hero {
+  user-select: none;
   position: relative;
   max-width: 100vw;
   overflow: hidden;
-  .background {
+  .tc-hero--background {
     height: inherit;
     img,
     video {
@@ -35,8 +50,8 @@ export default class TCHero extends Vue {
       height: 100%;
     }
   }
-  .hero {
-    &.fixedHeader {
+  .tc-hero--hero {
+    &.tc-hero--hero__fixedHeader {
       margin-top: calc((50px + env(safe-area-inset-top)) / 2);
     }
     position: absolute;

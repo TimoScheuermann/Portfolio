@@ -160,7 +160,31 @@ const tcComponents: TCComponent[] = [
   {
     name: "Modal",
     icon: "modal",
-    api: []
+    api: [
+      {
+        name: "title",
+        type: "string",
+        description: "Set a pre-styled title to the modal"
+      },
+      {
+        description: "Set a pre-styled subtitle to the modal",
+        name: "subtitle",
+        type: "string"
+      },
+      {
+        name: "value",
+        type: "boolean",
+        description: "Determines the state of the modal",
+        default: "false"
+      },
+      { name: "v-model", type: "boolean", description: "" },
+      {
+        name: "@input",
+        type: "boolean",
+        description:
+          "Is called whenever the user changes the state of the modal"
+      }
+    ]
   },
   {
     name: "Tabbar",
@@ -195,7 +219,32 @@ const tcComponents: TCComponent[] = [
   {
     name: "Hero",
     icon: "painting",
-    api: []
+    api: [
+      {
+        default: "200",
+        name: "height",
+        type: "number",
+        description: "Height of Hero Container"
+      },
+      {
+        default: "px",
+        name: "unit",
+        type: "string",
+        description: "Unit of height"
+      },
+      {
+        default: "true",
+        name: "hasFixedHeader",
+        type: "boolean",
+        description: "Determines if top should have a padding of 50px"
+      },
+      {
+        name: "background",
+        type: "string",
+        description: "Background color of Hero",
+        default: "transparent"
+      }
+    ]
   },
   {
     name: "Revealer",
@@ -220,6 +269,12 @@ const tcComponents: TCComponent[] = [
         description: "Progress Type"
       },
       {
+        name: "color",
+        type: "string",
+        description: "Determines the color of the bar/ring",
+        default: "#0088ff"
+      },
+      {
         name: "barHeight",
         type: "number",
         default: "4",
@@ -242,7 +297,13 @@ const tcComponents: TCComponent[] = [
   {
     name: "Quote",
     icon: "quote-right",
-    api: []
+    api: [
+      {
+        name: "title",
+        type: "String",
+        description: "Sets a prestyled title"
+      }
+    ]
   },
   {
     name: "Header",

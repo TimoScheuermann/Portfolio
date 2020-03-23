@@ -35,7 +35,7 @@
         title="Example of Media Slot"
         tag="tc-card"
         :attr="{ title: 'Card Title', subtitle: 'Subtitle' }"
-        :inner="`<img slot='media' src='${src}' />Hello World!`"
+        :inner="`<img slot='media' src='${src}' />**Hello World!`"
       >
         <tc-card
           class="tc-card__example"
@@ -56,7 +56,7 @@
           dark: 'true',
           rounded: 'true'
         }"
-        :inner="`<img slot='media' src='${src}' />Hello World!`"
+        :inner="`<img slot='media' src='${src}' />**Hello World!`"
       >
         <tc-card
           class="tc-card__example"

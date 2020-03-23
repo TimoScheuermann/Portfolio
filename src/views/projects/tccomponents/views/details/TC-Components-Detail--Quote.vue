@@ -1,29 +1,60 @@
 <template>
   <div>
-    <tc-headline title="Quote"></tc-headline>
-    <tc-quote title="Hallo Welt">
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur in
-      commodi corrupti id distinctio sequi temporibus tempore, architecto
-      quibusdam! Quisquam velit quia fuga a voluptatibus nam temporibus suscipit
-      totam blanditiis?
-    </tc-quote>
-    <tc-quote>
-      <h2 slot="title">Hallo h2</h2>
-      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Praesentium quae
-      nulla eum, explicabo est neque adipisci reprehenderit amet porro accusamus
-      asperiores sapiente harum tenetur velit. Nisi obcaecati distinctio
-      laudantium assumenda.
-    </tc-quote>
+    <tc-headline title="Quote" />
+    <p>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem et vero
+      omnis odio natus, voluptatibus incidunt libero hic cumque, illum voluptas
+      temporibus repudiandae dicta quia rerum, fugit ut odit exercitationem?
+    </p>
+    <tc-headline title="Slots" />
+    <h3>default</h3>
+    <h3>header</h3>
+    <tc-headline title="Variants" />
+
+    <tc-grid minWidth="350">
+      <portfolio-code-example
+        tag="tc-quote"
+        title="Simple Quote"
+        :attr="{ title: 'Java is just an island' }"
+        inner="Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur in commodi corrupti id distinctio sequi temporibus tempore, architecto quibusdam!"
+      >
+        <tc-quote title="Java is just an island">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur
+          in commodi corrupti id distinctio sequi temporibus tempore, architecto
+          quibusdam!
+        </tc-quote>
+      </portfolio-code-example>
+
+      <portfolio-code-example
+        tag="tc-quote"
+        title="Custom Header"
+        inner="<div slot='header'>**<b style='margin-right: 10px'>Really cool article</b>**<tc-button icon='heart' name='10 Likes' />**</div>**Nisi obcaecati distinctio laudantium assumenda."
+      >
+        <tc-quote>
+          <div slot="header">
+            <b style="margin-right: 10px">Really cool article</b>
+            <tc-button icon="heart" name="10 Likes" />
+          </div>
+          Nisi obcaecati distinctio laudantium assumenda.
+        </tc-quote>
+      </portfolio-code-example>
+    </tc-grid>
   </div>
 </template>
 <script lang="ts">
 import { Vue, Component } from "vue-property-decorator";
 import TCHeadline from "@/components/tc/headline/TC-Headline.vue";
 import TCQuote from "@/components/tc/quote/TC-Quote.vue";
+import TCGrid from "@/components/tc/_layout/grid/TC-Grid.vue";
+import TCButton from "@/components/tc/button/TC-Button.vue";
+import PortfolioCodeExample from "@/components/projects/TCComponents/CodeExample.vue";
 @Component({
   components: {
     "tc-headline": TCHeadline,
-    "tc-quote": TCQuote
+    "tc-quote": TCQuote,
+    "tc-grid": TCGrid,
+    "tc-button": TCButton,
+    "portfolio-code-example": PortfolioCodeExample
   }
 })
 export default class TCComponentsDetailQuote extends Vue {}

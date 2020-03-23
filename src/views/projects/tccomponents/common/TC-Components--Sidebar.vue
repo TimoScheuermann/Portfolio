@@ -6,16 +6,16 @@
     </div>
 
     <tc-sidebar-item
-      name="Other Projects"
-      icon="book-p"
-      :to="{ name: constants.routes.projects }"
-    ></tc-sidebar-item>
-    <tc-divider />
-    <tc-sidebar-item
       name="Home"
       icon="house"
       :to="{ name: constants.projectRoutes.timos_components }"
     />
+    <tc-sidebar-item
+      name="Getting started"
+      icon="download"
+      :to="{ name: constants.projectRoutes.timos_components }"
+    />
+    <tc-divider />
 
     <tc-sidebar-group icon="chart-empty" name="Layout">
       <tc-sidebar-item
@@ -67,6 +67,11 @@
         }"
       />
     </tc-sidebar-group>
+    <tc-sidebar-item
+      name="Other Projects"
+      icon="book-p"
+      :to="{ name: constants.routes.projects }"
+    />
   </tc-sidebar>
 </template>
 <script lang="ts">
@@ -79,13 +84,17 @@ import tcComponents from "@/components/tc";
 import tcLayouts from "@/components/tc/_layout";
 import constants from "@/constants";
 import { TCComponent } from "@/models/TCComponents/TCComponent.model";
+import TCButton from "@/components/tc/button/TC-Button.vue";
+import TCLink from "@/components/tc/link/TC-Link.vue";
 
 @Component({
   components: {
     "tc-sidebar": TCSidebar,
     "tc-sidebar-group": TCSidebarGroup,
     "tc-sidebar-item": TCSidebarItem,
-    "tc-divider": TCDivider
+    "tc-divider": TCDivider,
+    "tc-button": TCButton,
+    "tc-link": TCLink
   }
 })
 export default class TCComponentsSidebar extends Vue {

@@ -20,8 +20,14 @@
           <div class="portfolio--codeexample--code__tag">
             {{ inner ? ">" : "/>" }}
           </div>
-          <div class="portfolio--codeexample--code__inner" v-if="inner">
-            {{ inner }}
+          <div v-if="inner">
+            <div
+              class="portfolio--codeexample--code__inner"
+              v-for="i in inner.split('**')"
+              :key="i"
+            >
+              {{ i }}
+            </div>
           </div>
           <div class="portfolio--codeexample--code__tag" v-if="inner">
             {{ `&lt;/` + tag + ">" }}

@@ -1,23 +1,25 @@
 <template>
-  <div class="tc-modal" :class="{ 'tc-modal--opened': opened }">
-    <div class="background" @click="close()"></div>
-    <div class="container">
-      <div class="close" @click="close()">
+  <div class="tc-modal" :class="{ 'tc-modal__opened': opened }">
+    <div class="tc-modal--background" @click="close()"></div>
+    <div class="tc-modal--container">
+      <div class="container--close" @click="close()">
         <i class="ti-cross" />
       </div>
-      <div class="head" :id="id">
-        <div v-if="title" class="title">
+      <div class="container--head" :id="id">
+        <div v-if="title" class="container--head--title__prestyled">
           {{ title }}
         </div>
-        <div v-else class="titleSlot">
+        <div v-else class="container--head--title">
           <slot name="header" />
         </div>
-        <div v-if="subtitle" class="subtitle">{{ subtitle }}</div>
+        <div v-if="subtitle" class="container--head--subtitle__prestyled">
+          {{ subtitle }}
+        </div>
       </div>
-      <div class="content">
+      <div class="container--content">
         <slot />
       </div>
-      <div class="buttons">
+      <div class="container--buttons">
         <slot name="buttons" />
       </div>
     </div>
@@ -74,30 +76,30 @@ export default class TCModal extends Vue {
   position: fixed;
   z-index: 1000;
   visibility: hidden;
-  &.tc-modal--opened {
+  &.tc-modal__opened {
     visibility: visible;
   }
 
   @media #{$isMobile} {
-    .container {
+    .tc-modal--container {
       transition: transform 0.3s ease-in-out;
       transform: translateY(100%);
       max-height: calc(
         100vh - 60px - env(safe-area-inset-top) - env(safe-area-inset-bottom)
       );
     }
-    &.tc-modal--opened {
+    &.tc-modal__opened {
       bottom: 0;
       left: 0;
       right: 0;
 
-      .container {
+      .tc-modal--container {
         transform: translateY(0%);
         border-top: {
           left-radius: 10px;
           right-radius: 10px;
         }
-        .buttons {
+        .container--buttons {
           .tc-button {
             display: block;
             margin: 10px 3px;
@@ -108,20 +110,20 @@ export default class TCModal extends Vue {
   }
 
   @media #{$isDesktop} {
-    .container {
+    .tc-modal--container {
       position: fixed;
       left: 50%;
       top: 50%;
       transform: translate(-50%, -50%) scale(0);
       transition: 0.2s ease-in-out;
     }
-    &.tc-modal--opened {
-      .container {
+    &.tc-modal__opened {
+      .tc-modal--container {
         transform: translate(-50%, -50%) scale(1);
         max-height: 60vh;
         max-width: 60vw;
         border-radius: $border-radius;
-        .buttons {
+        .container--buttons {
           .tc-button {
             margin-top: 15px;
           }
@@ -129,8 +131,8 @@ export default class TCModal extends Vue {
       }
     }
   }
-  &.tc-modal--opened {
-    .background {
+  &.tc-modal__opened {
+    .tc-modal--background {
       position: fixed;
       top: 0;
       left: 0;
@@ -139,8 +141,8 @@ export default class TCModal extends Vue {
       background: rgba(0, 0, 0, 0.84);
     }
   }
-  .container {
-    .close {
+  .tc-modal--container {
+    .container--close {
       cursor: pointer;
       position: absolute;
       right: 10px;
@@ -165,22 +167,22 @@ export default class TCModal extends Vue {
       left: calc(15px + env(safe-area-inset-left));
       bottom: calc(15px + env(safe-area-inset-bottom));
     }
-    .head {
+    .container--head {
       margin: 0 14px;
-      .title,
-      .subtitle {
+      .container--head--title__prestyled,
+      .container--head--subtitle__prestyled {
         text-align: center;
         font-weight: bold;
       }
-      .title {
+      .container--head--title__prestyled {
         font-size: 1.5em;
       }
-      .subtitle {
+      .container--head--subtitle__prestyled {
         opacity: 0.7;
         margin: 5px 0;
       }
     }
-    .content {
+    .container--content {
       padding: 20px 0;
       overflow: {
         y: auto;
@@ -194,7 +196,7 @@ export default class TCModal extends Vue {
         max-width: 100%;
       }
     }
-    .buttons {
+    .container--buttons {
       @media #{$isMobile} {
         .tc-button {
           height: 30px;

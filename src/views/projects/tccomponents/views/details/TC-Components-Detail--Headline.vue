@@ -31,7 +31,7 @@
       <portfolio-code-example
         title="Example of Default Slot"
         tag="tc-headline"
-        inner="<tc-button name='Logout' icon='logout'></tc-button>"
+        inner="<tc-button name='Logout' icon='logout' />"
         :attr="{ title: 'Welcome back!' }"
       >
         <tc-headline title="Welcome back!">
