@@ -2,6 +2,19 @@
   <div content>
     <tc-header title="Contact"></tc-header>
     <h1>Contact</h1>
+    <div>
+      <h2>new Input</h2>
+      <tc-input placeholder="Hello World" title="Hello" icon="user" />
+
+      <tc-input type="time" icon="alarm" />
+
+      <tc-input type="number" :buttons="true" />
+
+      <tc-input type="number" icon="heart" :buttons="true" />
+
+      <tc-input type="number" icon="heart" />
+    </div>
+
     <tc-button
       :icon="modal ? 'heart' : 'share'"
       name="Open modal"
@@ -131,7 +144,8 @@ import TCSlider from "@/components/tc/slider/TC-Slider.vue";
 import TCCheckbox from "@/components/tc/checkbox/TC-Checkbox.vue";
 import PMobileView from "@/components/shared/mobileView/P-MobileView.vue";
 import TCModal from "@/components/tc/modal/TC-Modal.vue";
-import TCDivider from "../../components/tc/divider/TC-Divider.vue";
+import TCDivider from "@/components/tc/divider/TC-Divider.vue";
+import TCInput from "@/components/tc/input/TC-Input.vue";
 
 @Component({
   components: {
@@ -147,7 +161,8 @@ import TCDivider from "../../components/tc/divider/TC-Divider.vue";
     "tc-slider": TCSlider,
     "p-mobile-view": PMobileView,
     "tc-modal": TCModal,
-    "tc-divider": TCDivider
+    "tc-divider": TCDivider,
+    "tc-input": TCInput
   }
 })
 export default class ContactView extends Vue {
@@ -162,6 +177,32 @@ export default class ContactView extends Vue {
   switchOne: boolean = true;
   checkbox: boolean = false;
   modal: boolean = false;
+  colVal: any = "";
+
+  inputTypes: string[] = [
+    "button",
+    "checkbox",
+    "color",
+    "date",
+    "datetime-local",
+    "email",
+    "file",
+    "hidden",
+    "image",
+    "month",
+    "number",
+    "password",
+    "radio",
+    "range",
+    "reset",
+    "search",
+    "submit",
+    "tel",
+    "text",
+    "time",
+    "url",
+    "week"
+  ];
 
   created() {
     this.l();

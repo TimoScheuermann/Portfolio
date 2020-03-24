@@ -44,9 +44,9 @@
 <script lang="ts">
 import { Vue, Component } from "vue-property-decorator";
 import TCHeadline from "@/components/tc/headline/TC-Headline.vue";
-import PortfolioCodeExample from "@/components/projects/TCComponents/CodeExample.vue";
 import TCButton from "@/components/tc/button/TC-Button.vue";
 import TCGrid from "@/components/tc/_layout/grid/TC-Grid.vue";
+import PortfolioCodeExample from "@/components/projects/TCComponents/CodeExample.vue";
 @Component({
   components: {
     "portfolio-code-example": PortfolioCodeExample,

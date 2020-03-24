@@ -15,7 +15,124 @@ const tcComponents: TCComponent[] = [
   {
     name: "Input",
     icon: "input",
-    api: []
+    api: [
+      {
+        name: "icon",
+        type: "string",
+        description: "Adds an Icon in front of the input field",
+        parameters: "Timo's Icons"
+      },
+      {
+        name: "title",
+        type: "string",
+        description: "Sets a prestyled title on top of the input field"
+      },
+      {
+        name: "buttons",
+        type: "boolean",
+        description: "Adds +/- Buttons (only for type='number')"
+      },
+      {
+        name: "placeholder",
+        type: "string",
+        description:
+          "Specifies a short hint that describes the expected value of an <tc-input> element"
+      },
+      {
+        name: "type",
+        type: "string",
+        description: "Input type",
+        default: "text"
+      },
+      {
+        name: "value",
+        type: "any",
+        description: "Determines the state of the checkbox",
+        default: "false"
+      },
+      { name: "v-model", type: "any", description: "" },
+      {
+        name: "@input",
+        type: "function",
+        description:
+          "Is called whenever the user changes the state of the checkbox"
+      },
+      {
+        name: "accept",
+        type: "string",
+        description:
+          "Specifies a filter for what file types the user can pick from the file input dialog box (only for type='file')"
+      },
+      {
+        name: "autocomplete",
+        type: "string",
+        parameters: "on, off",
+        description:
+          "Specifies whether an <tc-input> element should have autocomplete enabled"
+      },
+      {
+        name: "autofocus",
+        type: "boolean",
+        description:
+          "Specifies that an <tc-input> element should automatically get focus when the page loads"
+      },
+      {
+        name: "disabled",
+        type: "boolean",
+        description: "Specifies that an <tc-input> element should be disabled"
+      },
+      {
+        name: "form",
+        type: "string",
+        description: "Specifies the form the <tc-input> element belongs to"
+      },
+      {
+        name: "max",
+        type: "number | date",
+        description: "Specifies the maximum value for an <tc-input> element"
+      },
+      {
+        name: "maxlength",
+        type: "number",
+        description:
+          "Specifies the maximum number of characters allowed in an <tc-input> element"
+      },
+      {
+        name: "min",
+        type: "number | date",
+        description: "Specifies a minimum value for an <tc-input> element"
+      },
+      {
+        name: "minlength",
+        type: "number",
+        description:
+          "Specifies the minimum number of characters required in an <tc-input> element"
+      },
+      {
+        name: "pattern",
+        type: "string",
+        description:
+          "Specifies a regular expression that an <tc-input> element's value is checked against"
+      },
+      {
+        name: "readonly",
+        type: "boolean",
+        description: "Specifies that an input field is read-only"
+      },
+      {
+        name: "required",
+        type: "boolean",
+        description:
+          "Specifies that an input field must be filled out before submitting the form"
+      },
+      {
+        name: "step",
+        type: "number",
+        default: "1",
+        description:
+          "Specifies the interval between legal numbers in an input field"
+      }
+    ]
   },
   {
     name: "Card",
@@ -146,7 +263,7 @@ const tcComponents: TCComponent[] = [
       { name: "v-model", type: "boolean", description: "" },
       {
         name: "@input",
-        type: "boolean",
+        type: "function",
         description:
           "Is called whenever the user changes the state of the checkbox"
       }
@@ -180,7 +297,7 @@ const tcComponents: TCComponent[] = [
       { name: "v-model", type: "boolean", description: "" },
       {
         name: "@input",
-        type: "boolean",
+        type: "function",
         description:
           "Is called whenever the user changes the state of the modal"
       }
