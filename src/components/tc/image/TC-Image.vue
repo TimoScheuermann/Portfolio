@@ -1,20 +1,19 @@
 <template>
   <div class="tc-image">
-    {{ expanded ? "jo" : "ne" }}
     <div class="tc-image--small" @click="expanded = true">
-      <img :src="img" />
+      <img :src="src" />
     </div>
     <div
       class="tc-image--expanded"
       @click="expanded = false"
       :class="{ visible: expanded }"
     >
-      <div class="background">
-        <div class="close" @click="expanded = false">
+      <div class="tc-image--background">
+        <div class="background--close" @click="expanded = false">
           <i class="ti-cross" />
         </div>
       </div>
-      <img :src="img" alt="" />
+      <img :src="src" alt="" />
     </div>
   </div>
 </template>
@@ -25,11 +24,7 @@ import uuidVue from "../uuid.vue";
 
 @Component
 export default class TCImage extends Vue {
-  @Prop({
-    default:
-      "https://www.ithaca.edu/sites/default/files/2018-09/Sea%20otters%20holding%20hands%20by%20Ken%20Conger_0.jpg"
-  })
-  img!: string;
+  @Prop() src!: string;
   expanded: boolean = false;
 }
 </script>
@@ -68,12 +63,15 @@ export default class TCImage extends Vue {
     video {
       transition: 0.3s ease-in-out;
       position: relative;
-      max-width: 80vw;
-      max-height: 80vh;
+      // max-width: 80vw;
+      // max-height: 80vh;
+      width: 100vw;
+      height: 100vh;
+      object-fit: contain;
     }
 
     &.visible {
-      .background {
+      .tc-image--background {
         position: fixed;
         left: 50%;
         transform: translate(-50%, -50%);
@@ -81,7 +79,7 @@ export default class TCImage extends Vue {
         width: 100vw;
         height: 100vh;
         background: #000;
-        .close {
+        .background--close {
           height: 30px;
           width: 30px;
           position: fixed;

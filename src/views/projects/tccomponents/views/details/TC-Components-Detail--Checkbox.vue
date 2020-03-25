@@ -25,10 +25,120 @@
 
       <portfolio-code-example
         tag="tc-checkbox"
-        title="Custom Checkmark Color"
-        :attr="{ color: 'red', title: 'I have a red checkmark' }"
+        title="Custom Symbol"
+        :attr="{
+          title: 'Custom Icon',
+          iconChecked: 'checkmark',
+          iconUnchecked: 'cross',
+          iconAnimation: 'spin'
+        }"
       >
-        <tc-checkbox color="red" title="I have a red checkmark" />
+        <tc-checkbox
+          title="Custom Icon"
+          iconChecked="checkmark"
+          iconUnchecked="cross"
+          iconAnimation="spin"
+        />
+      </portfolio-code-example>
+    </tc-grid>
+
+    <tc-headline title="Options" />
+
+    <tc-grid>
+      <portfolio-code-example
+        tag="tc-checkbox"
+        title="Position: left"
+        :attr="{ title: 'Position: Left' }"
+      >
+        <tc-checkbox title="Position: Left" />
+      </portfolio-code-example>
+
+      <portfolio-code-example
+        tag="tc-checkbox"
+        title="Position: right"
+        :attr="{ title: 'Position: Right', position: 'right' }"
+      >
+        <tc-checkbox title="Position: Right" position="right" />
+      </portfolio-code-example>
+
+      <portfolio-code-example
+        tag="tc-checkbox"
+        title="Custom color"
+        :attr="{ title: 'Color: Red', color: 'red' }"
+      >
+        <tc-checkbox title="Color: Red" color="red" />
+      </portfolio-code-example>
+
+      <portfolio-code-example
+        tag="tc-checkbox"
+        title="Custom color + icon"
+        :attr="{
+          title: 'Color: Orange',
+          color: 'orange',
+          iconChecked: 'sun',
+          iconUnchecked: 'moon'
+        }"
+      >
+        <tc-checkbox
+          title="Color: Orange"
+          color="orange"
+          iconChecked="sun"
+          iconUnchecked="moon"
+        />
+      </portfolio-code-example>
+
+      <portfolio-code-example
+        tag="tc-checkbox"
+        title="Animation: step"
+        :attr="{
+          title: 'Animation: step',
+          iconChecked: 'minus',
+          iconUnchecked: 'plus',
+          iconAnimation: 'step'
+        }"
+      >
+        <tc-checkbox
+          title="Animation: step"
+          iconChecked="minus"
+          iconUnchecked="plus"
+          iconAnimation="step"
+        />
+      </portfolio-code-example>
+
+      <portfolio-code-example
+        tag="tc-checkbox"
+        title="Animation: spin"
+        :attr="{
+          title: 'Animation: spin',
+          iconChecked: 'arrow-down',
+          iconUnchecked: 'arrow-up',
+          iconAnimation: 'spin'
+        }"
+      >
+        <tc-checkbox
+          title="Animation: spin"
+          iconChecked="arrow-down"
+          iconUnchecked="arrow-up"
+          iconAnimation="spin"
+        />
+      </portfolio-code-example>
+
+      <portfolio-code-example
+        tag="tc-checkbox"
+        title="Animation: flip"
+        :attr="{
+          title: 'Animation: flip',
+          iconChecked: 'key',
+          iconUnchecked: 'lock-closed',
+          iconAnimation: 'flip'
+        }"
+      >
+        <tc-checkbox
+          title="Animation: flip"
+          iconChecked="key"
+          iconUnchecked="lock-closed"
+          iconAnimation="flip"
+        />
       </portfolio-code-example>
     </tc-grid>
   </div>

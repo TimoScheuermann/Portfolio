@@ -57,6 +57,22 @@
       >
         <tc-input :disabled="true" icon="alarm" />
       </portfolio-code-example>
+
+      <portfolio-code-example
+        title="Input with placeholder"
+        tag="tc-input"
+        :attr="{ placeholder: 'Username' }"
+      >
+        <tc-input placeholder="Username" />
+      </portfolio-code-example>
+
+      <portfolio-code-example
+        title="Input with Title"
+        tag="tc-input"
+        :attr="{ title: 'Username', icon: 'user' }"
+      >
+        <tc-input title="Username" icon="user" />
+      </portfolio-code-example>
     </tc-grid>
 
     <tc-headline title="Types" />
@@ -103,6 +119,10 @@ import TCLink from "@/components/tc/link/TC-Link.vue";
   }
 })
 export default class TCComponentsDetailInput extends Vue {
+  // TODO:
+  // Add placeholder example
+  // Add Title example
+
   currentType: string = "text";
   inputTypes: string[] = [
     "button",

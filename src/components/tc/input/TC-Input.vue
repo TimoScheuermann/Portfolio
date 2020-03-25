@@ -118,6 +118,7 @@ $size: 30px;
   margin: 3px;
 
   .tc-input--title {
+    text-align: left;
     font-weight: bold;
     opacity: 0.8;
     margin-bottom: 3px;
@@ -132,7 +133,7 @@ $size: 30px;
     border: 1px solid rgba($color, 0.01) {
       radius: $border-radius;
     }
-    &:hover {
+    &:not(.tc-input__disabled):hover {
       border-color: rgba($color, 0.4);
     }
 

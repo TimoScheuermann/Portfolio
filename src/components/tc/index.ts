@@ -249,6 +249,32 @@ const tcComponents: TCComponent[] = [
         description: "Sets a title next to the checkbox"
       },
       {
+        name: "position",
+        type: "string",
+        description: "",
+        parameters: "left, right",
+        default: "left"
+      },
+      {
+        name: "iconChecked",
+        type: "string",
+        description: "",
+        parameters: "Timo's Icon"
+      },
+      {
+        name: "iconUnchecked",
+        type: "string",
+        description: "",
+        parameters: "Timo's Icon"
+      },
+      {
+        name: "iconAnimation",
+        type: "string",
+        description: "",
+        parameters: "step, spin, flip",
+        default: "step"
+      },
+      {
         name: "color",
         type: "string",
         description: "Determines the color of the checkmark",
@@ -272,7 +298,15 @@ const tcComponents: TCComponent[] = [
   {
     name: "Link",
     icon: "arrow-down-right",
-    api: []
+    api: [
+      {
+        name: "to",
+        type: "any",
+        description: ""
+      },
+      { name: "href", type: "string", description: "" },
+      { name: "@click", type: "function", description: "" }
+    ]
   },
   {
     name: "Modal",

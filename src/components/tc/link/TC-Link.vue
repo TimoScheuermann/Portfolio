@@ -1,13 +1,32 @@
 <template>
-  <router-link tag="a" class="tc-link" v-if="to" :to="to"><slot /></router-link>
-  <a v-else class="tc-link" :href="href"><slot /></a>
+  <router-link
+    tag="a"
+    class="tc-link"
+    v-if="to"
+    :to="to"
+    @click="clicked($event)"
+  >
+    <slot />
+  </router-link>
+  <a
+    v-else
+    class="tc-link"
+    :href="href"
+    target="_blank"
+    @click="clicked($event)"
+    ><slot
+  /></a>
 </template>
 <script lang="ts">
 import { Vue, Component, Prop } from "vue-property-decorator";
 @Component
 export default class TCLink extends Vue {
   @Prop() to!: any;
-  @Prop({ default: "#" }) href!: string;
+  @Prop() href!: string;
+
+  public clicked(event: any): void {
+    this.$emit("click", event);
+  }
 }
 </script>
 <style lang="scss" scoped>

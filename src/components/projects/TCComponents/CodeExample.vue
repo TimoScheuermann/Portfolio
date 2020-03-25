@@ -73,6 +73,8 @@ export default class PortfolioCodeExample extends Vue {
       }
       .value {
         color: #3b95d5;
+        max-width: 100%;
+        overflow-wrap: break-word;
       }
     }
     &__tag {
