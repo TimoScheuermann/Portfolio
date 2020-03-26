@@ -15,16 +15,43 @@
       </div>
     </div>
 
-    <div class="tc-header--items">
+    <div
+      v-if="!itemsOverflow"
+      class="tc-header--items"
+      :id="'tc-header--item_' + uuid"
+    >
       <slot />
+    </div>
+    <div v-else class="tc-header--items__overflow">
+      <tc-checkbox
+        v-model="itemCard"
+        iconChecked="arrow-down"
+        iconUnchecked="arrow-up"
+        iconAnimation="flip"
+      />
+    </div>
+    <div
+      v-if="itemCard && itemsOverflow"
+      class="tc-overflow-items"
+      :style="getOverflowStyle()"
+      :class="{ ...getClasses(), 'tc-overflow-items__visible': itemCard }"
+    >
+      <div class="tc-overflow-items--container">
+        <slot />
+      </div>
     </div>
   </div>
 </template>
 <script lang="ts">
 import { Vue, Component, Prop } from "vue-property-decorator";
 import TCComponent from "../tccomponent.vue";
+import uuidVue from "../uuid.vue";
+import TCCheckbox from "../checkbox/TC-Checkbox.vue";
 @Component({
-  mixins: [TCComponent]
+  mixins: [TCComponent, uuidVue],
+  components: {
+    "tc-checkbox": TCCheckbox
+  }
 })
 export default class TCHeader extends Vue {
   @Prop() title!: string;
@@ -34,13 +61,36 @@ export default class TCHeader extends Vue {
   @Prop() backHref!: string;
   @Prop() backName!: string;
 
+  private uuid!: number;
   private dark!: boolean;
   private defaultStyle!: any;
+
+  public itemsOverflow: boolean = false;
+  public itemCard: boolean = false;
+
+  mounted() {
+    window.addEventListener("resize", this.resize);
+    this.resize();
+  }
+
+  beforeDestroy() {
+    window.removeEventListener("resize", this.resize);
+  }
 
   public clicked(event: any): void {
     this.$emit("click", event);
     if (this.backTo) this.$router.push(this.backTo);
     else if (this.backHref) window.open(this.backHref, "_blank");
+  }
+
+  public resize(): void {
+    this.itemsOverflow = false;
+    setTimeout(() => {
+      const element = document.getElementById("tc-header--item_" + this.uuid)!;
+      this.itemsOverflow =
+        element.scrollHeight > element.clientHeight ||
+        element.scrollWidth > element.clientWidth;
+    }, 100);
   }
 
   getClasses() {
@@ -57,6 +107,12 @@ export default class TCHeader extends Vue {
   getStyles() {
     var style = this.defaultStyle;
     style.top = (this.variant == "floating" ? 40 : 0) + +this.top + "px";
+    return style;
+  }
+
+  getOverflowStyle() {
+    var style = this.defaultStyle;
+    style.top = (this.variant == "floating" ? 40 : 0) + +this.top + 50 + "px";
     return style;
   }
 }
@@ -120,6 +176,142 @@ export default class TCHeader extends Vue {
       font-weight: bold;
       font-size: 18px;
     }
+  }
+  .tc-header--items {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    overflow: auto;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    & > * {
+      animation: appear 0.1s linear 0.2s both;
+    }
+  }
+  .tc-header--items__overflow {
+    display: flex;
+    overflow: visible;
+    .tc-checkbox {
+      background: none !important;
+      border: none;
+      * {
+        overflow: visible;
+      }
+      /deep/ .icon {
+        transform: scaleX(2);
+        color: currentColor;
+        opacity: 0.6;
+      }
+    }
+  }
+
+  .tc-overflow-items {
+    right: 0;
+
+    user-select: none;
+    box-shadow: $shadow;
+    border-radius: 0px 0px $border-radius $border-radius;
+    overflow: hidden;
+    max-height: 0px;
+    &.tc-overflow-items__visible {
+      animation: overflow-items-anim 0.4s ease-in-out both;
+    }
+
+    &.tc-header__sticky {
+      position: sticky;
+      padding: 0 5vw;
+      left: 0;
+    }
+    &.tc-header__fixed {
+      position: fixed;
+      left: 0;
+      padding: 0 5vw {
+        top: env(safe-area-inset-top);
+      }
+    }
+    &.tc-header__floating {
+      position: fixed;
+      margin: 0 10vw;
+      padding: 0 20px;
+      border-radius: $border-radius;
+    }
+
+    &.tc-header__dark {
+      background: $color;
+      color: #fff;
+    }
+    &.tc-header__light {
+      background: $background;
+      color: $color;
+    }
+    &::-webkit-scrollbar {
+      width: 4px;
+      height: 4px;
+      position: absolute !important;
+      border-radius: 4px;
+      transition: 0.2s ease;
+    }
+
+    &::-webkit-scrollbar:hover {
+      width: 4px;
+    }
+
+    &::-webkit-scrollbar-track {
+      display: none;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: #666;
+      border-radius: 4px;
+      transition: 0.2s ease;
+      &:hover {
+        background: #888;
+        transition: 0.2s ease;
+        cursor: grabbing;
+      }
+    }
+    .tc-overflow-items--container {
+      padding: 20px 0;
+
+      /deep/ {
+        & > * {
+          display: block;
+          margin: 0 5px;
+          font-weight: 500;
+          &:not(:last-child) {
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+          }
+          padding: 10px {
+            right: 0px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@keyframes overflow-items-anim {
+  0% {
+    overflow: hidden;
+    max-height: 0px;
+  }
+  99.999% {
+    overflow: hidden;
+  }
+  100% {
+    overflow: auto;
+    max-height: 250px;
+  }
+}
+@keyframes appear {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }
 </style>

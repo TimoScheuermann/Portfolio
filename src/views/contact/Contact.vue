@@ -1,7 +1,17 @@
 <template>
   <div content>
-    <tc-header title="Contact"></tc-header>
+    <tc-header title="Contact">
+      <div class="header__project">Make window smaller to see</div>
+      <div class="header__project">Timo's Icons</div>
+      <div class="header__project">DHBW Richie</div>
+      <div class="header__project">AMS Pro</div>
+      <tc-switch class="header__project"></tc-switch>
+      <div>
+        <tc-button name="Hello" icon="heart"></tc-button>
+      </div>
+    </tc-header>
     <h1>Contact</h1>
+
     <div>
       <h2>new Input</h2>
       <tc-input placeholder="Hello World" title="Hello" icon="user" />
@@ -296,6 +306,20 @@ h1 {
     transform: perspective(350px) rotateX(25deg) translateY(0px) rotateZ(-10deg);
 
     filter: drop-shadow(4px 8px 20px rgba(0, 0, 0, 0.19));
+  }
+}
+.header__project {
+  white-space: nowrap;
+  margin: 0 5px;
+  font-weight: 500;
+  padding: 10px {
+    right: 0px;
+  }
+}
+.header__example {
+  margin: 30px 0;
+  .tc-header {
+    position: relative;
   }
 }
 </style>

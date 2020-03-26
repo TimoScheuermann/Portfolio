@@ -38,11 +38,11 @@ export default class PMobileView extends Vue {
     const container: HTMLElement | null = document.getElementById("container");
     const phone: HTMLElement | null = document.getElementById("phone");
     if (container && phone) {
-      console.log("resize");
-      console.log("CW", container!.clientWidth);
-      console.log("PW", phone!.clientWidth);
+      // console.log("resize");
+      // console.log("CW", container!.clientWidth);
+      // console.log("PW", phone!.clientWidth);
       this.scale = container!.clientWidth / 1125;
-      console.log("Scale", this.scale);
+      // console.log("Scale", this.scale);
     }
   }
 }
