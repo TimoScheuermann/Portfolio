@@ -1,5 +1,18 @@
 <template lang="html">
   <div id="app">
+    <tc-navbar v-if="false" :dark="darkTabbar">
+      <b slot="logo">Logo</b>
+      <tc-button slot="actions" name="Login" icon="login" />
+      <tc-navbar-item name="Home" icon="house" :to="{ name: 'home' }" />
+      <tc-navbar-item
+        v-for="p in projects"
+        :key="p.title"
+        :name="p.title"
+        :icon="p.images.tiIcon"
+        :to="{ name: p.routeName }"
+      />
+    </tc-navbar>
+
     <tc-sidebar :dark="darkTabbar" v-if="showSidebar()">
       <div slot="header" class="tc-sidebar--header">
         <div class="icon">P</div>
@@ -58,8 +71,15 @@ import { Project } from "@/models/Projects/Project.model";
 import TCTabbar from "./components/tc/tabbar/TC-Tabbar.vue";
 import TCTabbarItem from "./components/tc/tabbar/TC-Tabbar-Item.vue";
 
+import TCNavbar from "@/components/tc/navbar/TC-Navbar.vue";
+import TCNavbarItem from "@/components/tc/navbar/TC-Navbar-Item.vue";
+import TCButton from "./components/tc/button/TC-Button.vue";
+
 @Component({
   components: {
+    "tc-button": TCButton,
+    "tc-navbar": TCNavbar,
+    "tc-navbar-item": TCNavbarItem,
     "tc-sidebar": TCSidebar,
     "tc-sidebar-group": TCSidebarGroup,
     "tc-sidebar-item": TCSidebarItem,

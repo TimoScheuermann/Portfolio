@@ -66,6 +66,7 @@ export default class TCButton extends Vue {
   border-radius: $border-radius;
   user-select: none;
   cursor: pointer;
+  white-space: nowrap;
   transition: 0.2s ease-in-out;
   &.tc-button__withoutName {
     padding: 5px 4px;

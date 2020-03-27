@@ -1,35 +1,37 @@
 <template>
-  <div content>
-    <tc-header title="Timos Icons" />
-
-    <div class="hero">
-      <div class="logo">
-        <img src="../../../assets/projects/timosicons/timosicons.svg" />
-      </div>
-
-      <tc-card rounded="true" title="Timo's Icons" class="card">
-        <img class="card-image" src="assets/icons.png" />
-        <div>
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatibus
-          quos ratione porro commodi quo fuga, numquam nostrum eos repellendus
-          illo corrupti recusandae nobis possimus. Temporibus deleniti eligendi
-          ex rem fuga.
-        </div>
-        <br />
-
+  <div>
+    <tc-header title="Timos Icons">
+      <div class="tc-header--button">
         <tc-button
           icon="save"
           name="Versions"
           :to="{ name: constants.projectRoutes.timos_icons_versions }"
-        ></tc-button>
+        />
+      </div>
+      <div class="tc-header--button">
         <tc-button
           icon="download"
           name="Getting started"
           :to="{ name: constants.projectRoutes.timos_icons_getting_started }"
-        ></tc-button>
-      </tc-card>
+        />
+      </div>
+    </tc-header>
+
+    <tc-hero>
+      <img slot="background" src="assets/icons_hero.png" />
+      <img class="tc-hero-title--image" src="assets/icons.png" />
+    </tc-hero>
+
+    <div content>
+      <tc-headline title="Timos Icons" />
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil
+        voluptatibus ratione, quae repudiandae reiciendis reprehenderit omnis
+        dignissimos? Inventore eaque corporis fugiat voluptatem culpa, sint
+        cumque maiores, reiciendis consectetur sit distinctio!
+      </p>
+      <icon-gallery />
     </div>
-    <icon-gallery />
   </div>
 </template>
 
@@ -37,16 +39,18 @@
 import { Vue, Component } from "vue-property-decorator";
 import constants from "@/constants";
 import TCButton from "@/components/tc/button/TC-Button.vue";
-import TCCard from "@/components/tc/card/TC-Card.vue";
 import IconGallery from "@/components/projects/TimosIcons/IconGallery.vue";
 import TCHeader from "@/components/tc/header/TC-Header.vue";
+import TCHero from "@/components/tc/hero/TC-Hero.vue";
+import TCHeadline from "@/components/tc/headline/TC-Headline.vue";
 
 @Component({
   components: {
     "icon-gallery": IconGallery,
-    "tc-card": TCCard,
     "tc-button": TCButton,
-    "tc-header": TCHeader
+    "tc-header": TCHeader,
+    "tc-hero": TCHero,
+    "tc-headline": TCHeadline
   }
 })
 export default class TimosIcons extends Vue {
@@ -56,34 +60,15 @@ export default class TimosIcons extends Vue {
 
 <style lang="scss" scoped>
 @import "../../../scss/variables.scss";
-.card {
-  max-width: 600px;
-  .card-image {
-    filter: drop-shadow(4px 8px 20px rgba(0, 0, 0, 0.19));
+[content] {
+  padding-top: 5px;
+}
+.tc-hero {
+  .tc-hero-title--image {
+    max-width: 300px;
   }
 }
-.hero {
-  // display: grid;
-  // grid-template-columns: 1fr 2fr;
-  // grid-gap: 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 30px;
-  .logo {
-    max-width: 400px;
-  }
-
-  @media #{$isMobile} {
-    grid-template-columns: 1fr;
-    .logo {
-      display: none;
-    }
-  }
-  .logo {
-    img {
-      max-width: 100%;
-    }
-  }
+.tc-header--button {
+  text-align: center;
 }
 </style>

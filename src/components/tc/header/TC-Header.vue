@@ -112,7 +112,12 @@ export default class TCHeader extends Vue {
 
   getOverflowStyle() {
     var style = this.defaultStyle;
-    style.top = (this.variant == "floating" ? 40 : 0) + +this.top + 50 + "px";
+    style.top =
+      "calc(env(safe-area-inset-top) + " +
+      (this.variant == "floating" ? 40 : 0) +
+      +this.top +
+      50 +
+      "px)";
     return style;
   }
 }
@@ -174,6 +179,7 @@ export default class TCHeader extends Vue {
 
     .tc-header--title__prestyled {
       font-weight: bold;
+      white-space: nowrap;
       font-size: 18px;
     }
   }
@@ -228,9 +234,7 @@ export default class TCHeader extends Vue {
     &.tc-header__fixed {
       position: fixed;
       left: 0;
-      padding: 0 5vw {
-        top: env(safe-area-inset-top);
-      }
+      padding: 0 5vw;
     }
     &.tc-header__floating {
       position: fixed;

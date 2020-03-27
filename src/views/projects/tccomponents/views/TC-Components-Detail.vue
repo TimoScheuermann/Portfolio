@@ -1,6 +1,11 @@
 <template>
   <div v-if="compFound">
-    <component-hero v-if="getTCComponent()" :component="getTCComponent()" />
+    <tc-hero height="100">
+      <img slot="background" src="assets/final_trans.png" />
+      <div class="title">
+        {{ getTCComponent().name }}
+      </div>
+    </tc-hero>
     <div content>
       <component :is="currentComponent" />
       <div v-if="getTCComponent() && !getTCComponent().customAPI">
@@ -30,19 +35,19 @@
 import { Vue, Component, Watch } from "vue-property-decorator";
 import TCSpinner from "@/components/tc/spinner/TC-Spinner.vue";
 import TCComponentsNotFound from "./TC-Components-NotFound.vue";
-import ComponentHero from "@/components/projects/TCComponents/ComponentHero.vue";
 import TCHeadline from "@/components/tc/headline/TC-Headline.vue";
 import TCTable from "@/components/tc/table/TC-Table.vue";
 import tcComponents from "@/components/tc";
 import tcLayouts from "@/components/tc/_layout";
 import { TCComponent } from "@/models/TCComponents/TCComponent.model";
+import TCHero from "@/components/tc/hero/TC-Hero.vue";
 
 @Component({
   components: {
-    "component-hero": ComponentHero,
     "tc-components-not-found": TCComponentsNotFound,
     "tc-headline": TCHeadline,
-    "tc-table": TCTable
+    "tc-table": TCTable,
+    "tc-hero": TCHero
   }
 })
 export default class TCComponentsDetail extends Vue {
@@ -99,6 +104,15 @@ export default class TCComponentsDetail extends Vue {
 </script>
 <style lang="scss" scoped>
 @import "../../../../scss/variables";
+
+.tc-hero {
+  .title {
+    font-weight: bold;
+    font-size: 1.5em;
+    padding: 5px;
+  }
+}
+
 [content] {
   padding-top: 0px;
 }

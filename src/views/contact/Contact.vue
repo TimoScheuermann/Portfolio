@@ -75,6 +75,9 @@
       <img src="assets/final.png" />
     </div>
 
+    <h2>Icon Test</h2>
+    <comph />
+
     <h2>Mobile View</h2>
     <tc-card>
       <p-mobile-view></p-mobile-view>
@@ -156,9 +159,14 @@ import PMobileView from "@/components/shared/mobileView/P-MobileView.vue";
 import TCModal from "@/components/tc/modal/TC-Modal.vue";
 import TCDivider from "@/components/tc/divider/TC-Divider.vue";
 import TCInput from "@/components/tc/input/TC-Input.vue";
+import TCNavbar from "@/components/tc/navbar/TC-Navbar.vue";
+import TCNavbarItem from "@/components/tc/navbar/TC-Navbar-Item.vue";
+import ComponentHero from "@/components/projects/TCComponents/ComponentHero.vue";
 
 @Component({
   components: {
+    "tc-navbar": TCNavbar,
+    "tc-navbar-item": TCNavbarItem,
     "tc-button": TCButton,
     "tc-card": TCCard,
     "tc-checkbox": TCCheckbox,
@@ -172,7 +180,8 @@ import TCInput from "@/components/tc/input/TC-Input.vue";
     "p-mobile-view": PMobileView,
     "tc-modal": TCModal,
     "tc-divider": TCDivider,
-    "tc-input": TCInput
+    "tc-input": TCInput,
+    comph: ComponentHero
   }
 })
 export default class ContactView extends Vue {

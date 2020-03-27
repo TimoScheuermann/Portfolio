@@ -1,7 +1,7 @@
 <template>
   <div class="tc-revealer">
-    <input type="checkbox" :id="'tc-revealer_' + uuid" />
-    <label :for="'tc-revealer_' + uuid">
+    <input type="checkbox" :id="id" />
+    <label :for="id">
       <tc-headline :title="title" :icon="icon">
         <div class="iconWrapper">
           <div class="icon">
@@ -31,6 +31,8 @@ import uuid from "../uuid.vue";
 export default class TCRevealer extends Vue {
   @Prop({ default: "Revealer", type: String }) title!: string;
   @Prop() icon!: string;
+  uuid!: number;
+  id: string = "tc-revealer_" + this.uuid;
 }
 </script>
 <style lang="scss" scoped>
@@ -42,7 +44,7 @@ export default class TCRevealer extends Vue {
       label {
         .iconWrapper {
           .icon {
-            transform: translate(-50%, -50%) rotate(0deg);
+            transform: translate(-50%, -50%) rotate(90deg);
           }
         }
       }
