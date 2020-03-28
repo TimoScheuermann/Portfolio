@@ -39,37 +39,26 @@ import constants from "@/constants";
 export default class TimosIconsVersions extends Vue {
   public constants: {} = constants;
   public getVersions(): string[] {
-    return [
-      ...new Set(icons.map(x => (x.version ? x.version : "1.0")))
-    ].sort((a, b) => b.localeCompare(a));
-  }
-  public getVersionIcons(version: string): Icon[] {
-    return icons.filter(x =>
-      x.version ? x.version === version : version === "1.0"
+    return [...new Set(icons.map(x => (x.version ? x.version : "1.0")))].sort(
+      (a, b) => this.versionToNumber(b) - this.versionToNumber(a)
     );
+  }
+
+  private versionToNumber(v: string): number {
+    return +v.split(".").join("");
+  }
+
+  public getVersionIcons(version: string): Icon[] {
+    return icons
+      .filter(x => (x.version ? x.version === version : version === "1.0"))
+      .sort((a, b) => b.name.localeCompare(a.name));
   }
 }
 </script>
 <style lang="scss" scoped>
 @import "../../../../scss/variables";
 
-.tiicons--header {
-  flex-wrap: nowrap;
-  display: flex;
-  overflow: hidden;
-  a {
-    @media #{$isMobile} {
-      margin-right: 20px;
-    }
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    i {
-      margin-right: 5px;
-    }
-  }
-}
-.tc-card /deep/ .slot {
+.tc-card /deep/ .tc-card--content {
   display: grid;
   grid-gap: 10px;
   grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));

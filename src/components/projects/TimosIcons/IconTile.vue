@@ -93,6 +93,7 @@ export default class IconTile extends Vue {
     opacity: 0.4;
     margin-top: 5px;
     font-weight: bold;
+    overflow-wrap: break-word;
   }
 }
 </style>

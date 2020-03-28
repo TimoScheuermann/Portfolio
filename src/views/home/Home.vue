@@ -1,6 +1,6 @@
 <template>
   <div>
-    <tc-hero :hasFixedHeader="true">
+    <tc-hero :hasFixedHeader="false">
       <img
         src="https://wallpapersite.com/images/wallpapers/mountains-2880x1920-asus-zenfone-stock-hd-5813.jpg"
         slot="background"
