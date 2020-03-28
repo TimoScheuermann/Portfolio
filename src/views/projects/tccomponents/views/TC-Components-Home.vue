@@ -1,18 +1,17 @@
 <template>
   <div>
     <tc-hero>
-      <img slot="background" src="assets/final_trans.png" />
-      <div v-if="false" class="hero">
-        <div class="title">Timo's Components</div>
-        <div class="subtitle">Custom Vue Components</div>
-      </div>
+      <img slot="background" src="assets/projects/tccomponents/hero.png" />
     </tc-hero>
     <div content>
       <tc-headline title="Getting Started" />
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit
-      iusto quaerat sed quam, adipisci deserunt fugiat ab! Itaque earum
-      voluptates commodi consequatur aliquid modi explicabo nam quasi provident?
-      Vero, iste?
+
+      <p>
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ea deserunt in
+        minima quidem consequatur maiores sed provident, voluptatem voluptate!
+        Ipsum molestias excepturi minus officiis possimus. Explicabo magnam a ut
+        atque.
+      </p>
 
       <div class="themeSection">
         <tc-headline title="Theme" />
@@ -116,21 +115,6 @@ export default class TCComponentsHome extends Vue {
   }
   @media #{$isMobile} {
     padding-top: 0px;
-  }
-}
-.hero {
-  display: flex;
-  flex-direction: column;
-  // color: #fff;
-  text-align: center;
-  font-weight: bold;
-  .title {
-    white-space: nowrap;
-    font-size: 1.75em;
-  }
-  .subtitle {
-    opacity: 0.87;
-    font-size: 1.2em;
   }
 }
 .tc-card {

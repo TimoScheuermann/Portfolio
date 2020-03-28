@@ -1,8 +1,8 @@
 <template>
   <div v-if="compFound">
     <tc-hero height="100">
-      <img slot="background" src="assets/final_trans.png" />
-      <div class="title">
+      <img slot="background" src="assets/projects/tccomponents/hero.png" />
+      <div class="title" v-if="getTCComponent()">
         {{ getTCComponent().name }}
       </div>
     </tc-hero>

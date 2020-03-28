@@ -1,5 +1,6 @@
 export class ProjectImages {
-  icon: string = "";
-  tiIcon: string = "";
-  background: string = "";
+  preview?: string;
+  icon?: string = "";
+  tiIcon?: string = "";
+  background?: string = "";
 }

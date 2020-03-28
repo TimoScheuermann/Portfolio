@@ -7,7 +7,10 @@
         :key="item.fileName"
         :title="item.display"
       >
-        <img slot="media" :src="'../img/workgallery/' + item.fileName" />
+        <img
+          slot="media"
+          :src="'assets/projects/workgallery/designs/' + item.fileName"
+        />
         <tc-button
           :disabled="!item.project"
           :to="{ name: constants.projectRoutes[item.project] }"

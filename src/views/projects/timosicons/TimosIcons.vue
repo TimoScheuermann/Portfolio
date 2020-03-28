@@ -18,8 +18,11 @@
     </tc-header>
 
     <tc-hero>
-      <img slot="background" src="assets/icons_hero.png" />
-      <img class="tc-hero-title--image" src="assets/icons.png" />
+      <img slot="background" src="assets/projects/icons/hero.png" />
+      <img
+        class="tc-hero-title--image"
+        src="assets/projects/icons/hero_inner.png"
+      />
     </tc-hero>
 
     <div content>

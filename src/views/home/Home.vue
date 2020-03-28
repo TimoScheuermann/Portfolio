@@ -1,10 +1,7 @@
 <template>
   <div>
     <tc-hero :hasFixedHeader="false">
-      <img
-        src="https://wallpapersite.com/images/wallpapers/mountains-2880x1920-asus-zenfone-stock-hd-5813.jpg"
-        slot="background"
-      />
+      <img src="assets/home/hero.jpg" slot="background" />
       <div class="title">Timo Scheuermann</div>
       <div class="subtitle">UI / UX Designer from Mannheim, Germany</div>
     </tc-hero>
@@ -24,7 +21,7 @@
           :to="{ name: proj.routeName }"
         >
           <tc-card dark="true" :title="proj.title">
-            <img :src="proj.images.background" alt="" />
+            <img :src="proj.images.preview" alt="" />
           </tc-card>
         </router-link>
       </div>

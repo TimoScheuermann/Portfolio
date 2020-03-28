@@ -8,6 +8,7 @@ const projects: Project[] = [
     description:
       "Lorem ipsum Zeile 1 Lorem ipsum Zeile 2 Lorem ipsum Zeile 3 Lorem ipsum Zeile 4",
     images: {
+      preview: "assets/projects/dhbwrichie/preview.png",
       tiIcon: "book",
       icon: "../img/projects/richie/icon-richie.png",
       background: "../img/projects/richie/preview3-richie.png"
@@ -19,6 +20,7 @@ const projects: Project[] = [
     description:
       "Lorem ipsum Zeile 1 Lorem ipsum Zeile 2 Lorem ipsum Zeile 3 Lorem ipsum Zeile 4",
     images: {
+      preview: "assets/projects/icons/preview.png",
       tiIcon: "heart",
       icon: "../img/projects/icons/icon-icons.png",
       background: "../img/projects/icons/preview2-icons.png"
@@ -30,6 +32,7 @@ const projects: Project[] = [
     description:
       "Lorem ipsum Zeile 1 Lorem ipsum Zeile 2 Lorem ipsum Zeile 3 Lorem ipsum Zeile 4",
     images: {
+      preview: "assets/projects/workgallery/preview.png",
       tiIcon: "painting",
       icon: "../img/projects/icons/icon-icons.png",
       background: "../img/projects/workgallery/gallery-preview.png"
@@ -41,6 +44,7 @@ const projects: Project[] = [
     description:
       "Lorem ipsum Zeile 1 Lorem ipsum Zeile 2 Lorem ipsum Zeile 3 Lorem ipsum Zeile 4",
     images: {
+      preview: "assets/projects/nhlstats/preview.png",
       tiIcon: "hockey-stick",
       icon: "../img/projects/cassy/icon-cassy.png",
       background: "../img/projects/cassy/preview-cassy.png"
@@ -52,6 +56,7 @@ const projects: Project[] = [
     description:
       "Lorem ipsum Zeile 1 Lorem ipsum Zeile 2 Lorem ipsum Zeile 3 Lorem ipsum Zeile 4",
     images: {
+      preview: "assets/projects/amspro/preview.png",
       tiIcon: "amspro",
       icon: "../img/projects/richie/icon-richie.png",
       background: "../img/projects/richie/preview3-richie.png"
@@ -63,6 +68,7 @@ const projects: Project[] = [
     description:
       "Lorem ipsum Zeile 1 Lorem ipsum Zeile 2 Lorem ipsum Zeile 3 Lorem ipsum Zeile 4",
     images: {
+      preview: "assets/projects/tccomponents/hero.png",
       tiIcon: "component",
       icon: "../img/projects/richie/icon-richie.png",
       background: "../img/projects/richie/preview3-richie.png"

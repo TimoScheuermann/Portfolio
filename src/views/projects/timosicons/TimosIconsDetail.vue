@@ -8,7 +8,7 @@
 
     <div v-if="!icon" class="notFound">
       <div class="img">
-        <img src="../../../assets/projects/timosicons/timosicons.svg" />
+        <!-- <img src="../../../assets/projects/timosicons/timosicons.svg" /> -->
       </div>
       <div class="container">
         <div class="title">

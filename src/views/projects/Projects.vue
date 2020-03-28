@@ -9,7 +9,7 @@
         :subtitle="proj.description"
       >
         <tc-button :to="{ name: proj.routeName }" name="Read more" />
-        <img :src="proj.images.background" />
+        <img :src="proj.images.preview" />
       </tc-card>
     </div>
   </div>

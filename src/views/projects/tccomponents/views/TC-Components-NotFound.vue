@@ -21,6 +21,6 @@ import TCCard from "@/components/tc/card/TC-Card.vue";
   }
 })
 export default class TCComponentsNotFound extends Vue {
-  public src: string = "/assets/projects/ticomponents/landing.jpg";
+  public src: string = "/assets/projects/tccomponents/hero.png";
 }
 </script>

@@ -189,7 +189,8 @@ export default class ContactView extends Vue {
     return icons.sort((a, b) => a.name.localeCompare(b.name));
   }
   public slides(): string[] {
-    return projects.map(x => x.images.background);
+    return [""];
+    // return projects.map(x => x.images.background);
   }
   public i: number = 0;
   sliderVal: number = 33;
