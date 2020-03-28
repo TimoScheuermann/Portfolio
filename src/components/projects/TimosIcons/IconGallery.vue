@@ -17,7 +17,7 @@
         :key="icon.name"
         :icon="icon"
         :selectAble="selectAble"
-      ></icon-tile>
+      />
     </transition-group>
   </div>
 </template>

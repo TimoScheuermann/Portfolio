@@ -17,56 +17,25 @@
     />
     <tc-divider />
 
-    <tc-sidebar-group icon="chart-empty" name="Layout">
+    <tc-sidebar-group
+      v-for="g in sidebarGroups"
+      :key="g.title"
+      :icon="g.icon"
+      :name="g.title"
+      :maxHeight="g.title === 'Components' ? '770px' : undefined"
+    >
       <tc-sidebar-item
-        v-for="tcc in tcLayouts"
-        :key="tcc.name"
-        :name="tcc.name"
-        :icon="tcc.icon"
+        v-for="i in g.items()"
+        :key="i.name"
+        :name="i.name"
+        :icon="i.icon"
         :to="{
           name: constants.projectRoutes.timos_components_detail,
-          params: { comp: tcc.name }
+          params: { comp: i.name }
         }"
-      />
+      ></tc-sidebar-item>
     </tc-sidebar-group>
 
-    <tc-sidebar-group icon="dot" name="Fundamentals">
-      <tc-sidebar-item
-        name="Default Tags"
-        icon="component"
-        :to="{
-          name: constants.projectRoutes.timos_components_detail,
-          params: { comp: 'DefaultTags' }
-        }"
-      />
-      <tc-sidebar-item
-        name="Colors"
-        icon="dot"
-        :to="{
-          name: constants.projectRoutes.timos_components_detail,
-          params: { comp: 'Colors' }
-        }"
-      />
-
-      <tc-sidebar-item
-        name="Icons"
-        icon="heart"
-        :to="{ name: constants.projectRoutes.timos_icons }"
-      />
-    </tc-sidebar-group>
-
-    <tc-sidebar-group maxHeight="700px" icon="component" name="Components">
-      <tc-sidebar-item
-        v-for="tcc in tcComponents"
-        :key="tcc.name"
-        :name="tcc.name"
-        :icon="tcc.icon"
-        :to="{
-          name: constants.projectRoutes.timos_components_detail,
-          params: { comp: tcc.name }
-        }"
-      />
-    </tc-sidebar-group>
     <tc-sidebar-item
       name="Other Projects"
       icon="book-p"
@@ -98,12 +67,49 @@ import TCLink from "@/components/tc/link/TC-Link.vue";
   }
 })
 export default class TCComponentsSidebar extends Vue {
-  public tcComponents: TCComponent[] = tcComponents.sort((a, b) =>
-    a.name.localeCompare(b.name)
-  );
-  public tcLayouts: TCComponent[] = tcLayouts.sort((a, b) =>
-    a.name.localeCompare(b.name)
-  );
+  public sidebarGroups: {
+    title: string;
+    icon: string;
+    items: Function;
+  }[] = [
+    {
+      title: "Fundamentals",
+      icon: "dot",
+      items(): TCComponent[] {
+        return [
+          {
+            name: "Default Tags",
+            icon: "component",
+            api: []
+          },
+          {
+            name: "Colors",
+            icon: "dot",
+            api: []
+          },
+          {
+            name: "Icons",
+            icon: "heart",
+            api: []
+          }
+        ];
+      }
+    },
+    {
+      title: "Layout",
+      icon: "chart-empty",
+      items(): TCComponent[] {
+        return tcLayouts.sort((a, b) => a.name.localeCompare(b.name));
+      }
+    },
+    {
+      title: "Components",
+      icon: "component",
+      items(): TCComponent[] {
+        return tcComponents.sort((a, b) => a.name.localeCompare(b.name));
+      }
+    }
+  ];
   public constants: {} = constants;
 }
 </script>

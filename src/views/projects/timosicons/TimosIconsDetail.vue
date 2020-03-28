@@ -1,16 +1,20 @@
 <template>
   <div content>
     <tc-header
-      :title="icon ? icon.name : 'Not Found'"
+      :title="icon.name"
       :backTo="{ name: constants.projectRoutes.timos_icons }"
       backName="Icons"
     />
 
-    <div v-if="!icon" class="notFound">
-      <div class="img">
-        <!-- <img src="../../../assets/projects/timosicons/timosicons.svg" /> -->
-      </div>
+    <div v-if="icon.css.length === 0" class="notFound">
       <div class="container">
+        <div class="slot-mashine">
+          <icon-slot-mashine />
+          <icon-slot-mashine />
+          <icon-slot-mashine />
+          <icon-slot-mashine />
+          <icon-slot-mashine />
+        </div>
         <div class="title">
           <i class="ti-cross-circle"> </i>
           Icon not found
@@ -99,6 +103,7 @@ import TCCard from "@/components/tc/card/TC-Card.vue";
 import TCHeadline from "@/components/tc/headline/TC-Headline.vue";
 import { Icon } from "@/models/Icons/Icon.model";
 import TCDivider from "@/components/tc/divider/TC-Divider.vue";
+import IconSlotMashine from "@/components/projects/TimosIcons/IconSlotMashine.vue";
 
 @Component({
   components: {
@@ -106,15 +111,17 @@ import TCDivider from "@/components/tc/divider/TC-Divider.vue";
     "tc-button": TCButton,
     "tc-card": TCCard,
     "tc-headline": TCHeadline,
-    "tc-divider": TCDivider
+    "tc-divider": TCDivider,
+    "icon-slot-mashine": IconSlotMashine
   }
 })
 export default class TimosIconsDetail extends Vue {
-  public icon: Icon | undefined;
+  public icon: Icon = { name: "Not Found", css: "" };
   public constants: {} = constants;
 
   created() {
     const name = this.$route.params.icon;
+    if (name === "add") return;
     let foundIcons: Icon[] = icons.filter(x => name.includes(x.name));
     if (foundIcons.length === 1) {
       this.icon = foundIcons[0];
@@ -222,6 +229,9 @@ export default class TimosIconsDetail extends Vue {
     }
   }
   .container {
+    .slot-mashine {
+      margin: 30px 0;
+    }
     text-align: center;
     .title {
       font-size: 2.2em;

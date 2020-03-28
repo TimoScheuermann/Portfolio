@@ -32,7 +32,7 @@
   <tc-components-not-found v-else />
 </template>
 <script lang="ts">
-import { Vue, Component, Watch } from "vue-property-decorator";
+import { Vue, Component } from "vue-property-decorator";
 import TCSpinner from "@/components/tc/spinner/TC-Spinner.vue";
 import TCComponentsNotFound from "./TC-Components-NotFound.vue";
 import TCHeadline from "@/components/tc/headline/TC-Headline.vue";
@@ -41,6 +41,7 @@ import tcComponents from "@/components/tc";
 import tcLayouts from "@/components/tc/_layout";
 import { TCComponent } from "@/models/TCComponents/TCComponent.model";
 import TCHero from "@/components/tc/hero/TC-Hero.vue";
+import constants from "@/constants";
 
 @Component({
   components: {
@@ -62,6 +63,7 @@ export default class TCComponentsDetail extends Vue {
   }
   getTCComponent(): TCComponent {
     let component!: TCComponent;
+
     if (this.getComponent().toLowerCase() === "colors") {
       return {
         customAPI: true,
@@ -70,13 +72,16 @@ export default class TCComponentsDetail extends Vue {
         api: []
       };
     }
-    if (this.getComponent().toLowerCase() === "defaulttags") {
+    if (this.getComponent().toLowerCase() === "default tags") {
       return {
         customAPI: true,
         name: "Default Tags",
         icon: "component",
         api: []
       };
+    }
+    if (this.getComponent().toLowerCase() === "icons") {
+      this.$router.replace({ name: constants.projectRoutes.timos_icons });
     }
     component = this.tcComponents.filter(
       x => x.name.toLowerCase() === this.getComponent().toLowerCase()

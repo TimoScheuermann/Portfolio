@@ -53,6 +53,9 @@
       </div>
     </tc-modal>
 
+    <h2>TC Preview</h2>
+    <tc-preview></tc-preview>
+
     <h2>Grid Test</h2>
     <div class="grid-test">
       <div class="a">
@@ -162,6 +165,7 @@ import TCInput from "@/components/tc/input/TC-Input.vue";
 import TCNavbar from "@/components/tc/navbar/TC-Navbar.vue";
 import TCNavbarItem from "@/components/tc/navbar/TC-Navbar-Item.vue";
 import ComponentHero from "@/components/projects/TCComponents/ComponentHero.vue";
+import TCPreview from "../../components/tc/preview/TC-Preview.vue";
 
 @Component({
   components: {
@@ -181,7 +185,8 @@ import ComponentHero from "@/components/projects/TCComponents/ComponentHero.vue"
     "tc-modal": TCModal,
     "tc-divider": TCDivider,
     "tc-input": TCInput,
-    comph: ComponentHero
+    comph: ComponentHero,
+    "tc-preview": TCPreview
   }
 })
 export default class ContactView extends Vue {
@@ -331,5 +336,8 @@ h1 {
   .tc-header {
     position: relative;
   }
+}
+.tc-preview {
+  max-width: 400px;
 }
 </style>

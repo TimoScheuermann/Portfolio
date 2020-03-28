@@ -114,7 +114,7 @@ export default class TCCard extends Vue {
     }
   }
   .tc-card--subtitle__prestyled {
-    padding: 10px 0;
+    padding: 10px 30px;
     &.tc-card--subtitle__withoutContent {
       padding-bottom: 30px;
     }

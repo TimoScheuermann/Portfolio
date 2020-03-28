@@ -14,7 +14,15 @@
         />
       </tc-headline>
       <div class="projects">
-        <router-link
+        <tc-preview
+          v-for="proj in projects"
+          :key="proj.title"
+          :to="{ name: proj.routeName }"
+          :title="proj.title"
+        >
+          <img :src="proj.images.preview" />
+        </tc-preview>
+        <!-- <router-link
           tag="div"
           v-for="proj in projects"
           :key="proj.title"
@@ -23,7 +31,7 @@
           <tc-card dark="true" :title="proj.title">
             <img :src="proj.images.preview" alt="" />
           </tc-card>
-        </router-link>
+        </router-link> -->
       </div>
       <tc-headline title="Resume" />
       Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam minus
@@ -42,14 +50,16 @@ import TCHeadline from "@/components/tc/headline/TC-Headline.vue";
 import TCButton from "@/components/tc/button/TC-Button.vue";
 import TCCard from "@/components/tc/card/TC-Card.vue";
 import projects from "@/projects";
-import { Project } from "../../models/Projects/Project.model";
+import { Project } from "@/models/Projects/Project.model";
+import TCPreview from "@/components/tc/preview/TC-Preview.vue";
 @Component({
   components: {
     "tc-hero": TCHero,
     "tc-header": TCHeader,
     "tc-headline": TCHeadline,
     "tc-button": TCButton,
-    "tc-card": TCCard
+    "tc-card": TCCard,
+    "tc-preview": TCPreview
   }
 })
 export default class Home extends Vue {
@@ -114,20 +124,22 @@ export default class Home extends Vue {
       x: auto;
     }
     margin-bottom: 20px;
-
-    .tc-card {
-      margin: 0 5px;
-      @media #{$isMobile} {
-        width: 200px;
-      }
-      @media #{$isDesktop} {
-        width: 400px;
-      }
-      img {
-        max-height: 124px;
-      }
-      overflow: visible;
+    .tc-preview {
+      // width: 600px;
     }
+    // .tc-card {
+    //   margin: 0 5px;
+    //   @media #{$isMobile} {
+    //     width: 200px;
+    //   }
+    //   @media #{$isDesktop} {
+    //     width: 400px;
+    //   }
+    //   img {
+    //     max-height: 124px;
+    //   }
+    //   overflow: visible;
+    // }
   }
 }
 </style>
