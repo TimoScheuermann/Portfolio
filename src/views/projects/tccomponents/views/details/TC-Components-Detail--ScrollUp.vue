@@ -1,10 +1,10 @@
 <template>
   <div>
     <tc-headline title="Scroll Up"></tc-headline>
-    <tc-scroll-up class="tc-scrollup--special" />
-    <tc-scroll-up icon="double-arrow-up" class="tc-scrollup--special" />
-    <tc-scroll-up icon="house" class="tc-scrollup--special" />
-    <tc-scroll-up icon="heart" class="tc-scrollup--special" />
+    <tc-scroll-up />
+    <tc-scroll-up icon="double-arrow-up" />
+    <tc-scroll-up icon="house" />
+    <tc-scroll-up icon="heart" />
   </div>
 </template>
 <script lang="ts">
@@ -19,3 +19,11 @@ import TCScrollUp from "@/components/tc/scrollup/TC-Scroll-Up.vue";
 })
 export default class TCComponentsDetailScrollUp extends Vue {}
 </script>
+<style lang="scss" scoped>
+.tc-scroll-up {
+  display: inline-flex;
+  transform: scale(1);
+  position: relative;
+  margin: 3px;
+}
+</style>

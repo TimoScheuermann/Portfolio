@@ -14,24 +14,24 @@
         />
       </tc-headline>
       <div class="projects">
-        <tc-preview
+        <!-- <tc-preview
           v-for="proj in projects"
           :key="proj.title"
           :to="{ name: proj.routeName }"
           :title="proj.title"
         >
           <img :src="proj.images.preview" />
-        </tc-preview>
-        <!-- <router-link
+        </tc-preview> -->
+        <router-link
           tag="div"
           v-for="proj in projects"
           :key="proj.title"
           :to="{ name: proj.routeName }"
         >
-          <tc-card dark="true" :title="proj.title">
-            <img :src="proj.images.preview" alt="" />
+          <tc-card dark="true" rounded="true" :title="proj.title">
+            <img :src="proj.images.preview" />
           </tc-card>
-        </router-link> -->
+        </router-link>
       </div>
       <tc-headline title="Resume" />
       Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam minus
@@ -127,19 +127,17 @@ export default class Home extends Vue {
     .tc-preview {
       // width: 600px;
     }
-    // .tc-card {
-    //   margin: 0 5px;
-    //   @media #{$isMobile} {
-    //     width: 200px;
-    //   }
-    //   @media #{$isDesktop} {
-    //     width: 400px;
-    //   }
-    //   img {
-    //     max-height: 124px;
-    //   }
-    //   overflow: visible;
-    // }
+    .tc-card {
+      height: auto;
+      margin: 0 5px;
+      @media #{$isMobile} {
+        width: 80vw;
+        min-width: 300px;
+      }
+      @media #{$isDesktop} {
+        width: 400px;
+      }
+    }
   }
 }
 </style>

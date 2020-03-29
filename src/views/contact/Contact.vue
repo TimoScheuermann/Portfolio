@@ -12,6 +12,9 @@
     </tc-header>
     <h1>Contact</h1>
 
+    <h2>tc-bars</h2>
+    <i class="tc-bars"></i>
+
     <div>
       <h2>new Input</h2>
       <tc-input placeholder="Hello World" title="Hello" icon="user" />
@@ -141,6 +144,8 @@
     </tc-hero>
     <tc-link>Hallo Welt</tc-link>
     <tc-link><i class="ti-peace" /> Was geht ab</tc-link>
+
+    <tc-scroll-up icon="arrow-up" />
   </div>
 </template>
 <script lang="ts">
@@ -166,6 +171,7 @@ import TCNavbar from "@/components/tc/navbar/TC-Navbar.vue";
 import TCNavbarItem from "@/components/tc/navbar/TC-Navbar-Item.vue";
 import ComponentHero from "@/components/projects/TCComponents/ComponentHero.vue";
 import TCPreview from "../../components/tc/preview/TC-Preview.vue";
+import TCScrollUp from "../../components/tc/scrollup/TC-Scroll-Up.vue";
 
 @Component({
   components: {
@@ -186,7 +192,8 @@ import TCPreview from "../../components/tc/preview/TC-Preview.vue";
     "tc-divider": TCDivider,
     "tc-input": TCInput,
     comph: ComponentHero,
-    "tc-preview": TCPreview
+    "tc-preview": TCPreview,
+    "tc-scroll-up": TCScrollUp
   }
 })
 export default class ContactView extends Vue {
@@ -339,5 +346,21 @@ h1 {
 }
 .tc-preview {
   max-width: 400px;
+}
+i.tc-bars {
+  background: red;
+  position: relative;
+  &::before,
+  &::after {
+    content: "\e9bb";
+    font-family: "Timos-Icons";
+  }
+  &::after {
+    position: absolute;
+    margin-left: -1em;
+    transform: translateY(-3px);
+  }
+  &::before {
+  }
 }
 </style>

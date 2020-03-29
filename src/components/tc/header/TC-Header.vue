@@ -31,7 +31,7 @@
       />
     </div>
     <div
-      v-if="itemCard && itemsOverflow"
+      v-if="itemsOverflow"
       class="tc-overflow-items"
       :style="getOverflowStyle()"
       :class="{ ...getClasses(), 'tc-overflow-items__visible': itemCard }"
@@ -106,18 +106,14 @@ export default class TCHeader extends Vue {
   }
   getStyles() {
     var style = this.defaultStyle;
-    style.top = (this.variant == "floating" ? 40 : 0) + +this.top + "px";
+    style.top = (this.variant === "floating" ? 40 : 0) + +this.top + "px";
     return style;
   }
 
   getOverflowStyle() {
     var style = this.defaultStyle;
     style.top =
-      "calc(env(safe-area-inset-top) + " +
-      (this.variant == "floating" ? 40 : 0) +
-      +this.top +
-      50 +
-      "px)";
+      "calc(env(safe-area-inset-top) + " + (+(+this.top) + 50) + "px)";
     return style;
   }
 }
@@ -221,13 +217,24 @@ export default class TCHeader extends Vue {
     box-shadow: $shadow;
     border-radius: 0px 0px $border-radius $border-radius;
     overflow: hidden;
-    max-height: 0px;
+    .tc-overflow-items--container {
+      max-height: 0vh;
+      transition: 0.5s ease-in-out;
+      transform: translateY(-30px);
+      padding: 0;
+      opacity: 0;
+    }
     &.tc-overflow-items__visible {
-      animation: overflow-items-anim 0.4s ease-in-out both;
+      .tc-overflow-items--container {
+        opacity: 1;
+        padding: 20px 0;
+        max-height: 100vh;
+        transform: translateY(0px);
+      }
     }
 
     &.tc-header__sticky {
-      position: sticky;
+      position: absolute;
       padding: 0 5vw;
       left: 0;
     }
@@ -238,8 +245,9 @@ export default class TCHeader extends Vue {
     }
     &.tc-header__floating {
       position: fixed;
-      margin: 0 10vw;
+      margin-top: 10px;
       padding: 0 20px;
+      left: 0;
       border-radius: $border-radius;
     }
 
@@ -278,8 +286,6 @@ export default class TCHeader extends Vue {
       }
     }
     .tc-overflow-items--container {
-      padding: 20px 0;
-
       /deep/ {
         & > * {
           display: block;
@@ -297,19 +303,6 @@ export default class TCHeader extends Vue {
   }
 }
 
-@keyframes overflow-items-anim {
-  0% {
-    overflow: hidden;
-    max-height: 0px;
-  }
-  99.999% {
-    overflow: hidden;
-  }
-  100% {
-    overflow: auto;
-    max-height: 250px;
-  }
-}
 @keyframes appear {
   from {
     opacity: 0;

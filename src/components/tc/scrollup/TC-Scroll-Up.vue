@@ -1,7 +1,11 @@
 <template>
-  <button class="tc-scrollup" :class="{ show: visible }" @click="scrollUp()">
+  <div
+    class="tc-scroll-up"
+    :class="{ 'tc-scroll-up__visible': visible }"
+    @click="scrollUp()"
+  >
     <i :class="'ti-' + icon"></i>
-  </button>
+  </div>
 </template>
 <script lang="ts">
 import { Vue, Component, Prop } from "vue-property-decorator";
@@ -25,29 +29,30 @@ export default class TCScrollUp extends Vue {
 </script>
 <style lang="scss" scoped>
 $size: 50px;
-.tc-scrollup {
-  display: none;
-  &.show {
-    display: flex;
+.tc-scroll-up {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.2s ease-in-out;
+  transform: translateX(30px) scale(0);
+  &.tc-scroll-up__visible {
+    transform: translateX(0px) scale(1);
   }
+
+  opacity: 0.5;
+  &:hover {
+    opacity: 1;
+  }
+
   position: fixed;
   bottom: 10px;
   right: 10px;
   width: $size;
   height: $size;
-  line-height: $size;
   border-radius: $size;
-  border: none;
-  outline: none;
   cursor: pointer;
   background: #08f;
   color: #fff;
   font-size: 20px;
-
-  transition: 0.2s ease-in-out;
-  opacity: 0.5;
-  &:hover {
-    opacity: 1;
-  }
 }
 </style>
