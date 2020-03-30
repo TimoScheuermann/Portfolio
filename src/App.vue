@@ -1,6 +1,6 @@
 <template lang="html">
   <div id="app">
-    <tc-navbar v-if="true" :dark="darkTabbar">
+    <tc-navbar v-if="false" :dark="darkTabbar">
       <b slot="logo">Logo</b>
       <tc-button slot="actions" name="Login" icon="login" />
       <tc-navbar-item name="Home" icon="house" :to="{ name: 'home' }" />
