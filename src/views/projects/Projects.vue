@@ -1,16 +1,19 @@
 <template>
-  <div content>
-    <tc-header title="Projects"></tc-header>
-    <div class="projects">
-      <tc-card
-        v-for="proj in projects"
-        :key="proj.title"
-        :title="proj.title"
-        :subtitle="proj.description"
-      >
-        <tc-button :to="{ name: proj.routeName }" name="Read more" />
-        <img :src="proj.images.preview" />
-      </tc-card>
+  <div>
+    <tc-header title="Projects" />
+    <div content>
+      <tc-headline :title="projects.length + ' Projects'" />
+      <tc-grid minWidth="400">
+        <tc-card
+          v-for="proj in projects"
+          :key="proj.title"
+          :title="proj.title"
+          :subtitle="proj.description"
+        >
+          <tc-button :to="{ name: proj.routeName }" name="Read more" />
+          <img slot="media" :src="proj.images.preview" />
+        </tc-card>
+      </tc-grid>
     </div>
   </div>
 </template>
@@ -21,11 +24,17 @@ import projects from "@/projects";
 import { Project } from "@/models/Projects/Project.model";
 import TCHeader from "@/components/tc/header/TC-Header.vue";
 import TCButton from "@/components/tc/button/TC-Button.vue";
+import PSlideshow from "@/components/shared/P-Slideshow/P-Slideshow.vue";
+import TCGrid from "@/components/tc/_layout/grid/TC-Grid.vue";
+import TCHeadline from "@/components/tc/headline/TC-Headline.vue";
+import "swiper/css/swiper.css";
 @Component({
   components: {
     "tc-card": TCCard,
     "tc-header": TCHeader,
-    "tc-button": TCButton
+    "tc-button": TCButton,
+    "tc-grid": TCGrid,
+    "tc-headline": TCHeadline
   }
 })
 export default class Projects extends Vue {
@@ -35,20 +44,4 @@ export default class Projects extends Vue {
 
 <style lang="scss" scoped>
 @import "../../scss/variables.scss";
-
-.projects {
-  display: grid;
-  grid-gap: 30px;
-  margin-top: 20px;
-  @media #{$isMobile} {
-    grid-template-columns: repeat(1, 1fr);
-    margin-bottom: 60px;
-  }
-  @media #{$isDesktop} {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .tc-button {
-    margin-bottom: 20px;
-  }
-}
 </style>

@@ -46,7 +46,8 @@
         :to="{ name: 'contact' }"
       />
       <tc-sidebar-item icon="github" name="GitHub" :to="{ name: 'github' }" />
-      <div class="footer" slot="footer">v0.1.5</div>
+      <tc-sidebar-item icon="pin" name="Resume" :to="{ name: 'resume' }" />
+      <div class="footer" slot="footer">v0.1.6.2</div>
     </tc-sidebar>
     <tc-tabbar :dark="darkTabbar" class="app--tabbar">
       <tc-tabbar-item />
@@ -133,6 +134,12 @@ body {
 a {
   text-decoration: none;
   color: $primary;
+}
+
+ul {
+  li {
+    text-align: left;
+  }
 }
 
 @for $i from 1 through 6 {

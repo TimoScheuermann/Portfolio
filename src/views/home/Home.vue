@@ -128,7 +128,6 @@ export default class Home extends Vue {
       // width: 600px;
     }
     .tc-card {
-      height: auto;
       margin: 0 5px;
       @media #{$isMobile} {
         width: 80vw;

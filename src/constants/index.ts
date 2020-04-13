@@ -17,6 +17,7 @@ export default {
     timos_components: "timoscomponents",
     timos_components_detail: "timoscomponentsdetail",
     ams_pro: "amspro",
+    investing_collectors: "investingcollectors",
     not_found: "projectsNF"
   }
 };

@@ -12,7 +12,10 @@
       <tc-grid>
         <tc-card v-for="(tool, index) in tools" :key="'t_' + index">
           <portfolio-tool-image slot="media" :src="tool.img" />
-          <b>{{ tool.name }}</b>
+          <div class="tc-card--title__prestyled">{{ tool.name }}</div>
+          <ul v-if="tool.bullets">
+            <li v-for="b in tool.bullets" :key="b">{{ b }}</li>
+          </ul>
         </tc-card>
       </tc-grid>
     </div>
@@ -45,4 +48,7 @@ export default class Repertoire extends Vue {
 </script>
 <style lang="scss" scoped>
 @import "../../scss/variables.scss";
+[content] {
+  padding-top: 20px;
+}
 </style>

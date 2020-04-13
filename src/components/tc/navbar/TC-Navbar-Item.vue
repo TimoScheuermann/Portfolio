@@ -24,7 +24,7 @@ export default class TCNavbarItem extends Vue {
   margin: 0 10px;
   height: 48px;
   border-bottom: 2px solid transparent;
-  opacity: 0.7;
+  opacity: 0.5;
   position: relative;
 
   &,
@@ -35,8 +35,8 @@ export default class TCNavbarItem extends Vue {
   &::after {
     position: absolute;
     content: "";
-    bottom: -2px;
-    height: 2px;
+    bottom: -3px;
+    height: 1px;
     left: 0;
     right: 0;
     opacity: 0;

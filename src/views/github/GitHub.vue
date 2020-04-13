@@ -4,7 +4,7 @@
     <tc-hero>
       <img
         slot="background"
-        src="https://mir-s3-cdn-cf.behance.net/project_modules/fs/3de81a91842279.5e3c084dcf41d.jpg"
+        src="https://image.freepik.com/free-vector/vector-abstract-background-bright-gradient-colors_106427-417.jpg"
       />
       <div v-if="!loaded" class="loading">
         <tc-spinner size="35" />

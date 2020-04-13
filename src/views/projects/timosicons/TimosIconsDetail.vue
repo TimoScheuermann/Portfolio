@@ -45,14 +45,14 @@
             <tc-divider name="CSS" icon="code"></tc-divider>
             <div class="codeContainer">
               <div class="code">
-                ::before {<br /><span />conent: '\{{
+                ::before {<br /><span />content: '\{{
                   icon.css
                 }}';<br /><span />font-family: 'Timos-Icons';<br />}
               </div>
             </div>
           </div>
 
-          <div class="title">Get Started</div>
+          <div class="tc-card--title__prestyled">Get Started</div>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab
             voluptatum nam minus esse alias, molestias commodi blanditiis

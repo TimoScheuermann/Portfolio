@@ -3,11 +3,13 @@ import { Tool } from "@/models/Tools/Tool";
 const tools: Tool[] = [
   {
     name: "Adobe XD",
-    img: "assets/repertoire/adobexd.png"
+    img: "assets/repertoire/adobexd.png",
+    bullets: ["Project outlines", "Icon creation", "Icon animation"]
   },
   {
     name: "VS Code",
-    img: "assets/repertoire/vscode.png"
+    img: "assets/repertoire/vscode.png",
+    bullets: ["Main coding environment"]
   },
   {
     name: "Photoshop",

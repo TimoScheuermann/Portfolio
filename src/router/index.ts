@@ -29,6 +29,11 @@ const router = new VueRouter({
       component: () => import("@/views/github/GitHub.vue")
     },
     {
+      path: "/resume",
+      name: "resume",
+      component: () => import("@/views/resume/Resume.vue")
+    },
+    {
       path: "/projects",
       component: EmptyRouter,
       children: [
@@ -47,6 +52,14 @@ const router = new VueRouter({
           path: "amspro",
           name: constants.projectRoutes.ams_pro,
           component: () => import("@/views/projects/amspro/AMSPro.vue")
+        },
+        {
+          path: "investingcollectors",
+          name: constants.projectRoutes.investing_collectors,
+          component: () =>
+            import(
+              "@/views/projects/investingcollectors/InvestingCollectors.vue"
+            )
         },
         {
           path: "dhbwrichie",

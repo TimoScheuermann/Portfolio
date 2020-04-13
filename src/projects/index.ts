@@ -39,6 +39,18 @@ const projects: Project[] = [
     }
   },
   {
+    routeName: constants.projectRoutes.timos_components,
+    title: "TC Components",
+    description:
+      "Lorem ipsum Zeile 1 Lorem ipsum Zeile 2 Lorem ipsum Zeile 3 Lorem ipsum Zeile 4",
+    images: {
+      preview: "assets/projects/tccomponents/hero.png",
+      tiIcon: "component",
+      icon: "../img/projects/richie/icon-richie.png",
+      background: "../img/projects/richie/preview3-richie.png"
+    }
+  },
+  {
     routeName: constants.projectRoutes.nhl_stats,
     title: "NHL Stats (WIP)",
     description:
@@ -63,13 +75,13 @@ const projects: Project[] = [
     }
   },
   {
-    routeName: constants.projectRoutes.timos_components,
-    title: "TC Components",
+    routeName: constants.projectRoutes.investing_collectors,
+    title: "Investing Collectors",
     description:
       "Lorem ipsum Zeile 1 Lorem ipsum Zeile 2 Lorem ipsum Zeile 3 Lorem ipsum Zeile 4",
     images: {
       preview: "assets/projects/tccomponents/hero.png",
-      tiIcon: "component",
+      tiIcon: "vehicle-front",
       icon: "../img/projects/richie/icon-richie.png",
       background: "../img/projects/richie/preview3-richie.png"
     }

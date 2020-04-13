@@ -134,7 +134,6 @@
     </div>
     <div class="filter">
       <tc-checkbox title="Hallo Welt"></tc-checkbox>
-      <tc-direction title="Richtung"></tc-direction>
     </div>
     <tc-hero>
       <img
@@ -154,7 +153,6 @@ import TCButton from "@/components/tc/button/TC-Button.vue";
 import icons from "@/icons";
 import projects from "@/projects";
 import { Icon } from "@/models/Icons/Icon.model";
-import TCDirection from "@/components/shared/filter/TC-Direction.vue";
 import TCCard from "@/components/tc/card/TC-Card.vue";
 import TCHeader from "@/components/tc/header/TC-Header.vue";
 import TCHero from "@/components/tc/hero/TC-Hero.vue";
@@ -180,7 +178,6 @@ import TCScrollUp from "../../components/tc/scrollup/TC-Scroll-Up.vue";
     "tc-button": TCButton,
     "tc-card": TCCard,
     "tc-checkbox": TCCheckbox,
-    "tc-direction": TCDirection,
     "tc-header": TCHeader,
     "tc-hero": TCHero,
     "tc-switch": TCSwitch,

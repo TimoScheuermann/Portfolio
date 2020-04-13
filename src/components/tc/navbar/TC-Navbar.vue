@@ -82,6 +82,7 @@ export default class TCNavbar extends Vue {
   z-index: 10999;
 
   &.tc-navbar__dark {
+    border-bottom: 1px solid rgba(#fff, 0.3);
     @include backdrop-blur($color);
     color: #fff;
 
@@ -96,6 +97,7 @@ export default class TCNavbar extends Vue {
     }
   }
   &.tc-navbar__light {
+    border-bottom: 1px solid rgba($color, 0.2);
     @include backdrop-blur($background);
     color: $color;
 

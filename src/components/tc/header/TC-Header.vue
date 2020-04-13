@@ -134,10 +134,18 @@ export default class TCHeader extends Vue {
   z-index: 999;
 
   &.tc-header__dark {
+    &.tc-header__sticky,
+    &.tc-header__fixed {
+      border-bottom: 1px solid rgba(#fff, 0.3);
+    }
     @include backdrop-blur($color);
     color: #fff;
   }
   &.tc-header__light {
+    &.tc-header__sticky,
+    &.tc-header__fixed {
+      border-bottom: 1px solid rgba($color, 0.2);
+    }
     @include backdrop-blur($background);
     color: $color;
   }

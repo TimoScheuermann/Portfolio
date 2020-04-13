@@ -78,7 +78,7 @@ export default class TCCard extends Vue {
 .tc-card {
   background: $background;
   text-align: center;
-  height: fit-content;
+  // height: fit-content;
   overflow: hidden;
 
   &.tc-card__frosted {
