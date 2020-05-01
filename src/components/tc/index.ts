@@ -536,6 +536,11 @@ const tcComponents: TCComponent[] = [
     name: "Tooltip",
     icon: "tooltip",
     api: []
+  },
+  {
+    name: "List",
+    icon: "list-bullet",
+    api: []
   }
 ];
 

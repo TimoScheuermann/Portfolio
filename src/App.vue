@@ -23,10 +23,6 @@
 
       <tc-sidebar-group icon="book-p" name="Projects">
         <tc-sidebar-item
-          icon="book-p"
-          name="All Projects"
-          :to="{ name: 'projects' }"
-        /><tc-sidebar-item
           v-for="proj in projects"
           :key="proj.title"
           :icon="proj.images.tiIcon"
@@ -235,5 +231,8 @@ h3 {
   @media #{$isMobile} {
     padding-bottom: calc(70px + env(safe-area-inset-bottom));
   }
+}
+[center] {
+  text-align: center;
 }
 </style>

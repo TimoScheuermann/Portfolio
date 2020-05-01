@@ -53,7 +53,7 @@ export default class TCSwitch extends Vue {
       width: #{$ballSize * 2 + 4}px;
       height: #{$ballSize + 4}px;
       border-radius: #{$ballSize + 4}px;
-      background: $paragraph;
+      background: darken($paragraph, 5%);
       position: relative;
       transition: 0.2s ease-in;
 

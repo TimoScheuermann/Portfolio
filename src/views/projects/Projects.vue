@@ -1,47 +1,49 @@
 <template>
   <div>
     <tc-header title="Projects" />
+
     <div content>
-      <tc-headline :title="projects.length + ' Projects'" />
-      <tc-grid minWidth="400">
-        <tc-card
-          v-for="proj in projects"
-          :key="proj.title"
-          :title="proj.title"
-          :subtitle="proj.description"
-        >
-          <tc-button :to="{ name: proj.routeName }" name="Read more" />
-          <img slot="media" :src="proj.images.preview" />
-        </tc-card>
-      </tc-grid>
+      <h2>Available projects</h2>
+      <tc-list>
+        <tc-list-item
+          v-for="(p, i) in projects"
+          :key="p.title"
+          :title="p.title"
+          :icon="'ti-' + p.images.tiIcon"
+          :to="p.routeName"
+        />
+      </tc-list>
     </div>
   </div>
 </template>
 <script lang="ts">
 import { Vue, Component } from "vue-property-decorator";
-import TCCard from "@/components/tc/card/TC-Card.vue";
-import projects from "@/projects";
-import { Project } from "@/models/Projects/Project.model";
 import TCHeader from "@/components/tc/header/TC-Header.vue";
-import TCButton from "@/components/tc/button/TC-Button.vue";
-import PSlideshow from "@/components/shared/P-Slideshow/P-Slideshow.vue";
 import TCGrid from "@/components/tc/_layout/grid/TC-Grid.vue";
-import TCHeadline from "@/components/tc/headline/TC-Headline.vue";
-import "swiper/css/swiper.css";
+import projects from "@/projects";
+import { Project } from "../../models/Projects/Project.model";
+import TCLink from "../../components/tc/link/TC-Link.vue";
+import TCListItem from "../../components/tc/list/TC-List-Item.vue";
+import TCList from "../../components/tc/list/TC-List.vue";
 @Component({
   components: {
-    "tc-card": TCCard,
     "tc-header": TCHeader,
-    "tc-button": TCButton,
-    "tc-grid": TCGrid,
-    "tc-headline": TCHeadline
+    "tc-link": TCLink,
+    "tc-list": TCList,
+    "tc-list-item": TCListItem
   }
 })
 export default class Projects extends Vue {
-  public readonly projects: Project[] = projects;
+  public projects: Project[] = projects;
 }
 </script>
 
 <style lang="scss" scoped>
 @import "../../scss/variables.scss";
+[content] {
+  h2 {
+    margin-top: 30px;
+    margin-bottom: 20px;
+  }
+}
 </style>

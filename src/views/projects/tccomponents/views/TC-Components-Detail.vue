@@ -114,7 +114,9 @@ export default class TCComponentsDetail extends Vue {
   .title {
     font-weight: bold;
     font-size: 1.5em;
-    padding: 5px;
+    padding: 5px 10px;
+    background: black;
+    color: #fff;
   }
 }
 

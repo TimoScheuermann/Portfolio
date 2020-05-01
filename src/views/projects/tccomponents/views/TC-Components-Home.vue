@@ -4,14 +4,29 @@
       <img slot="background" src="assets/projects/tccomponents/hero.png" />
     </tc-hero>
     <div content>
-      <tc-headline title="Getting Started" />
+      <div class="hero-section" center>
+        <div class="hero-tiles">
+          <span>
+            <i class="ti-card" />
+          </span>
+          <span>
+            <i class="ti-button" />
+          </span>
+          <span>
+            <i class="ti-list" />
+          </span>
+          <span>
+            <i class="ti-painting" />
+          </span>
+        </div>
 
-      <p>
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ea deserunt in
-        minima quidem consequatur maiores sed provident, voluptatem voluptate!
-        Ipsum molestias excepturi minus officiis possimus. Explicabo magnam a ut
-        atque.
-      </p>
+        <h1>Component Library</h1>
+        <p>
+          A library of high-quality ready to use components that will help you
+          speed up your development workflow.
+        </p>
+        <tc-button variant="filled" icon="login" name="Getting started" />
+      </div>
 
       <div class="themeSection">
         <tc-headline title="Theme" />
@@ -38,7 +53,20 @@
 
       <div v-for="s in sections" :key="s.name">
         <tc-headline :title="s.name" />
-        <tc-grid class="tc-components-home--sections" minWidth="200">
+
+        <tc-list class="tc-components-home--list">
+          <tc-list-item
+            v-for="comp in s.items()"
+            :key="comp.name"
+            :to="{
+              name: constants.projectRoutes.timos_components_detail,
+              params: { comp: comp.name }
+            }"
+            :title="comp.name"
+            :icon="'ti-' + comp.icon"
+          />
+        </tc-list>
+        <tc-grid class="tc-components-home--grid" minWidth="200">
           <router-link
             v-for="comp in s.items()"
             :key="comp.name"
@@ -47,13 +75,6 @@
               params: { comp: comp.name }
             }"
           >
-            <div class="sections--list-item">
-              <div>
-                <i :class="'ti-' + comp.icon"></i>
-                <span>{{ comp.name }}</span>
-              </div>
-              <i class="ti-arrow-right"></i>
-            </div>
             <tc-card>
               <i :class="'ti-' + comp.icon"></i>
               <span>{{ comp.name }}</span>
@@ -76,13 +97,17 @@ import { Icon } from "@/models/Icons/Icon.model";
 import { TCComponent } from "@/models/TCComponents/TCComponent.model";
 import TCButton from "@/components/tc/button/TC-Button.vue";
 import TCGrid from "@/components/tc/_layout/grid/TC-Grid.vue";
+import TCList from "@/components/tc/list/TC-List.vue";
+import TCListItem from "@/components/tc/list/TC-List-Item.vue";
 @Component({
   components: {
     "tc-headline": TCHeadline,
     "tc-hero": TCHero,
     "tc-card": TCCard,
     "tc-button": TCButton,
-    "tc-grid": TCGrid
+    "tc-grid": TCGrid,
+    "tc-list": TCList,
+    "tc-list-item": TCListItem
   }
 })
 export default class TCComponentsHome extends Vue {
@@ -116,51 +141,17 @@ export default class TCComponentsHome extends Vue {
     padding-top: 0px;
   }
 }
-.tc-components-home--sections {
-  @media only screen and(max-width: 496px) {
-    .tc-card {
-      display: none;
-    }
-    .sections--list-item {
-      display: flex !important;
-    }
-    grid-gap: 10px;
-    grid-template-columns: 1fr !important;
-  }
-
-  .sections--list-item {
+.tc-components-home--list {
+  @media only screen and(min-width: 497px) {
     display: none;
-    &,
-    div {
-      justify-content: space-between;
-      align-items: center;
-    }
-    color: $color;
-    position: relative;
-
-    &::after {
-      content: "";
-      position: absolute;
-      background: $color;
-      bottom: -3px;
-      opacity: 0.1;
-      left: 30px;
-      right: 0;
-      height: 1px;
-    }
-
-    div {
-      display: flex;
-      i {
-        font-size: 20px;
-        width: 40px;
-      }
-      span {
-        font-weight: 500;
-      }
-    }
   }
 }
+.tc-components-home--grid {
+  @media only screen and(max-width: 496px) {
+    display: none;
+  }
+}
+
 .tc-card {
   i,
   span {
@@ -175,6 +166,51 @@ export default class TCComponentsHome extends Vue {
     color: $color;
     font-weight: bold;
     opacity: 0.8;
+  }
+}
+
+[center] {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  p {
+    max-width: 400px;
+  }
+}
+.hero-section {
+  margin-bottom: 30px;
+
+  .hero-tiles {
+    margin: 20px 0 {
+      top: 40px;
+    }
+    $colors: (
+      1: "#eb3b5a",
+      2: "#45aaf2",
+      3: "#26de81",
+      4: "#2bcbba"
+    );
+    span {
+      @each $i, $color in $colors {
+        &:nth-child(#{$i}) {
+          background: #{$color};
+        }
+      }
+
+      display: inline-grid;
+      width: 50px;
+      height: 50px;
+      place-items: center;
+
+      border-radius: 5px;
+      margin: 5px;
+      font-size: 25px;
+
+      i {
+        opacity: 0.8;
+        color: #fff;
+      }
+    }
   }
 }
 </style>
