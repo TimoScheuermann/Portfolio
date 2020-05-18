@@ -8,7 +8,7 @@
         type="text"
         placeholder="Icon"
         icon="lens"
-      ></tc-input>
+      />
     </tc-headline>
 
     <transition-group name="icon-trans" tag="div" class="gallery">

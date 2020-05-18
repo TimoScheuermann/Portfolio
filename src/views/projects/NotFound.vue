@@ -13,7 +13,7 @@
       <div class="projects-available">
         <li v-for="p in projects" :key="p.title">
           <tc-link :to="p.routeName">
-            <i :class="'ti-' + p.images.tiIcon" />
+            <i :class="'ti-' + p.icon" />
             {{ p.title }}
           </tc-link>
         </li>

@@ -7,11 +7,7 @@
     </tc-hero>
     <div content class="home">
       <tc-headline title="My Work">
-        <tc-button
-          :to="{ name: 'projects' }"
-          icon="book-p"
-          name="All Projects"
-        />
+        <tc-button :to="{ name: 'projects' }" icon="todo" name="All Projects" />
       </tc-headline>
       <div class="projects">
         <!-- <tc-preview
@@ -29,7 +25,7 @@
           :to="{ name: proj.routeName }"
         >
           <tc-card dark="true" rounded="true" :title="proj.title">
-            <img :src="proj.images.preview" />
+            <img :src="proj.thumbnail" />
           </tc-card>
         </router-link>
       </div>

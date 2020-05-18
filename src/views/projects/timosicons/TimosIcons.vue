@@ -26,13 +26,23 @@
     </tc-hero>
 
     <div content>
-      <tc-headline title="Timos Icons" />
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil
-        voluptatibus ratione, quae repudiandae reiciendis reprehenderit omnis
-        dignissimos? Inventore eaque corporis fugiat voluptatem culpa, sint
-        cumque maiores, reiciendis consectetur sit distinctio!
-      </p>
+      <div class="hero-section" center>
+        <div class="hero-tiles">
+          <icon-slot-mashine />
+          <icon-slot-mashine />
+          <icon-slot-mashine />
+          <icon-slot-mashine />
+          <icon-slot-mashine />
+        </div>
+
+        <h1>Icon Library</h1>
+        <p>
+          A library of high-quality ready to use icons that will help you speed
+          up your development workflow.
+        </p>
+        <tc-button variant="filled" icon="login" name="Getting started" />
+      </div>
+
       <icon-gallery />
     </div>
   </div>
@@ -46,6 +56,7 @@ import IconGallery from "@/components/projects/TimosIcons/IconGallery.vue";
 import TCHeader from "@/components/tc/header/TC-Header.vue";
 import TCHero from "@/components/tc/hero/TC-Hero.vue";
 import TCHeadline from "@/components/tc/headline/TC-Headline.vue";
+import IconSlotMashine from "@/components/projects/TimosIcons/IconSlotMashine.vue";
 
 @Component({
   components: {
@@ -53,7 +64,8 @@ import TCHeadline from "@/components/tc/headline/TC-Headline.vue";
     "tc-button": TCButton,
     "tc-header": TCHeader,
     "tc-hero": TCHero,
-    "tc-headline": TCHeadline
+    "tc-headline": TCHeadline,
+    "icon-slot-mashine": IconSlotMashine
   }
 })
 export default class TimosIcons extends Vue {
@@ -63,8 +75,15 @@ export default class TimosIcons extends Vue {
 
 <style lang="scss" scoped>
 @import "../../../scss/variables.scss";
-[content] {
-  padding-top: 5px;
+
+[center] {
+  margin-top: -30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  p {
+    max-width: 400px;
+  }
 }
 .tc-hero {
   .tc-hero-title--image {
@@ -73,5 +92,31 @@ export default class TimosIcons extends Vue {
 }
 .tc-header--button {
   text-align: center;
+}
+
+.hero-section {
+  margin-bottom: 30px;
+
+  .hero-tiles {
+    margin: 20px 0 {
+      top: 40px;
+    }
+    $colors: (
+      1: "#eb3b5a",
+      2: "#45aaf2",
+      3: "#26de81",
+      4: "#2bcbba",
+      5: "#e67e22"
+    );
+    @each $i, $color in $colors {
+      /deep/ .icon-slot-mashine {
+        &:nth-child(#{$i}) {
+          i {
+            color: #{$color};
+          }
+        }
+      }
+    }
+  }
 }
 </style>

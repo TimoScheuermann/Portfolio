@@ -43,12 +43,6 @@ const router = new VueRouter({
           component: () => import("@/views/projects/Projects.vue")
         },
         {
-          path: "cc",
-          name: "cc",
-          meta: { customSidebar: true },
-          component: () => import("@/views/projects/codingchallenge/index.vue")
-        },
-        {
           path: "amspro",
           name: constants.projectRoutes.ams_pro,
           component: () => import("@/views/projects/amspro/AMSPro.vue")

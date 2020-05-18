@@ -8,26 +8,37 @@
         v-for="p in projects"
         :key="p.title"
         :name="p.title"
-        :icon="p.images.tiIcon"
+        :icon="p.icon"
         :to="{ name: p.routeName }"
       />
     </tc-navbar>
 
     <tc-sidebar :dark="darkTabbar" v-if="showSidebar()">
       <div slot="header" class="tc-sidebar--header">
-        <div class="icon">P</div>
-        <div class="title">Portfolio</div>
+        <div class="icon">
+          <img src="https://avatars0.githubusercontent.com/u/48986503" />
+        </div>
+        <div class="title">
+          Timo Scheuermann
+          <br />
+          <span>Portfolio</span>
+        </div>
       </div>
 
       <tc-sidebar-item icon="house" name="Home" :to="{ name: 'home' }" />
 
       <tc-sidebar-group icon="book-p" name="Projects">
         <tc-sidebar-item
-          v-for="proj in projects"
-          :key="proj.title"
-          :icon="proj.images.tiIcon"
-          :name="proj.title"
-          :to="{ name: proj.routeName }"
+          name="All Projects"
+          icon="todo"
+          :to="{ name: 'projects' }"
+        />
+        <tc-sidebar-item
+          v-for="p in projects"
+          :key="p.title"
+          :icon="p.icon"
+          :name="p.title"
+          :to="{ name: p.routeName }"
         />
       </tc-sidebar-group>
 
@@ -43,11 +54,11 @@
       />
       <tc-sidebar-item icon="github" name="GitHub" :to="{ name: 'github' }" />
       <tc-sidebar-item icon="pin" name="Resume" :to="{ name: 'resume' }" />
-      <div class="footer" slot="footer">v0.1.6.2</div>
+      <div class="footer" slot="footer">v0.1.6.4</div>
     </tc-sidebar>
     <tc-tabbar :dark="darkTabbar" class="app--tabbar">
       <tc-tabbar-item />
-      <tc-tabbar-item title="Projects" icon="book-p" routeName="projects" />
+      <tc-tabbar-item title="Projects" icon="todo" routeName="projects" />
       <tc-tabbar-item title="Repertoire" icon="tools" routeName="repertoire" />
       <tc-tabbar-item title="Contact" icon="user-card" routeName="contact" />
       <tc-tabbar-item title="GitHub" icon="github" routeName="github" />
@@ -165,7 +176,7 @@ h3 {
 
 .tc-sidebar {
   & > .header {
-    height: 120px;
+    height: 160px;
   }
   & > .footer {
     font-weight: bold;
@@ -183,7 +194,7 @@ h3 {
         opacity: 1;
       }
       .icon {
-        $scale: 50px;
+        $scale: 80px;
         width: $scale;
         height: $scale;
         border-radius: $scale;
@@ -212,11 +223,21 @@ h3 {
     border-radius: $scale;
     color: #fff;
     transition: inherit;
+    img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+      border-radius: inherit;
+    }
   }
   .title {
     opacity: 0;
     transition: inherit;
     white-space: nowrap;
+    text-align: center;
+    span {
+      opacity: 0.5;
+    }
   }
 }
 

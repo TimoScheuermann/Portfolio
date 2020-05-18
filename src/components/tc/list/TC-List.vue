@@ -15,6 +15,7 @@ export default class TCList extends Vue {
 </script>
 <style lang="scss" scoped>
 @import "../../../scss/variables";
+@import "../../../scss/mixins";
 
 .tc-list {
   padding: 5px {
@@ -22,11 +23,11 @@ export default class TCList extends Vue {
   }
   border-radius: $border-radius;
   &.tc-list__dark {
-    background: $color;
+    @include backdrop-blur($color);
     color: #fff;
   }
   &.tc-list__light {
-    background: lighten($paragraph, 3%);
+    @include backdrop-blur($background);
   }
 }
 </style>

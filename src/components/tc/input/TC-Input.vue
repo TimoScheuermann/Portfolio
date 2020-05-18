@@ -57,8 +57,11 @@
 </template>
 <script lang="ts">
 import { Vue, Component, Prop } from "vue-property-decorator";
-@Component
-export default class TCInputNew extends Vue {
+import uuidVue from "../uuid.vue";
+@Component({
+  mixins: [uuidVue]
+})
+export default class TCInput extends Vue {
   @Prop() icon!: string;
   @Prop() title!: string;
   @Prop() buttons!: boolean;
