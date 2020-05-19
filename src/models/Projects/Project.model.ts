@@ -7,5 +7,6 @@ export class Project {
   routeName: string = constants.routes.home;
   mainComponent: string = "@/views/projects/%title%";
   thumbnail: string = "";
+  thumbnail_mobile: string = "";
   icon: string = "";
 }
