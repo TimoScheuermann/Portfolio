@@ -31,15 +31,18 @@
       </div>
     </tc-hero>
 
-    <tc-grid content minWidth="330" class="__repositories" v-if="loaded">
-      <github-repo-tile
-        v-for="(repo, index) in getRepos"
-        :dark="index === 0 || true"
-        :repo="repo"
-        :index="index"
-        :key="repo.id"
-      />
-    </tc-grid>
+    <div content>
+      <h1>Repositories</h1>
+      <tc-grid minWidth="330" class="__repositories" v-if="loaded">
+        <github-repo-tile
+          v-for="(repo, index) in getRepos"
+          :dark="index === 0 || true"
+          :repo="repo"
+          :index="index"
+          :key="repo.id"
+        />
+      </tc-grid>
+    </div>
   </div>
 </template>
 <script lang="ts">
@@ -121,7 +124,12 @@ export default class GitHubView extends Vue {
 @import "../../scss/mixins.scss";
 .github {
   background: #000;
-  // color: #fff;
+}
+[content] {
+  h1 {
+    color: #fff;
+    margin-bottom: 20px;
+  }
 }
 .loading,
 .loaded {

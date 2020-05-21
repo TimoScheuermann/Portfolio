@@ -12,7 +12,7 @@
       >
         <ti-icontile
           v-for="icon in getVersionIcons(version)"
-          :key="icon.css"
+          :key="icon.css[0]"
           :icon="icon"
         />
       </tc-card>
@@ -28,6 +28,7 @@ import TCCard from "@/components/tc/card/TC-Card.vue";
 import IconTile from "@/components/projects/TimosIcons/IconTile.vue";
 import { Icon } from "@/models/Icons/Icon.model";
 import constants from "@/constants";
+
 @Component({
   components: {
     "tc-header": TCHeader,

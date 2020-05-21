@@ -43,11 +43,10 @@
           </div>
           <div>
             <tc-divider name="CSS" icon="code"></tc-divider>
-            <div class="codeContainer">
+            <div class="codeContainer" v-for="(c, index) in icon.css" :key="c">
               <div class="code">
-                ::before {<br /><span />content: '\{{
-                  icon.css
-                }}';<br /><span />font-family: 'Timos-Icons';<br />}
+                ::{{ index == 0 ? "before" : "after" }} {<br /><span />content:
+                '\{{ c }}';<br /><span />font-family: 'Timos-Icons';<br />}
               </div>
             </div>
           </div>
@@ -116,7 +115,7 @@ import IconSlotMashine from "@/components/projects/TimosIcons/IconSlotMashine.vu
   }
 })
 export default class TimosIconsDetail extends Vue {
-  public icon: Icon = { name: "Not Found", css: "" };
+  public icon: Icon = { name: "Not Found", css: [""] };
   public constants: {} = constants;
 
   created() {
@@ -188,7 +187,7 @@ export default class TimosIconsDetail extends Vue {
 .gallery {
   display: grid;
   grid-gap: 20px;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
 
   .codeContainer {
     margin: {
