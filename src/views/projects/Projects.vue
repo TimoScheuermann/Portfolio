@@ -17,12 +17,12 @@
 
       <div class="project-containers" @click.prevent="goTo()">
         <div class="proj-content" id="bg" :class="{ 'proj-content__odd': odd }">
-          <img id="m" src="assets/projects/background_mobile.png" />
-          <img id="d" src="assets/projects/background.png" />
+          <img id="m" src="assets/projects/portfolio/preview_mobile.png" />
+          <img id="d" src="assets/projects/portfolio/preview.png" />
         </div>
         <div id="fg" class="proj-content" :class="{ 'proj-content__odd': odd }">
-          <img id="m" :src="currentProject.thumbnail_mobile" />
-          <img id="d" :src="currentProject.thumbnail" />
+          <img id="m" :src="currentProject.preview_mobile" />
+          <img id="d" :src="currentProject.preview" />
         </div>
       </div>
 

@@ -1,5 +1,12 @@
 <template>
   <tc-card :dark="dark" :title="repo.name" :subtitle="repo.description">
+    <div v-if="index == 0" class="indicator latest">
+      Latest changes
+    </div>
+    <div class="indicator" v-if="repo.language" :class="repo.language">
+      {{ repo.language }}
+    </div>
+
     <tc-button name="View on GitHub" :href="repo.html_url" />
     <tc-divider name="Stats" icon="chart-line" />
     <div class="statistics">
@@ -9,7 +16,6 @@
         <div class="name">{{ change.title }}</div>
       </div>
     </div>
-
     <!-- <ul>
       <li>Size: {{ repo.size }}</li>
       <li>Lang: {{ repo.language }}</li>
@@ -33,6 +39,7 @@ import TCDivider from "@/components/tc/divider/TC-Divider.vue";
 export default class GitHubRepoTile extends Vue {
   @Prop() repo!: any;
   @Prop({ default: false }) dark!: boolean;
+  @Prop() index!: number;
 
   public changes: any = [
     {
@@ -60,6 +67,43 @@ export default class GitHubRepoTile extends Vue {
 </script>
 <style lang="scss" scoped>
 @import "../../scss/variables.scss";
+
+.indicator {
+  $pad: 5px;
+  user-select: none;
+  position: absolute;
+  top: $pad;
+  border: 1px solid white;
+  border-radius: 10px;
+  padding: 5px 10px;
+  transform: scale(0.8);
+  &:not(.latest) {
+    transform-origin: top left;
+    left: $pad;
+  }
+  &.latest {
+    transform-origin: top right;
+    right: $pad;
+    color: #e74c3c;
+    border-color: #e74c3c;
+  }
+
+  $lang: (
+    latest: #e74c3c,
+    Vue: #2ecc71,
+    CSS: #3498db,
+    Java: #f1c40f,
+    HTML: #e67e22,
+    TypeScript: #2980b9
+  );
+
+  @each $l, $c in $lang {
+    &.#{$l} {
+      color: $c;
+      border-color: $c;
+    }
+  }
+}
 
 .tc-divider {
   margin: {

@@ -24,8 +24,13 @@
           :key="proj.title"
           :to="{ name: proj.routeName }"
         >
-          <tc-card dark="true" rounded="true" :title="proj.title">
-            <img :src="proj.thumbnail" />
+          <tc-card
+            dark="true"
+            rounded="true"
+            :title="proj.title"
+            :subtitle="proj.description"
+          >
+            <img :src="proj.preview" />
           </tc-card>
         </router-link>
       </div>
@@ -120,11 +125,15 @@ export default class Home extends Vue {
       x: auto;
     }
     margin-bottom: 20px;
-    .tc-preview {
-      // width: 600px;
-    }
-    .tc-card {
+    /deep/ .tc-card {
       margin: 0 5px;
+      .tc-card--subtitle__prestyled {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 78px;
+      }
+
       @media #{$isMobile} {
         width: 80vw;
         min-width: 300px;

@@ -1,10 +1,10 @@
 <template>
-  <div>
-    <tc-header title="GitHub"></tc-header>
+  <div class="github">
+    <tc-header :dark="true" title="GitHub"></tc-header>
     <tc-hero>
       <img
         slot="background"
-        src="https://image.freepik.com/free-vector/vector-abstract-background-bright-gradient-colors_106427-417.jpg"
+        src="https://www.hd-freewallpapers.com/earth-wallpaper/desktop-pictures-of-the-earth-from-space-wallpaper.jpg"
       />
       <div v-if="!loaded" class="loading">
         <tc-spinner size="35" />
@@ -21,6 +21,9 @@
             Member since
             <span>{{ creationDate }}</span>
           </div>
+          <a :href="profile.html_url" target="_blank" rel="noopener noreferrer">
+            View on GitHub
+          </a>
         </div>
         <a :href="profile.html_url" target="_blank" rel="noopener noreferrer">
           View on GitHub
@@ -31,8 +34,9 @@
     <tc-grid content minWidth="330" class="__repositories" v-if="loaded">
       <github-repo-tile
         v-for="(repo, index) in getRepos"
-        :dark="index === 0"
+        :dark="index === 0 || true"
         :repo="repo"
+        :index="index"
         :key="repo.id"
       />
     </tc-grid>
@@ -115,7 +119,10 @@ export default class GitHubView extends Vue {
 <style lang="scss" scoped>
 @import "../../scss/variables.scss";
 @import "../../scss/mixins.scss";
-
+.github {
+  background: #000;
+  // color: #fff;
+}
 .loading,
 .loaded {
   height: 150px;
@@ -144,7 +151,7 @@ export default class GitHubView extends Vue {
   width: 80vw;
 
   @media #{$isMobile} {
-    a {
+    & > a {
       display: none;
     }
   }
@@ -160,6 +167,10 @@ export default class GitHubView extends Vue {
     }
   }
   .informations {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
     .name,
     .date span {
       font-weight: bold;
@@ -170,13 +181,21 @@ export default class GitHubView extends Vue {
     .date {
       opacity: 0.8;
     }
+    a {
+      @media #{$isDesktop} {
+        display: none;
+      }
+      margin-top: 10px;
+      width: fit-content;
+      display: block;
+    }
   }
   a {
     padding: 10px 20px;
     border-radius: 5px;
     text-decoration: none;
     color: inherit;
-    @include backdrop-blur(#fff);
+    @include backdrop-blur(#666);
     font-weight: bold;
     transition: 0.2s ease-in-out;
     border: 1px solid transparent;
@@ -187,7 +206,9 @@ export default class GitHubView extends Vue {
 }
 .tc-grid {
   .tc-card:nth-child(1) {
-    grid-column: 1 / -1;
+    @media only screen and (min-width: 780px) {
+      grid-column: 1 / 3;
+    }
   }
   @media #{$isMobile} {
     padding-top: 20px;

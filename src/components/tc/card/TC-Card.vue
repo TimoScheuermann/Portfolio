@@ -21,9 +21,12 @@
     >
       {{ subtitle }}
     </div>
+
+    <div class="tc-card--spacer"></div>
     <div class="tc-card--media" v-if="usedSlots.includes('media')">
       <slot name="media" />
     </div>
+    <div class="tc-card--spacer"></div>
     <div
       class="tc-card--content"
       :class="{
@@ -71,15 +74,13 @@ export default class TCCard extends Vue {
 <style lang="scss" scoped>
 @import "../../../scss/variables";
 @import "../../../scss/mixins";
-.fun {
-  background: #000;
-  color: #fff;
-}
+
 .tc-card {
   background: $background;
   text-align: center;
-  // height: fit-content;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
 
   &.tc-card__frosted {
     @include backdrop-blur($background);
@@ -127,6 +128,10 @@ export default class TCCard extends Vue {
       height: 100%;
       object-fit: contain;
     }
+  }
+
+  .tc-card--spacer {
+    flex-grow: 1;
   }
 
   .tc-card--content {
