@@ -1,7 +1,7 @@
 <template>
   <div content>
     <tc-header
-      :title="icon.name"
+      :title="iconName"
       :backTo="{ name: constants.projectRoutes.timos_icons }"
       backName="Icons"
     />
@@ -24,14 +24,14 @@
           changed or is temporarily unavailable.
         </p>
         <tc-button
-          icon="arrow-left"
+          icon="chevron-left"
           name="Overview"
           :to="{ name: constants.projectRoutes.timos_icons }"
         ></tc-button>
       </div>
     </div>
 
-    <div v-else>
+    <div v-else-if="true">
       <tc-headline :title="icon.name"></tc-headline>
       <div class="gallery">
         <tc-card rounded="true" title="How to use">
@@ -89,6 +89,40 @@
         </tc-card>
       </div>
     </div>
+
+    <div class="icons-detail-found" v-else>
+      <div class="detail-title">
+        <i :class="'ti-' + icon.name" />
+        <span>{{ iconName }}</span>
+      </div>
+      <tc-grid>
+        <div class="sizes">
+          <div><i :class="'ti-' + icon.name" /></div>
+          <div><i :class="'ti-' + icon.name" /></div>
+          <div><i :class="'ti-' + icon.name" /></div>
+          <div><i :class="'ti-' + icon.name" /></div>
+        </div>
+        <div class="background">
+          <div><i :class="'ti-' + icon.name" /></div>
+          <div><i :class="'ti-' + icon.name" /></div>
+          <div><i :class="'ti-' + icon.name" /></div>
+          <div><i :class="'ti-' + icon.name" /></div>
+        </div>
+      </tc-grid>
+      <h1>How to use</h1>
+      <tc-grid>
+        <div>
+          <h3>HTML</h3>
+          <p>{{ html }}</p>
+        </div>
+        <div>
+          <h3>CSS</h3>
+        </div>
+        <div>
+          <h3>SVG</h3>
+        </div>
+      </tc-grid>
+    </div>
   </div>
 </template>
 
@@ -103,6 +137,7 @@ import TCHeadline from "@/components/tc/headline/TC-Headline.vue";
 import { Icon } from "@/models/Icons/Icon.model";
 import TCDivider from "@/components/tc/divider/TC-Divider.vue";
 import IconSlotMashine from "@/components/projects/TimosIcons/IconSlotMashine.vue";
+import TCGrid from "@/components/tc/_layout/grid/TC-Grid.vue";
 
 @Component({
   components: {
@@ -111,12 +146,21 @@ import IconSlotMashine from "@/components/projects/TimosIcons/IconSlotMashine.vu
     "tc-card": TCCard,
     "tc-headline": TCHeadline,
     "tc-divider": TCDivider,
-    "icon-slot-mashine": IconSlotMashine
+    "icon-slot-mashine": IconSlotMashine,
+    "tc-grid": TCGrid
   }
 })
 export default class TimosIconsDetail extends Vue {
   public icon: Icon = { name: "Not Found", css: [""] };
   public constants: {} = constants;
+
+  get iconName() {
+    return this.icon.name.split("-").join(" ");
+  }
+
+  get html() {
+    return `<i class="ti-${this.icon.name}"></i>`;
+  }
 
   created() {
     const name = this.$route.params.icon;
@@ -134,6 +178,36 @@ export default class TimosIconsDetail extends Vue {
 
 <style lang="scss" scoped>
 @import "../../../scss/variables";
+
+.icons-detail-found {
+  h1 {
+    margin-top: 40px;
+  }
+  .detail-title {
+    margin-top: 40px;
+    font-size: 2em;
+    font-weight: bold;
+    span {
+      margin-left: 10px;
+      text-transform: capitalize;
+      color: lighten(#111, 40%);
+    }
+  }
+
+  .sizes {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    div {
+      margin: 5px;
+      @for $i from 1 through 4 {
+        &:nth-child(#{$i}) {
+          font-size: #{$i * 0.5 + 2}em;
+        }
+      }
+    }
+  }
+}
 
 .innerGrid {
   margin: 10px 0;

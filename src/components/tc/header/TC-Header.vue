@@ -6,7 +6,7 @@
         class="tc-header--backButton"
         @click="clicked($event)"
       >
-        <i class="ti-arrow-left"></i>
+        <i class="ti-chevron-left"></i>
         <span>{{ backName || "back" }}</span>
       </div>
       <div class="tc-header--title__prestyled" v-if="title">{{ title }}</div>
@@ -25,8 +25,8 @@
     <div v-else class="tc-header--items__overflow">
       <tc-checkbox
         v-model="itemCard"
-        iconChecked="arrow-down"
-        iconUnchecked="arrow-up"
+        iconChecked="chevron-down"
+        iconUnchecked="chevron-up"
         iconAnimation="flip"
       />
     </div>

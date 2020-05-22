@@ -15,7 +15,7 @@
         <tc-switch></tc-switch>
       </div>
       <div v-else class="tc-list-item--indicator">
-        <i class="ti-arrow-right" />
+        <i class="ti-chevron-right" />
       </div>
     </div>
   </div>

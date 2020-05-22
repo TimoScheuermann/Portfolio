@@ -144,7 +144,7 @@
     <tc-link>Hallo Welt</tc-link>
     <tc-link><i class="ti-peace" /> Was geht ab</tc-link>
 
-    <tc-scroll-up icon="arrow-up" />
+    <tc-scroll-up icon="chevron-up" />
   </div>
 </template>
 <script lang="ts">

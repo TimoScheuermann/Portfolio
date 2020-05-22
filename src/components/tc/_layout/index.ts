@@ -3,7 +3,7 @@ import { TCComponent } from "@/models/TCComponents/TCComponent.model";
 const tcLayout: TCComponent[] = [
   {
     name: "Grid",
-    icon: "crosshair",
+    icon: "plus",
     api: []
   }
 ];

@@ -12,7 +12,7 @@
       </tc-list>
     </div>
     <div class="projects-list-opener" @click="listOpened = !listOpened">
-      <span>All Projects <i class="ti-arrow-up"/></span>
+      <span>All Projects <i class="ti-chevron-up"/></span>
     </div>
   </div>
 </template>

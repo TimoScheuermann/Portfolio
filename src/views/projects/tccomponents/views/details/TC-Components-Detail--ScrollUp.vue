@@ -2,7 +2,7 @@
   <div>
     <tc-headline title="Scroll Up"></tc-headline>
     <tc-scroll-up />
-    <tc-scroll-up icon="double-arrow-up" />
+    <tc-scroll-up icon="double-chevron-up" />
     <tc-scroll-up icon="house" />
     <tc-scroll-up icon="heart" />
   </div>
