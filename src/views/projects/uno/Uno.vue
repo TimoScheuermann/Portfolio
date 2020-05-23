@@ -130,12 +130,7 @@ import TCCard from "../../../components/tc/card/TC-Card.vue";
 export default class Uno extends Vue {
   modalOpened: boolean = false;
   newUserName: string = "";
-  players: Player[] = [
-    {
-      name: "Timo"
-    },
-    { name: "Petra" }
-  ];
+  players: Player[] = [];
   games: Game[] = [];
   currentPlayer: number = 0;
   newPoints: number = 0;
