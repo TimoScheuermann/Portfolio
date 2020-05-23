@@ -97,7 +97,7 @@ import TCButton from "./components/tc/button/TC-Button.vue";
 })
 export default class App extends Vue {
   public projects: Project[] = projects;
-  public darkRoutes: string[] = ["home", "github"];
+  public darkRoutes: string[] = ["home", "github", "uno"];
 
   showSidebar() {
     return !this.$route.meta.customSidebar;

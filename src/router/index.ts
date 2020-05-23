@@ -48,6 +48,11 @@ const router = new VueRouter({
           component: () => import("@/views/projects/amspro/AMSPro.vue")
         },
         {
+          path: "uno",
+          name: "uno",
+          component: () => import("@/views/projects/uno/Uno.vue")
+        },
+        {
           path: "investingcollectors",
           name: constants.projectRoutes.investing_collectors,
           component: () =>

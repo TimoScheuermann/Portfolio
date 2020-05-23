@@ -7,7 +7,7 @@
     </tc-hero>
     <div content class="home">
       <tc-headline title="My Work">
-        <tc-button :to="{ name: 'projects' }" icon="todo" name="All Projects" />
+        <tc-button :to="{ name: 'uno' }" icon="todo" name="All Projects" />
       </tc-headline>
       <div class="projects">
         <!-- <tc-preview

@@ -1,5 +1,5 @@
 <template>
-  <div class="tc-input">
+  <div class="tc-input" :class="{ 'tc-input__dark': dark }">
     <div v-if="title" class="tc-input--title">
       {{ title }}
     </div>
@@ -63,6 +63,7 @@ import uuidVue from "../uuid.vue";
 })
 export default class TCInput extends Vue {
   @Prop() icon!: string;
+  @Prop() dark!: boolean;
   @Prop() title!: string;
   @Prop() buttons!: boolean;
   @Prop() placeholder!: string;
@@ -125,6 +126,17 @@ $size: 30px;
     font-weight: bold;
     opacity: 0.8;
     margin-bottom: 3px;
+  }
+
+  &.tc-input__dark {
+    .tc-input--container,
+    .tc-input--input input {
+      background: lighten($color, 20%);
+      color: #fff;
+    }
+    .tc-input--icon i {
+      border-color: rgba(#fff, 0.5);
+    }
   }
 
   .tc-input--container {
