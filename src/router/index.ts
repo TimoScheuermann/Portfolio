@@ -77,6 +77,20 @@ const router = new VueRouter({
                 import("@/views/projects/tccomponents/TC-Components.vue")
             },
             {
+              path: "designer",
+              name: constants.projectRoutes.timos_components_designer,
+              meta: { customSidebar: true },
+              component: () =>
+                import("@/views/projects/tccomponents/TC-Components.vue")
+            },
+            {
+              path: "getting-started",
+              name: constants.projectRoutes.timos_components_getting_started,
+              meta: { customSidebar: true },
+              component: () =>
+                import("@/views/projects/tccomponents/TC-Components.vue")
+            },
+            {
               path: ":comp",
               name: constants.projectRoutes.timos_components_detail,
               meta: { customSidebar: true },

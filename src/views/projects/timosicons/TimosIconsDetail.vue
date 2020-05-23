@@ -6,7 +6,7 @@
       backName="Icons"
     />
 
-    <div v-if="icon.css.length === 0" class="notFound">
+    <div v-if="icon.name === 'Not Found'" class="notFound">
       <div class="container">
         <div class="slot-mashine">
           <icon-slot-mashine />
@@ -31,95 +31,33 @@
       </div>
     </div>
 
-    <div v-else-if="true">
-      <tc-headline :title="icon.name"></tc-headline>
-      <div class="gallery">
-        <tc-card rounded="true" title="How to use">
-          <div>
-            <tc-divider name="HTML" icon="component"></tc-divider>
-            <div class="codeContainer">
-              <div class="code">&lt;i class="ti-{{ icon.name }}">&lt;/i></div>
-            </div>
-          </div>
-          <div>
-            <tc-divider name="CSS" icon="code"></tc-divider>
-            <div class="codeContainer" v-for="(c, index) in icon.css" :key="c">
-              <div class="code">
-                ::{{ index == 0 ? "before" : "after" }} {<br /><span />content:
-                '\{{ c }}';<br /><span />font-family: 'Timos-Icons';<br />}
-              </div>
-            </div>
-          </div>
-
-          <div class="tc-card--title__prestyled">Get Started</div>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab
-            voluptatum nam minus esse alias, molestias commodi blanditiis
-            similique ea aliquam, veritatis molestiae quia aspernatur quas.
-            Nulla minima fugiat iusto magni.
-          </p>
-          <tc-button name="Start using Timo's Icons"></tc-button>
-        </tc-card>
-        <tc-card rounded="true" title="Examples">
-          <tc-divider name="Sizes"></tc-divider>
-          <div class="innerGrid">
-            <div
-              class="innerGrid--item"
-              v-for="(i, index) in Array(4)"
-              :key="index"
-            >
-              <i
-                :class="'ti-' + icon.name"
-                :style="{ 'font-size': (index + 2) * 16 + 'px' }"
-              ></i>
-              <span>@{{ (index + 2) * 16 }}px</span>
-            </div>
-          </div>
-
-          <tc-divider name="Colors"></tc-divider>
-          <div class="innerGrid">
-            <div
-              class="innerGrid--item colors"
-              v-for="(i, index) in Array(4)"
-              :key="index"
-            >
-              <i :class="'ti-' + icon.name"></i>
-            </div>
-          </div>
-        </tc-card>
-      </div>
-    </div>
-
     <div class="icons-detail-found" v-else>
-      <div class="detail-title">
-        <i :class="'ti-' + icon.name" />
-        <span>{{ iconName }}</span>
+      <h1>{{ iconName }}</h1>
+      <div class="big">
+        <i :class="'ti-' + icon.name"></i>
       </div>
+
+      <tc-divider />
+      <h2>How to use</h2>
       <tc-grid>
-        <div class="sizes">
-          <div><i :class="'ti-' + icon.name" /></div>
-          <div><i :class="'ti-' + icon.name" /></div>
-          <div><i :class="'ti-' + icon.name" /></div>
-          <div><i :class="'ti-' + icon.name" /></div>
-        </div>
-        <div class="background">
-          <div><i :class="'ti-' + icon.name" /></div>
-          <div><i :class="'ti-' + icon.name" /></div>
-          <div><i :class="'ti-' + icon.name" /></div>
-          <div><i :class="'ti-' + icon.name" /></div>
-        </div>
+        <tc-card title="HTML">
+          <tc-button name="Copy HTML code" @click="copyHTML()" />
+        </tc-card>
+        <tc-card title="SVG">
+          <tc-button name="Copy SVG code" @click="copySVG()" />
+        </tc-card>
       </tc-grid>
-      <h1>How to use</h1>
-      <tc-grid>
-        <div>
-          <h3>HTML</h3>
-          <p>{{ html }}</p>
-        </div>
-        <div>
-          <h3>CSS</h3>
-        </div>
-        <div>
-          <h3>SVG</h3>
+      <br />
+      <tc-divider />
+      <h2>Examples</h2>
+      <tc-grid minWidth="100">
+        <div
+          class="backgroundExample"
+          v-for="(a, i) in Array(4)"
+          :key="i"
+          :class="'bg-' + ++i"
+        >
+          <i :class="'ti-' + icon.name"></i>
         </div>
       </tc-grid>
     </div>
@@ -151,8 +89,9 @@ import TCGrid from "@/components/tc/_layout/grid/TC-Grid.vue";
   }
 })
 export default class TimosIconsDetail extends Vue {
-  public icon: Icon = { name: "Not Found", css: [""] };
+  public icon: Icon = { name: "Not Found" };
   public constants: {} = constants;
+  public iconData: any[] = [];
 
   get iconName() {
     return this.icon.name.split("-").join(" ");
@@ -160,6 +99,24 @@ export default class TimosIconsDetail extends Vue {
 
   get html() {
     return `<i class="ti-${this.icon.name}"></i>`;
+  }
+
+  get svg() {
+    const iconData = this.iconData.filter(
+      x => x.properties.name === this.icon.name
+    )[0];
+
+    const pre = "<svg>";
+    let content = "";
+    for (let i = 0; i < iconData.icon.paths.length; i++) {
+      content += `<path d="${iconData.icon.paths[i]}" ${
+        iconData.icon.attrs[i].opacity
+          ? `opacity="${iconData.icon.attrs[i].opacity}"`
+          : ""
+      }/>`;
+    }
+    const suff = "</svg>";
+    return pre + content + suff;
   }
 
   created() {
@@ -172,114 +129,57 @@ export default class TimosIconsDetail extends Vue {
       foundIcons = foundIcons.filter(x => name === x.name);
       if (foundIcons.length === 1) this.icon = foundIcons[0];
     }
+    if (this.icon.name != "Not Found") {
+      this.iconData = require("./resources/selection.json")["icons"];
+    }
   }
 }
 </script>
 
 <style lang="scss" scoped>
 @import "../../../scss/variables";
-
+/deep/ .tc-header--title__prestyled {
+  text-transform: capitalize;
+}
 .icons-detail-found {
-  h1 {
-    margin-top: 40px;
-  }
-  .detail-title {
-    margin-top: 40px;
-    font-size: 2em;
-    font-weight: bold;
-    span {
-      margin-left: 10px;
-      text-transform: capitalize;
-      color: lighten(#111, 40%);
+  @media #{$isMobile} {
+    h1,
+    .big {
+      text-align: center;
     }
   }
+  h1 {
+    text-transform: capitalize;
+    margin-top: 40px;
+  }
+  h2 {
+    margin-top: 20px;
+  }
+  .big {
+    font-size: 12em;
+  }
 
-  .sizes {
+  .backgroundExample {
+    height: 0;
+    padding-top: 50%;
+    padding-bottom: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
-    div {
-      margin: 5px;
-      @for $i from 1 through 4 {
-        &:nth-child(#{$i}) {
-          font-size: #{$i * 0.5 + 2}em;
-        }
-      }
+    font-size: 4em;
+    color: #fff;
+    &.bg-1 {
+      color: $color;
+      background: #f0f0f0;
     }
-  }
-}
-
-.innerGrid {
-  margin: 10px 0;
-  min-width: 100%;
-  display: grid;
-  grid-gap: 20px;
-  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-  grid-auto-rows: 1fr;
-  &::before {
-    content: "";
-    width: 0;
-    padding-bottom: 100%;
-    grid-row: 1 / 1;
-    grid-column: 1 / 1;
-  }
-  & > *:first-child {
-    grid-row: 1 / 1;
-    grid-column: 1 / 1;
-  }
-  .innerGrid--item {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 10px;
-    background: $background;
-    border-radius: $border-radius;
-    span {
-      margin-top: 5px;
-      color: $primary;
-      font-weight: 500;
+    &.bg-2 {
+      background: $primary;
     }
-    &.colors {
-      font-size: 64px;
-      color: #fff;
-      &:nth-child(1) {
-        color: $color;
-      }
-      &:nth-child(2) {
-        background: $primary;
-      }
-      &:nth-child(3) {
-        background: hsl(343, 83%, 56%);
-      }
-      &:nth-child(4) {
-        background: $color;
-      }
+    &.bg-3 {
+      background: hsl(343, 83%, 56%);
     }
-  }
-}
-
-.gallery {
-  display: grid;
-  grid-gap: 20px;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-
-  .codeContainer {
-    margin: {
-      top: 10px;
-      bottom: 15px;
-    }
-    background: $background;
-    display: flex;
-    justify-content: center;
-    padding: 5px;
-    .code {
-      text-align: left;
-      border-radius: $border-radius;
-      font-family: "Courier New", Courier, monospace;
-      span {
-        display: inline-block;
-        width: 20px;
-      }
+    &.bg-4 {
+      background: $color;
     }
   }
 }

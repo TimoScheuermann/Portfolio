@@ -125,7 +125,7 @@
 
     <div class="icons">
       <div class="icon" v-for="(icon, index) in icons()" :key="index">
-        <div class="inde">{{ icon.css }}</div>
+        <div class="inde">{{ index }}</div>
         <div class="i">
           <i :class="'ti-' + icon.name"></i>
         </div>

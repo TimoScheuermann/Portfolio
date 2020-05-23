@@ -525,7 +525,24 @@ const tcComponents: TCComponent[] = [
   {
     name: "Navbar",
     icon: "dot",
-    api: []
+    api: [
+      {
+        name: "[TC-Navbar-Item]: to",
+        type: "string | object",
+        description: "Location, a user is forwarded to"
+      },
+      {
+        name: "[TC-Navbar-Item]: name",
+        type: "string",
+        description: "Name to be displayed"
+      },
+      {
+        name: "[TC-Navbar-Item]: icon",
+        type: "string",
+        parameters: "Timos Icon",
+        description: "Custom Icon to be displayed"
+      }
+    ]
   },
   {
     name: "Picker",

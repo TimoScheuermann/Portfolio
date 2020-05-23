@@ -12,7 +12,7 @@
       >
         <ti-icontile
           v-for="icon in getVersionIcons(version)"
-          :key="icon.css[0]"
+          :key="icon.name"
           :icon="icon"
         />
       </tc-card>

@@ -13,7 +13,13 @@
     <tc-sidebar-item
       name="Getting started"
       icon="download"
-      :to="{ name: constants.projectRoutes.timos_components }"
+      :to="{ name: constants.projectRoutes.timos_components_getting_started }"
+    />
+
+    <tc-sidebar-item
+      name="Designer"
+      icon="tools"
+      :to="{ name: constants.projectRoutes.timos_components_designer }"
     />
     <tc-divider />
 

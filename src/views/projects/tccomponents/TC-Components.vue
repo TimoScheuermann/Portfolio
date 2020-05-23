@@ -1,9 +1,11 @@
 <template>
   <div class="tc-components--view">
     <tc-components--sidebar />
-    <tc-components--header />
-    <tc-components-home v-if="!isComponent()" />
-    <tc-components-detail :key="getComponent()" v-else />
+    <tc-components--header v-if="isHome || isDetails" />
+    <tc-components-designer v-if="isDesigner" />
+    <tc-components-getting-started v-else-if="isGettingStarted" />
+    <tc-components-home v-else-if="isHome" />
+    <tc-components-detail v-else-if="isDetails" :key="getComponent()" />
   </div>
 </template>
 <script lang="ts">
@@ -17,6 +19,8 @@ import TCComponentsSidebar from "./common/TC-Components--Sidebar.vue";
 import TCComponentsHome from "./views/TC-Components-Home.vue";
 import TCComponentsNotFound from "./views/TC-Components-NotFound.vue";
 import TCComponentsDetail from "./views/TC-Components-Detail.vue";
+import TCComponentsDesigner from "./views/TC-Components-Designer.vue";
+import TCComponentsGettingStarted from "./views/TC-Components-GettingStarted.vue";
 
 @Component({
   components: {
@@ -24,17 +28,41 @@ import TCComponentsDetail from "./views/TC-Components-Detail.vue";
     "tc-components--header": TCComponentsHeader,
     "tc-components-home": TCComponentsHome,
     "tc-components-not-found": TCComponentsNotFound,
-    "tc-components-detail": TCComponentsDetail
+    "tc-components-detail": TCComponentsDetail,
+    "tc-components-designer": TCComponentsDesigner,
+    "tc-components-getting-started": TCComponentsGettingStarted
   }
 })
 export default class TCComponents extends Vue {
+  public constants: {} = constants;
+
+  get route() {
+    return this.$route.name;
+  }
+  get isDesigner() {
+    return this.route == constants.projectRoutes.timos_components_designer;
+  }
+  get isDetails() {
+    return this.route == constants.projectRoutes.timos_components_detail;
+  }
+  get isHome() {
+    return this.route == constants.projectRoutes.timos_components;
+  }
+  get isGettingStarted() {
+    return (
+      this.route == constants.projectRoutes.timos_components_getting_started
+    );
+  }
+
   getComponent(): string {
     const comp = this.$route.params.comp;
     if (comp) return comp;
     return "";
   }
-  isComponent(): boolean {
-    return this.getComponent().length > 0;
-  }
 }
 </script>
+<style lang="scss" scoped>
+p {
+  padding-left: 200px;
+}
+</style>

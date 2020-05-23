@@ -14,7 +14,7 @@
     <transition-group name="icon-trans" tag="div" class="gallery">
       <icon-tile
         v-for="icon in iconsSorted"
-        :key="icon.css[0]"
+        :key="icon.name"
         :icon="icon"
         :selectAble="selectAble"
       />

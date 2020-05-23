@@ -31,9 +31,9 @@
       </div>
     </tc-hero>
 
-    <div content>
+    <div content v-if="loaded">
       <h1>Repositories</h1>
-      <tc-grid minWidth="330" class="__repositories" v-if="loaded">
+      <tc-grid minWidth="330" class="__repositories">
         <github-repo-tile
           v-for="(repo, index) in getRepos"
           :dark="index === 0 || true"

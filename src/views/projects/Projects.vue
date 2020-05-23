@@ -9,6 +9,23 @@
       <i class="ti-arrow-right" />
     </div>
 
+    <div content class="projects-gallery">
+      <div v-for="p in projects" :key="p.name" class="projects-gallery--item">
+        <div class="pItem--half">
+          <h1>{{ p.title }}</h1>
+          <p>{{ p.description }}</p>
+          <tc-button
+            :to="{ name: p.routeName }"
+            icon="arrow-right"
+            name="Go to project"
+          ></tc-button>
+        </div>
+        <div class="pItem--half">
+          <img :src="p.preview" />
+        </div>
+      </div>
+    </div>
+
     <div content class="projects-display">
       <div class="projects-current-title">
         <h1>{{ currentProject.title }}</h1>
@@ -18,11 +35,11 @@
       <div class="project-containers" @click.prevent="goTo()">
         <div class="proj-content" id="bg" :class="{ 'proj-content__odd': odd }">
           <img id="m" src="assets/projects/portfolio/preview_mobile.png" />
-          <img id="d" src="assets/projects/portfolio/preview.png" />
+          <!-- <img id="d" src="assets/projects/portfolio/preview.png" /> -->
         </div>
         <div id="fg" class="proj-content" :class="{ 'proj-content__odd': odd }">
           <img id="m" :src="currentProject.preview_mobile" />
-          <img id="d" :src="currentProject.preview" />
+          <!-- <img id="d" :src="currentProject.preview" /> -->
         </div>
       </div>
 
@@ -45,6 +62,7 @@ import WorkGallery from "./workgallery/WorkGallery.vue";
 import NHLStats from "./nhlstats/NHLStats.vue";
 
 import "./swipe-events.js";
+import TCButton from "@/components/tc/button/TC-Button.vue";
 
 @Component({
   components: {
@@ -56,7 +74,8 @@ import "./swipe-events.js";
     "prev-component": TCComponents,
     "prev-heart": TimosIcons,
     "prev-painting": WorkGallery,
-    "prev-hockey-stick": NHLStats
+    "prev-hockey-stick": NHLStats,
+    "tc-button": TCButton
   }
 })
 export default class Projects extends Vue {
@@ -98,34 +117,42 @@ export default class Projects extends Vue {
 @import "../../scss/variables.scss";
 @import "../../scss/mixins";
 
-.changeProj {
+.projects-gallery {
   @media #{$isMobile} {
     display: none;
   }
-  $padd: 30;
-  $size: 50px;
-  position: fixed;
-  top: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  height: $size;
-  width: $size;
-  border-radius: $size;
-  @include backdrop-blur($paragraph);
-  transition: 0.2s ease-in-out;
-  &:hover {
-    @include backdrop-blur(darken($paragraph, 10%));
+  .projects-gallery--item {
+    height: 300px;
+    background: #f0f0f0;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-bottom: 30px;
+    .pItem--half {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      p {
+        max-width: 300px;
+        text-align: center;
+      }
+      img {
+        height: 100%;
+        width: 100%;
+        object-fit: contain;
+      }
+    }
+    &:nth-child(EVEN) {
+      .pItem--half:nth-child(1) {
+        grid-column: 2;
+      }
+      .pItem--half:nth-child(2) {
+        grid-column: 1;
+        grid-row: 1;
+      }
+    }
   }
-
-  &.right {
-    right: #{$padd}px;
-  }
-  &.left {
-    left: #{$padd + 50}px;
-  }
-  transform: translateY(-50%);
 }
 
 .projects-display {
@@ -142,6 +169,9 @@ export default class Projects extends Vue {
     height: calc(
       100vh - 112px - env(safe-area-inset-bottom) - env(safe-area-inset-top)
     );
+  }
+  @media #{$isDesktop} {
+    display: none;
   }
 }
 
@@ -165,21 +195,21 @@ export default class Projects extends Vue {
     overflow: visible;
     transition: transform 0.2s ease-in-out;
     position: absolute;
-    @media #{$isDesktop} {
-      top: 30px;
-      #m {
-        display: none;
-      }
-      img {
-        max-height: 65vh;
-      }
-    }
+    // @media #{$isDesktop} {
+    //   top: 30px;
+    //   #m {
+    //     display: none;
+    //   }
+    //   img {
+    //     max-height: 65vh;
+    //   }
+    // }
 
-    @media #{$isMobile} {
-      #d {
-        display: none;
-      }
-    }
+    // @media #{$isMobile} {
+    //   #d {
+    //     display: none;
+    //   }
+    // }
     @media #{$isMobile} and (orientation: portrait) {
       img {
         max-height: 55vh;

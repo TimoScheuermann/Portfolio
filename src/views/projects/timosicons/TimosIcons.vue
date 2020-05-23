@@ -77,7 +77,7 @@ export default class TimosIcons extends Vue {
 @import "../../../scss/variables.scss";
 
 [center] {
-  margin-top: -30px;
+  margin-top: -50px;
   display: flex;
   flex-direction: column;
   align-items: center;

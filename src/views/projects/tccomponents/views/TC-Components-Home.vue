@@ -25,7 +25,21 @@
           A library of high-quality ready to use components that will help you
           speed up your development workflow.
         </p>
-        <tc-button variant="filled" icon="login" name="Getting started" />
+        <div>
+          <tc-button
+            :to="{
+              name: constants.projectRoutes.timos_components_getting_started
+            }"
+            variant="filled"
+            icon="login"
+            name="Getting started"
+          />
+          <tc-button
+            :to="{ name: constants.projectRoutes.timos_components_designer }"
+            icon="tools"
+            name="Component Designer"
+          />
+        </div>
       </div>
 
       <div class="themeSection">
