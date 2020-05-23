@@ -75,7 +75,7 @@
       </div>
 
       <tc-input
-        title="Amount"
+        title="Punktzahl"
         type="number"
         :dark="true"
         :buttons="true"
