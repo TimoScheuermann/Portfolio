@@ -349,7 +349,7 @@ const tcComponents: TCComponent[] = [
   },
   {
     name: "Scroll Up",
-    icon: "arrow-up",
+    icon: "chevron-up",
     api: []
   },
   {
@@ -545,7 +545,7 @@ const tcComponents: TCComponent[] = [
     ]
   },
   {
-    name: "Picker",
+    name: "Select",
     icon: "list",
     api: []
   },

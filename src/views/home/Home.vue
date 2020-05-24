@@ -10,14 +10,6 @@
         <tc-button :to="{ name: 'uno' }" icon="todo" name="All Projects" />
       </tc-headline>
       <div class="projects">
-        <!-- <tc-preview
-          v-for="proj in projects"
-          :key="proj.title"
-          :to="{ name: proj.routeName }"
-          :title="proj.title"
-        >
-          <img :src="proj.images.preview" />
-        </tc-preview> -->
         <router-link
           tag="div"
           v-for="proj in projects"
