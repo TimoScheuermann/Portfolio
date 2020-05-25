@@ -82,6 +82,7 @@ import TCTabbarItem from "./components/tc/tabbar/TC-Tabbar-Item.vue";
 import TCNavbar from "@/components/tc/navbar/TC-Navbar.vue";
 import TCNavbarItem from "@/components/tc/navbar/TC-Navbar-Item.vue";
 import TCButton from "./components/tc/button/TC-Button.vue";
+import constants from "./constants";
 
 @Component({
   components: {
@@ -97,7 +98,12 @@ import TCButton from "./components/tc/button/TC-Button.vue";
 })
 export default class App extends Vue {
   public projects: Project[] = projects;
-  public darkRoutes: string[] = ["home", "github", "uno"];
+  public darkRoutes: string[] = [
+    "home",
+    "github",
+    "uno",
+    constants.projectRoutes.timos_components_designer
+  ];
 
   showSidebar() {
     return !this.$route.meta.customSidebar;

@@ -28,43 +28,28 @@
         :class="{ 'tc-select--option__selected': isSelected(v) }"
         @click="toggle(v)"
       >
-        <div class="svg" :id="id + '_' + index">
-          <svg
-            :id="id + '_' + index"
-            xmlns="http://www.w3.org/2000/svg"
-            width="20"
-            height="20"
-            viewBox="0 0 100 100"
-          >
-            <circle cx="50" cy="50" />
-            <path
-              d="M1550,970.667l14.167,14.167L1601,948l-36.833,36.833Z"
-              transform="translate(-1525 -915.917)"
-              fill="none"
-              stroke="#08f"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="10"
-            />
-          </svg>
-        </div>
-        <div :id="id + '_' + index" class="text">{{ v }}</div>
+        <i :class="'ti-' + v" :id="id + '_' + index"> </i>
       </div>
     </div>
   </div>
 </template>
 <script lang="ts">
 import { Vue, Component, Prop, Watch } from "vue-property-decorator";
-import uuidVue from "../uuid.vue";
+import icons from "@/icons";
+import { Icon } from "@/models/Icons/Icon.model";
+import uuidVue from "../../tc/uuid.vue";
 type TValues = string | number | boolean;
 
 @Component({ mixins: [uuidVue] })
-export default class TCSelect extends Vue {
+export default class TCIconSelect extends Vue {
+  public icons: Icon[] = icons;
+  public query = "";
+
   @Prop() title!: string;
-  @Prop({ default: "list" }) icon!: string;
-  @Prop({ default: false }) dark!: boolean;
+  @Prop({ default: "heart" }) icon!: string;
+  @Prop({ default: true }) dark!: boolean;
   @Prop({ default: false }) multiple!: boolean;
-  @Prop({ default: "Select one" }) placeholder!: string;
+  @Prop({ default: "Timo's Icons" }) placeholder!: string;
 
   @Prop() value!: TValues | TValues[];
   @Prop() values!: TValues[];
@@ -76,7 +61,10 @@ export default class TCSelect extends Vue {
     : this.multiple
     ? []
     : "";
-  public innerValues: TValues[] = this.values ? this.values : [];
+
+  get innerValues() {
+    return this.icons.map(x => x.name);
+  }
 
   @Watch("innerValue")
   update(): void {
@@ -142,7 +130,7 @@ export default class TCSelect extends Vue {
 <style lang="scss" scoped>
 @import "../../../scss/variables";
 @import "../../../scss/mixins";
-@import "../tc-container";
+@import "../../tc/tc-container";
 // @supports (-webkit-touch-callout: none) { content: "ios"; }
 // @media (hover: hover) { content: "desktop"; }
 // @media (hover: none) { content: "mobile";  }
@@ -166,6 +154,11 @@ export default class TCSelect extends Vue {
     min-width: 125px;
     max-height: 0px;
     overflow: hidden;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 300px;
+    flex-wrap: wrap;
     transform: scale(0);
     transition: 0.2s ease-in-out, max-height 0.5s ease-in-out;
     &.tc-select--custom__expanded {
@@ -198,29 +191,18 @@ export default class TCSelect extends Vue {
       cursor: grabbing;
     }
 
-    .tc-select--title {
-      position: sticky;
-      user-select: none;
-      top: -5px;
-      text-align: center;
-      background: lighten($paragraph, 4%);
-      margin: -5px {
-        bottom: 2px;
-      }
-      padding: 5px;
-      border-top: {
-        left-radius: inherit;
-        right-radius: inherit;
-      }
-      border-bottom: 1px solid currentColor;
-    }
     .tc-select--option {
       transition: 0.2s ease-in-out;
+      transform-origin: center center;
+      padding: 5px;
+      opacity: 0.6;
+      font-size: 20px;
       &:hover {
-        transform: translateX(10px) scale(1.05);
+        opacity: 1;
       }
       &.tc-select--option__selected {
         color: #08f;
+        opacity: 1;
         i {
           transform: scale(0.8);
         }
@@ -239,40 +221,6 @@ export default class TCSelect extends Vue {
       }
       user-select: none;
       cursor: pointer;
-      display: grid;
-      padding-top: 2px;
-      grid-template-columns: 20px auto;
-      line-height: 25px;
-      i {
-        padding-top: 3px;
-      }
-
-      svg {
-        margin-top: 2px;
-        margin-bottom: -2px;
-        circle {
-          stroke-width: 1;
-          fill: #000;
-          stroke: #000;
-          r: 16;
-          transition: all 0.5s ease-in-out;
-        }
-        path {
-          stroke: {
-            dasharray: 168px;
-            dashoffset: 168px;
-          }
-          opacity: 0;
-          transition: all 0.5s ease-in-out, opacity 0.5s ease-in-out 0.2s;
-        }
-      }
-
-      width: 100%;
-      &:not(:last-child) {
-        .text {
-          border-bottom: 1px solid rgba($color, 0.2);
-        }
-      }
     }
   }
 

@@ -1,5 +1,5 @@
 <template>
-  <tc-sidebar class="tc-components--sidebar">
+  <tc-sidebar :dark="dark" class="tc-components--sidebar">
     <div slot="header" class="tc-sidebar--header">
       <div class="icon"><i class="ti-component"></i></div>
       <div class="title">Timo's Components</div>
@@ -117,5 +117,11 @@ export default class TCComponentsSidebar extends Vue {
     }
   ];
   public constants: {} = constants;
+
+  get dark() {
+    return (
+      this.$route.name == constants.projectRoutes.timos_components_designer
+    );
+  }
 }
 </script>

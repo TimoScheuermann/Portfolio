@@ -83,7 +83,7 @@ export default class TCInput extends Vue {
   @Prop() required!: boolean;
   @Prop({ default: 1 }) step!: number;
 
-  innerValue: any = this.value || this.type === "number" ? 0 : "";
+  innerValue: any = this.value || (this.type === "number" ? 0 : "");
 
   inputMode(): string {
     return this.type == "number" ? "numeric" : "";
@@ -154,7 +154,7 @@ $size: 30px;
 
     justify-content: center; // iOS Purpose
     align-items: center; // iOS Purpose
-    width: 250px;
+    min-width: 100px;
     max-width: 100%;
     grid-template-columns: 1fr;
     overflow: hidden;

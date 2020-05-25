@@ -185,7 +185,7 @@ const tcComponents: TCComponent[] = [
         name: "icon",
         type: "String",
         description: "Icon to be displayed",
-        parameters: "Timo's Icon"
+        parameters: "Timo's Icons"
       },
       {
         name: "position",
@@ -259,13 +259,13 @@ const tcComponents: TCComponent[] = [
         name: "iconChecked",
         type: "string",
         description: "",
-        parameters: "Timo's Icon"
+        parameters: "Timo's Icons"
       },
       {
         name: "iconUnchecked",
         type: "string",
         description: "",
-        parameters: "Timo's Icon"
+        parameters: "Timo's Icons"
       },
       {
         name: "iconAnimation",
@@ -416,7 +416,7 @@ const tcComponents: TCComponent[] = [
         name: "type",
         type: "string",
         default: "bar",
-        parameters: "bar | ring",
+        parameters: "bar, ring",
         description: "Progress Type"
       },
       {
@@ -539,7 +539,7 @@ const tcComponents: TCComponent[] = [
       {
         name: "[TC-Navbar-Item]: icon",
         type: "string",
-        parameters: "Timos Icon",
+        parameters: "Timo's Icons",
         description: "Custom Icon to be displayed"
       }
     ]
