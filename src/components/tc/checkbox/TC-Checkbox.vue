@@ -1,5 +1,5 @@
 <template>
-  <div class="tc-checkbox tc-container">
+  <div class="tc-checkbox tc-container" :class="{ 'tc-checkbox__dark': dark }">
     <input
       @input="updateVal()"
       v-model="checked"
@@ -31,7 +31,7 @@
         height="100"
         viewBox="0 0 100 100"
       >
-        <g id="border" fill="none" stroke="#000" stroke-width="10">
+        <g id="border" fill="none" stroke-width="10">
           <rect x="5" y="5" width="90" height="90" rx="10" fill="none" />
         </g>
         <path
@@ -59,6 +59,7 @@ export default class TCCheckbox extends Vue {
   @Prop({ default: false }) value!: boolean;
   @Prop() title!: string;
   @Prop() color!: string;
+  @Prop() dark!: boolean;
   @Prop() position!: string;
   @Prop() iconChecked!: string;
   @Prop() iconUnchecked!: string;
@@ -156,6 +157,17 @@ export default class TCCheckbox extends Vue {
 }
 
 .tc-checkbox {
+  &__dark {
+    background: lighten($color, 20%);
+    color: #fff;
+    border-color: rgba(#fff, 0.01);
+    &:hover {
+      border-color: rgba(#fff, 0.4);
+    }
+    input + label svg #border {
+      stroke: #fff;
+    }
+  }
   input {
     display: none;
   }
@@ -215,7 +227,7 @@ export default class TCCheckbox extends Vue {
         transition: all 0.5s ease-in-out;
       }
       #border {
-        stroke: {
+        stroke: #000 {
           dasharray: 343px;
           dashoffset: 0px;
         }

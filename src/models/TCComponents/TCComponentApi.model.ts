@@ -4,4 +4,5 @@ export class TCComponentApi {
   parameters?: string;
   description: string = "";
   default?: string;
+  selectValues?: (string | boolean)[];
 }

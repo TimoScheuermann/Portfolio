@@ -105,6 +105,7 @@ export default class TCSelect extends Vue {
         this.innerValue = "";
       } else {
         this.innerValue = value;
+        this.expanded = false;
       }
     } else {
       if (this.isSelected(value)) {
@@ -294,9 +295,14 @@ export default class TCSelect extends Vue {
 
   &__dark {
     color: #fff;
+
     label {
       background: lighten($color, 20%);
       color: #fff;
+      border-color: rgba(#fff, 0.01);
+      &:hover {
+        border-color: rgba(#fff, 0.4);
+      }
       i {
         border-color: rgba(#fff, 0.5) !important;
       }

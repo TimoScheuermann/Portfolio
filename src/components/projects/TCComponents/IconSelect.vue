@@ -28,7 +28,9 @@
         :class="{ 'tc-select--option__selected': isSelected(v) }"
         @click="toggle(v)"
       >
-        <i :class="'ti-' + v" :id="id + '_' + index"> </i>
+        <tc-tooltip :tooltip="v">
+          <i :class="'ti-' + v" :id="id + '_' + index"> </i>
+        </tc-tooltip>
       </div>
     </div>
   </div>
@@ -38,9 +40,10 @@ import { Vue, Component, Prop, Watch } from "vue-property-decorator";
 import icons from "@/icons";
 import { Icon } from "@/models/Icons/Icon.model";
 import uuidVue from "../../tc/uuid.vue";
+import TCTooltip from "../../tc/tooltip/TC-Tooltip.vue";
 type TValues = string | number | boolean;
 
-@Component({ mixins: [uuidVue] })
+@Component({ mixins: [uuidVue], components: { "tc-tooltip": TCTooltip } })
 export default class TCIconSelect extends Vue {
   public icons: Icon[] = icons;
   public query = "";
@@ -63,7 +66,7 @@ export default class TCIconSelect extends Vue {
     : "";
 
   get innerValues() {
-    return this.icons.map(x => x.name);
+    return this.icons.map(x => x.name).sort((a, b) => a.localeCompare(b));
   }
 
   @Watch("innerValue")
@@ -93,6 +96,7 @@ export default class TCIconSelect extends Vue {
         this.innerValue = "";
       } else {
         this.innerValue = value;
+        this.expanded = false;
       }
     } else {
       if (this.isSelected(value)) {
@@ -166,7 +170,7 @@ export default class TCIconSelect extends Vue {
       max-height: 300px;
       overflow: {
         y: auto;
-        x: hidden;
+        x: none;
       }
     }
     &::-webkit-scrollbar {
@@ -245,6 +249,10 @@ export default class TCIconSelect extends Vue {
     label {
       background: lighten($color, 20%);
       color: #fff;
+      border-color: rgba(#fff, 0.01);
+      &:hover {
+        border-color: rgba(#fff, 0.4);
+      }
       i {
         border-color: rgba(#fff, 0.5) !important;
       }

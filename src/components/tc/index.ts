@@ -39,6 +39,12 @@ const tcComponents: TCComponent[] = [
           "Specifies a short hint that describes the expected value of an <tc-input> element"
       },
       {
+        name: "filePlaceholder",
+        type: "string",
+        description: "Specifie a placeholder for your file upload input field",
+        default: "Choose File"
+      },
+      {
         name: "type",
         type: "string",
         description: "Input type",
@@ -47,7 +53,7 @@ const tcComponents: TCComponent[] = [
       {
         name: "value",
         type: "any",
-        description: "Determines the state of the checkbox",
+        description: "Determines the value of your input field",
         default: "false"
       },
       { name: "v-model", type: "any", description: "" },
@@ -55,7 +61,17 @@ const tcComponents: TCComponent[] = [
         name: "@input",
         type: "function",
         description:
-          "Is called whenever the user changes the state of the checkbox"
+          "Is called whenever the user changes the content inside the input field"
+      },
+      {
+        name: "@change",
+        type: "function",
+        description: "Is called whenever the user has selected a file to upload"
+      },
+      {
+        name: "@fileLoaded",
+        type: "function(value: string)",
+        description: "Is called whenever the selected file has been read"
       },
       {
         name: "accept",
@@ -107,6 +123,12 @@ const tcComponents: TCComponent[] = [
         type: "number",
         description:
           "Specifies the minimum number of characters required in an <tc-input> element"
+      },
+      {
+        name: "multiple",
+        type: "boolean",
+        description:
+          "Specifies that a user can enter more than one value in an <tc-input> element"
       },
       {
         name: "pattern",
@@ -195,7 +217,7 @@ const tcComponents: TCComponent[] = [
         default: "center"
       },
       {
-        name: "Color",
+        name: "color",
         type: "String",
         description: "Determines the color of TC-Divider"
       }
@@ -254,6 +276,11 @@ const tcComponents: TCComponent[] = [
         description: "",
         parameters: "left, right",
         default: "left"
+      },
+      {
+        name: "dark",
+        type: "boolean",
+        description: "Toggles darkmode on or off"
       },
       {
         name: "iconChecked",

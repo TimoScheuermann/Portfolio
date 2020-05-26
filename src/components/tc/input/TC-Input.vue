@@ -22,9 +22,15 @@
         <i class="ti" :class="'ti-' + icon" />
       </div>
       <div class="tc-input--input">
+        <label
+          v-if="type && type.toLowerCase() === 'file'"
+          :for="'tc-input_' + uuid"
+        >
+          {{ filePlaceholder }}
+        </label>
         <input
           v-model="innerValue"
-          :type="type || 'text'"
+          :type="type ? type.toLowerCase() : 'text'"
           :id="'tc-input_' + uuid"
           :inputmode="inputMode()"
           :style="style"
@@ -39,10 +45,13 @@
           :maxlength="maxlength"
           :min="min"
           :minlength="minlength"
+          :multiple="multiple"
           :readonly="readonly"
           :required="required"
           :step="step"
+          :ref="'tc-input_' + uuid"
           @input="update()"
+          @change="change"
         />
       </div>
       <div
@@ -64,6 +73,7 @@ import uuidVue from "../uuid.vue";
 export default class TCInput extends Vue {
   @Prop() icon!: string;
   @Prop() dark!: boolean;
+  @Prop({ default: "Choose File" }) filePlaceholder!: string;
   @Prop() title!: string;
   @Prop() buttons!: boolean;
   @Prop() placeholder!: string;
@@ -78,6 +88,7 @@ export default class TCInput extends Vue {
   @Prop() maxlength!: number;
   @Prop() min!: number | string;
   @Prop() minlength!: number;
+  @Prop() multiple!: boolean;
   @Prop() pattern!: string;
   @Prop() readonly!: boolean;
   @Prop() required!: boolean;
@@ -110,6 +121,17 @@ export default class TCInput extends Vue {
   update() {
     this.$emit("input", this.innerValue);
   }
+  change(changeEvent: Event) {
+    this.$emit("change", changeEvent);
+    const target: HTMLInputElement = changeEvent.target as HTMLInputElement;
+    const fileList: FileList = target.files as FileList;
+    const reader = new FileReader();
+    reader.onload = loaded => {
+      const loadTarget = loaded.target as FileReader;
+      this.$emit("fileLoaded", loadTarget.result);
+    };
+    if (fileList && fileList.length > 0) reader.readAsText(fileList[0]);
+  }
 }
 </script>
 <style lang="scss" scoped>
@@ -130,12 +152,19 @@ $size: 30px;
 
   &.tc-input__dark {
     .tc-input--container,
-    .tc-input--input input {
+    .tc-input--input input,
+    .tc-input--input label {
       background: lighten($color, 20%);
       color: #fff;
     }
     .tc-input--icon i {
       border-color: rgba(#fff, 0.5);
+    }
+    .tc-input--container {
+      border-color: rgba(#fff, 0.01);
+      &:not(.tc-input__disabled):hover {
+        border-color: rgba(#fff, 0.4);
+      }
     }
   }
 
@@ -226,7 +255,18 @@ $size: 30px;
   .tc-input--input {
     min-width: 100px;
     margin: 0 5px;
-    input {
+    label {
+      cursor: pointer;
+    }
+    input,
+    label {
+      &[type="file"] {
+        position: fixed;
+        top: -200px;
+        left: 0;
+        z-index: -1;
+        opacity: 0;
+      }
       font: inherit;
       font-family: inherit;
       width: 100%;

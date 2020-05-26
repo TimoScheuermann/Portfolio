@@ -5,19 +5,34 @@
       :backTo="{ name: constants.projectRoutes.timos_components }"
       backName="Overview"
       title="Component Designer"
-    />
+    >
+      <tc-button
+        @click="downloadFile"
+        name="Save Configuration"
+        icon="download"
+        variant="filled"
+      />
+      <tc-input
+        accept=".tccomponent"
+        type="file"
+        icon="component"
+        filePlaceholder="Load Configuration"
+        @fileLoaded="fileLoaded"
+        :dark="true"
+      />
+    </tc-header>
 
     <div content>
-      <section hero>
+      <section hero color-fff>
         <div>
           <i class="ti-color-fan"></i>
           <i class="ti-tools"></i>
           <i class="ti-component"></i>
         </div>
-        <h1>Component Designer</h1>
+        <h1>omponent Designer</h1>
       </section>
 
-      <tc-headline :dark="true" title="Toolbar">
+      <tc-headline color-fff :dark="true" title="Toolbar">
         <div>
           <span select v-if="!selectedComponent">
             <span>
@@ -31,34 +46,56 @@
             v-model="selectedComponent"
             :values="componentList"
           />
-          <tc-icon-select
-            v-for="api in iconAttributes"
-            :key="api.name"
-            v-model="data[api.name]"
-          />
-          <tc-select
-            :dark="true"
-            v-for="api in attributesWithFixedValues"
-            :key="api.name"
-            :placeholder="api.name"
-            :values="api.parameters.split(', ')"
-            v-model="data[api.name]"
-          />
-          <tc-input
-            :dark="true"
-            v-for="api in attributes"
-            :key="api.name"
-            :placeholder="api.name"
-            v-model="data[api.name]"
-          />
         </div>
       </tc-headline>
-      <h1>{{ selectedComponent }}</h1>
-      <!-- <p>{{ component }}</p>
-      <p>Data: {{ data }}</p> -->
 
-      <div ref="container"></div>
-      <!-- <component :is="'tc-' + selectedComponent.toLowerCase()" /> -->
+      <transition-group name="options-trans" tag="div" class="tc-options">
+        <tc-icon-select
+          v-for="api in iconAttributes"
+          :key="api.name"
+          v-model="data[api.name]"
+        />
+        <tc-select
+          :dark="true"
+          v-for="api in selectAttributes"
+          :key="api.name"
+          :placeholder="api.name"
+          :values="api.selectValues"
+          v-model="data[api.name]"
+        />
+        <tc-input
+          :dark="true"
+          v-for="api in inputAttributes"
+          :key="api.name"
+          :placeholder="api.name"
+          v-model="data[api.name]"
+        />
+      </transition-group>
+
+      <!-- <p color-fff>{{ data }}</p>
+      <p color-fff>{{ html }}</p> -->
+
+      <div
+        class="designer-canvas"
+        :class="{ 'designer-canvas__dark': darkCanvas }"
+      >
+        <div v-if="component" class="designer-canvas--header">
+          <div>
+            <h1>{{ selectedComponent }}</h1>
+          </div>
+          <div>
+            <tc-checkbox
+              :dark="darkCanvas"
+              v-model="darkCanvas"
+              title="Dark Canvas"
+            />
+            <tc-button :name="copyHTMLText" @click="copyHTML()" />
+          </div>
+        </div>
+        <div class="designer-canvas--element">
+          <div ref="container"></div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -86,6 +123,8 @@ import TCRevealer from "@/components/tc/revealer/TC-Revealer.vue";
 import TCScrollUp from "@/components/tc/scrollup/TC-Scroll-Up.vue";
 import TCQuote from "@/components/tc/quote/TC-Quote.vue";
 import TCIconSelect from "@/components/projects/TCComponents/IconSelect.vue";
+import { TCComponentApi } from "@/models/TCComponents/TCComponentApi.model";
+import TCSpinner from "@/components/tc/spinner/TC-Spinner.vue";
 
 @Component({
   components: {
@@ -96,35 +135,26 @@ import TCIconSelect from "@/components/projects/TCComponents/IconSelect.vue";
     "tc-input": TCInput,
     "tc-button": TCButton,
     "tc-icon-select": TCIconSelect,
-    TCCard,
-    TCCheckbox,
-    TCDivider,
-    TCHeader,
-    TCHeadline,
-    TCHero,
-    TCImage,
-    TCLink,
-    TCList,
-    TCModal,
-    TCNavbar,
-    TCProgress,
-    TCQuote,
-    TCRevealer,
-    TCScrollUp
+    "tc-checkbox": TCCheckbox
   }
 })
 export default class TCComponentsDesigner extends Vue {
   public constants: {} = constants;
   public components: TCComponent[] = components;
   public selectedComponent: string = "";
+  public copyHTMLText: string = "Copy HTML Markup";
+  public darkCanvas: boolean = true;
   public data: {} = {};
-  public available: { [x: string]: any } = {
+  public available: { [x: string]: string | any } = {
     Button: TCButton,
     Input: TCInput,
     Card: TCCard,
     Checkbox: TCCheckbox,
     Divider: TCDivider,
-    Progress: TCProgress
+    Progress: TCProgress,
+    Select: TCSelect,
+    Spinner: TCSpinner,
+    Quote: TCQuote
   };
 
   get componentList() {
@@ -138,22 +168,48 @@ export default class TCComponentsDesigner extends Vue {
     return undefined;
   }
 
-  get iconAttributes() {
-    if (this.selectedComponent)
-      return this.component!.api.filter(x => x.parameters).filter(
-        x => x.parameters == "Timo's Icons"
-      );
+  get html(): string {
+    if (!this.component) return "";
+    let html = "<tc-" + this.component.name.toLowerCase();
+    Object.keys(this.data).forEach((x, i) => {
+      const val = Object.values(this.data)[i];
+      if (val)
+        html += ` ${x}="${x === "icon" ? "ti-" : ""}${
+          Object.values(this.data)[i]
+        }"`;
+    });
+    return html + " />";
   }
 
-  get attributes() {
-    if (this.selectedComponent)
-      return this.component!.api.filter(x => !x.parameters);
+  get allAttributes(): TCComponentApi[] {
+    if (this.selectedComponent) return this.component!.api;
+    return [];
   }
-  get attributesWithFixedValues() {
-    if (this.selectedComponent)
-      return this.component!.api.filter(x => x.parameters).filter(
-        x => x.parameters !== "Timo's Icons"
-      );
+
+  get iconAttributes(): TCComponentApi[] {
+    return this.allAttributes.filter(
+      x => x.parameters && x.parameters === "Timo's Icons"
+    );
+  }
+  get inputAttributes(): TCComponentApi[] {
+    return this.allAttributes.filter(
+      x => !(x.parameters || x.type === "boolean")
+    );
+  }
+  get selectAttributes(): TCComponentApi[] {
+    return this.allAttributes
+      .filter(
+        x =>
+          ((x.parameters && x.parameters !== "Timo's Icons") ||
+            x.type === "boolean") &&
+          x.name !== "dark"
+      )
+      .map(x => {
+        x.selectValues = x.parameters
+          ? x.parameters.split(", ")
+          : [true, false];
+        return x;
+      });
   }
 
   @Watch("selectedComponent")
@@ -161,20 +217,68 @@ export default class TCComponentsDesigner extends Vue {
     this.data = {};
   }
 
+  @Watch("darkCanvas", { deep: true })
   @Watch("data", { deep: true })
   public changed(): void {
     console.log("changed");
-    var ComponentClass = Vue.extend(this.available[this.selectedComponent]);
-    var instance = new ComponentClass({
-      propsData: { ...this.data, dark: true },
-      parent: this
-    });
-    // instance.$slots.default = ["Click me!"];
-    instance.$mount(); // pass nothing
-    // appendChild(instance.$el);
-    const element: HTMLElement = this.$refs.container as HTMLElement;
-    element.innerHTML = "";
-    element.appendChild(instance.$el);
+    try {
+      var ComponentClass = Vue.extend(this.available[this.selectedComponent]);
+      var instance = new ComponentClass({
+        propsData: { ...this.data, dark: this.darkCanvas },
+        parent: this
+      });
+      // instance.$slots.default = ["Click me!"];
+      instance.$mount(); // pass nothing
+      // appendChild(instance.$el);
+      const element: HTMLElement = this.$refs.container as HTMLElement;
+      element.innerHTML = "";
+      element.appendChild(instance.$el);
+    } catch (error) {
+      console.log("error");
+    }
+  }
+
+  public copyHTML(): void {
+    const dummy = document.createElement("textarea");
+    document.body.appendChild(dummy);
+    dummy.value = this.html;
+    dummy.select();
+    document.execCommand("copy");
+    document.body.removeChild(dummy);
+    this.copyHTMLText = "Copied!";
+    setTimeout(() => {
+      this.copyHTMLText = "Copy HTML Markup";
+    }, 1500);
+  }
+
+  public downloadFile(): void {
+    const str = `data:text/json;charset=utf-8,${encodeURIComponent(
+      JSON.stringify({
+        ...this.data,
+        component: this.selectedComponent,
+        dark: this.darkCanvas
+      })
+    )}`;
+    const anchor = window.document.createElement("a");
+    anchor.setAttribute("href", str);
+    anchor.setAttribute("download", `${this.selectedComponent}.tccomponent`);
+    anchor.click();
+  }
+  public fileLoaded(content: string) {
+    console.log("loaded", content);
+    const data = JSON.parse(content);
+    if (data && data.component) {
+      this.selectedComponent = data.component;
+      this.darkCanvas = data.dark;
+      delete data.component;
+      delete data.dark;
+      setTimeout(() => {
+        console.log(data);
+        this.data = data;
+      }, 10);
+    } else {
+      console.log("error");
+    }
   }
 }
 </script>
@@ -182,14 +286,63 @@ export default class TCComponentsDesigner extends Vue {
 <style lang="scss" scoped>
 [content] {
   background: #000;
-  color: #fff;
   min-height: calc(
     100vh - env(safe-area-inset-top) - env(safe-area-inset-bottom) - 100px
   );
 }
 
+[color-fff] {
+  color: #fff;
+}
+
+/deep/ .tc-card {
+  animation: none !important;
+}
+
+.tc-options {
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+  min-height: 100px;
+}
+
+.designer-canvas {
+  background: #fafafa;
+  transition: all 0.2s ease-in-out;
+  padding: 20px;
+  border-radius: 5px;
+  overflow: hidden;
+
+  &__dark {
+    background: #000;
+    .designer-canvas--header h1 {
+      color: #fff;
+    }
+  }
+  &--header div,
+  &--header {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  &--header {
+    justify-content: space-between;
+    .tc-button {
+      min-width: 141.292px;
+    }
+  }
+  &--element {
+    text-align: center;
+    padding-top: 20px;
+    max-width: 100%;
+    & > div {
+      max-width: 100%;
+    }
+  }
+}
+
 section[hero] {
-  padding-top: 20px;
+  padding-top: 30px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -203,6 +356,14 @@ section[hero] {
   }
   h1 {
     font-size: 3em;
+    padding-left: 0.8em;
+    &::before {
+      margin-left: -0.8em;
+      opacity: 0.8;
+      content: "C";
+      position: absolute;
+      transform: rotate(-35deg);
+    }
   }
 }
 span[select] {
