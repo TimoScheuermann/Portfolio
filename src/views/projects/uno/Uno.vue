@@ -251,7 +251,7 @@ export default class Uno extends Vue {
           x.data = [...x.data, old];
         }
       });
-      this.$refs.chart.updateSeries(this.series);
+      (this.$refs.chart as any).updateSeries(this.series);
     } else {
       console.log("kein verlierer");
     }
