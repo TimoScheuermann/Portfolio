@@ -161,7 +161,7 @@ export default class TCSelect extends Vue {
 
   .tc-select--custom {
     @media(hover: none) {
-      display: none;
+      //display: none;
     }
     position: absolute;
     z-index: 100;
