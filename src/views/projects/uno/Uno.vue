@@ -58,20 +58,24 @@
       </div>
       <div v-if="players.length != 2">
         <div class="tit">Gewinner</div>
-        <select v-model="player_winner" name="Gewinner" id="winnerSelect">
-          <option v-for="p in players" :key="p.name + '_s'" :value="p">
-            {{ p.name }}
-          </option>
-        </select>
+        <tc-select
+          v-model="player_winner"
+          :values="playerNames"
+          placeholder="Gewinner"
+          title="Gewinner"
+          :dark="true"
+        />
       </div>
 
       <div>
         <div class="tit">Verlierer</div>
-        <select v-model="player_looser" name="Verlierer" id="looserSelect">
-          <option v-for="p in players" :key="p.name + '_s'" :value="p">
-            {{ p.name }}
-          </option>
-        </select>
+        <tc-select
+          v-model="player_looser"
+          :values="playerNames"
+          placeholder="Verlierer"
+          title="Verlierer"
+          :dark="true"
+        />
       </div>
 
       <tc-input
@@ -82,7 +86,20 @@
         v-model="newPoints"
       />
     </div>
-    <tc-revealer icon="dots" :title="'Spiele ' + games.length">
+
+    <div class="options">
+      <h2>Graph</h2>
+      <apexchart
+        height="400"
+        ref="chart"
+        type="line"
+        :options="options"
+        :series="series"
+      />
+    </div>
+
+    <div class="options">
+      <h2>Spiele</h2>
       <div class="games">
         <table>
           <tr>
@@ -101,7 +118,7 @@
           </tr>
         </table>
       </div>
-    </tc-revealer>
+    </div>
   </div>
 </template>
 <script lang="ts">
@@ -114,7 +131,9 @@ import { Player } from "./Player.model";
 import { Game } from "./Game.model";
 import TCRevealer from "@/components/tc/revealer/TC-Revealer.vue";
 import TCDivider from "@/components/tc/divider/TC-Divider.vue";
-import TCCard from "../../../components/tc/card/TC-Card.vue";
+import TCCard from "@/components/tc/card/TC-Card.vue";
+import TCSelect from "@/components/tc/select/TC-Select.vue";
+import VueApexCharts from "vue-apexcharts";
 
 @Component({
   components: {
@@ -124,7 +143,9 @@ import TCCard from "../../../components/tc/card/TC-Card.vue";
     "tc-input": TCInput,
     "tc-revealer": TCRevealer,
     "tc-divider": TCDivider,
-    "tc-card": TCCard
+    "tc-card": TCCard,
+    "tc-select": TCSelect,
+    apexchart: VueApexCharts
   }
 })
 export default class Uno extends Vue {
@@ -134,13 +155,35 @@ export default class Uno extends Vue {
   games: Game[] = [];
   currentPlayer: number = 0;
   newPoints: number = 0;
-  player_looser: Player = { name: "" };
-  player_winner: Player = { name: "" };
+  player_looser: string = "";
+  player_winner: string = "";
+  public options = {
+    chart: {
+      id: "uno-point-chart",
+      background: "#252525"
+    },
+    theme: { mode: "dark" },
+    xaxis: {
+      categories: []
+    }
+  };
+  public series: { name: string; data: number[] }[] = [];
 
-  public addPlayer(): void {
-    this.players.push({ name: this.newUserName } as Player);
+  created() {
+    // this.addPlayer("Timo");
+    // this.addPlayer("Petra");
+  }
+
+  get playerNames() {
+    return this.players.map(x => x.name);
+  }
+
+  public addPlayer(name: string = ""): void {
+    if (name.length == 0) name = this.newUserName;
+    this.players.push({ name: name } as Player);
     this.newUserName = "";
     this.modalOpened = false;
+    this.series.push({ name: name, data: [] });
   }
   public getWinPerc(player: Player): number {
     return (
@@ -182,17 +225,36 @@ export default class Uno extends Vue {
   }
   public removeGame(index: number) {
     this.games = this.games.filter((x, i) => i != index);
+    this.series.map(x => (x.data = x.data.filter((x, i) => i != index)));
+  }
+  public getPlayer(name: string): Player {
+    return this.players.filter(x => x.name === name)[0];
   }
   public save() {
-    this.games.push({
-      looser: this.player_looser,
-      points: +this.newPoints,
-      winner:
+    if (this.player_looser) {
+      const winner: Player =
         this.players.length != 2
-          ? this.player_winner
-          : this.players.filter(x => x.name != this.player_looser.name)[0]
-    });
-    this.currentPlayer++;
+          ? this.getPlayer(this.player_winner)
+          : this.players.filter(x => x.name != this.player_looser)[0];
+
+      this.games.push({
+        looser: this.getPlayer(this.player_looser),
+        points: +this.newPoints,
+        winner: winner
+      });
+      this.currentPlayer++;
+      this.series.map(x => {
+        const old: number = x.data[x.data.length - 1] || 0;
+        if (x.name === this.player_looser) {
+          x.data = [...x.data, +this.newPoints + old];
+        } else {
+          x.data = [...x.data, old];
+        }
+      });
+      this.$refs.chart.updateSeries(this.series);
+    } else {
+      console.log("kein verlierer");
+    }
   }
 }
 </script>
@@ -228,7 +290,8 @@ export default class Uno extends Vue {
     margin-bottom: 3px;
     opacity: 0.8;
   }
-  .tc-input {
+  .tc-input,
+  .tc-select {
     width: 100%;
     /deep/ .tc-input--container {
       width: 100%;

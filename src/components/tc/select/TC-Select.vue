@@ -65,7 +65,6 @@ export default class TCSelect extends Vue {
   @Prop({ default: false }) dark!: boolean;
   @Prop({ default: false }) multiple!: boolean;
   @Prop({ default: "Select one" }) placeholder!: string;
-
   @Prop() value!: TValues | TValues[];
   @Prop() values!: TValues[];
 
@@ -77,6 +76,11 @@ export default class TCSelect extends Vue {
     ? []
     : "";
   public innerValues: TValues[] = this.values ? this.values : [];
+
+  @Watch("values")
+  changed(): void {
+    this.innerValues = this.values ? this.values : [];
+  }
 
   @Watch("innerValue")
   update(): void {
@@ -156,7 +160,7 @@ export default class TCSelect extends Vue {
   }
 
   .tc-select--custom {
-    @media (hover: none) {
+    @supports (-webkit-touch-callout: none) {
       display: none;
     }
     position: absolute;
