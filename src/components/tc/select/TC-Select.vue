@@ -160,7 +160,7 @@ export default class TCSelect extends Vue {
   }
 
   .tc-select--custom {
-    @supports (-webkit-touch-callout: none) {
+    @media(hover: none) {
       display: none;
     }
     position: absolute;
