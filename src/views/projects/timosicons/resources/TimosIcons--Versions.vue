@@ -10,11 +10,13 @@
       <tc-card
         :title="getVersionIcons(version).length + ' Icons added in this update'"
       >
-        <ti-icontile
+        <tc-tooltip
           v-for="icon in getVersionIcons(version)"
+          :tooltip="icon.name"
           :key="icon.name"
-          :icon="icon"
-        />
+        >
+          <ti-icontile :icon="icon" :showName="false" />
+        </tc-tooltip>
       </tc-card>
     </div>
   </div>
@@ -28,13 +30,15 @@ import TCCard from "@/components/tc/card/TC-Card.vue";
 import IconTile from "@/components/projects/TimosIcons/IconTile.vue";
 import { Icon } from "@/models/Icons/Icon.model";
 import constants from "@/constants";
+import TCTooltip from "@/components/tc/tooltip/TC-Tooltip.vue";
 
 @Component({
   components: {
     "tc-header": TCHeader,
     "tc-headline": TCHeadline,
     "tc-card": TCCard,
-    "ti-icontile": IconTile
+    "ti-icontile": IconTile,
+    "tc-tooltip": TCTooltip
   }
 })
 export default class TimosIconsVersions extends Vue {

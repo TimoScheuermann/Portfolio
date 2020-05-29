@@ -5,7 +5,7 @@
     :to="{ name: 'timosiconsdetail', params: { icon: icon.name } }"
   >
     <i :class="'icon ti-' + icon.name"></i>
-    <div class="name">{{ icon.name.split("-").join(" ") }}</div>
+    <div v-if="showName" class="name">{{ icon.name.split("-").join(" ") }}</div>
   </router-link>
   <div v-else class="timosicons--icontile timosicons--selectable">
     <input type="checkbox" :id="'timosicons--icontile-cb-' + uuid" />
@@ -14,7 +14,9 @@
         <i class="ti-checkmark" />
       </div>
       <i :class="'icon ti-' + icon.name"></i>
-      <div class="name">{{ icon.name.split("-").join(" ") }}</div>
+      <div v-if="showName" class="name">
+        {{ icon.name.split("-").join(" ") }}
+      </div>
     </label>
   </div>
 </template>
@@ -29,6 +31,7 @@ export default class IconTile extends Vue {
   @Prop() icon!: Icon;
   @Prop() detailView!: boolean;
   @Prop() selectAble!: boolean;
+  @Prop({ default: true }) showName!: boolean;
 }
 </script>
 <style lang="scss" scoped>

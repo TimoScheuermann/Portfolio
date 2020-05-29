@@ -1,6 +1,22 @@
 import { Icon } from "@/models/Icons/Icon.model";
 
 const icons: Icon[] = [
+  { name: "attachment", version: "2.13" },
+  { name: "chat-bubble", version: "2.13" },
+  { name: "chat-bubbles", version: "2.13" },
+  { name: "cloud-upload", version: "2.13" },
+  { name: "hard-drive", version: "2.13" },
+  { name: "microphone-muted", version: "2.13" },
+  { name: "movie", version: "2.13" },
+  { name: "newspaper", version: "2.13" },
+  { name: "trashcan-alt", version: "2.13" },
+  { name: "upload", version: "2.13" },
+  { name: "cloud", version: "2.13" },
+  { name: "cloud-download", version: "2.13" },
+  { name: "link", version: "2.13" },
+  { name: "power", version: "2.13" },
+  { name: "printer", version: "2.13" },
+
   { name: "login", version: "2.12" },
   { name: "logout", version: "2.12" },
   { name: "chevron-down", version: "2.12" },
