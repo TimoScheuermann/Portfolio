@@ -116,6 +116,9 @@ export default class Home extends Vue {
     overflow: hidden {
       x: auto;
     }
+    & > div {
+      cursor: pointer;
+    }
     margin-bottom: 20px;
     /deep/ .tc-card {
       margin: 0 5px;

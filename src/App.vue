@@ -114,12 +114,27 @@ export default class App extends Vue {
 
   @Watch("$route.name")
   changed(to: string, from: string) {
+    this.updateTitle();
     if (this.darkRoutes.includes(to)) {
       console.log("dark");
       document.body.style.background = "#000";
       return;
     }
     document.body.style.background = "inherit";
+  }
+
+  private updateTitle(): void {
+    const title = this.$route.meta.title;
+    if (title) {
+      const params = this.$route.params;
+      document.title = this.$route.meta.title
+        .split("%comp%")
+        .join(params.comp)
+        .split("%icon%")
+        .join(params.icon);
+    } else {
+      document.title = "Timo Scheuermann | Portfolio";
+    }
   }
 }
 </script>

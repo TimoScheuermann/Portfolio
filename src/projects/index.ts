@@ -53,7 +53,7 @@ const projects: Project[] = [
     description:
       "Just some random screenshots, design ideas that I came across over the years.",
 
-    icon: "painting",
+    icon: "photos",
     mainComponent: "@/views/projects/workgallery/WorkGallery.vue",
     thumbnail: "assets/projects/workgallery/thumbnail.png",
     preview: "assets/projects/workgallery/preview.png",

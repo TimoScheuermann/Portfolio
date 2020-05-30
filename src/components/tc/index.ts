@@ -396,7 +396,7 @@ const tcComponents: TCComponent[] = [
   },
   {
     name: "Hero",
-    icon: "painting",
+    icon: "image",
     api: [
       {
         default: "200",
@@ -574,7 +574,24 @@ const tcComponents: TCComponent[] = [
   {
     name: "Select",
     icon: "list",
-    api: []
+    api: [
+      { name: "title", type: "string", description: "" },
+      { default: "list", name: "icon", type: "string", description: "" },
+      { default: false, name: "dark", type: "boolean", description: "" },
+      { default: false, name: "multiple", type: "boolean", description: "" },
+      {
+        default: "Select one",
+        name: "placeholder",
+        type: "string",
+        description: ""
+      },
+      {
+        name: "value",
+        type: "(string | number | boolean) | (string | number | boolean)[]",
+        description: ""
+      },
+      { name: "values", type: "(string | number | boolean)[]", description: "" }
+    ]
   },
   {
     name: "Tooltip",

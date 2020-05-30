@@ -48,7 +48,7 @@ export default class IconSlotMashine extends Vue {
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    filter: drop-shadow(4px 8px 12px rgba(#111, 0.6));
+    // filter: drop-shadow(4px 8px 12px rgba(#111, 0.6));
   }
 
   .fade-enter-active,
@@ -65,7 +65,7 @@ export default class IconSlotMashine extends Vue {
   .fade-enter,
   .fade-leave-to {
     opacity: 0;
-    transform: translate(-50%, -50%) rotateX(180deg);
+    transform: translate(-50%, -50%) rotateY(180deg);
   }
 }
 </style>
