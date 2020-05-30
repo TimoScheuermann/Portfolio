@@ -1,6 +1,27 @@
 import { Icon } from "@/models/Icons/Icon.model";
 
 const icons: Icon[] = [
+  { name: "calendar-alt", version: "2.14" },
+  { name: "image", version: "2.14" },
+  { name: "mail", version: "2.14" },
+  { name: "mail-unread", version: "2.14" },
+  { name: "music", version: "2.14" },
+  { name: "notification-disabled", version: "2.14" },
+  { name: "wrench", version: "2.14" },
+  { name: "anchor", version: "2.14" },
+  { name: "calendar", version: "2.14" },
+  { name: "map", version: "2.14" },
+  { name: "microscope", version: "2.14" },
+  { name: "notification", version: "2.14" },
+  { name: "phone-alt", version: "2.14" },
+  { name: "photos", version: "2.14" },
+  { name: "present", version: "2.14" },
+  { name: "settings", version: "2.14" },
+  { name: "star-add", version: "2.14" },
+  // {name: "star-add-path3", version: "2.14"},
+  { name: "ticket", version: "2.14" },
+  { name: "umbrella", version: "2.14" },
+
   { name: "attachment", version: "2.13" },
   { name: "chat-bubble", version: "2.13" },
   { name: "chat-bubbles", version: "2.13" },
