@@ -44,7 +44,7 @@
     <div v-if="players.length == 2">
       <div class="options">
         Aktuell muss <b>{{ getLooser().name }}</b>
-        <b style="color: red">
+        <b style="color: #08f">
           {{ (getPoints(getLooser()) - getPoints(getWinner())) / 100 }}€
         </b>
         zahlen
@@ -53,7 +53,7 @@
 
     <div class="options">
       <div class="head">
-        <h2>Rundenergebnis</h2>
+        <h2>Rundenergebnis #{{ games.length + 1 }}</h2>
         <tc-button name="Speichern" @click="save()" />
       </div>
       <div v-if="players.length != 2">
@@ -122,7 +122,7 @@
   </div>
 </template>
 <script lang="ts">
-import { Vue, Component } from "vue-property-decorator";
+import { Vue, Component, Watch } from "vue-property-decorator";
 import TCHeader from "@/components/tc/header/TC-Header.vue";
 import TCModal from "@/components/tc/modal/TC-Modal.vue";
 import TCButton from "@/components/tc/button/TC-Button.vue";
@@ -169,7 +169,21 @@ export default class Uno extends Vue {
   };
   public series: { name: string; data: number[] }[] = [];
 
+  @Watch("players")
+  @Watch("games")
+  @Watch("series")
+  public changed(): void {
+    this.$store.state.uno.players = this.players;
+    this.$store.state.uno.games = this.games;
+    this.$store.state.uno.series = this.series;
+  }
+
   created() {
+    if (this.$store.state.uno.players.length > 0) {
+      this.players = this.$store.state.uno.players;
+      this.games = this.$store.state.uno.games;
+      this.series = this.$store.state.uno.series;
+    }
     // this.addPlayer("Timo");
     // this.addPlayer("Petra");
   }

@@ -18,7 +18,15 @@ axios.interceptors.response.use(
 
 Vue.prototype.$axios = axios;
 
-const store = new Vuex.Store({});
+const store = new Vuex.Store({
+  state: {
+    uno: {
+      players: [],
+      games: [],
+      series: []
+    }
+  }
+});
 
 new Vue({
   router,
