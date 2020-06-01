@@ -1,6 +1,6 @@
 <template>
   <div class="tc-button" :class="getClasses()" @click="clicked($event)">
-    <div v-if="iconExists()" class="tc-button--icon">
+    <div v-if="icon && icon.length > 0" class="tc-button--icon">
       <i :class="'ti-' + icon" />
     </div>
     <div class="tc-button--name" v-if="name">
@@ -10,7 +10,6 @@
 </template>
 <script lang="ts">
 import { Vue, Component, Prop } from "vue-property-decorator";
-import icons from "@/icons";
 import TCComponent from "../tccomponent.vue";
 
 @Component
@@ -21,18 +20,23 @@ export default class TCButton extends Vue {
   @Prop() icon!: string;
   @Prop() disabled!: boolean;
   @Prop() variant!: string;
+  @Prop() tccolor!: string;
 
   public variants: string[] = ["opaque", "border", "filled"];
-
-  public iconExists(): boolean {
-    return icons.filter(x => x.name == this.icon).length > 0;
-  }
+  public tccolors: string[] = ["primary", "error", "alarm", "success"];
 
   public getClasses(): any {
     var classes: any = {
       "tc-button__withoutName": this.icon && !name,
       "tc-button__disabled": this.disabled
     };
+
+    if (!this.tccolor || !this.tccolors.includes(this.tccolor.toLowerCase())) {
+      classes["tc-button__primary"] = true;
+    } else {
+      classes["tc-button__" + this.tccolor.toLowerCase()] = true;
+    }
+
     if (!this.variant || !this.variants.includes(this.variant.toLowerCase())) {
       classes["tc-button__border"] = true;
     } else {
@@ -56,6 +60,8 @@ export default class TCButton extends Vue {
 </script>
 <style lang="scss" scoped>
 @import "../../../scss/variables";
+@import "../colors";
+
 .tc-button {
   display: inline-block;
   text-align: center;
@@ -78,6 +84,8 @@ export default class TCButton extends Vue {
     align-items: center;
     height: inherit;
     padding: 0 1px;
+    z-index: 1;
+    position: relative;
   }
   .tc-button--icon {
     width: 20px;
@@ -88,31 +96,54 @@ export default class TCButton extends Vue {
     }
   }
   &.tc-button__opaque {
-    color: $primary;
+    // color: $primary;
     border: 1px solid $primary;
     position: relative;
     &::before {
       transition: inherit;
       content: "";
       border-radius: 2px;
-      z-index: -1;
+      z-index: 0;
       position: absolute;
       top: 0;
       left: 0;
       right: 0;
       bottom: 0;
-      background: $primary;
+      // background: $primary;
       opacity: 0.25;
+    }
+
+    @each $n, $c in $color_colors {
+      &.tc-button__#{$n} {
+        color: $c;
+        border-color: $c;
+        &::before {
+          background: $c;
+        }
+      }
     }
   }
   &.tc-button__filled {
     color: #fff;
     border: 1px solid $primary;
-    background: $primary;
+    // background: $primary;
+
+    @each $n, $c in $color_colors {
+      &.tc-button__#{$n} {
+        border-color: $c;
+        background: $c;
+      }
+    }
   }
   &.tc-button__border {
-    color: $primary;
+    // color: $primary;
     border: 1px solid $primary;
+    @each $n, $c in $color_colors {
+      &.tc-button__#{$n} {
+        border-color: $c;
+        color: $c;
+      }
+    }
   }
   &.tc-button__disabled {
     color: $color;
@@ -137,11 +168,21 @@ export default class TCButton extends Vue {
     }
     &:hover {
       &.tc-button__filled {
-        box-shadow: 2px 4px 8px rgba($primary, 0.3);
+        // box-shadow: 2px 4px 8px rgba($primary, 0.3);
+        @each $n, $c in $color_colors {
+          &.tc-button__#{$n} {
+            box-shadow: 2px 4px 8px rgba($c, 0.3);
+          }
+        }
       }
       &.tc-button__border {
-        background: $primary;
+        // background: $primary;
         color: #fff;
+        @each $n, $c in $color_colors {
+          &.tc-button__#{$n} {
+            background: $c;
+          }
+        }
       }
       &.tc-button__opaque {
         color: #fff;

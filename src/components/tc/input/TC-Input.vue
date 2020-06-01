@@ -151,6 +151,9 @@ $size: 30px;
   }
 
   &.tc-input__dark {
+    .tc-input--title {
+      color: #fff;
+    }
     .tc-input--container,
     .tc-input--input input,
     .tc-input--input label {

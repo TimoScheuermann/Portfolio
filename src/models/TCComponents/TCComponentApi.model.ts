@@ -3,6 +3,6 @@ export class TCComponentApi {
   type: string = "";
   parameters?: string;
   description: string = "";
-  default?: string | boolean;
+  default?: string | boolean | number;
   selectValues?: (string | boolean)[];
 }

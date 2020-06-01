@@ -9,21 +9,38 @@
       <i class="ti-arrow-right" />
     </div>
 
-    <div content class="projects-gallery">
-      <div v-for="p in projects" :key="p.name" class="projects-gallery--item">
+    <div class="projects-gallery">
+      <tc-button @click="next()" name="next"></tc-button>
+      <transition name="fade">
+        <div class="projects-gallery--current" :key="currentProject.title">
+          <div class="header">
+            <div class="title">{{ currentProject.title }}</div>
+            <div class="subtitle">{{ currentProject.description }}</div>
+            <tc-button
+              name="Go to project"
+              icon="arrow-right"
+              variant="filled"
+            />
+          </div>
+          <div class="image">
+            <img :src="currentProject.preview" />
+          </div>
+        </div>
+      </transition>
+      <!-- <div v-for="p in projects" :key="p.name" class="projects-gallery--item">
         <div class="pItem--half">
           <h1>{{ p.title }}</h1>
           <p>{{ p.description }}</p>
           <tc-button
             :to="{ name: p.routeName }"
-            icon="arrow-right"
+            icon="chevron-right"
             name="Go to project"
           ></tc-button>
         </div>
         <div class="pItem--half">
           <img :src="p.preview" />
         </div>
-      </div>
+      </div> -->
     </div>
 
     <div content class="projects-display">
@@ -81,13 +98,10 @@ import TCButton from "@/components/tc/button/TC-Button.vue";
 export default class Projects extends Vue {
   public projects: Project[] = projects;
   public current: number = 3;
+  public odd = false;
 
   get currentProject(): Project {
     return projects[this.current % this.projects.length];
-  }
-
-  get odd(): boolean {
-    return this.current % 2 == 1;
   }
 
   goTo(): void {
@@ -96,9 +110,11 @@ export default class Projects extends Vue {
 
   next(): void {
     this.current++;
+    this.odd = !this.odd;
   }
   prev(): void {
     this.current += 2 * this.projects.length - 1;
+    this.odd = !this.odd;
   }
 
   mounted() {
@@ -117,42 +133,66 @@ export default class Projects extends Vue {
 @import "../../scss/variables.scss";
 @import "../../scss/mixins";
 
+.projects {
+  overflow: hidden;
+  max-width: 100vw;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: all 0.5s;
+  position: absolute;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  // opacity: 0;
+}
+.fade-enter {
+  transform: translateX(100%);
+}
+.fade-leave-to {
+  transform: translateX(-100%);
+}
+
+.projects-gallery--current {
+  height: calc(
+    100vh - env(safe-area-inset-top) - env(safe-area-inset-bottom) - 40px - 40px
+  );
+  padding: 20px 5vw;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  .header {
+    text-align: center;
+    margin-bottom: 20px;
+    .title {
+      font-weight: bold;
+      font-size: 2em;
+    }
+    .subtitle {
+      margin: 20px 0;
+      max-width: 400px;
+      position: relative;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+  .image {
+    max-height: 500px;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+  }
+}
+
 .projects-gallery {
   @media #{$isMobile} {
     display: none;
   }
-  .projects-gallery--item {
-    height: 300px;
-    background: #f0f0f0;
-    padding: 20px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    margin-bottom: 30px;
-    .pItem--half {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      p {
-        max-width: 300px;
-        text-align: center;
-      }
-      img {
-        height: 100%;
-        width: 100%;
-        object-fit: contain;
-      }
-    }
-    &:nth-child(EVEN) {
-      .pItem--half:nth-child(1) {
-        grid-column: 2;
-      }
-      .pItem--half:nth-child(2) {
-        grid-column: 1;
-        grid-row: 1;
-      }
-    }
-  }
+
+  overflow: hidden;
+  max-width: 100vw;
 }
 
 .projects-display {

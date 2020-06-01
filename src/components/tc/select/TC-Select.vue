@@ -1,5 +1,6 @@
 <template>
   <div class="tc-select" :class="{ 'tc-select__dark': dark }">
+    <div v-if="title" class="tc-select--ctitle">{{ title }}</div>
     <label :for="id" class="tc-container" @click.stop="expanded = !expanded">
       <i v-if="icon" :class="'ti-' + icon" />
       <span v-if="display">{{ display }}</span>
@@ -158,9 +159,16 @@ export default class TCSelect extends Vue {
     position: fixed;
     top: -200px;
   }
+  .tc-select--ctitle {
+    text-align: left;
+    font-weight: bold;
+    opacity: 0.8;
+    margin-bottom: 3px;
+    margin-left: 3px;
+  }
 
   .tc-select--custom {
-    @media(hover: none) {
+    @media (hover: none) {
       //display: none;
     }
     position: absolute;

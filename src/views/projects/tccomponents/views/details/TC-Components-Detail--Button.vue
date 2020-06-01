@@ -30,6 +30,31 @@
         <tc-button :variant="variant" name="Default" icon="" disabled="true" />
       </portfolio-code-example>
     </tc-grid>
+
+    <tc-headline title="Colors" />
+    <tc-grid minWidth="320">
+      <portfolio-code-example
+        v-for="color in colors"
+        :title="color"
+        :key="color"
+        tag="tc-button"
+        :attr="{
+          tccolor: color,
+          variant: 'border | filled | opaque',
+          name: color,
+          icon: 'color-fan'
+        }"
+      >
+        <tc-button
+          v-for="v in variants"
+          :key="color + v"
+          :variant="v"
+          :tccolor="color"
+          :name="color"
+          icon="color-fan"
+        />
+      </portfolio-code-example>
+    </tc-grid>
   </div>
 </template>
 <script lang="ts">
@@ -48,5 +73,6 @@ import TCGrid from "@/components/tc/_layout/grid/TC-Grid.vue";
 })
 export default class TCComponentsDetailButton extends Vue {
   public variants: string[] = ["Border (default)", "Filled", "Opaque"];
+  public colors: string[] = ["primary", "error", "success", "alarm"];
 }
 </script>

@@ -2,6 +2,13 @@ $color: #111;
 $background: #fff;
 $paragraph: #f0f0f0;
 $primary: #0088ff;
-$error: #e61553;
+$error: #ff4757;
 $success: #25ca49;
-$error_: #fc5c65;
+$alarm: #f1c40f;
+
+$color_colors: (
+    primary: $primary,
+    error: $error,
+    success: $success,
+    alarm: $alarm,
+);

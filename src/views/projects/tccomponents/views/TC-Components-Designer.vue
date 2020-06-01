@@ -53,24 +53,31 @@
         <tc-icon-select
           v-for="api in iconAttributes"
           :key="api.name"
+          :title="api.name"
           v-model="data[api.name]"
         />
         <tc-select
-          :dark="true"
           v-for="api in selectAttributes"
+          :dark="true"
+          :title="api.name"
           :key="api.name"
           :placeholder="api.name"
           :values="api.selectValues"
           v-model="data[api.name]"
         />
         <tc-input
-          :dark="true"
           v-for="api in inputAttributes"
+          :dark="true"
+          :title="api.name"
+          :type="api.type === 'number' ? 'number' : 'text'"
+          :buttons="api.type === 'number'"
           :key="api.name"
           :placeholder="api.name"
           v-model="data[api.name]"
         />
       </transition-group>
+
+      <!-- <h2 style="color: #fff">Slots</h2> -->
 
       <!-- <p color-fff>{{ data }}</p>
       <p color-fff>{{ html }}</p> -->
@@ -154,7 +161,11 @@ export default class TCComponentsDesigner extends Vue {
     Progress: TCProgress,
     Select: TCSelect,
     Spinner: TCSpinner,
-    Quote: TCQuote
+    Quote: TCQuote,
+    Header: TCHeader,
+    Headline: TCHeadline,
+    Hero: TCHero,
+    Image: TCImage
   };
 
   get componentList() {
@@ -337,6 +348,9 @@ export default class TCComponentsDesigner extends Vue {
     max-width: 100%;
     & > div {
       max-width: 100%;
+    }
+    /deep/ .tc-header {
+      position: relative !important;
     }
   }
 }

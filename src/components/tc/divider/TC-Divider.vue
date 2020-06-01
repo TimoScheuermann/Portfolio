@@ -1,5 +1,9 @@
 <template>
-  <div class="tc-divider" :style="{ color: color }">
+  <div
+    class="tc-divider"
+    :style="{ color: color }"
+    :class="{ 'tc-divider__dark': dark }"
+  >
     <div class="tc-divider--bar" v-if="position != 'left'"></div>
     <div class="tc-divider--content" v-if="icon || name">
       <i v-if="icon" :class="'ti-' + icon"></i>
@@ -16,6 +20,7 @@ export default class TCDivider extends Vue {
   @Prop() icon!: string;
   @Prop() position!: string;
   @Prop() color!: string;
+  @Prop() dark!: boolean;
 
   get alignment() {
     return this.position || "center";
@@ -28,6 +33,9 @@ export default class TCDivider extends Vue {
   margin: 5px 10px;
   min-height: 10px;
   align-items: center;
+  &.tc-divider__dark {
+    color: #fff;
+  }
   .tc-divider--bar {
     background: currentColor;
     border-radius: 5px;

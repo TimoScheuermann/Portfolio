@@ -220,6 +220,11 @@ const tcComponents: TCComponent[] = [
         name: "color",
         type: "String",
         description: "Determines the color of TC-Divider"
+      },
+      {
+        name: "dark",
+        type: "boolean",
+        description: "Toggles darkmode on or off"
       }
     ]
   },
@@ -253,6 +258,13 @@ const tcComponents: TCComponent[] = [
         description: "Determines the style of the button",
         default: "border",
         parameters: "opaque, border, filled"
+      },
+      {
+        name: "tccolor",
+        type: "string",
+        description: "Determines the color of the button",
+        default: "primary",
+        parameters: "primary, error, success, alarm"
       }
     ]
   },
@@ -382,7 +394,13 @@ const tcComponents: TCComponent[] = [
   {
     name: "Image",
     icon: "windows",
-    api: []
+    api: [
+      {
+        name: "src",
+        description: "Source to image, video, gif to be displayed",
+        type: "string"
+      }
+    ]
   },
   {
     name: "Switch",
@@ -392,7 +410,20 @@ const tcComponents: TCComponent[] = [
   {
     name: "Spinner",
     icon: "spinner",
-    api: []
+    api: [
+      {
+        name: "size",
+        description: "Determines the size of the spinner",
+        type: "number",
+        default: 30
+      },
+      {
+        name: "dark",
+        description: "Toggles darkmode on or off",
+        type: "boolean",
+        default: false
+      }
+    ]
   },
   {
     name: "Hero",
@@ -576,7 +607,13 @@ const tcComponents: TCComponent[] = [
     icon: "list",
     api: [
       { name: "title", type: "string", description: "" },
-      { default: "list", name: "icon", type: "string", description: "" },
+      {
+        default: "list",
+        name: "icon",
+        type: "string",
+        parameters: "Timo's Icons",
+        description: ""
+      },
       { default: false, name: "dark", type: "boolean", description: "" },
       { default: false, name: "multiple", type: "boolean", description: "" },
       {
