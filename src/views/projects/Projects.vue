@@ -3,22 +3,21 @@
     <tc-header title="Projects" />
 
     <div class="changeProj left" @click="prev()">
-      <i class="ti-arrow-left" />
+      <i class="ti-chevron-left" />
     </div>
     <div class="changeProj right" @click="next()">
-      <i class="ti-arrow-right" />
+      <i class="ti-chevron-right" />
     </div>
 
     <div class="projects-gallery">
-      <tc-button @click="next()" name="next"></tc-button>
       <transition name="fade">
         <div class="projects-gallery--current" :key="currentProject.title">
           <div class="header">
             <div class="title">{{ currentProject.title }}</div>
             <div class="subtitle">{{ currentProject.description }}</div>
             <tc-button
-              name="Go to project"
-              icon="arrow-right"
+              name="Find out more"
+              icon="chevron-right"
               variant="filled"
             />
           </div>
@@ -99,6 +98,7 @@ export default class Projects extends Vue {
   public projects: Project[] = projects;
   public current: number = 3;
   public odd = false;
+  public timestamp: number = 0;
 
   get currentProject(): Project {
     return projects[this.current % this.projects.length];
@@ -108,13 +108,25 @@ export default class Projects extends Vue {
     this.$router.push(this.currentProject.routeName);
   }
 
+  tick(): void {
+    const ts = new Date().getTime();
+    this.timestamp = ts;
+    setTimeout(() => {
+      if (ts === this.timestamp) {
+        this.next();
+      }
+    }, 5000);
+  }
+
   next(): void {
     this.current++;
     this.odd = !this.odd;
+    this.tick();
   }
   prev(): void {
     this.current += 2 * this.projects.length - 1;
     this.odd = !this.odd;
+    this.tick();
   }
 
   mounted() {
@@ -125,6 +137,7 @@ export default class Projects extends Vue {
     elem.addEventListener("swiped-left", e => {
       this.prev();
     });
+    this.next();
   }
 }
 </script>
@@ -135,29 +148,78 @@ export default class Projects extends Vue {
 
 .projects {
   overflow: hidden;
+  background: linear-gradient(to right, #dde2e6, #eef2f3);
+  height: 100vh;
   max-width: 100vw;
 }
 
+.changeProj {
+  position: fixed;
+  top: 50%;
+  &.right {
+    right: 30px;
+  }
+  &.left {
+    left: 120px;
+  }
+  transform: translate(-50%, -50%);
+  $scale: 50px;
+  border-radius: $scale;
+  height: $scale;
+  width: $scale;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+  &:hover {
+    background: #f0f0f0;
+  }
+  @media #{$isMobile} {
+    display: none;
+  }
+}
+
+.fade-enter-active {
+  transition-delay: 0.5s;
+  .header {
+    transition-delay: 0s;
+  }
+}
+.fade-leave-active {
+  transition-delay: 0s;
+  .header {
+    transition-delay: 0.5s;
+  }
+}
 .fade-enter-active,
 .fade-leave-active {
   transition: all 0.5s;
-  position: absolute;
-}
-.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
-  // opacity: 0;
+  .header {
+    transition: inherit;
+  }
+  position: fixed;
 }
 .fade-enter {
   transform: translateX(100%);
+  transform-origin: -100% center;
+  .header {
+    transform: translateX(1000px) scale(0);
+  }
 }
 .fade-leave-to {
   transform: translateX(-100%);
+  transform-origin: -100% center;
+  .header {
+    transform: translateX(-1000px) scale(0);
+  }
 }
 
 .projects-gallery--current {
   height: calc(
-    100vh - env(safe-area-inset-top) - env(safe-area-inset-bottom) - 40px - 40px
+    100vh - env(safe-area-inset-top) - env(safe-area-inset-bottom) - 140px
   );
-  padding: 20px 5vw;
+  padding: 70px 5vw;
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -235,21 +297,7 @@ export default class Projects extends Vue {
     overflow: visible;
     transition: transform 0.2s ease-in-out;
     position: absolute;
-    // @media #{$isDesktop} {
-    //   top: 30px;
-    //   #m {
-    //     display: none;
-    //   }
-    //   img {
-    //     max-height: 65vh;
-    //   }
-    // }
 
-    // @media #{$isMobile} {
-    //   #d {
-    //     display: none;
-    //   }
-    // }
     @media #{$isMobile} and (orientation: portrait) {
       img {
         max-height: 55vh;
@@ -279,6 +327,8 @@ export default class Projects extends Vue {
     img {
       width: 100%;
       height: 100%;
+
+      margin-top: 30px;
       object-fit: contain;
       filter: drop-shadow(4px 8px 20px rgba(0, 0, 0, 0.1));
     }

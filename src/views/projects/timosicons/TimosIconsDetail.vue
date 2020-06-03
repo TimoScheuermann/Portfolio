@@ -32,33 +32,34 @@
     </div>
 
     <div class="icons-detail-found" v-else>
-      <h1>{{ iconName }}</h1>
-      <div class="big">
-        <i :class="'ti-' + icon.name"></i>
-      </div>
-
-      <tc-divider />
-      <h2>How to use</h2>
-      <tc-grid>
-        <tc-card title="HTML">
-          <tc-button name="Copy HTML code" @click="copyHTML()" />
+      <tc-grid class="icons-detail--mainGrid">
+        <tc-card rounded="true" hover="true">
+          <div class="big">
+            <i :class="'ti-' + icon.name"></i>
+          </div>
         </tc-card>
-        <tc-card title="SVG">
-          <tc-button name="Copy SVG code" @click="copySVG()" />
+
+        <tc-card title="Examples" rounded="true" hover="true">
+          <tc-grid minWidth="100">
+            <div
+              class="backgroundExample"
+              v-for="(a, i) in Array(4)"
+              :key="i"
+              :class="'bg-' + ++i"
+            >
+              <i :class="'ti-' + icon.name"></i>
+            </div>
+          </tc-grid>
         </tc-card>
       </tc-grid>
-      <br />
-      <tc-divider />
-      <h2>Examples</h2>
-      <tc-grid minWidth="100">
-        <div
-          class="backgroundExample"
-          v-for="(a, i) in Array(4)"
-          :key="i"
-          :class="'bg-' + ++i"
-        >
-          <i :class="'ti-' + icon.name"></i>
-        </div>
+
+      <tc-grid class="icons-detail--mainGrid">
+        <tc-card rounded="true" hover="true" title="HTML">
+          <tc-button name="Copy HTML code" @click="copyHTML()" />
+        </tc-card>
+        <tc-card rounded="true" hover="true" title="SVG">
+          <tc-button name="Copy SVG code" @click="copySVG()" />
+        </tc-card>
       </tc-grid>
     </div>
   </div>
@@ -141,6 +142,12 @@ export default class TimosIconsDetail extends Vue {
 /deep/ .tc-header--title__prestyled {
   text-transform: capitalize;
 }
+
+.icons-detail--mainGrid {
+  margin-top: 30px;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)) !important;
+}
+
 .icons-detail-found {
   @media #{$isMobile} {
     h1,

@@ -16,14 +16,7 @@
           :key="proj.title"
           :to="{ name: proj.routeName }"
         >
-          <tc-card
-            dark="true"
-            rounded="true"
-            :title="proj.title"
-            :subtitle="proj.description"
-          >
-            <img :src="proj.preview" />
-          </tc-card>
+          <home-project-card :project="proj" />
         </router-link>
       </div>
       <tc-headline title="Resume" />
@@ -45,6 +38,7 @@ import TCCard from "@/components/tc/card/TC-Card.vue";
 import projects from "@/projects";
 import { Project } from "@/models/Projects/Project.model";
 import TCPreview from "@/components/tc/preview/TC-Preview.vue";
+import HomeProjectCard from "@/components/home/Home-ProjectCard.vue";
 @Component({
   components: {
     "tc-hero": TCHero,
@@ -52,7 +46,8 @@ import TCPreview from "@/components/tc/preview/TC-Preview.vue";
     "tc-headline": TCHeadline,
     "tc-button": TCButton,
     "tc-card": TCCard,
-    "tc-preview": TCPreview
+    "tc-preview": TCPreview,
+    "home-project-card": HomeProjectCard
   }
 })
 export default class Home extends Vue {
@@ -119,6 +114,7 @@ export default class Home extends Vue {
     & > div {
       cursor: pointer;
     }
+    padding-bottom: 10px;
     margin-bottom: 20px;
     /deep/ .tc-card {
       margin: 0 5px;

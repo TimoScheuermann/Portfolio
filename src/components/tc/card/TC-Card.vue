@@ -86,10 +86,10 @@ export default class TCCard extends Vue {
     @include backdrop-blur($background);
   }
   &.tc-card__dark {
-    background: $color;
+    background: lighten($color, 2%);
     color: #fff;
     &.tc-card__frosted {
-      @include backdrop-blur($color);
+      @include backdrop-blur(lighten($color, 2%));
     }
   }
 

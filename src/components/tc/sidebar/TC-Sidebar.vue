@@ -25,6 +25,7 @@ export default class TCSidebar extends Vue {}
 .tc-sidebar {
   background: $background;
   color: $color;
+  box-shadow: $shadow;
   &.dark {
     background: $color;
     color: #fff;
@@ -47,7 +48,6 @@ export default class TCSidebar extends Vue {}
     bottom-right-radius: #{2 * $border-radius};
     top-right-radius: #{2 * $border-radius};
   }
-  box-shadow: $shadow;
 
   transition: min-width 0.2s ease-out;
   &:hover {
