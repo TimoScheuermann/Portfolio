@@ -50,7 +50,7 @@
   </div>
 </template>
 <script lang="ts">
-import { Vue, Component, Prop } from "vue-property-decorator";
+import { Vue, Component, Prop, Watch } from "vue-property-decorator";
 import uuid from "../uuid.vue";
 @Component({
   mixins: [uuid]
@@ -65,6 +65,12 @@ export default class TCCheckbox extends Vue {
   @Prop() iconUnchecked!: string;
   @Prop() iconAnimation!: string;
 
+  @Watch("value")
+  changed(): void {
+    this.checked = this.value;
+  }
+
+  public checked: boolean = this.value;
   public animations: string[] = ["scroll", "spin", "flip"];
   get animationName(): string {
     if (!this.iconAnimation) return this.animations[0];
@@ -82,7 +88,6 @@ export default class TCCheckbox extends Vue {
     return [this.checked ? this.iconChecked : this.iconUnchecked];
   }
 
-  checked: boolean = this.value;
   updateVal() {
     this.$emit("input", !this.checked);
   }
