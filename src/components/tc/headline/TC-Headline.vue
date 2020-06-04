@@ -63,6 +63,7 @@ export default class TCHeadline extends Vue {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-wrap: wrap;
     height: inherit;
   }
 }
