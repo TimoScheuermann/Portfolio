@@ -18,6 +18,7 @@ export default class TCButton extends Vue {
   @Prop() href!: string;
   @Prop() name!: string;
   @Prop() icon!: string;
+  @Prop({ default: "left" }) iconPosition!: string;
   @Prop() disabled!: boolean;
   @Prop() variant!: string;
   @Prop() tccolor!: string;
@@ -42,6 +43,9 @@ export default class TCButton extends Vue {
     } else {
       classes["tc-button__" + this.variant.toLowerCase()] = true;
     }
+    if (this.iconPosition === "right") {
+      classes["tc-button__icon-right"] = true;
+    }
 
     return classes;
   }
@@ -63,7 +67,11 @@ export default class TCButton extends Vue {
 @import "../colors";
 
 .tc-button {
-  display: inline-block;
+  display: inline-flex;
+
+  &.tc-button__icon-right {
+    flex-direction: row-reverse;
+  }
   text-align: center;
   margin: 3px;
   height: 20px;

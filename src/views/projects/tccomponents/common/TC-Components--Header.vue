@@ -13,6 +13,7 @@ import { TCComponent } from "@/models/TCComponents/TCComponent.model";
 import TCHeader from "@/components/tc/header/TC-Header.vue";
 import constants from "@/constants";
 import tcComponents from "@/components/tc";
+import { TCComponentGroup } from "@/models/TCComponents/TCComponentGroup.model";
 
 @Component({
   components: {
@@ -21,22 +22,24 @@ import tcComponents from "@/components/tc";
 })
 export default class TCComponentsHeader extends Vue {
   public constants: object = constants;
-  public tcComponents: TCComponent[] = tcComponents;
+  public tcComponents: TCComponentGroup[] = tcComponents;
 
   get headerTitle(): string {
-    return this.tcComponent
-      ? "TC-" + this.tcComponent.name
-      : "Timo's Components";
+    return this.tcComponent ? this.tcComponent.name : "Timo's Components";
   }
 
   get component(): string {
     const comp = this.$route.params.comp;
-    if (comp) return comp;
+    if (comp) return comp.toLowerCase();
     return "";
   }
 
   get tcComponent(): TCComponent | undefined {
-    return this.tcComponents.filter(x => x.name === this.component)[0];
+    const everyComponent: TCComponent[] = [];
+    this.tcComponents.forEach(x => everyComponent.push(...x.components));
+    return everyComponent.filter(
+      x => x.name.toLowerCase() === this.component
+    )[0];
   }
 }
 </script>

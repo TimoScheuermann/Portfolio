@@ -81,6 +81,7 @@ export default class TCCard extends Vue {
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  color: $color;
 
   &.tc-card__frosted {
     @include backdrop-blur($background);

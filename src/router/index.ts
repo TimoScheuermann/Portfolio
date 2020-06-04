@@ -136,6 +136,10 @@ const router = new VueRouter({
                 import("@/views/projects/tccomponents/TC-Components.vue")
             },
             {
+              path: "icons",
+              redirect: { name: constants.projectRoutes.timos_icons }
+            },
+            {
               path: ":comp",
               name: constants.projectRoutes.timos_components_detail,
               meta: {

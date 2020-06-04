@@ -110,7 +110,7 @@
 import { Vue, Component, Watch } from "vue-property-decorator";
 import TCHeader from "@/components/tc/header/TC-Header.vue";
 import constants from "@/constants";
-import components from "@/components/tc";
+import tcComponents from "@/components/tc";
 import TCHero from "@/components/tc/hero/TC-Hero.vue";
 import TCHeadline from "@/components/tc/headline/TC-Headline.vue";
 import TCSelect from "@/components/tc/select/TC-Select.vue";
@@ -147,7 +147,9 @@ import TCSpinner from "@/components/tc/spinner/TC-Spinner.vue";
 })
 export default class TCComponentsDesigner extends Vue {
   public constants: {} = constants;
-  public components: TCComponent[] = components;
+  public components: TCComponent[] = tcComponents.filter(
+    x => x.group === "Components"
+  )[0].components;
   public selectedComponent: string = "";
   public copyHTMLText: string = "Copy HTML Markup";
   public darkCanvas: boolean = true;
@@ -231,7 +233,6 @@ export default class TCComponentsDesigner extends Vue {
   @Watch("darkCanvas", { deep: true })
   @Watch("data", { deep: true })
   public changed(): void {
-    console.log("changed");
     try {
       var ComponentClass = Vue.extend(this.available[this.selectedComponent]);
       var instance = new ComponentClass({
@@ -245,7 +246,7 @@ export default class TCComponentsDesigner extends Vue {
       element.innerHTML = "";
       element.appendChild(instance.$el);
     } catch (error) {
-      console.log("error");
+      //
     }
   }
 
@@ -276,7 +277,6 @@ export default class TCComponentsDesigner extends Vue {
     anchor.click();
   }
   public fileLoaded(content: string) {
-    console.log("loaded", content);
     const data = JSON.parse(content);
     if (data && data.component) {
       this.selectedComponent = data.component;
@@ -284,11 +284,10 @@ export default class TCComponentsDesigner extends Vue {
       delete data.component;
       delete data.dark;
       setTimeout(() => {
-        console.log(data);
         this.data = data;
       }, 10);
     } else {
-      console.log("error");
+      //
     }
   }
 }

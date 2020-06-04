@@ -42,35 +42,16 @@
         </div>
       </div>
 
-      <div class="themeSection">
-        <tc-headline title="Theme" />
-        <tc-grid minWidth="150">
-          <router-link
-            :to="{
-              name: constants.projectRoutes.timos_components_detail,
-              params: { comp: 'Colors' }
-            }"
-          >
-            <tc-card>
-              <i class="ti-dot"></i>
-              <span>Colors</span>
-            </tc-card>
-          </router-link>
-          <router-link :to="{ name: constants.projectRoutes.timos_icons }">
-            <tc-card>
-              <i class="ti-heart"></i>
-              <span>Icons</span>
-            </tc-card>
-          </router-link>
-        </tc-grid>
-      </div>
-
-      <div v-for="s in sections" :key="s.name">
-        <tc-headline :title="s.name" />
-
+      <div
+        v-for="group in tcComponents"
+        :key="group.group"
+        class="group-show-real"
+        :id="'show-real_' + group.group"
+      >
+        <h1>{{ group.group }}</h1>
         <tc-list class="tc-components-home--list">
           <tc-list-item
-            v-for="comp in s.items()"
+            v-for="comp in group.components"
             :key="comp.name"
             :to="{
               name: constants.projectRoutes.timos_components_detail,
@@ -82,7 +63,7 @@
         </tc-list>
         <tc-grid class="tc-components-home--grid" minWidth="200">
           <router-link
-            v-for="comp in s.items()"
+            v-for="comp in group.components"
             :key="comp.name"
             :to="{
               name: constants.projectRoutes.timos_components_detail,
@@ -104,8 +85,7 @@ import { Vue, Component } from "vue-property-decorator";
 import TCHeadline from "@/components/tc/headline/TC-Headline.vue";
 import TCHero from "@/components/tc/hero/TC-Hero.vue";
 import TCCard from "@/components/tc/card/TC-Card.vue";
-import tcComps from "@/components/tc";
-import tcLayouts from "@/components/tc/_layout";
+import tcComponents from "@/components/tc";
 import constants from "@/constants";
 import { Icon } from "@/models/Icons/Icon.model";
 import { TCComponent } from "@/models/TCComponents/TCComponent.model";
@@ -113,6 +93,7 @@ import TCButton from "@/components/tc/button/TC-Button.vue";
 import TCGrid from "@/components/tc/_layout/grid/TC-Grid.vue";
 import TCList from "@/components/tc/list/TC-List.vue";
 import TCListItem from "@/components/tc/list/TC-List-Item.vue";
+import { TCComponentGroup } from "@/models/TCComponents/TCComponentGroup.model";
 @Component({
   components: {
     "tc-headline": TCHeadline,
@@ -126,20 +107,7 @@ import TCListItem from "@/components/tc/list/TC-List-Item.vue";
 })
 export default class TCComponentsHome extends Vue {
   public constants: {} = constants;
-  public sections: { name: string; items: Function }[] = [
-    {
-      name: "All " + tcComps.length + " Components",
-      items(): TCComponent[] {
-        return tcComps.sort((a, b) => a.name.localeCompare(b.name));
-      }
-    },
-    {
-      name: "Layout",
-      items(): TCComponent[] {
-        return tcLayouts.sort((a, b) => a.name.localeCompare(b.name));
-      }
-    }
-  ];
+  public tcComponents: TCComponentGroup[] = tcComponents;
 }
 </script>
 <style lang="scss" scoped>
@@ -155,6 +123,27 @@ export default class TCComponentsHome extends Vue {
     padding-top: 0px;
   }
 }
+
+.group-show-real {
+  @media only screen and(max-width: 496px) {
+    background: $paragraph;
+    border-radius: $border-radius;
+    padding: 20px 20px {
+      bottom: 20px;
+    }
+    margin: 30px 0;
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+  }
+  @media only screen and(min-width: 497px) {
+    &#show-real_Fundementals {
+      display: none;
+    }
+  }
+}
+
 .tc-components-home--list {
   @media only screen and(min-width: 497px) {
     display: none;
@@ -164,6 +153,7 @@ export default class TCComponentsHome extends Vue {
   @media only screen and(max-width: 496px) {
     display: none;
   }
+  margin-bottom: 40px;
 }
 
 .tc-card {
@@ -177,7 +167,6 @@ export default class TCComponentsHome extends Vue {
     margin-bottom: 10px;
   }
   span {
-    color: $color;
     font-weight: bold;
     opacity: 0.8;
   }

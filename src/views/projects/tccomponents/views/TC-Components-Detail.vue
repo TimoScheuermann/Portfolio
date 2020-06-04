@@ -2,15 +2,15 @@
   <div v-if="compFound">
     <tc-hero height="100">
       <img slot="background" src="assets/projects/tccomponents/hero.png" />
-      <div class="title" v-if="getTCComponent()">
-        {{ getTCComponent().name }}
+      <div class="title" v-if="tcComponent">
+        {{ tcComponent.name }}
       </div>
     </tc-hero>
     <div content>
       <component :is="currentComponent" />
-      <div v-if="getTCComponent() && !getTCComponent().customAPI">
+      <div v-if="tcComponent && tcComponent.api.length > 0">
         <tc-headline title="API" />
-        <tc-table v-if="getTCComponent()">
+        <tc-table v-if="tcComponent">
           <tr>
             <th>Name</th>
             <th>Type</th>
@@ -18,7 +18,7 @@
             <th>Description</th>
             <th>Default</th>
           </tr>
-          <tr v-for="api in getTCComponent().api" :key="api.name">
+          <tr v-for="api in tcComponent.api" :key="api.name">
             <td>{{ api.name }}</td>
             <td>{{ api.type }}</td>
             <td>{{ api.parameters }}</td>
@@ -38,10 +38,10 @@ import TCComponentsNotFound from "./TC-Components-NotFound.vue";
 import TCHeadline from "@/components/tc/headline/TC-Headline.vue";
 import TCTable from "@/components/tc/table/TC-Table.vue";
 import tcComponents from "@/components/tc";
-import tcLayouts from "@/components/tc/_layout";
 import { TCComponent } from "@/models/TCComponents/TCComponent.model";
 import TCHero from "@/components/tc/hero/TC-Hero.vue";
 import constants from "@/constants";
+import { TCComponentGroup } from "@/models/TCComponents/TCComponentGroup.model";
 
 @Component({
   components: {
@@ -53,54 +53,35 @@ import constants from "@/constants";
 })
 export default class TCComponentsDetail extends Vue {
   public compFound: boolean = true;
-  public tcComponents: TCComponent[] = tcComponents;
-  public tcLayouts: TCComponent[] = tcLayouts;
+  public tcComponents: TCComponentGroup[] = tcComponents;
 
-  getComponent() {
+  get component() {
     const comp = this.$route.params.comp;
-    if (comp) return comp;
+    if (comp) {
+      const name: string = comp.toLowerCase();
+      if (name === "icons") {
+        this.$router.replace({ name: constants.projectRoutes.timos_icons });
+      }
+      return name;
+    }
     return "";
   }
-  getTCComponent(): TCComponent {
-    let component!: TCComponent;
 
-    if (this.getComponent().toLowerCase() === "colors") {
-      return {
-        customAPI: true,
-        name: "Colors",
-        icon: "dot",
-        api: []
-      };
-    }
-    if (this.getComponent().toLowerCase() === "default tags") {
-      return {
-        customAPI: true,
-        name: "Default Tags",
-        icon: "component",
-        api: []
-      };
-    }
-    if (this.getComponent().toLowerCase() === "icons") {
-      this.$router.replace({ name: constants.projectRoutes.timos_icons });
-    }
-    component = this.tcComponents.filter(
-      x => x.name.toLowerCase() === this.getComponent().toLowerCase()
+  get tcComponent(): TCComponent | undefined {
+    const everyComponent: TCComponent[] = [];
+    this.tcComponents.forEach(x => everyComponent.push(...x.components));
+    return everyComponent.filter(
+      x => x.name.toLowerCase() === this.component
     )[0];
-    if (!component) {
-      component = this.tcLayouts.filter(
-        x => x.name.toLowerCase() === this.getComponent().toLowerCase()
-      )[0];
-    }
-    return component;
   }
 
   get currentComponent() {
     this.compFound = true;
     return () =>
       import(
-        `@/views/projects/tccomponents/views/details/TC-Components-Detail--${this.getComponent()
-          .split(" ")
-          .join("")}.vue`
+        `@/views/projects/tccomponents/views/details/TC-Components-Detail--${this.tcComponent!.name.split(
+          " "
+        ).join("")}.vue`
       ).catch(() => {
         this.compFound = false;
       });

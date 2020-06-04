@@ -116,11 +116,10 @@ export default class App extends Vue {
   changed(to: string, from: string) {
     this.updateTitle();
     if (this.darkRoutes.includes(to)) {
-      console.log("dark");
       document.body.style.background = "#000";
       return;
     }
-    document.body.style.background = "inherit";
+    document.body.style.background = "#fff";
   }
 
   private updateTitle(): void {
@@ -153,7 +152,7 @@ html {
 }
 
 body {
-  background-color: $background;
+  background: $background;
   color: $color;
   margin: 0;
   min-height: 100vh;

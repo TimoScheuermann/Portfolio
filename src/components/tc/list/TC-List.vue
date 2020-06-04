@@ -18,16 +18,15 @@ export default class TCList extends Vue {
 @import "../../../scss/mixins";
 
 .tc-list {
-  padding: 5px {
-    right: 0;
-  }
+  padding: 5px;
   border-radius: $border-radius;
   &.tc-list__dark {
-    @include backdrop-blur($color);
-    color: #fff;
+    background: $color;
+    color: $background;
   }
   &.tc-list__light {
-    @include backdrop-blur($background);
+    background: $background;
+    color: $color;
   }
 }
 </style>

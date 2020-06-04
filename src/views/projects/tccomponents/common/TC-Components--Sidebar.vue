@@ -24,20 +24,20 @@
     <tc-divider />
 
     <tc-sidebar-group
-      v-for="g in sidebarGroups"
-      :key="g.title"
-      :icon="g.icon"
-      :name="g.title"
-      :maxHeight="g.title === 'Components' ? '770px' : undefined"
+      v-for="(group, i) in tcComponents"
+      :key="group.group"
+      :name="group.group"
+      :icon="group.icon"
+      :maxHeight="i === 1 ? '770px' : undefined"
     >
       <tc-sidebar-item
-        v-for="i in g.items()"
-        :key="i.name"
-        :name="i.name"
-        :icon="i.icon"
+        v-for="comp in group.components"
+        :key="comp.name"
+        :name="comp.name"
+        :icon="comp.icon"
         :to="{
           name: constants.projectRoutes.timos_components_detail,
-          params: { comp: i.name }
+          params: { comp: comp.name }
         }"
       ></tc-sidebar-item>
     </tc-sidebar-group>
@@ -56,9 +56,8 @@ import TCSidebarGroup from "@/components/tc/sidebar/TS-Sidebar-Group.vue";
 import TCSidebarItem from "@/components/tc/sidebar/TC-Sidebar-Item.vue";
 import TCDivider from "@/components/tc/divider/TC-Divider.vue";
 import tcComponents from "@/components/tc";
-import tcLayouts from "@/components/tc/_layout";
 import constants from "@/constants";
-import { TCComponent } from "@/models/TCComponents/TCComponent.model";
+import { TCComponentGroup } from "@/models/TCComponents/TCComponentGroup.model";
 import TCButton from "@/components/tc/button/TC-Button.vue";
 import TCLink from "@/components/tc/link/TC-Link.vue";
 
@@ -73,50 +72,8 @@ import TCLink from "@/components/tc/link/TC-Link.vue";
   }
 })
 export default class TCComponentsSidebar extends Vue {
-  public sidebarGroups: {
-    title: string;
-    icon: string;
-    items: Function;
-  }[] = [
-    {
-      title: "Fundamentals",
-      icon: "dot",
-      items(): TCComponent[] {
-        return [
-          {
-            name: "Default Tags",
-            icon: "component",
-            api: []
-          },
-          {
-            name: "Colors",
-            icon: "dot",
-            api: []
-          },
-          {
-            name: "Icons",
-            icon: "heart",
-            api: []
-          }
-        ];
-      }
-    },
-    {
-      title: "Layout",
-      icon: "chart-empty",
-      items(): TCComponent[] {
-        return tcLayouts.sort((a, b) => a.name.localeCompare(b.name));
-      }
-    },
-    {
-      title: "Components",
-      icon: "component",
-      items(): TCComponent[] {
-        return tcComponents.sort((a, b) => a.name.localeCompare(b.name));
-      }
-    }
-  ];
   public constants: {} = constants;
+  public tcComponents: TCComponentGroup[] = tcComponents;
 
   get dark() {
     return (

@@ -1,13 +1,20 @@
 <template>
-  <div content>
+  <div>
     <tc-header
       :title="iconName"
       :backTo="{ name: constants.projectRoutes.timos_icons }"
       backName="Icons"
-    />
+    >
+      <tc-button
+        icon="share"
+        name="Start using Timo's Icons"
+        :to="{ name: constants.projectRoutes.timos_icons_getting_started }"
+      />
+    </tc-header>
 
-    <div v-if="icon.name === 'Not Found'" class="notFound">
-      <div class="container">
+    <timos-icons-notfound v-if="icon.name === 'Not Found'" />
+    <!-- <div v-if="icon.name === 'Not Found'" class="notFound">
+      <!-- <div class="container">
         <div class="slot-mashine">
           <icon-slot-mashine />
           <icon-slot-mashine />
@@ -30,8 +37,9 @@
         ></tc-button>
       </div>
     </div>
+      -->
 
-    <div class="icons-detail-found" v-else>
+    <div content class="icons-detail-found" v-else>
       <tc-grid class="icons-detail--mainGrid">
         <tc-card rounded="true" hover="true">
           <div class="big">
@@ -77,6 +85,7 @@ import { Icon } from "@/models/Icons/Icon.model";
 import TCDivider from "@/components/tc/divider/TC-Divider.vue";
 import IconSlotMashine from "@/components/projects/TimosIcons/IconSlotMashine.vue";
 import TCGrid from "@/components/tc/_layout/grid/TC-Grid.vue";
+import TimosIconsNotFound from "./Timos-Icons-NotFound.vue";
 
 @Component({
   components: {
@@ -86,13 +95,15 @@ import TCGrid from "@/components/tc/_layout/grid/TC-Grid.vue";
     "tc-headline": TCHeadline,
     "tc-divider": TCDivider,
     "icon-slot-mashine": IconSlotMashine,
-    "tc-grid": TCGrid
+    "tc-grid": TCGrid,
+    "timos-icons-notfound": TimosIconsNotFound
   }
 })
 export default class TimosIconsDetail extends Vue {
   public icon: Icon = { name: "Not Found" };
   public constants: {} = constants;
-  public iconData: any[] = [];
+
+  // public iconData: any[] = [];
 
   get iconName() {
     return this.icon.name.split("-").join(" ");
@@ -103,21 +114,22 @@ export default class TimosIconsDetail extends Vue {
   }
 
   get svg() {
-    const iconData = this.iconData.filter(
-      x => x.properties.name === this.icon.name
-    )[0];
+    return "SVG";
+    // const iconData = this.iconData.filter(
+    //   x => x.properties.name === this.icon.name
+    // )[0];
 
-    const pre = "<svg>";
-    let content = "";
-    for (let i = 0; i < iconData.icon.paths.length; i++) {
-      content += `<path d="${iconData.icon.paths[i]}" ${
-        iconData.icon.attrs[i].opacity
-          ? `opacity="${iconData.icon.attrs[i].opacity}"`
-          : ""
-      }/>`;
-    }
-    const suff = "</svg>";
-    return pre + content + suff;
+    // const pre = "<svg>";
+    // let content = "";
+    // for (let i = 0; i < iconData.icon.paths.length; i++) {
+    //   content += `<path d="${iconData.icon.paths[i]}" ${
+    //     iconData.icon.attrs[i].opacity
+    //       ? `opacity="${iconData.icon.attrs[i].opacity}"`
+    //       : ""
+    //   }/>`;
+    // }
+    // const suff = "</svg>";
+    // return pre + content + suff;
   }
 
   created() {
@@ -131,7 +143,7 @@ export default class TimosIconsDetail extends Vue {
       if (foundIcons.length === 1) this.icon = foundIcons[0];
     }
     if (this.icon.name != "Not Found") {
-      this.iconData = require("./resources/selection.json")["icons"];
+      // this.iconData = require("./resources/selection.json")["icons"];
     }
   }
 }

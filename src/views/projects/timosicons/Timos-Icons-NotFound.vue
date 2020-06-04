@@ -1,16 +1,23 @@
 <template>
-  <div class="tc-component--notfound">
-    <h1>Component not found</h1>
+  <div class="tc-icons--notfound">
+    <div>
+      <icon-slot-mashine />
+      <icon-slot-mashine />
+      <icon-slot-mashine />
+      <icon-slot-mashine />
+      <icon-slot-mashine />
+    </div>
+    <h1>Icon not found</h1>
     <p>
-      This page does not exist at the moment. If your coming from an external
-      website or entered the URL manually, its possible, that this component
-      does no longer exist, had it's name changed or is temporaly unavailable.
+      This icon does not exist at the moment. If your coming from an external
+      website or entered the URL manually, its possible, that this icon does no
+      longer exist, had it's name changed or is temporaly unavailable.
     </p>
     <tc-button
       variant="filled"
       icon="chevron-left"
-      name="Components"
-      :to="{ name: timos_components }"
+      name="Icons"
+      :to="{ name: timos_icons }"
     />
   </div>
 </template>
@@ -18,23 +25,45 @@
 import { Vue, Component } from "vue-property-decorator";
 import TCButton from "@/components/tc/button/TC-Button.vue";
 import constants from "@/constants";
+import IconSlotMashine from "@/components/projects/TimosIcons/IconSlotMashine.vue";
 @Component({
   components: {
-    "tc-button": TCButton
+    "tc-button": TCButton,
+    "icon-slot-mashine": IconSlotMashine
   }
 })
-export default class TCComponentsNotFound extends Vue {
-  public timos_components: string = constants.projectRoutes.timos_components;
+export default class TimosIconsNotFound extends Vue {
+  public timos_icons: string = constants.projectRoutes.timos_icons;
 }
 </script>
 <style lang="scss" scoped>
-.tc-component--notfound {
+@import "../../../scss/variables.scss";
+
+.tc-icons--notfound {
   height: 100vh;
   width: 100vw;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+
+  $colors: (
+    1: "#eb3b5a",
+    2: "#45aaf2",
+    3: "#26de81",
+    4: "#2bcbba",
+    5: "#e67e22"
+  );
+  @each $i, $color in $colors {
+    /deep/ .icon-slot-mashine {
+      &:nth-child(#{$i}) {
+        i {
+          color: #{$color};
+        }
+      }
+    }
+  }
+
   h1 {
     margin-bottom: -5px;
   }

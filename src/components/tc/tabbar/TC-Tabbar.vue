@@ -1,8 +1,9 @@
 <template>
   <div
     class="tc-tabbar"
+    :id="id"
     :style="defaultStyle"
-    :class="{ dark: dark, light: !dark }"
+    :class="{ dark: isDark, light: !isDark }"
   >
     <div class="items">
       <slot />
@@ -10,18 +11,40 @@
   </div>
 </template>
 <script lang="ts">
-import { Vue, Component, Prop } from "vue-property-decorator";
+import { Vue, Component, Prop, Watch } from "vue-property-decorator";
 import TCComponent from "../tccomponent.vue";
+import TCAutoBackgroundMixin from "../TCAutoBackground.mixin.vue";
+import uuidVue from "../uuid.vue";
 @Component({
-  mixins: [TCComponent]
+  mixins: [TCComponent, TCAutoBackgroundMixin, uuidVue]
 })
-export default class TCTabbar extends Vue {}
+export default class TCTabbar extends Vue {
+  @Prop() autoColor!: boolean;
+  _mounted!: any;
+  _destroyed!: any;
+  _routeChanged!: any;
+  uuid!: any;
+  id = "tc-tabbar_" + this.uuid;
+
+  mounted() {
+    this._mounted();
+  }
+  destroyed() {
+    this._destroyed();
+  }
+
+  @Watch("$route.name")
+  routeChanged(): void {
+    this._routeChanged();
+  }
+}
 </script>
 <style lang="scss" scoped>
 @import "../../../scss/mixins";
 @import "../../../scss/variables";
 
 .tc-tabbar {
+  transition: color 0.1s ease-in-out, background 0.3s ease-in-out;
   &.dark {
     @include backdrop-blur($color);
     color: #fff;

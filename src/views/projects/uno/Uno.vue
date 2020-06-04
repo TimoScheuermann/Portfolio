@@ -266,8 +266,6 @@ export default class Uno extends Vue {
         }
       });
       (this.$refs.chart as any).updateSeries(this.series);
-    } else {
-      console.log("kein verlierer");
     }
   }
 }

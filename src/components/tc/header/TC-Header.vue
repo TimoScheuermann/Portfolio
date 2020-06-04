@@ -1,5 +1,5 @@
 <template>
-  <div class="tc-header" :style="getStyles()" :class="getClasses()">
+  <div class="tc-header" :id="id" :style="getStyles()" :class="getClasses()">
     <div class="tc-header--head">
       <div
         v-if="backTo || backHref"
@@ -43,17 +43,26 @@
   </div>
 </template>
 <script lang="ts">
-import { Vue, Component, Prop } from "vue-property-decorator";
+import { Vue, Component, Prop, Watch } from "vue-property-decorator";
 import TCComponent from "../tccomponent.vue";
 import uuidVue from "../uuid.vue";
 import TCCheckbox from "../checkbox/TC-Checkbox.vue";
+import TCAutoBackgroundMixin from "../TCAutoBackground.mixin.vue";
 @Component({
-  mixins: [TCComponent, uuidVue],
+  mixins: [TCComponent, uuidVue, TCAutoBackgroundMixin],
   components: {
     "tc-checkbox": TCCheckbox
   }
 })
 export default class TCHeader extends Vue {
+  @Prop() autoColor!: boolean;
+  _mounted!: any;
+  _destroyed!: any;
+  _routeChanged!: any;
+  uuid!: any;
+  isDark!: any;
+  id: string = "tc-header_" + this.uuid;
+
   @Prop() title!: string;
   @Prop({ default: "fixed" }) variant!: "fixed" | "floating" | "sticky";
   @Prop({ default: 0 }) top!: number;
@@ -61,7 +70,6 @@ export default class TCHeader extends Vue {
   @Prop() backHref!: string;
   @Prop() backName!: string;
 
-  private uuid!: number;
   private dark!: boolean;
   private defaultStyle!: any;
 
@@ -69,12 +77,19 @@ export default class TCHeader extends Vue {
   public itemCard: boolean = false;
 
   mounted() {
+    this._mounted();
     window.addEventListener("resize", this.resize);
     this.resize();
   }
 
-  beforeDestroy() {
+  destroyed() {
+    this._destroyed();
     window.removeEventListener("resize", this.resize);
+  }
+
+  @Watch("$route.name")
+  routeChanged() {
+    this._routeChanged();
   }
 
   public clicked(event: any): void {
@@ -95,8 +110,8 @@ export default class TCHeader extends Vue {
 
   getClasses() {
     return {
-      "tc-header__dark": this.dark,
-      "tc-header__light": !this.dark,
+      "tc-header__dark": this.isDark,
+      "tc-header__light": !this.isDark,
       "tc-header__fixed": !(
         this.variant == "floating" || this.variant == "sticky"
       ),
@@ -132,6 +147,8 @@ export default class TCHeader extends Vue {
   justify-content: space-between;
   align-items: center;
   z-index: 999;
+
+  transition: color 0.1s ease-in-out, background 0.3s ease-in-out;
 
   &.tc-header__dark {
     &.tc-header__sticky,

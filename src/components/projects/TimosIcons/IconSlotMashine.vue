@@ -57,15 +57,15 @@ export default class IconSlotMashine extends Vue {
     transition: 0.5s ease-in-out;
   }
   .fade-enter {
-    top: 0%;
+    // top: 0%;
   }
   .fade-leave-to {
-    top: 100%;
+    // top: 100%;
   }
   .fade-enter,
   .fade-leave-to {
-    opacity: 0;
-    transform: translate(-50%, -50%) rotateY(180deg);
+    opacity: 0.5;
+    transform: translate(-50%, -50%) scale(0.8) rotateY(90deg);
   }
 }
 </style>
