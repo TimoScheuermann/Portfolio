@@ -1,10 +1,6 @@
 <template>
-  <div
-    class="tc-tabbar"
-    :id="id"
-    :style="defaultStyle"
-    :class="{ dark: isDark, light: !isDark }"
-  >
+  <!-- // :style="defaultStyle" -->
+  <div class="tc-tabbar" :id="id" :class="{ dark: isDark, light: !isDark }">
     <div class="items">
       <slot />
     </div>
@@ -24,7 +20,14 @@ export default class TCTabbar extends Vue {
   _destroyed!: any;
   _routeChanged!: any;
   uuid!: any;
+  isDark: any;
+  dark: any;
   id = "tc-tabbar_" + this.uuid;
+
+  @Watch("dark")
+  updated() {
+    this.isDark = this.dark;
+  }
 
   mounted() {
     this._mounted();
@@ -33,7 +36,7 @@ export default class TCTabbar extends Vue {
     this._destroyed();
   }
 
-  @Watch("$route.name")
+  @Watch("$route", { deep: true, immediate: true })
   routeChanged(): void {
     this._routeChanged();
   }

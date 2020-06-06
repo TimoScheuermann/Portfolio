@@ -87,7 +87,12 @@ export default class TCHeader extends Vue {
     window.removeEventListener("resize", this.resize);
   }
 
-  @Watch("$route.name")
+  @Watch("dark")
+  updated() {
+    this.isDark = this.dark;
+  }
+
+  @Watch("$route", { deep: true, immediate: true })
   routeChanged() {
     this._routeChanged();
   }

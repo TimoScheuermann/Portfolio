@@ -57,7 +57,7 @@
       <div class="footer" slot="footer">v1.6.5</div>
     </tc-sidebar>
     <tc-tabbar :dark="darkTabbar" class="app--tabbar">
-      <tc-tabbar-item />
+      <tc-tabbar-item routeName="home" />
       <tc-tabbar-item title="Projects" icon="todo" routeName="projects" />
       <tc-tabbar-item title="Repertoire" icon="tools" routeName="repertoire" />
       <tc-tabbar-item title="Contact" icon="user-card" routeName="contact" />
@@ -83,6 +83,7 @@ import TCNavbar from "@/components/tc/navbar/TC-Navbar.vue";
 import TCNavbarItem from "@/components/tc/navbar/TC-Navbar-Item.vue";
 import TCButton from "./components/tc/button/TC-Button.vue";
 import constants from "./constants";
+import { Route } from "vue-router";
 
 @Component({
   components: {
@@ -112,10 +113,10 @@ export default class App extends Vue {
     return this.darkRoutes.includes(this.$route.name as string);
   }
 
-  @Watch("$route.name")
-  changed(to: string, from: string) {
+  @Watch("$route", { deep: true, immediate: true })
+  changed(to: Route, from: Route) {
     this.updateTitle();
-    if (this.darkRoutes.includes(to)) {
+    if (this.darkRoutes.includes(to.name!)) {
       document.body.style.background = "#000";
       return;
     }

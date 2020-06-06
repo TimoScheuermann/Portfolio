@@ -159,9 +159,20 @@ const router = new VueRouter({
               name: constants.projectRoutes.timos_icons,
               path: "",
               component: () =>
-                import("@/views/projects/timosicons/TimosIcons.vue"),
+                import("@/views/projects/timosicons/Timos-Icons.vue"),
               meta: {
                 title: "Timo's Icons | Home"
+              }
+            },
+            {
+              name: constants.projectRoutes.timos_icons_requests,
+              path: "resources/requests",
+              component: () =>
+                import(
+                  "@/views/projects/timosicons/resources/Timos-Icons-Requests.vue"
+                ),
+              meta: {
+                title: "Timo's Icons | Requests"
               }
             },
             {
@@ -169,7 +180,7 @@ const router = new VueRouter({
               path: "resources/versions",
               component: () =>
                 import(
-                  "@/views/projects/timosicons/resources/TimosIcons--Versions.vue"
+                  "@/views/projects/timosicons/resources/Timos-Icons-Versions.vue"
                 ),
               meta: {
                 title: "Timo's Icons | Versions"
@@ -180,7 +191,7 @@ const router = new VueRouter({
               path: "resources/howto",
               component: () =>
                 import(
-                  "@/views/projects/timosicons/resources/TimosIcons--GettingStarted.vue"
+                  "@/views/projects/timosicons/resources/Timos-Icons-GettingStarted.vue"
                 ),
               meta: {
                 title: "Timo's Icons | How To"
@@ -190,7 +201,7 @@ const router = new VueRouter({
               name: constants.projectRoutes.timos_icons_detail,
               path: ":icon",
               component: () =>
-                import("@/views/projects/timosicons/TimosIconsDetail.vue"),
+                import("@/views/projects/timosicons/Timos-Icons-Detail.vue"),
               meta: {
                 title: "Timo's Icons | %icon%"
               }

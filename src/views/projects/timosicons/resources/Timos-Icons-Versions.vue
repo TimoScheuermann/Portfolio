@@ -2,7 +2,7 @@
   <div content>
     <tc-header
       title="Versions"
-      backName="Icons"
+      backName="Timo's Icons"
       :backTo="{ name: constants.projectRoutes.timos_icons }"
     />
     <div v-for="version in getVersions()" :key="version">

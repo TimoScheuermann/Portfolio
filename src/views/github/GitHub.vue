@@ -53,6 +53,7 @@ import TCHero from "@/components/tc/hero/TC-Hero.vue";
 import TCSpinner from "@/components/tc/spinner/TC-Spinner.vue";
 import GitHubRepoTile from "./GitHub--Repotile.vue";
 import TCGrid from "@/components/tc/_layout/grid/TC-Grid.vue";
+import axios from "@/axios";
 
 @Component({
   components: {
@@ -65,8 +66,6 @@ import TCGrid from "@/components/tc/_layout/grid/TC-Grid.vue";
   }
 })
 export default class GitHubView extends Vue {
-  [x: string]: any;
-
   public loaded: boolean = false;
   public profile: any = {};
   public repositories: any[] = [];
@@ -89,7 +88,7 @@ export default class GitHubView extends Vue {
 
   public async loadRepos(): Promise<void> {
     if (!this.$store.state.repositories) {
-      const { data } = await this.$axios.get(
+      const { data } = await axios.get(
         "https://api.github.com/users/timoscheuermann/repos"
       );
       this.repositories = data;
@@ -101,7 +100,7 @@ export default class GitHubView extends Vue {
 
   public async loadProfile(): Promise<void> {
     if (!this.$store.state.profile) {
-      const { data } = await this.$axios.get(
+      const { data } = await axios.get(
         "https://api.github.com/users/timoscheuermann"
       );
       this.profile = data;

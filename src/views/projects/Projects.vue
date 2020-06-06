@@ -70,28 +70,14 @@ import projects from "@/projects";
 import { Project } from "@/models/Projects/Project.model";
 import ProjectsProjectlist from "@/components/projects/ProjectsOverview/Projects-Projectlist.vue";
 import TCHeader from "@/components/tc/header/TC-Header.vue";
-import DHBWRichie from "./dhbwrichie/DHBWRichie.vue";
-import InvestingCollectors from "./investingcollectors/InvestingCollectors.vue";
-import AMSPro from "./amspro/AMSPro.vue";
-import TCComponents from "./tccomponents/TC-Components.vue";
-import TimosIcons from "./timosicons/TimosIcons.vue";
-import WorkGallery from "./workgallery/WorkGallery.vue";
-import NHLStats from "./nhlstats/NHLStats.vue";
+import TCButton from "@/components/tc/button/TC-Button.vue";
 
 import "./swipe-events.js";
-import TCButton from "@/components/tc/button/TC-Button.vue";
 
 @Component({
   components: {
     "projects-projectlist": ProjectsProjectlist,
     "tc-header": TCHeader,
-    "prev-book": DHBWRichie,
-    "prev-vehicle-front": InvestingCollectors,
-    "prev-amspro": AMSPro,
-    "prev-component": TCComponents,
-    "prev-heart": TimosIcons,
-    "prev-painting": WorkGallery,
-    "prev-hockey-stick": NHLStats,
     "tc-button": TCButton
   }
 })

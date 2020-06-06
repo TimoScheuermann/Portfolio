@@ -49,6 +49,8 @@ export default class TCNavbar extends Vue {
   _destroyed!: any;
   _routeChanged!: any;
   uuid!: any;
+  dark: any;
+  isDark: any;
   id = "tc-navbar_" + this.uuid;
 
   public expanded: boolean = false;
@@ -66,12 +68,17 @@ export default class TCNavbar extends Vue {
     this.expanded = !this.expanded;
   }
 
+  @Watch("dark")
+  updated() {
+    this.isDark = this.dark;
+  }
+
   @Watch("expanded")
   expandedChanged(to: any, from: any) {
     document.body.style.overflow = to ? "hidden" : this.bodyOverflowBefore!;
   }
 
-  @Watch("$route.name")
+  @Watch("$route", { deep: true, immediate: true })
   routeChanged(to: string, from: string) {
     this.expanded = false;
     this._routeChanged();

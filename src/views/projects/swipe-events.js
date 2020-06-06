@@ -81,8 +81,6 @@
       startEl.dispatchEvent(
         new CustomEvent(eventType, { bubbles: true, cancelable: true })
       );
-
-      // if (console && console.log) console.log(eventType + ' fired on ' + startEl.tagName);
     }
 
     // reset values

@@ -40,7 +40,21 @@
           A library of high-quality ready to use icons that will help you speed
           up your development workflow.
         </p>
-        <tc-button variant="filled" icon="login" name="Getting started" />
+        <div>
+          <tc-button
+            variant="filled"
+            icon="login"
+            name="Getting started"
+            :to="{ name: constants.projectRoutes.timos_icons_getting_started }"
+          />
+          <tc-button
+            variant="filled"
+            tccolor="success"
+            icon="tools"
+            name="Requests"
+            :to="{ name: constants.projectRoutes.timos_icons_requests }"
+          />
+        </div>
       </div>
 
       <icon-gallery />

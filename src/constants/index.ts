@@ -14,6 +14,7 @@ export default {
     timos_icons_detail: "timosiconsdetail",
     timos_icons_getting_started: "timosiconsgettingstarted",
     timos_icons_versions: "timosiconsversion",
+    timos_icons_requests: "timosiconsrequests",
     timos_components: "timoscomponents",
     timos_components_detail: "timoscomponentsdetail",
     timos_components_designer: "timoscomponentsdesigner",

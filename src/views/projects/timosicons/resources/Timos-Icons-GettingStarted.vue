@@ -2,7 +2,7 @@
   <div content>
     <tc-header
       title="Getting started"
-      backName="Icons"
+      backName="Timo's Icons"
       :backTo="{ name: constants.projectRoutes.timos_icons }"
     />
     <icon-gallery :selectAble="true" />
