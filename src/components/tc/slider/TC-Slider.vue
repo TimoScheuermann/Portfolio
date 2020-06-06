@@ -31,7 +31,7 @@ export default class TCSlider extends Vue {
 <style lang="scss" scoped>
 @import "../../../scss/variables";
 .tc-slider {
-  display: flex;
+  display: inline-flex;
   justify-content: center;
   align-items: center;
   i {
