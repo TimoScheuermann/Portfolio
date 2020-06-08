@@ -1,5 +1,5 @@
 <template>
-  <div class="tc-header" :id="id" :style="getStyles()" :class="getClasses()">
+  <div class="tc-header" :id="id" :style="styles" :class="classes">
     <div class="tc-header--head">
       <div
         v-if="backTo || backHref"
@@ -55,12 +55,14 @@ import TCAutoBackgroundMixin from "../TCAutoBackground.mixin.vue";
   }
 })
 export default class TCHeader extends Vue {
-  @Prop() autoColor!: boolean;
+  @Prop({ default: false }) autoColor!: boolean;
   _mounted!: any;
   _destroyed!: any;
   _routeChanged!: any;
   uuid!: any;
   isDark!: any;
+  dark!: boolean;
+  defaultStyle!: any;
   id: string = "tc-header_" + this.uuid;
 
   @Prop() title!: string;
@@ -69,9 +71,6 @@ export default class TCHeader extends Vue {
   @Prop() backTo!: any;
   @Prop() backHref!: string;
   @Prop() backName!: string;
-
-  private dark!: boolean;
-  private defaultStyle!: any;
 
   public itemsOverflow: boolean = false;
   public itemCard: boolean = false;
@@ -113,7 +112,7 @@ export default class TCHeader extends Vue {
     }, 100);
   }
 
-  getClasses() {
+  get classes() {
     return {
       "tc-header__dark": this.isDark,
       "tc-header__light": !this.isDark,
@@ -124,7 +123,7 @@ export default class TCHeader extends Vue {
       "tc-header__floating": this.variant == "floating"
     };
   }
-  getStyles() {
+  get styles() {
     var style = this.defaultStyle;
     style.top = (this.variant === "floating" ? 40 : 0) + +this.top + "px";
     return style;
@@ -190,6 +189,7 @@ export default class TCHeader extends Vue {
 
   .tc-header--head {
     display: inherit;
+    max-width: 100%;
 
     .tc-header--backButton {
       cursor: pointer;
@@ -198,6 +198,7 @@ export default class TCHeader extends Vue {
       display: flex;
       justify-content: center;
       align-items: center;
+      white-space: nowrap;
       i {
         margin-right: 5px;
       }
@@ -206,7 +207,9 @@ export default class TCHeader extends Vue {
     .tc-header--title__prestyled {
       font-weight: bold;
       white-space: nowrap;
+      overflow: hidden;
       font-size: 18px;
+      text-overflow: ellipsis;
     }
   }
   .tc-header--items {

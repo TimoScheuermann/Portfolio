@@ -1,5 +1,5 @@
 <script lang="ts">
-import { Vue, Component, Prop, Watch } from "vue-property-decorator";
+import { Vue, Component } from "vue-property-decorator";
 @Component
 export default class TCAutoBackgroundMixin extends Vue {
   [x: string]: any;
@@ -15,6 +15,7 @@ export default class TCAutoBackgroundMixin extends Vue {
       window.addEventListener("scroll", this.handleScroll);
       this.updateContainerList();
       this.handleScroll();
+      console.log("scroll mounted for auto color");
     }
   }
   public _destroyed(): void {
@@ -29,21 +30,26 @@ export default class TCAutoBackgroundMixin extends Vue {
 
   public handleScroll() {
     if (this.darkContainer.length > 0 || this.lightContainer.length > 0) {
+      // console.log("scroll");
       if (
         this.darkContainer.filter(x => this.collide(x, this.mainContainer))
           .length > 0
       ) {
         this.isDark = true;
+        // console.log("Over dark", this.isDark);
         return;
       }
       if (
         this.lightContainer.filter(x => this.collide(x, this.mainContainer))
           .length > 0
       ) {
+        // console.log("Over light");
         this.isDark = false;
         return;
       }
     }
+
+    // console.log("Over nothing");
     this.isDark = this.dark;
   }
 
@@ -53,6 +59,7 @@ export default class TCAutoBackgroundMixin extends Vue {
         this[t + "Container"] = [];
         document.querySelectorAll("[tc-" + t + "-container]").forEach(x => {
           this[t + "Container"].push(x as HTMLElement);
+          // console.log("Found ", x);
         });
       }
     });

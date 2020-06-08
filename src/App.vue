@@ -127,14 +127,17 @@ export default class App extends Vue {
     const title = this.$route.meta.title;
     if (title) {
       const params = this.$route.params;
-      document.title = this.$route.meta.title
-        .split("%comp%")
-        .join(params.comp)
-        .split("%icon%")
-        .join(params.icon);
+      const title = this.$route.meta.title;
+      document.title = this.replaceTitlePlaceholder(params, title);
     } else {
       document.title = "Timo Scheuermann | Portfolio";
     }
+  }
+  private replaceTitlePlaceholder(params: object, title: string): string {
+    for (let [key, value] of Object.entries(params)) {
+      title = title.split("%" + key + "%").join(value);
+    }
+    return title;
   }
 }
 </script>

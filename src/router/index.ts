@@ -165,15 +165,32 @@ const router = new VueRouter({
               }
             },
             {
-              name: constants.projectRoutes.timos_icons_requests,
               path: "resources/requests",
-              component: () =>
-                import(
-                  "@/views/projects/timosicons/resources/Timos-Icons-Requests.vue"
-                ),
-              meta: {
-                title: "Timo's Icons | Requests"
-              }
+              component: EmptyRouter,
+              children: [
+                {
+                  name: constants.projectRoutes.timos_icons_requests,
+                  path: "",
+                  component: () =>
+                    import(
+                      "@/views/projects/timosicons/resources/Timos-Icons-Requests.vue"
+                    ),
+                  meta: {
+                    title: "Timo's Icons | Requests"
+                  }
+                },
+                {
+                  name: constants.projectRoutes.timos_icons_requests_detail,
+                  path: ":issue",
+                  component: () =>
+                    import(
+                      "@/views/projects/timosicons/resources/Timos-Icons-Requests-Detail.vue"
+                    ),
+                  meta: {
+                    title: "Timo's Icons | Request #%issue%"
+                  }
+                }
+              ]
             },
             {
               name: constants.projectRoutes.timos_icons_versions,
