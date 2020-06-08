@@ -40,8 +40,6 @@ import constants from "@/constants";
 import TCHeadline from "@/components/tc/headline/TC-Headline.vue";
 import TCSelect from "@/components/tc/select/TC-Select.vue";
 import TCInput from "@/components/tc/input/TC-Input.vue";
-import { IconRequest } from "@/models/Icons/IconRequest.model";
-import { IconRequestLabel } from "@/models/Icons/IconRequestLabel.model";
 import TCButton from "@/components/tc/button/TC-Button.vue";
 import { IconIssueComment } from "@/models/Icons/IconIssueComment.model";
 import TCGrid from "@/components/tc/_layout/grid/TC-Grid.vue";
