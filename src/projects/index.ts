@@ -2,18 +2,18 @@ import constants from "@/constants";
 import { Project } from "@/models/Projects/Project.model";
 
 const projects: Project[] = [
-  {
-    routeName: constants.projectRoutes.investing_collectors,
-    title: "Investing Collectors",
-    description:
-      "Invest in rare supercars from Porsche, Mercedes, Ferrari and others",
-    mainComponent:
-      "@/views/projects/investingcollectors/InvestingCollectors.vue",
-    icon: "vehicle-front",
-    thumbnail: "assets/projects/investingcollectors/thumbnail.png",
-    preview: "assets/projects/investingcollectors/preview.png",
-    preview_mobile: "assets/projects/investingcollectors/preview_mobile.png"
-  },
+  //{
+   // routeName: constants.projectRoutes.investing_collectors,
+    //title: "Investing Collectors",
+    //description:
+      //"Invest in rare supercars from Porsche, Mercedes, Ferrari and others",
+    //mainComponent:
+      //"@/views/projects/investingcollectors/InvestingCollectors.vue",
+    //icon: "vehicle-front",
+    //thumbnail: "assets/projects/investingcollectors/thumbnail.png",
+    //preview: "assets/projects/investingcollectors/preview.png",
+    //preview_mobile: "assets/projects/investingcollectors/preview_mobile.png"
+  //},
   {
     routeName: constants.projectRoutes.timos_components,
     title: "TC Components",
