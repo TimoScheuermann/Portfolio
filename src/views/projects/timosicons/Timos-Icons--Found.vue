@@ -13,27 +13,27 @@
           </p>
         </div>
         <div>
-          <h3>There's something wrong?</h3>
+          <h3>Room for improvements?</h3>
           <p>
             There is something wrong with this icon or you want something to be
             changed, then
             <tc-link
               href="https://github.com/TimoScheuermann/Timos-Icons/issues/new?assignees=&labels=Problem&template=problem.md&title="
             >
-              submit your idea here </tc-link
+              submit your idea here</tc-link
             >.
           </p>
         </div>
         <div>
           <h3>New icon idea?</h3>
           <p>
-            You just cant find the right icon for your project? Simply open a
+            You just can't find the right icon for your project? Simply open a
             <tc-link
               href="https://github.com/TimoScheuermann/Timos-Icons/issues/new?assignees=&labels=Icon+Request&template=icon-request.md&title="
             >
               new github issue
             </tc-link>
-            and tell us about your idea.
+            and tell me about your idea.
           </p>
         </div>
       </tc-grid>

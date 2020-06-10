@@ -9,9 +9,9 @@
     </div>
     <h1>Icon not found</h1>
     <p>
-      This icon does not exist at the moment. If your coming from an external
-      website or entered the URL manually, its possible, that this icon does no
-      longer exist, had it's name changed or is temporaly unavailable.
+      This icon does not exist at the moment. If you're coming from an external
+      website or entered the URL manually, it's possible, that this icon does no
+      longer exist, had its name changed or is temporaly unavailable.
     </p>
     <tc-button
       variant="filled"

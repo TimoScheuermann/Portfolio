@@ -2,9 +2,9 @@
   <div class="tc-component--notfound">
     <h1>Component not found</h1>
     <p>
-      This page does not exist at the moment. If your coming from an external
-      website or entered the URL manually, its possible, that this component
-      does no longer exist, had it's name changed or is temporaly unavailable.
+      This page does not exist at the moment. If you're coming from an external
+      website or entered the URL manually, it's possible, that this component
+      does no longer exist, had its name changed or is temporaly unavailable.
     </p>
     <tc-button
       variant="filled"

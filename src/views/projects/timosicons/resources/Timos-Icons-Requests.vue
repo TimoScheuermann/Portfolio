@@ -35,9 +35,10 @@
             </p>
             <tc-button
               name="Submit"
-              icon="share"
+              icon="github"
               tccolor="success"
               variant="filled"
+              href="https://github.com/TimoScheuermann/Timos-Icons/issues/new/choose"
             />
           </div>
           <div class="submit-grid-item-2">
