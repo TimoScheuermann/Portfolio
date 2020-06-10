@@ -70,7 +70,7 @@ export default class TCTable extends Vue {
 
         &:hover {
           &:not(:first-child) {
-            box-shadow: $shadow;
+            // box-shadow: $shadow;
             transform: translateY(-5px);
 
             background: $paragraph;

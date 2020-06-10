@@ -5,28 +5,71 @@
         slot="background"
         src="assets/projects/timosicons/banner_request.jpg"
       />
-      <div class="hero-content">
-        <h1>{{ issue.title }}</h1>
-      </div>
+      <transition-group tag="div" class="hero-content" name="swap">
+        <div class="error" v-if="error" :key="0">Error</div>
+        <div class="loaded" v-else-if="loaded" :key="1">
+          <div class="type" :style="{ color: '#' + issue.labels[0].color }">
+            {{ issue.labels[0].name }}
+          </div>
+          <h1>{{ issue.title }}</h1>
+        </div>
+        <div class="loading" v-else :key="2">
+          <tc-spinner />
+          <div class="info">Loading</div>
+        </div>
+      </transition-group>
     </tc-hero>
 
     <tc-header
-      :title="issue.title"
+      :title="!!issue && issue.title"
       backName="Icon Requests"
       :autoColor="true"
       :backTo="{ name: constants.projectRoutes.timos_icons_requests }"
     />
 
-    <div content>
-      <div class="header" center>
-        <h1>ID: {{ number }}</h1>
-        <p>
-          Find the most requested icon, the icons I am working on and much more
-        </p>
-      </div>
-      <p>Error: {{ error }}</p>
+    <div content v-if="loaded">
       <p>{{ issue }}</p>
-      <p>{{ comments }}</p>
+      <p>{{ comments[0] }}</p>
+
+      <h1>Comments</h1>
+
+      <div class="comments">
+        <div
+          class="comment_new"
+          v-for="comment in comments"
+          :key="comment.created"
+        >
+          <div class="comment-container">
+            <div class="avatar">
+              <img :src="comment.avatar" />
+              <div v-if="comment.association === 'OWNER'">
+                <i class="ti-star" />
+                <span>Author</span>
+              </div>
+            </div>
+            <div class="content">
+              <div class="author">{{ comment.author }}</div>
+              <div class="body">{{ comment.body }}</div>
+              <div class="created">{{ comment.created }}</div>
+            </div>
+          </div>
+        </div>
+        <div class="comment" v-for="comment in comments" :key="comment.created">
+          <div class="comment--head">
+            <div class="author">
+              <div class="avatar">
+                <img :src="comment.avatar" />
+              </div>
+              <div class="name">{{ comment.author }}</div>
+              <i v-if="comment.association === 'OWNER'" class="ti-star" />
+            </div>
+            <div class="created">{{ formatDate(comment.created) }}</div>
+          </div>
+          <div class="comment--container">
+            <div class="content">{{ comment.body }}</div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -44,28 +87,41 @@ import TCButton from "@/components/tc/button/TC-Button.vue";
 import { IconIssueComment } from "@/models/Icons/IconIssueComment.model";
 import TCGrid from "@/components/tc/_layout/grid/TC-Grid.vue";
 import TCHero from "@/components/tc/hero/TC-Hero.vue";
-import { IconIssue } from "../../../../models/Icons/IconIssue.model";
+import { IconIssue } from "@/models/Icons/IconIssue.model";
+import TCSpinner from "@/components/tc/spinner/TC-Spinner.vue";
 
 @Component({
   components: {
     "tc-header": TCHeader,
     "tc-grid": TCGrid,
-    "tc-hero": TCHero
+    "tc-hero": TCHero,
+    "tc-spinner": TCSpinner
   }
 })
 export default class TimosIconsRequestsDetail extends Vue {
   public constants: {} = constants;
   public error: boolean = false;
-  public comments: IconIssueComment[] = [];
-  public issue: IconIssue = {} as IconIssue;
+  public comments: IconIssueComment[] | null = null;
+  public issue: IconIssue | null = null;
+
+  get loaded(): boolean {
+    return !!this.comments && !!this.issue;
+  }
 
   get number() {
     return this.$route.params.issue;
   }
 
-  async mounted() {
+  async created() {
     this.loadComments();
     this.loadIssue();
+  }
+
+  public formatDate(date: string) {
+    return date
+      .split("T")[0]
+      .split("-")
+      .join("/");
   }
 
   async loadComments() {
@@ -96,12 +152,166 @@ export default class TimosIconsRequestsDetail extends Vue {
 <style lang="scss" scoped>
 @import "../../../../scss/variables";
 
+.swap-enter-active,
+.swap-leave-active {
+  transition: all 1s;
+}
+.swap-enter {
+  opacity: 0;
+  transform: translateY(30px);
+}
+.swap-leave-to {
+  opacity: 0;
+  transform: scale(0);
+}
+.swap-leave-active {
+  position: absolute;
+}
+
+.comment_new {
+  margin-bottom: 20px;
+  .comment-container {
+    $avatarSize: 50px;
+    display: grid;
+    grid-template-columns: $avatarSize 1fr;
+    grid-gap: 20px;
+    .avatar {
+      img {
+        height: $avatarSize;
+        width: $avatarSize;
+        border-radius: $avatarSize;
+      }
+      div {
+        margin-top: 5px;
+        color: goldenrod;
+        font-size: 14px;
+        span {
+          margin-left: 5px;
+          font-weight: 500;
+        }
+      }
+    }
+    .content {
+      background: $paragraph;
+      padding: 10px;
+      border-radius: $border-radius;
+      .author {
+        font-weight: bold;
+      }
+      .body {
+        margin: 10px;
+      }
+      .created {
+        font-size: 14px;
+        text-align: right;
+      }
+    }
+  }
+}
+
 .timos-icons-requests--detail {
   [content] {
     padding-top: 20px;
   }
+
+  .comments {
+    .comment {
+      margin-top: 20px;
+      $size: 50px;
+      .comment--head {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        .author {
+          display: flex;
+          align-items: center;
+
+          .avatar {
+            height: $size;
+            width: $size;
+            border-radius: $size;
+            img {
+              border-radius: $size;
+              height: 100%;
+              width: 100%;
+              object-fit: cover;
+            }
+          }
+          .name {
+            margin-left: 10px;
+            font-weight: bold;
+            font-size: 18px;
+          }
+          i {
+            margin-left: 5px;
+            color: gold;
+          }
+        }
+        .created {
+          background: $paragraph;
+          border-radius: $border-radius;
+          padding: 5px 10px;
+          user-select: none;
+          white-space: nowrap;
+          margin-left: 5px;
+        }
+      }
+      .comment--container {
+        .content {
+          border-left: 2px solid rgba(#000, 0.25);
+          margin-left: #{$size / 2 - 1};
+          margin-top: 10px;
+          padding: 10px 0;
+          padding-left: #{$size / 2 - 1};
+        }
+      }
+    }
+  }
+
   .hero-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     color: #fff;
+    .error {
+      color: $error;
+      padding: 5px 25px;
+      font-size: 20px;
+      background: rgba(#000, 0.2);
+      border: 1px solid currentColor;
+      border-radius: $border-radius;
+    }
+    .loading {
+      text-align: center;
+      .info {
+        opacity: 0.8;
+        margin-top: 5px;
+        font-size: 18px;
+        font-weight: bold;
+      }
+    }
+    .loaded {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      .type {
+        padding: 5px 25px;
+        background: rgba(#000, 0.2);
+        border: 1px solid currentColor;
+        width: fit-content;
+        border-radius: $border-radius;
+      }
+      h1 {
+        width: 80vw;
+        margin-top: 5px;
+        white-space: nowrap;
+        text-align: center;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
   }
 }
 </style>

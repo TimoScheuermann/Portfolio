@@ -75,6 +75,17 @@ export default class TCHeader extends Vue {
   public itemsOverflow: boolean = false;
   public itemCard: boolean = false;
 
+  @Watch("dark")
+  dChanged() {
+    console.error("Dark changed to", this.dark);
+    console.log("Dark is", this.dark);
+  }
+  @Watch("isDark")
+  sdChanged() {
+    console.error("isDark changed to", this.isDark);
+    console.log("Dark is", this.dark);
+  }
+
   mounted() {
     this._mounted();
     window.addEventListener("resize", this.resize);
@@ -208,8 +219,8 @@ export default class TCHeader extends Vue {
       font-weight: bold;
       white-space: nowrap;
       overflow: hidden;
-      font-size: 18px;
       text-overflow: ellipsis;
+      font-size: 18px;
     }
   }
   .tc-header--items {

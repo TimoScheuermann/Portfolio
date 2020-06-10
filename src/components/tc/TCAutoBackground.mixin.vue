@@ -8,6 +8,7 @@ export default class TCAutoBackgroundMixin extends Vue {
   public darkContainer: HTMLElement[] = [];
   public mainContainer!: HTMLElement;
   public isDark = this.dark;
+  private recheckContainer: any;
 
   public _mounted(): void {
     if (this.autoColor) {
@@ -16,10 +17,14 @@ export default class TCAutoBackgroundMixin extends Vue {
       this.updateContainerList();
       this.handleScroll();
       console.log("scroll mounted for auto color");
+      this.recheckContainer = setTimeout(() => {
+        this.updateContainerList();
+      }, 1000);
     }
   }
   public _destroyed(): void {
     window.removeEventListener("scroll", this.handleScroll);
+    clearTimeout(this.recheckContainer);
   }
 
   public _routeChanged(): void {
@@ -30,38 +35,46 @@ export default class TCAutoBackgroundMixin extends Vue {
 
   public handleScroll() {
     if (this.darkContainer.length > 0 || this.lightContainer.length > 0) {
-      // console.log("scroll");
+      console.log("scroll");
       if (
         this.darkContainer.filter(x => this.collide(x, this.mainContainer))
           .length > 0
       ) {
+        if (!this.isDark) {
+          console.log("Now hovering over dark container");
+        }
         this.isDark = true;
-        // console.log("Over dark", this.isDark);
         return;
       }
       if (
         this.lightContainer.filter(x => this.collide(x, this.mainContainer))
           .length > 0
       ) {
-        // console.log("Over light");
+        if (this.isDark) {
+          console.log("Now hovering over light container");
+        }
         this.isDark = false;
         return;
       }
     }
-
-    // console.log("Over nothing");
+    console.log(
+      "Now hovering over no tc-X-container... setting color dark back to ",
+      this.dark
+    );
     this.isDark = this.dark;
   }
 
   public updateContainerList(): void {
     this.$nextTick(() => {
+      console.log("Updateing container list...");
       for (let t of ["dark", "light"]) {
         this[t + "Container"] = [];
         document.querySelectorAll("[tc-" + t + "-container]").forEach(x => {
           this[t + "Container"].push(x as HTMLElement);
-          // console.log("Found ", x);
+          console.log("Found ", x);
         });
       }
+      console.log("Container list updated.");
     });
   }
 

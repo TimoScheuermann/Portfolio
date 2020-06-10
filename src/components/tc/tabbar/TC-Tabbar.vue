@@ -48,6 +48,18 @@ export default class TCTabbar extends Vue {
 
 .tc-tabbar {
   transition: color 0.1s ease-in-out, background 0.3s ease-in-out;
+  // border-top: 1px solid currentColor;
+
+  position: fixed;
+  box-shadow: $shadow;
+  bottom: 0;
+  right: 0;
+  left: 0px;
+  z-index: 999;
+  height: 50px;
+  padding: 0 2.5px {
+    bottom: env(safe-area-inset-bottom);
+  }
   &.dark {
     @include backdrop-blur($color);
     color: #fff;
@@ -55,15 +67,6 @@ export default class TCTabbar extends Vue {
   &.light {
     @include backdrop-blur($background);
     color: $color;
-  }
-  position: fixed;
-  box-shadow: $shadow;
-  bottom: 0;
-  right: 0;
-  left: 0px;
-  z-index: 999;
-  padding: 0 2.5px {
-    bottom: env(safe-area-inset-bottom);
   }
   .items {
     color: inherit;
