@@ -12,6 +12,18 @@
             {{ issue.labels[0].name }}
           </div>
           <h1>{{ issue.title }}</h1>
+          <div class="hero--sub">
+            <div class="indicator" :class="issue.state">
+              {{ issue.state }}
+            </div>
+            <tc-button
+              :href="issue.url"
+              variant="filled"
+              name="View on GitHub"
+              iconPosition="right"
+              icon="github"
+            />
+          </div>
         </div>
         <div class="loading" v-else :key="2">
           <tc-spinner />
@@ -30,64 +42,27 @@
     <div content v-if="loaded">
       <!-- <p>{{ issue }}</p> -->
       <!-- <p>{{ comments[0] }}</p> -->
+      <tc-grid arrangement="auto-fit">
+        <section>
+          <h1>#{{ number }} {{ issue.title }}</h1>
+          <timosicons-issue-comment
+            :comment="issue"
+            :issue="issue"
+            timePrefix="reported this issue"
+            :title="issue.title"
+          />
+        </section>
 
-      <div class="section section--status">
-        <h1>#{{ issue.number }} {{ issue.title }}</h1>
-        <div class="head">
-          <img class="avatar" :src="issue.user_avatar" />
-          <div class="info">
-            <div class="author">{{ issue.user_name }}</div>
-            <div class="time">
-              reported this issue {{ formatDate(issue.created) }}
-            </div>
-          </div>
-        </div>
-        <div class="status">
-          <h2>Status</h2>
-          <div class="indicator">
-            {{ issue.state }}
-          </div>
-        </div>
-        <tc-button
-          :href="issue.url"
-          variant="filled"
-          name="View on GitHub"
-          iconPosition="right"
-          icon="github"
-        />
-      </div>
-      <div class="section section--comments">
-        <h1>Comments</h1>
-        <div class="comments">
-          <tc-card
+        <section v-if="comments.length > 0">
+          <h1>Comments</h1>
+          <timosicons-issue-comment
             v-for="comment in comments"
             :key="comment.created"
-            rounded="true"
-            :dark="isFromTimo(comment)"
-            class="card--comments"
-          >
-            <div class="head">
-              <img class="avatar" :src="comment.avatar" />
-              <div class="info">
-                <div class="author">{{ comment.author }}</div>
-                <div class="time">{{ formatDate(comment.created) }}</div>
-              </div>
-              <div
-                class="association owner"
-                v-if="isFromTimo(comment) && !hasOpenedIssue(comment)"
-              >
-                Owner
-              </div>
-              <div class="association author" v-if="hasOpenedIssue(comment)">
-                Author
-              </div>
-            </div>
-            <div class="content">
-              {{ comment.body }}
-            </div>
-          </tc-card>
-        </div>
-      </div>
+            :comment="comment"
+            :issue="issue"
+          />
+        </section>
+      </tc-grid>
     </div>
   </div>
 </template>
@@ -108,6 +83,8 @@ import TCHero from "@/components/tc/hero/TC-Hero.vue";
 import { IconIssue } from "@/models/Icons/IconIssue.model";
 import TCSpinner from "@/components/tc/spinner/TC-Spinner.vue";
 import TCCard from "@/components/tc/card/TC-Card.vue";
+import TimosIconsIssueComment from "@/components/projects/TimosIcons/TimosIcons--Issue-Comment.vue";
+import { formatDate } from "@/utils/DateFormatter";
 
 @Component({
   components: {
@@ -116,7 +93,8 @@ import TCCard from "@/components/tc/card/TC-Card.vue";
     "tc-hero": TCHero,
     "tc-spinner": TCSpinner,
     "tc-card": TCCard,
-    "tc-button": TCButton
+    "tc-button": TCButton,
+    "timosicons-issue-comment": TimosIconsIssueComment
   }
 })
 export default class TimosIconsRequestsDetail extends Vue {
@@ -133,71 +111,13 @@ export default class TimosIconsRequestsDetail extends Vue {
     return this.$route.params.issue;
   }
 
-  isFromTimo(comment: IconIssueComment): boolean {
-    return comment.association === "OWNER";
-  }
-  hasOpenedIssue(comment: IconIssueComment) {
-    return comment.author === this.issue!.user_name;
+  public formatDate(date: any) {
+    return formatDate(date);
   }
 
   async created() {
     this.loadComments();
     this.loadIssue();
-  }
-
-  public formatDate(time: any) {
-    switch (typeof time) {
-      case "number":
-        break;
-      case "string":
-        time = +new Date(time);
-        break;
-      case "object":
-        if (time.constructor === Date) time = time.getTime();
-        break;
-      default:
-        time = +new Date();
-    }
-    var time_formats = [
-      [60, "seconds", 1], // 60
-      [120, "1 minute ago", "1 minute from now"], // 60*2
-      [3600, "minutes", 60], // 60*60, 60
-      [7200, "1 hour ago", "1 hour from now"], // 60*60*2
-      [86400, "hours", 3600], // 60*60*24, 60*60
-      [172800, "Yesterday", "Tomorrow"], // 60*60*24*2
-      [604800, "days", 86400], // 60*60*24*7, 60*60*24
-      [1209600, "Last week", "Next week"], // 60*60*24*7*4*2
-      [2419200, "weeks", 604800], // 60*60*24*7*4, 60*60*24*7
-      [4838400, "Last month", "Next month"], // 60*60*24*7*4*2
-      [29030400, "months", 2419200], // 60*60*24*7*4*12, 60*60*24*7*4
-      [58060800, "Last year", "Next year"], // 60*60*24*7*4*12*2
-      [2903040000, "years", 29030400], // 60*60*24*7*4*12*100, 60*60*24*7*4*12
-      [5806080000, "Last century", "Next century"], // 60*60*24*7*4*12*100*2
-      [58060800000, "centuries", 2903040000] // 60*60*24*7*4*12*100*20, 60*60*24*7*4*12*100
-    ];
-    var seconds = (+new Date() - time) / 1000,
-      token = "ago",
-      list_choice = 1;
-
-    if (seconds == 0) {
-      return "Just now";
-    }
-    if (seconds < 0) {
-      seconds = Math.abs(seconds);
-      token = "from now";
-      list_choice = 2;
-    }
-    var i = 0,
-      format;
-    while ((format = time_formats[i++]))
-      if (seconds < format[0]) {
-        if (typeof format[2] == "string") return format[list_choice];
-        else
-          return (
-            Math.floor(seconds / +format[2]) + " " + format[1] + " " + token
-          );
-      }
-    return time;
   }
 
   async loadComments() {
@@ -244,140 +164,61 @@ export default class TimosIconsRequestsDetail extends Vue {
   position: absolute;
 }
 
-.section--status {
-  h1 {
-    margin: 10px;
-  }
-  .head {
-    margin: 10px;
-  }
-  .status {
-    // width: fit-content;
-    margin: 10px;
-    .indicator {
-      // background: orange;
-      color: #fff;
-      padding: 5px 20px;
-      width: fit-content;
-      border-radius: $border-radius;
-      text-transform: capitalize;
-      margin: 10px 0;
-      background: $success;
+section {
+  @media only screen and (min-width: 710px) {
+    max-height: calc(
+      100vh - 370px - env(safe-area-inset-top) - env(safe-area-inset-bottom)
+    );
+    padding: 20px {
+      top: 0;
     }
-  }
-  .tc-button {
-    width: fit-content;
-  }
-}
-.section--status {
-  display: flex;
-  flex-direction: column;
-}
-@media #{$isDesktop} {
-  .section--status {
-    z-index: 100;
-    position: sticky;
-    top: 80px;
-    margin-left: 55vw;
-    width: 30vw;
-  }
-  .section--comments {
-    margin-top: -250px;
-    max-width: calc(55vw - 30px);
-  }
-}
-@media #{$isMobile} {
-  .section--status {
     h1 {
-      display: none;
-    }
-    .status {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      h2 {
-        margin: 0 {
-          right: 10px;
-        }
+      margin: 0 -20px {
+        bottom: -10px;
       }
     }
-    .tc-button,
-    .head {
-      width: fit-content;
-      position: relative;
-      left: 50%;
-      transform: translateX(-50%);
-    }
-    margin-bottom: 20px;
+  }
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  overflow: auto {
+    x: visible;
+  }
+  h1 {
+    background: #fff;
+    z-index: 10;
+    padding-top: 20px;
+    text-align: center;
+    position: sticky;
+    top: 0;
   }
 }
-.grid--status {
-  background: red;
-}
-.grid--comments {
-  background: orange;
-}
-.tc-grid {
-  background: magenta;
-}
-@media #{$isDesktop} {
-  .grid--status {
-    grid-column: 2;
-  }
-  .grid--comments {
-    grid-column: 1;
-  }
-}
-.comments {
-  .card--comments {
-    margin-top: 30px;
-    .content {
-      text-align: left;
-      padding-top: 20px;
-    }
-  }
-}
-.head {
-  width: 100%;
+
+.hero--sub {
   display: flex;
+  justify-content: center;
   align-items: center;
-  img.avatar {
-    $size: 50px;
-    margin-right: 20px;
-    width: $size;
-    height: $size;
-    border-radius: $size;
+  .tc-button,
+  .indicator {
+    margin: 3px 10px;
+    padding: 5px 10px;
   }
-  .info {
-    text-align: left;
-    .author {
-      font-size: 18px;
-      font-weight: bold;
-      opacity: 0.7;
+  .indicator {
+    color: #fff;
+    border-radius: $border-radius;
+    text-transform: capitalize;
+    &.open {
+      background: $success;
     }
-    .time {
-      opacity: 0.4;
-      font-size: 13px;
-      margin-top: 3px;
-    }
-  }
-  position: relative;
-  .association {
-    position: absolute;
-    top: -10px;
-    right: -10px;
-    &.author {
-      color: $success;
-    }
-    &.owner {
-      color: $error;
+    &.closed {
+      background: $error;
     }
   }
 }
 
 .timos-icons-requests--detail {
   [content] {
-    padding-top: 20px;
+    padding-top: 30px;
     position: relative;
   }
 

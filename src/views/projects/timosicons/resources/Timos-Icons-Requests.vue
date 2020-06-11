@@ -4,7 +4,7 @@
       title="Requests"
       backName="Timo's Icons"
       :backTo="{ name: constants.projectRoutes.timos_icons }"
-      :autoColor="true"
+      :autoColor="!true"
     />
 
     <tc-hero tc-dark-container>
@@ -48,11 +48,14 @@
       </section>
       <tc-card rounded="true">
         <h1>Requests</h1>
+
         <tc-table>
-          <tr>
+          <tr v-if="true"></tr>
+          <tr v-else>
             <th></th>
             <th>Type</th>
             <th>Title</th>
+            <th>Time</th>
             <th>Status</th>
             <th>Comments</th>
             <th></th>
@@ -67,7 +70,10 @@
               <span>{{ issue.labels[0].name }}</span>
             </td>
             <td>{{ issue.title }}</td>
-            <td>{{ issue.state }}</td>
+            <td>{{ formatDate(issue.created) }}</td>
+            <td class="state">
+              <span :class="issue.state">{{ issue.state }}</span>
+            </td>
             <td class="comments">
               <i class="ti-chat-bubbles" />{{ issue.comments }}
             </td>
@@ -100,6 +106,7 @@ import TCButton from "@/components/tc/button/TC-Button.vue";
 import TCHero from "@/components/tc/hero/TC-Hero.vue";
 import TCCard from "@/components/tc/card/TC-Card.vue";
 import TCGrid from "@/components/tc/_layout/grid/TC-Grid.vue";
+import { formatDate } from "@/utils/DateFormatter";
 
 @Component({
   components: {
@@ -114,6 +121,10 @@ import TCGrid from "@/components/tc/_layout/grid/TC-Grid.vue";
 export default class TimosIconsRequests extends Vue {
   public constants: {} = constants;
   public issues: [] = [];
+
+  public formatDate(date: any) {
+    return formatDate(date);
+  }
 
   async mounted() {
     if (!this.$store.getters.hasIconRequests) {
@@ -175,6 +186,16 @@ export default class TimosIconsRequests extends Vue {
 
   td {
     cursor: pointer;
+  }
+  td.state {
+    span {
+      border-radius: $border-radius;
+      color: #fff;
+      padding: 2px 5px;
+      &.open {
+        background: $success;
+      }
+    }
   }
   td.img {
     img {

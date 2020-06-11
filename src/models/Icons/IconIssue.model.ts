@@ -11,6 +11,7 @@ export class IconIssue {
   state!: string;
   comments!: number;
   created!: string;
+  body!: string;
 
   constructor(data: any) {
     Object.assign(this, {
@@ -23,6 +24,7 @@ export class IconIssue {
       state: data.state,
       comments: data.comments,
       created: data.created_at,
+      body: data.body,
       labels: data.labels.map((l: any) => {
         return {
           name: l.name,
