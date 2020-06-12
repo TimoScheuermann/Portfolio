@@ -6,9 +6,7 @@
       <div class="subtitle">UI / UX Designer from Mannheim, Germany</div>
     </tc-hero>
     <div content class="home">
-      <tc-headline title="My Work">
-        <tc-button :to="{ name: 'uno' }" icon="todo" name="All Projects" />
-      </tc-headline>
+      <project-title title="Projects" subtitle="I've worked on" />
       <div class="projects">
         <router-link
           tag="div"
@@ -19,7 +17,9 @@
           <home-project-card :project="proj" />
         </router-link>
       </div>
-      <tc-headline title="Resume" />
+      <tc-headline title="Resume">
+        <tc-button :to="{ name: 'uno' }" icon="photos" name="Uno" />
+      </tc-headline>
       Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam minus
       deleniti ut vitae tempore nulla error aperiam quis pariatur omnis adipisci
       reprehenderit, optio deserunt, minima facilis corporis ipsum aspernatur
@@ -39,6 +39,7 @@ import projects from "@/projects";
 import { Project } from "@/models/Projects/Project.model";
 import TCPreview from "@/components/tc/preview/TC-Preview.vue";
 import HomeProjectCard from "@/components/home/Home-ProjectCard.vue";
+import ProjectsTitle from "../../components/projects/common/Projects--Title.vue";
 @Component({
   components: {
     "tc-hero": TCHero,
@@ -47,7 +48,8 @@ import HomeProjectCard from "@/components/home/Home-ProjectCard.vue";
     "tc-button": TCButton,
     "tc-card": TCCard,
     "tc-preview": TCPreview,
-    "home-project-card": HomeProjectCard
+    "home-project-card": HomeProjectCard,
+    "project-title": ProjectsTitle
   }
 })
 export default class Home extends Vue {
@@ -56,6 +58,10 @@ export default class Home extends Vue {
 </script>
 <style lang="scss" scoped>
 @import "../../scss/variables";
+
+[content] {
+  margin-top: 40px;
+}
 
 .tc-hero {
   @media #{$isDesktop} {
@@ -106,6 +112,7 @@ export default class Home extends Vue {
     }
   }
   .projects {
+    margin-top: 20px;
     display: flex;
     align-items: center;
     overflow: hidden {

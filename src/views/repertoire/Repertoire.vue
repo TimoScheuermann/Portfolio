@@ -1,28 +1,44 @@
 <template>
   <div class="view--repertoire">
-    <tc-header title="Repertoire" />
-    <tc-hero>
+    <tc-header title="Repertoire" :autoColor="true" />
+    <tc-hero height="300" tc-dark-container>
       <img
         slot="background"
-        src="https://www.swri.org/sites/default/files/styles/client_services_banner/public/industries/AdobeStock_111975726.jpeg"
+        src="https://mir-s3-cdn-cf.behance.net/project_modules/1400_opt_1/f1cb3694468795.5e7f96bd2de7b.jpg"
       />
     </tc-hero>
     <div content>
-      <h1 title>I am working with</h1>
-      <div class="tools">
-        <div class="tool" v-for="(tool, index) in tools" :key="'t_' + index">
+      <h1 center>The Tools</h1>
+      <h3 center>
+        I use a variety of programs that make design and development much
+        easier.
+      </h3>
+
+      <br />
+      <br />
+
+      <project-title title="Creative Design" subtitle="Tools" />
+      <tc-grid first arrangement="auto-fit">
+        <div class="tool" v-for="(tool, index) in tools[0]" :key="'t_' + index">
           <tc-card rounded="true">
             <div class="tool-header">
               <img :src="tool.img" />
               <h1>{{ tool.name }}</h1>
             </div>
-
-            <ul v-if="tool.bullets">
-              <li v-for="b in tool.bullets" :key="b">{{ b }}</li>
-            </ul>
           </tc-card>
         </div>
-      </div>
+      </tc-grid>
+      <project-title title="Web Development" subtitle="Frameworks & more" />
+      <tc-grid arrangement="auto-fit">
+        <div class="tool" v-for="(tool, index) in tools[1]" :key="'t_' + index">
+          <tc-card rounded="true">
+            <div class="tool-header">
+              <img :src="tool.img" />
+              <h1>{{ tool.name }}</h1>
+            </div>
+          </tc-card>
+        </div>
+      </tc-grid>
     </div>
   </div>
 </template>
@@ -36,6 +52,7 @@ import TCHeadline from "@/components/tc/headline/TC-Headline.vue";
 import TCGrid from "@/components/tc/_layout/grid/TC-Grid.vue";
 import PortfolioToolImage from "@/components/repertoire/ToolImage.vue";
 import TCCard from "@/components/tc/card/TC-Card.vue";
+import ProjectsTitle from "@/components/projects/common/Projects--Title.vue";
 
 @Component({
   components: {
@@ -44,31 +61,24 @@ import TCCard from "@/components/tc/card/TC-Card.vue";
     "tc-headline": TCHeadline,
     "tc-grid": TCGrid,
     "portfolio-tool-image": PortfolioToolImage,
-    "tc-card": TCCard
+    "tc-card": TCCard,
+    "project-title": ProjectsTitle
   }
 })
 export default class Repertoire extends Vue {
-  public tools: Tool[] = tools;
+  public tools: Tool[][] = tools;
 }
 </script>
 <style lang="scss" scoped>
 @import "../../scss/variables.scss";
 [content] {
-  h1[title] {
-    margin-bottom: 20px;
-  }
-  .tools {
-    @for $i from 1 through 10 {
-      @media only screen and(max-width: #{250 + $i * 420}px) and(min-width: #{249 + ($i - 1) * 420}px) {
-        columns: $i;
-      }
-    }
-    column-gap: 30px;
-    .tool {
-      break-inside: avoid-column;
-      padding-bottom: 30px;
+  .tc-grid {
+    margin: 30px 0;
+    &[first] {
+      margin-bottom: 160px;
     }
   }
+
   .tool-header {
     display: flex;
     justify-content: center;

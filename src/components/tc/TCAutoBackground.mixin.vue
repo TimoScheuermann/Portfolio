@@ -35,46 +35,41 @@ export default class TCAutoBackgroundMixin extends Vue {
 
   public handleScroll() {
     if (this.darkContainer.length > 0 || this.lightContainer.length > 0) {
-      console.log("scroll");
       if (
         this.darkContainer.filter(x => this.collide(x, this.mainContainer))
           .length > 0
       ) {
-        if (!this.isDark) {
-          console.log("Now hovering over dark container");
-        }
+        // console.log("Now hovering over dark container");
         this.isDark = true;
         return;
-      }
-      if (
+      } else if (
         this.lightContainer.filter(x => this.collide(x, this.mainContainer))
           .length > 0
       ) {
-        if (this.isDark) {
-          console.log("Now hovering over light container");
-        }
+        // console.log("Now hovering over light container");
         this.isDark = false;
         return;
       }
+      // console.log(
+      //   "Now hovering over no tc-X-container... setting color dark back to ",
+      //   this.dark
+      // );
+      this.isDark = this.dark;
     }
-    console.log(
-      "Now hovering over no tc-X-container... setting color dark back to ",
-      this.dark
-    );
-    this.isDark = this.dark;
   }
 
   public updateContainerList(): void {
     this.$nextTick(() => {
-      console.log("Updateing container list...");
+      // console.log("Updateing container list...");
       for (let t of ["dark", "light"]) {
         this[t + "Container"] = [];
         document.querySelectorAll("[tc-" + t + "-container]").forEach(x => {
           this[t + "Container"].push(x as HTMLElement);
-          console.log("Found ", x);
+          // console.log("Found ", x);
         });
       }
-      console.log("Container list updated.");
+      this.handleScroll();
+      // console.log("Container list updated.");
     });
   }
 

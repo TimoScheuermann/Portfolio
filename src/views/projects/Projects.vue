@@ -124,7 +124,7 @@ export default class Projects extends Vue {
   }
 
   public handleScroll(): void {
-    console.log("scrol");
+    // console.log("scrol");
     document.querySelectorAll("[slideIn]").forEach(x => {
       if (this.isElementInView(x as HTMLElement)) {
         x.removeAttribute("slideIn");
@@ -150,6 +150,7 @@ export default class Projects extends Vue {
     });
     this.next();
   }
+
   public isElementInView(el: HTMLElement) {
     var rect = el.getBoundingClientRect();
     var elemTop = rect.top;
@@ -192,7 +193,7 @@ export default class Projects extends Vue {
   position: relative;
   .project-card__odd {
     position: relative;
-    top: 50%;
+    top: 25%;
   }
   .project--description {
     min-height: 50px;

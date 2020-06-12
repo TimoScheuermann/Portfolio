@@ -77,13 +77,15 @@ export default class TCHeader extends Vue {
 
   @Watch("dark")
   dChanged() {
-    console.error("Dark changed to", this.dark);
-    console.log("Dark is", this.dark);
+    // console.error("Dark changed to", this.dark);
+    // console.log("Dark is", this.dark);
+    this.isDark = this.dark;
   }
   @Watch("isDark")
-  sdChanged() {
-    console.error("isDark changed to", this.isDark);
-    console.log("Dark is", this.dark);
+  sdChanged(to: boolean, from: boolean) {
+    // console.error("isDark changed to", this.isDark);
+    // console.log("From: " + from + ", To:", to);
+    // console.log("Dark is", this.dark);
   }
 
   mounted() {
@@ -95,11 +97,6 @@ export default class TCHeader extends Vue {
   destroyed() {
     this._destroyed();
     window.removeEventListener("resize", this.resize);
-  }
-
-  @Watch("dark")
-  updated() {
-    this.isDark = this.dark;
   }
 
   @Watch("$route", { deep: true, immediate: true })

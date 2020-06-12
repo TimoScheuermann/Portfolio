@@ -1,5 +1,12 @@
 <template>
   <div class="timos-icons-requests--detail">
+    <tc-header
+      :title="!!issue && issue.title"
+      backName="Icon Requests"
+      :autoColor="true"
+      :backTo="{ name: constants.projectRoutes.timos_icons_requests }"
+    />
+
     <tc-hero tc-dark-container>
       <img
         slot="background"
@@ -31,13 +38,6 @@
         </div>
       </transition-group>
     </tc-hero>
-
-    <tc-header
-      :title="!!issue && issue.title"
-      backName="Icon Requests"
-      :autoColor="!true"
-      :backTo="{ name: constants.projectRoutes.timos_icons_requests }"
-    />
 
     <div content v-if="loaded">
       <!-- <p>{{ issue }}</p> -->

@@ -4,7 +4,7 @@
       title="Requests"
       backName="Timo's Icons"
       :backTo="{ name: constants.projectRoutes.timos_icons }"
-      :autoColor="!true"
+      :autoColor="true"
     />
 
     <tc-hero tc-dark-container>

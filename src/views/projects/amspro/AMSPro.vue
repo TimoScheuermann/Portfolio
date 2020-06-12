@@ -1,30 +1,32 @@
 <template>
-  <div content>
-    <tc-header title="AMS Pro"></tc-header>
-    <tc-card
-      dark="true"
-      rounded="true"
+  <div class="projects--ams-pro">
+    <tc-header
       title="AMS Pro"
-      subtitle="Visit AMS Pro's official site for more informations"
+      backName="Projects"
+      :backTo="{ name: constants.routes.projects }"
+      :autoColor="true"
     >
       <tc-button
+        name="Website"
+        variant="filled"
         icon="amspro"
-        name="AMS Pro"
-        to="https://www.ams-pro.de/"
-      ></tc-button>
-    </tc-card>
-    <tc-headline title="Icons" />
+        href="https://ams-pro.de"
+      />
+    </tc-header>
 
-    <div class="ams-icon" v-for="i in icons" :key="i">
-      <div class="ams-icon--title">{{ i }}</div>
-      <div class="ams-icon--variants">
-        <i :class="i" />
-        <i :class="i" />
-        <i :class="i" />
-        <i :class="i" />
-        <i :class="i" />
-        <i :class="i" />
-      </div>
+    <projects-default-hero
+      title="AMS Pro"
+      src="assets/projects/amspro/preview.png"
+    />
+    <div content>
+      <project-title title="Icons" subtitle="AMS Pro" />
+
+      <tc-grid class="ams-pro--icons" arrangement="auto-fit">
+        <tc-card class="ams-pro--icon" v-for="i in icons" :key="i">
+          <i :class="i"></i>
+          <div class="name">{{ i }}</div>
+        </tc-card>
+      </tc-grid>
     </div>
   </div>
 </template>
@@ -34,18 +36,25 @@ import TCHeader from "@/components/tc/header/TC-Header.vue";
 import TCCard from "@/components/tc/card/TC-Card.vue";
 import TCButton from "@/components/tc/button/TC-Button.vue";
 import TCHeadline from "@/components/tc/headline/TC-Headline.vue";
+import ProjectsDefaultHero from "@/components/projects/common/Projects--Default-Hero.vue";
+import constants from "@/constants";
+import ProjectsTitle from "@/components/projects/common/Projects--Title.vue";
+import TCGrid from "@/components/tc/_layout/grid/TC-Grid.vue";
+
 @Component({
   components: {
     "tc-header": TCHeader,
     "tc-card": TCCard,
     "tc-button": TCButton,
-    "tc-headline": TCHeadline
+    "tc-headline": TCHeadline,
+    "projects-default-hero": ProjectsDefaultHero,
+    "project-title": ProjectsTitle,
+    "tc-grid": TCGrid
   }
 })
 export default class AMSPro extends Vue {
-  // created() {
-  //   window.open("https://www.ams-pro.de/");
-  // }
+  public constants: {} = constants;
+
   public icons: string[] = [
     "ams-1",
     "ams-2",
@@ -63,10 +72,19 @@ export default class AMSPro extends Vue {
 }
 </script>
 <style lang="scss" scoped>
-[content] {
-  .tc-card {
-    margin-top: 20px;
-    width: fit-content;
+.ams-pro--icons {
+  margin-top: 40px;
+  .ams-pro--icon {
+    position: relative;
+
+    i {
+      font-size: 10em;
+    }
+    .name {
+      font-weight: bold;
+      margin-top: 10px;
+      font-size: 18px;
+    }
   }
 }
 
