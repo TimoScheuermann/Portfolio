@@ -93,6 +93,7 @@ export default class ProjectsProjectlist extends Vue {
     }
   }
   .projects-list-opener {
+    background: $paragraph;
     color: #111;
     display: inline-block;
     padding: 10px 20px;

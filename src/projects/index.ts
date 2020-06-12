@@ -3,16 +3,16 @@ import { Project } from "@/models/Projects/Project.model";
 
 const projects: Project[] = [
   //{
-   // routeName: constants.projectRoutes.investing_collectors,
-    //title: "Investing Collectors",
-    //description:
-      //"Invest in rare supercars from Porsche, Mercedes, Ferrari and others",
-    //mainComponent:
-      //"@/views/projects/investingcollectors/InvestingCollectors.vue",
-    //icon: "vehicle-front",
-    //thumbnail: "assets/projects/investingcollectors/thumbnail.png",
-    //preview: "assets/projects/investingcollectors/preview.png",
-    //preview_mobile: "assets/projects/investingcollectors/preview_mobile.png"
+  // routeName: constants.projectRoutes.investing_collectors,
+  //title: "Investing Collectors",
+  //description:
+  //"Invest in rare supercars from Porsche, Mercedes, Ferrari and others",
+  //mainComponent:
+  //"@/views/projects/investingcollectors/InvestingCollectors.vue",
+  //icon: "vehicle-front",
+  //thumbnail: "assets/projects/investingcollectors/thumbnail.png",
+  //preview: "assets/projects/investingcollectors/preview.png",
+  //preview_mobile: "assets/projects/investingcollectors/preview_mobile.png"
   //},
   {
     routeName: constants.projectRoutes.timos_components,
@@ -38,7 +38,7 @@ const projects: Project[] = [
   },
   {
     routeName: constants.projectRoutes.dhbw_richie,
-    title: "DHBW Richie (WIP)",
+    title: "DHBW Richie",
     description:
       "Fun little school project. Ask Richie specific questions to a lesson.",
     icon: "book",
@@ -61,7 +61,7 @@ const projects: Project[] = [
   },
   {
     routeName: constants.projectRoutes.nhl_stats,
-    title: "NHL Stats (WIP)",
+    title: "NHL Stats",
     description:
       "Fun little scrool project to get every kind of combination of statistics about NHL Season 18/19",
     icon: "hockey-stick",

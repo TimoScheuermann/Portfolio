@@ -54,7 +54,7 @@
       />
       <tc-sidebar-item icon="github" name="GitHub" :to="{ name: 'github' }" />
       <tc-sidebar-item icon="pin" name="Resume" :to="{ name: 'resume' }" />
-      <div class="footer" slot="footer">v1.6.5</div>
+      <!-- <div class="footer" slot="footer">v1.6.5</div> -->
     </tc-sidebar>
     <tc-tabbar :dark="darkTabbar" class="app--tabbar">
       <tc-tabbar-item routeName="home" />

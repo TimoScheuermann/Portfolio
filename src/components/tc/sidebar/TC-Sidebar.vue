@@ -28,6 +28,7 @@ export default class TCSidebar extends Vue {}
   box-shadow: $shadow;
   &.dark {
     background: $color;
+
     color: #fff;
   }
   user-select: none;

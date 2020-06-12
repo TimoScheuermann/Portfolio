@@ -57,6 +57,18 @@
         </div>
       </div>
 
+      <tc-card :dark="true" rounded="true">
+        <div class="xd-header" slot="header">
+          <img class="xd-logo" src="assets/repertoire/adobexd.png" />
+          <h1>Adobe XD Plug-in</h1>
+        </div>
+        <div class="xd-indicator">coming soon</div>
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Beatae dolorum
+        rem placeat incidunt voluptatum, non sunt quo iste laboriosam quisquam
+        consequuntur. Nesciunt, facilis! Inventore, fugiat earum harum quia
+        laborum quas!
+      </tc-card>
+
       <icon-gallery />
     </div>
   </div>
@@ -71,6 +83,8 @@ import TCHeader from "@/components/tc/header/TC-Header.vue";
 import TCHero from "@/components/tc/hero/TC-Hero.vue";
 import TCHeadline from "@/components/tc/headline/TC-Headline.vue";
 import IconSlotMashine from "@/components/projects/TimosIcons/IconSlotMashine.vue";
+import TCGrid from "@/components/tc/_layout/grid/TC-Grid.vue";
+import TCCard from "../../../components/tc/card/TC-Card.vue";
 
 @Component({
   components: {
@@ -79,6 +93,8 @@ import IconSlotMashine from "@/components/projects/TimosIcons/IconSlotMashine.vu
     "tc-header": TCHeader,
     "tc-hero": TCHero,
     "tc-headline": TCHeadline,
+    "tc-grid": TCGrid,
+    "tc-card": TCCard,
     "icon-slot-mashine": IconSlotMashine
   }
 })
@@ -89,6 +105,40 @@ export default class TimosIcons extends Vue {
 
 <style lang="scss" scoped>
 @import "../../../scss/variables.scss";
+
+.xd-indicator {
+  color: $error;
+  @media only screen and (min-width: 630px) {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+  @media only screen and (max-width: 629px) {
+    width: fit-content;
+    margin-top: -20px;
+    margin-bottom: 10px;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  border: 1px solid currentColor;
+  border-radius: $border-radius;
+  padding: 2px 5px;
+}
+.xd-header {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  h1,
+  img {
+    margin: 0 5px;
+  }
+  img {
+    height: 40px;
+    width: 40px;
+  }
+}
 
 [center] {
   margin-top: -50px;

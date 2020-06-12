@@ -8,16 +8,21 @@
       />
     </tc-hero>
     <div content>
-      <tc-headline title="I am working with" />
-      <tc-grid>
-        <tc-card v-for="(tool, index) in tools" :key="'t_' + index">
-          <portfolio-tool-image slot="media" :src="tool.img" />
-          <div class="tc-card--title__prestyled">{{ tool.name }}</div>
-          <ul v-if="tool.bullets">
-            <li v-for="b in tool.bullets" :key="b">{{ b }}</li>
-          </ul>
-        </tc-card>
-      </tc-grid>
+      <h1 title>I am working with</h1>
+      <div class="tools">
+        <div class="tool" v-for="(tool, index) in tools" :key="'t_' + index">
+          <tc-card rounded="true">
+            <div class="tool-header">
+              <img :src="tool.img" />
+              <h1>{{ tool.name }}</h1>
+            </div>
+
+            <ul v-if="tool.bullets">
+              <li v-for="b in tool.bullets" :key="b">{{ b }}</li>
+            </ul>
+          </tc-card>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -49,6 +54,33 @@ export default class Repertoire extends Vue {
 <style lang="scss" scoped>
 @import "../../scss/variables.scss";
 [content] {
-  padding-top: 20px;
+  h1[title] {
+    margin-bottom: 20px;
+  }
+  .tools {
+    @for $i from 1 through 10 {
+      @media only screen and(max-width: #{250 + $i * 420}px) and(min-width: #{249 + ($i - 1) * 420}px) {
+        columns: $i;
+      }
+    }
+    column-gap: 30px;
+    .tool {
+      break-inside: avoid-column;
+      padding-bottom: 30px;
+    }
+  }
+  .tool-header {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    h1,
+    img {
+      margin: 0 5px;
+    }
+    img {
+      height: 40px;
+      width: 40px;
+    }
+  }
 }
 </style>
