@@ -1,6 +1,11 @@
 <template>
   <div class="projects-workgallery">
-    <tc-header :title="project.title" :autoColor="true" />
+    <tc-header
+      :title="project.title"
+      backName="Projects"
+      :backTo="{ name: constants.routes.projects }"
+      :autoColor="true"
+    />
     <projects-default-hero
       :title="project.title"
       :src="project.assets.combined"

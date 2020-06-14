@@ -1,6 +1,11 @@
 <template>
   <div class="project-investing-collectors">
-    <tc-header :title="project.title" :autoColor="true" />
+    <tc-header
+      :title="project.title"
+      backName="Projects"
+      :backTo="{ name: constants.routes.projects }"
+      :autoColor="true"
+    />
     <projects-default-hero
       :title="project.title"
       :src="project.assets.combined"
@@ -17,6 +22,7 @@ import ProjectsDefaultHero from "@/components/projects/common/Projects--Default-
 import ProjectsTitle from "@/components/projects/common/Projects--Title.vue";
 import { getProject } from "@/utils/ProjectUtils";
 import { Project } from "@/models/Projects/Project.model";
+import constants from "@/constants";
 
 @Component({
   components: {
@@ -26,6 +32,8 @@ import { Project } from "@/models/Projects/Project.model";
   }
 })
 export default class InvestingCollectors extends Vue {
+  public constants: {} = constants;
+
   get project(): Project {
     return getProject();
   }

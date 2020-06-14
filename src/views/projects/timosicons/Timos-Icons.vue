@@ -1,6 +1,10 @@
 <template>
   <div>
-    <tc-header title="Timos Icons">
+    <tc-header
+      :title="project.title"
+      backName="Projects"
+      :backTo="{ name: constants.routes.projects }"
+    >
       <div class="tc-header--button">
         <tc-button
           icon="save"
@@ -96,6 +100,8 @@ import IconSlotMashine from "@/components/projects/TimosIcons/IconSlotMashine.vu
 import TCGrid from "@/components/tc/_layout/grid/TC-Grid.vue";
 import TCCard from "@/components/tc/card/TC-Card.vue";
 import TCTooltip from "@/components/tc/tooltip/TC-Tooltip.vue";
+import { getProject } from "@/utils/ProjectUtils";
+import { Project } from "@/models/Projects/Project.model";
 
 @Component({
   components: {
@@ -112,6 +118,10 @@ import TCTooltip from "@/components/tc/tooltip/TC-Tooltip.vue";
 })
 export default class TimosIcons extends Vue {
   public constants: object = constants;
+
+  get project(): Project {
+    return getProject();
+  }
 }
 </script>
 

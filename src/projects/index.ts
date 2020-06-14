@@ -21,7 +21,7 @@ const projects: Project[] = [
   },
   {
     routeName: constants.projectRoutes.timos_icons,
-    title: "Timos Icons",
+    title: "Timo's Icons",
     shortName: "ti",
     description:
       "With loved designed, highly professional, minimalistic icons for your next project.",
