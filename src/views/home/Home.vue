@@ -61,6 +61,25 @@ export default class Home extends Vue {
   background: #000;
   color: #fff;
 
+  @keyframes title-appear {
+    0% {
+      letter-spacing: -0.5em;
+      opacity: 0;
+    }
+    40% {
+      opacity: 0.6;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  @keyframes description-appear {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+  }
+
   .tc-hero {
     @media #{$isDesktop} {
       text-align: center;
@@ -72,10 +91,12 @@ export default class Home extends Vue {
     .title {
       font-size: 1.5em;
       font-weight: bold;
+      animation: title-appear 0.6s ease-in-out 0.5s both;
     }
     .subtitle {
       color: $primary;
       white-space: nowrap;
+      animation: description-appear 0.6s ease-in-out 0.5s both;
     }
   }
 

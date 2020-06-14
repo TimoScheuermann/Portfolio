@@ -5,7 +5,12 @@
       <!-- src="http://quotesideas.com/wp-content/uploads/2015/05/00482967dce2c1b3bf7fa0ce2e1d4a54.jpg" -->
       <img src="assets/contact/bg.PNG" slot="background" id="background" />
       <tc-card rounded="true" hover="true">
-        <tc-button icon="share" variant="opaque" />
+        <tc-button
+          icon="user-card"
+          name="Card"
+          variant="opaque"
+          href="assets/contact/Timo Scheuermann.vcf"
+        />
         <div class="head">
           <img src="https://avatars0.githubusercontent.com/u/48986503" />
           <div class="fullname">Timo Scheuermann</div>
@@ -18,7 +23,7 @@
             </div>
             <div class="text">
               <tc-link href="mailto://timo.scheuermann@gmx.de">
-                Contact me
+                Write me<br />an email
               </tc-link>
             </div>
           </div>
@@ -27,7 +32,9 @@
               <i class="ti-chat-bubbles" />
             </div>
             <div class="text">
-              <tc-link href="https://t.me/timo_scheuermann">Telegram</tc-link>
+              <tc-link href="https://t.me/timo_scheuermann">
+                Message me<br />via Telegram
+              </tc-link>
             </div>
           </div>
           <div class="detail">
@@ -38,7 +45,7 @@
               <tc-link
                 href="https://duckduckgo.com/?q=mannheim&ia=about&iaxm=maps"
               >
-                Mannheim
+                Mannheim/<br />Germany
               </tc-link>
             </div>
           </div>
