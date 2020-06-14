@@ -44,7 +44,22 @@ export default class IconGallery extends Vue {
 
   get iconsSorted(): Icon[] {
     return icons
-      .filter(x => x.name.includes(this.searchQuery.toLowerCase()))
+      .map(x => {
+        return {
+          words: x.name.split("-"),
+          icon: x
+        };
+      })
+      .filter(x => {
+        if (this.searchQuery.length == 0) return true;
+        for (let q of this.searchQuery.toLowerCase().split(" ")) {
+          for (let w of x.words) {
+            if (w.includes(q)) return true;
+          }
+        }
+        return false;
+      })
+      .map(x => x.icon)
       .sort((a, b) => a.name.localeCompare(b.name));
   }
 

@@ -1,13 +1,14 @@
 import constants from "@/constants";
+import { ProjectAssets } from "./ProjectAssets";
 
 export class Project {
   title: string = "%title%";
   description: string = "%description%";
-  // images: ProjectImages = new ProjectImages();
+  type: string = "%type%";
   routeName: string = constants.routes.home;
   mainComponent: string = "@/views/projects/%title%";
-  thumbnail: string = "";
-  preview: string = "";
-  preview_mobile: string = "";
   icon: string = "";
+  assets: ProjectAssets = new ProjectAssets();
+  displayAs: "mobile" | "desktop" | "combined" = "combined";
+  shortName: string = "";
 }

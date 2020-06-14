@@ -38,6 +38,7 @@ export default class ProjectsProjectlist extends Vue {
 @import "../../../scss/mixins";
 .projects-list {
   position: fixed;
+  z-index: 30;
   @media #{$isDesktop} {
     bottom: calc(20px + env(safe-area-inset-bottom));
     left: calc(50% + 25px);

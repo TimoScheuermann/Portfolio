@@ -1,18 +1,12 @@
 <template>
   <div class="projects--dhbwrichie">
-    <tc-header
-      title="DHBW Richie"
-      backName="Projects"
-      :backTo="{ name: constants.routes.projects }"
-      :autoColor="true"
-    />
+    <tc-header :title="project.title" :autoColor="true" />
     <projects-default-hero
-      title="DHBW Richie"
-      src="assets/projects/dhbwrichie/preview.png"
+      :title="project.title"
+      :src="project.assets.combined"
     />
-
     <div content>
-      <project-title title="Website" subtitle="DHBW Richie" />
+      <project-title :title="project.type" :subtitle="project.title" />
     </div>
   </div>
 </template>
@@ -22,6 +16,9 @@ import TCHeader from "@/components/tc/header/TC-Header.vue";
 import constants from "@/constants";
 import ProjectsDefaultHero from "@/components/projects/common/Projects--Default-Hero.vue";
 import ProjectsTitle from "@/components/projects/common/Projects--Title.vue";
+import { getProject } from "@/utils/ProjectUtils";
+import { Project } from "@/models/Projects/Project.model";
+
 @Component({
   components: {
     "tc-header": TCHeader,
@@ -31,6 +28,10 @@ import ProjectsTitle from "@/components/projects/common/Projects--Title.vue";
 })
 export default class DHBWRichie extends Vue {
   public constants: {} = constants;
+
+  get project(): Project {
+    return getProject();
+  }
 }
 </script>
 <style lang="scss" scoped>

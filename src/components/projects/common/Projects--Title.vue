@@ -32,13 +32,17 @@ export default class ProjectsTitle extends Vue {
   align-items: center;
   flex-direction: column;
   font-weight: bold;
-  .title {
+  .title,
+  .subtitle {
+    max-width: 100vw;
     text-align: center;
+    overflow: hidden;
+  }
+  .title {
     opacity: 0.2;
-    font-size: 4em;
+    font-size: 3.8em;
   }
   .subtitle {
-    text-align: center;
     font-size: 2em;
   }
 }

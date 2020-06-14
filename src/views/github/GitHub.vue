@@ -1,6 +1,6 @@
 <template>
   <div class="github">
-    <tc-header :dark="true" title="GitHub"></tc-header>
+    <tc-header :dark="true" title="GitHub" />
     <tc-hero>
       <img
         slot="background"
@@ -32,7 +32,8 @@
     </tc-hero>
 
     <div content v-if="loaded">
-      <h1>Repositories</h1>
+      <project-title title="Repositories" subtitle="Most Recent" />
+      <!-- <h1>Repositories</h1> -->
       <tc-grid minWidth="330" class="__repositories">
         <github-repo-tile
           v-for="(repo, index) in getRepos"
@@ -54,6 +55,7 @@ import TCSpinner from "@/components/tc/spinner/TC-Spinner.vue";
 import GitHubRepoTile from "./GitHub--Repotile.vue";
 import TCGrid from "@/components/tc/_layout/grid/TC-Grid.vue";
 import axios from "@/axios";
+import ProjectsTitle from "@/components/projects/common/Projects--Title.vue";
 
 @Component({
   components: {
@@ -62,7 +64,8 @@ import axios from "@/axios";
     "tc-hero": TCHero,
     "tc-spinner": TCSpinner,
     "tc-grid": TCGrid,
-    "github-repo-tile": GitHubRepoTile
+    "github-repo-tile": GitHubRepoTile,
+    "project-title": ProjectsTitle
   }
 })
 export default class GitHubView extends Vue {
@@ -121,30 +124,30 @@ export default class GitHubView extends Vue {
 <style lang="scss" scoped>
 @import "../../scss/variables.scss";
 @import "../../scss/mixins.scss";
+
 .github {
   background: #000;
 }
 [content] {
-  h1 {
-    color: #fff;
-    margin-bottom: 20px;
-  }
+  color: #fff;
 }
 .loading,
 .loaded {
   height: 150px;
-  background: linear-gradient(
-    rgba(0, 0, 0, 0),
-    rgba(0, 0, 0, 0.5),
-    rgba(0, 0, 0, 0)
-  );
+  // background: linear-gradient(
+  //   rgba(0, 0, 0, 0),
+  //   rgba(0, 0, 0, 0.5),
+  //   rgba(0, 0, 0, 0)
+  // );
   color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
+  @media #{$isDesktop} {
+    margin-left: 45px;
+  }
 }
 .loading {
-  width: 100vw;
   flex-direction: column;
   .title {
     font-weight: bold;
@@ -154,7 +157,6 @@ export default class GitHubView extends Vue {
 
 .loaded {
   justify-content: space-between;
-  padding: 0px 10vw;
   width: 80vw;
 
   @media #{$isMobile} {
@@ -212,13 +214,11 @@ export default class GitHubView extends Vue {
   }
 }
 .tc-grid {
+  margin-top: 20px;
   .tc-card:nth-child(1) {
     @media only screen and (min-width: 780px) {
       grid-column: 1 / 3;
     }
-  }
-  @media #{$isMobile} {
-    padding-top: 20px;
   }
 }
 </style>

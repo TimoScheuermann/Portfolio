@@ -16,7 +16,6 @@
         />
       </div>
     </tc-header>
-
     <tc-hero>
       <img slot="background" src="assets/projects/timosicons/hero.png" />
       <img
@@ -63,10 +62,21 @@
           <h1>Adobe XD Plug-in</h1>
         </div>
         <div class="xd-indicator">coming soon</div>
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Beatae dolorum
-        rem placeat incidunt voluptatum, non sunt quo iste laboriosam quisquam
-        consequuntur. Nesciunt, facilis! Inventore, fugiat earum harum quia
-        laborum quas!
+        <div>
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Beatae
+          dolorum rem placeat incidunt voluptatum, non sunt quo iste laboriosam
+          quisquam consequuntur. Nesciunt, facilis! Inventore, fugiat earum
+          harum quia laborum quas!
+        </div>
+        <br />
+        <tc-tooltip tooltip="soon available">
+          <tc-button
+            name="Download"
+            tccolor="error"
+            icon="download"
+            disabled="true"
+          />
+        </tc-tooltip>
       </tc-card>
 
       <icon-gallery />
@@ -84,7 +94,8 @@ import TCHero from "@/components/tc/hero/TC-Hero.vue";
 import TCHeadline from "@/components/tc/headline/TC-Headline.vue";
 import IconSlotMashine from "@/components/projects/TimosIcons/IconSlotMashine.vue";
 import TCGrid from "@/components/tc/_layout/grid/TC-Grid.vue";
-import TCCard from "../../../components/tc/card/TC-Card.vue";
+import TCCard from "@/components/tc/card/TC-Card.vue";
+import TCTooltip from "@/components/tc/tooltip/TC-Tooltip.vue";
 
 @Component({
   components: {
@@ -95,7 +106,8 @@ import TCCard from "../../../components/tc/card/TC-Card.vue";
     "tc-headline": TCHeadline,
     "tc-grid": TCGrid,
     "tc-card": TCCard,
-    "icon-slot-mashine": IconSlotMashine
+    "icon-slot-mashine": IconSlotMashine,
+    "tc-tooltip": TCTooltip
   }
 })
 export default class TimosIcons extends Vue {

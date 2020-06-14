@@ -1,5 +1,10 @@
 <template>
-  <tc-card :dark="dark" :title="repo.name" :subtitle="repo.description">
+  <tc-card
+    :dark="dark"
+    rounded="true"
+    :title="repo.name"
+    :subtitle="repo.description"
+  >
     <div v-if="index == 0" class="indicator latest">
       Latest changes
     </div>

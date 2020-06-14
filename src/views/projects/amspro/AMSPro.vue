@@ -1,7 +1,7 @@
 <template>
   <div class="projects--ams-pro">
     <tc-header
-      title="AMS Pro"
+      :title="project.title"
       backName="Projects"
       :backTo="{ name: constants.routes.projects }"
       :autoColor="true"
@@ -13,13 +13,12 @@
         href="https://ams-pro.de"
       />
     </tc-header>
-
     <projects-default-hero
-      title="AMS Pro"
-      src="assets/projects/amspro/preview.png"
+      :title="project.title"
+      :src="project.assets.combined"
     />
     <div content>
-      <project-title title="Icons" subtitle="AMS Pro" />
+      <project-title :title="project.type" :subtitle="project.title" />
 
       <tc-grid class="ams-pro--icons" arrangement="auto-fit">
         <tc-card class="ams-pro--icon" v-for="i in icons" :key="i">
@@ -40,6 +39,8 @@ import ProjectsDefaultHero from "@/components/projects/common/Projects--Default-
 import constants from "@/constants";
 import ProjectsTitle from "@/components/projects/common/Projects--Title.vue";
 import TCGrid from "@/components/tc/_layout/grid/TC-Grid.vue";
+import { getProject } from "@/utils/ProjectUtils";
+import { Project } from "@/models/Projects/Project.model";
 
 @Component({
   components: {
@@ -54,6 +55,10 @@ import TCGrid from "@/components/tc/_layout/grid/TC-Grid.vue";
 })
 export default class AMSPro extends Vue {
   public constants: {} = constants;
+
+  get project(): Project {
+    return getProject();
+  }
 
   public icons: string[] = [
     "ams-1",

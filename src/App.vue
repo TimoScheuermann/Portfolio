@@ -30,7 +30,7 @@
       <tc-sidebar-group icon="book-p" name="Projects">
         <tc-sidebar-item
           name="All Projects"
-          icon="todo"
+          icon="stop"
           :to="{ name: 'projects' }"
         />
         <tc-sidebar-item
@@ -102,6 +102,7 @@ export default class App extends Vue {
   public darkRoutes: string[] = [
     "home",
     "github",
+    "contact",
     "uno",
     constants.projectRoutes.timos_components_designer
   ];
@@ -116,6 +117,7 @@ export default class App extends Vue {
   @Watch("$route", { deep: true, immediate: true })
   changed(to: Route, from: Route) {
     this.updateTitle();
+    window.scrollTo(0, 0);
     if (this.darkRoutes.includes(to.name!)) {
       document.body.style.background = "#000";
       return;

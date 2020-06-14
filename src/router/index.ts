@@ -18,6 +18,14 @@ const router = new VueRouter({
       }
     },
     {
+      path: "/playground",
+      name: "playground",
+      component: () => import("@/views/playground/Playground.vue"),
+      meta: {
+        title: prefix + "Playground"
+      }
+    },
+    {
       path: "/repertoire",
       name: "repertoire",
       component: () => import("@/views/repertoire/Repertoire.vue"),

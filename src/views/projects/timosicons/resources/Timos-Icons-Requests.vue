@@ -42,7 +42,8 @@
             />
           </div>
           <div class="submit-grid-item-2">
-            <i class="ti-mail"></i>
+            <img src="assets/projects/timosicons/request.png" alt="" />
+            <!-- <i class="ti-mail"></i> -->
           </div>
         </tc-grid>
       </section>
@@ -176,12 +177,19 @@ export default class TimosIconsRequests extends Vue {
     @media #{$isMobile} {
       display: none;
     }
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    font-size: 140px;
-    opacity: 0.2;
+    // display: flex;
+    // flex-direction: column;
+    // justify-content: center;
+    // align-items: center;
+    // font-size: 140px;
+    // opacity: 0.2;
+    // max-height: 200px;
+    height: 200px;
+    img {
+      height: 100%;
+      width: 100%;
+      object-fit: contain;
+    }
   }
 
   td {

@@ -14,7 +14,7 @@ const workgalleryItems: WorkGalleryItem[] = [
   {
     fileName: "customTooltip.gif",
     display: "Custom Tooltip",
-    project: undefined
+    project: "timos_components"
   },
   {
     fileName: "how2writeComments.gif",
@@ -58,7 +58,7 @@ const workgalleryItems: WorkGalleryItem[] = [
   },
   {
     fileName: "custom checkbox.gif",
-    project: "portfolio",
+    project: "timos_components",
     display: "Animated Checkbox"
   }
 ];
