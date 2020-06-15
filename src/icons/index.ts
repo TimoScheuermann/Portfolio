@@ -1,6 +1,21 @@
 import { Icon } from "@/models/Icons/Icon.model";
 
 const icons: Icon[] = [
+  { name: "biohazard", version: "2.15" },
+  { name: "cloud-fog", version: "2.15" },
+  { name: "cloud-moon-rain", version: "2.15" },
+  { name: "cloud-snow-rain", version: "2.15" },
+  { name: "cloud-sun-rain", version: "2.15" },
+  { name: "database", version: "2.15" },
+  { name: "cloud-moon", version: "2.15" },
+  { name: "cloud-rain", version: "2.15" },
+  { name: "cloud-snow", version: "2.15" },
+  { name: "cloud-sun", version: "2.15" },
+  { name: "cloud-thunder", version: "2.15" },
+  { name: "cloud-thunder-rain", version: "2.15" },
+  { name: "map-marker", version: "2.15" },
+  { name: "snowflake", version: "2.15" },
+
   { name: "calendar-alt", version: "2.14" },
   { name: "image", version: "2.14" },
   { name: "mail", version: "2.14" },
@@ -18,7 +33,6 @@ const icons: Icon[] = [
   { name: "present", version: "2.14" },
   { name: "settings", version: "2.14" },
   { name: "star-add", version: "2.14" },
-  // {name: "star-add-path3", version: "2.14"},
   { name: "ticket", version: "2.14" },
   { name: "umbrella", version: "2.14" },
 
