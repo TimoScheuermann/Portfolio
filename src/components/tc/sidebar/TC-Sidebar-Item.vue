@@ -28,8 +28,10 @@ export default class TCSidebarItem extends Vue {
     right: 0;
   }
   cursor: pointer;
-  &:hover {
+  &:hover,
+  &:focus {
     color: $primary;
+    outline: none;
   }
 
   &.active,
