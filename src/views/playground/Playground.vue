@@ -1,6 +1,6 @@
 <template>
   <div content>
-    <tc-header title="Playground">
+    <!-- <tc-header title="Playground">
       <div class="header__project">Make window smaller to see</div>
       <div class="header__project">Timo's Icons</div>
       <div class="header__project">DHBW Richie</div>
@@ -9,11 +9,20 @@
       <div>
         <tc-button name="Hello" icon="heart"></tc-button>
       </div>
-    </tc-header>
+    </tc-header> -->
     <h1>Playground</h1>
 
     <h2>tc-bars</h2>
     <i class="tc-bars"></i>
+
+    <div>
+      <h2>tc-steps</h2>
+      <tc-step :step="currentStep"></tc-step>
+      <div>
+        <tc-button @click="currentStep--" icon="minus" name="prev" />
+        <tc-button @click="currentStep++" icon="plus" name="next" />
+      </div>
+    </div>
 
     <div>
       <h2>new Input</h2>
@@ -170,6 +179,7 @@ import TCNavbarItem from "@/components/tc/navbar/TC-Navbar-Item.vue";
 import ComponentHero from "@/components/projects/TCComponents/ComponentHero.vue";
 import TCPreview from "../../components/tc/preview/TC-Preview.vue";
 import TCScrollUp from "../../components/tc/scrollup/TC-Scroll-Up.vue";
+import TCStep from "../../components/tc/step/TC-Step.vue";
 
 @Component({
   components: {
@@ -190,7 +200,8 @@ import TCScrollUp from "../../components/tc/scrollup/TC-Scroll-Up.vue";
     "tc-input": TCInput,
     comph: ComponentHero,
     "tc-preview": TCPreview,
-    "tc-scroll-up": TCScrollUp
+    "tc-scroll-up": TCScrollUp,
+    "tc-step": TCStep
   }
 })
 export default class Playground extends Vue {
@@ -207,6 +218,7 @@ export default class Playground extends Vue {
   checkbox: boolean = false;
   modal: boolean = false;
   colVal: any = "";
+  public currentStep = 0;
 
   inputTypes: string[] = [
     "button",

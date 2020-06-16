@@ -61,7 +61,7 @@ export default class TCSlider extends Vue {
       border-radius: $size;
       height: $size;
       background: $primary;
-      cursor: pointer;
+      cursor: grab;
     }
   }
 }

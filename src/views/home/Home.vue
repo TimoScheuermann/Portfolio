@@ -8,17 +8,21 @@
     <div content>
       <project-title title="Projects" subtitle="I've worked on" />
       <div class="projects">
-        <tc-card
+        <router-link
           v-for="p in projects"
           :key="p.title"
           :style="{ gridArea: p.shortName }"
-          :dark="true"
-          rounded="true"
-          :title="p.title"
-          :subtitle="p.description"
+          :to="{ name: p.routeName }"
+          tag="div"
         >
-          <img :src="p.assets[p.displayAs]" alt="" />
-        </tc-card>
+          <tc-card
+            :dark="true"
+            rounded="true"
+            :title="p.title"
+            :subtitle="p.description"
+          >
+            <img :src="p.assets[p.displayAs]" alt="" /> </tc-card
+        ></router-link>
       </div>
       <tc-headline title="Resume">
         <tc-button :to="{ name: 'uno' }" icon="photos" name="Uno" />
@@ -103,6 +107,8 @@ export default class Home extends Vue {
   .projects {
     .tc-card {
       cursor: pointer;
+      height: 100%;
+      max-height: 100%;
     }
     padding-bottom: 10px;
     margin-top: 20px;
@@ -111,11 +117,19 @@ export default class Home extends Vue {
     }
     display: grid;
     grid-gap: 20px;
-    grid-template-areas:
-      "tc tc ic wg dh ns"
-      "ti ti ic wg am am";
-    grid-template-columns: repeat(6, minmax(300px, 60vw));
-    grid-template-rows: repeat(2, minmax(250px, 20vw));
+
+    @media #{$isDesktop} {
+      grid-template-areas:
+        "tc tc ic wg dh ns"
+        "ti ti ic wg am am";
+      grid-template-columns: repeat(6, minmax(300px, 60vw));
+      grid-template-rows: repeat(2, minmax(250px, 20vw));
+    }
+    @media #{$isMobile} {
+      grid-template-areas: "tc ti ic wg dh ns am";
+      grid-template-columns: repeat(7, minmax(300px, 30vw));
+      grid-template-rows: 250px;
+    }
   }
 
   ::-webkit-scrollbar {
