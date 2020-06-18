@@ -70,8 +70,8 @@
               params: { comp: comp.name }
             }"
           >
-            <tc-card>
-              <i :class="'ti-' + comp.icon"></i>
+            <tc-card rounded="true">
+              <i :class="'ti-' + comp.icon" />
               <span>{{ comp.name }}</span>
             </tc-card>
           </router-link>
@@ -111,7 +111,6 @@ export default class TCComponentsHome extends Vue {
 }
 </script>
 <style lang="scss" scoped>
-@import "../../../../scss/variables";
 [content] {
   @media #{$isDesktop} {
     padding-top: 10px;

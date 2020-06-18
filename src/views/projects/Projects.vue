@@ -1,6 +1,6 @@
 <template>
   <div class="projects">
-    <tc-header title="Projects" :autoColor="true" />
+    <tc-header title="Projects" :autoBackground="true" />
     <projects-mobile />
     <projects-desktop />
   </div>
@@ -21,9 +21,6 @@ import TCHeader from "@/components/tc/header/TC-Header.vue";
 export default class Projects extends Vue {}
 </script>
 <style lang="scss" scoped>
-@import "../../scss/variables.scss";
-@import "../../scss/mixins";
-
 .projects-mobile {
   @media #{$isDesktop} {
     display: none;

@@ -1,10 +1,8 @@
 <template>
   <div v-if="compFound">
-    <tc-hero height="100">
-      <img slot="background" src="assets/projects/tccomponents/hero.png" />
-      <div class="title" v-if="tcComponent">
-        {{ tcComponent.name }}
-      </div>
+    <tc-hero height="200" background="#000" tc-dark-container>
+      <div class="title" v-if="tcComponent">TC-{{ tcComponent.name }}</div>
+      <i v-if="tcComponent" :class="'ti-' + tcComponent.icon" />
     </tc-hero>
     <div content>
       <component :is="currentComponent" />
@@ -52,7 +50,7 @@ import { TCComponentGroup } from "@/models/TCComponents/TCComponentGroup.model";
   }
 })
 export default class TCComponentsDetail extends Vue {
-  public compFound: boolean = true;
+  public compFound = true;
   public tcComponents: TCComponentGroup[] = tcComponents;
 
   get component() {
@@ -89,15 +87,24 @@ export default class TCComponentsDetail extends Vue {
 }
 </script>
 <style lang="scss" scoped>
-@import "../../../../scss/variables";
-
 .tc-hero {
+  color: #fff;
+  @media #{$isDesktop} {
+    padding-left: 45px;
+  }
   .title {
     font-weight: bold;
-    font-size: 1.5em;
-    padding: 5px 10px;
-    background: black;
-    color: #fff;
+    font-size: 4em;
+  }
+  i {
+    opacity: 0.25;
+    font-size: 20em;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: block;
+    text-align: center;
   }
 }
 

@@ -37,8 +37,6 @@ export default class TimosIconsNotFound extends Vue {
 }
 </script>
 <style lang="scss" scoped>
-@import "../../../scss/variables.scss";
-
 .tc-icons--notfound {
   height: 100vh;
   width: 100vw;

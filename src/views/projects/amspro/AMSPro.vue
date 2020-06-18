@@ -4,7 +4,7 @@
       :title="project.title"
       backName="Projects"
       :backTo="{ name: constants.routes.projects }"
-      :autoColor="true"
+      :autoBackground="true"
     >
       <tc-button
         name="Website"

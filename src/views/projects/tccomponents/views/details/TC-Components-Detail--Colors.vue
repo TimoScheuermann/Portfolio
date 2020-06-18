@@ -51,8 +51,6 @@ export default class TCComponentsDetailColors extends Vue {
 }
 </script>
 <style lang="scss" scoped>
-@import "../../../../../components/tc/colors";
-
 .tc-card {
   margin-top: 10px;
 }

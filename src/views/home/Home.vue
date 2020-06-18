@@ -59,8 +59,6 @@ export default class Home extends Vue {
 }
 </script>
 <style lang="scss" scoped>
-@import "../../scss/variables";
-
 .home {
   background: #000;
   color: #fff;

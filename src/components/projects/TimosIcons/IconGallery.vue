@@ -69,8 +69,6 @@ export default class IconGallery extends Vue {
 }
 </script>
 <style lang="scss" scoped>
-@import "../../../scss/variables";
-
 .icon-trans-move {
   transition: all 0.4s ease-in-out;
 }

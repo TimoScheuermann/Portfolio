@@ -21,14 +21,15 @@
   </div>
 </template>
 <script lang="ts">
-import { Vue, Component, Prop, Watch } from "vue-property-decorator";
+import { Vue, Component, Prop, Watch, Mixins } from "vue-property-decorator";
 import TCSwitch from "../switch/TC-Switch.vue";
+import TCComponent from "../TC-Component.mixin";
 @Component({
   components: {
     "tc-switch": TCSwitch
   }
 })
-export default class TCListItem extends Vue {
+export default class TCListItem extends Mixins(TCComponent) {
   @Prop() title!: string;
   @Prop() icon!: string;
   @Prop() to!: any;
@@ -36,7 +37,7 @@ export default class TCListItem extends Vue {
   @Prop({ default: false }) value!: boolean;
   @Prop({ default: false }) isSwitch!: boolean;
 
-  public innerValue: boolean = this.value;
+  public innerValue = this.value;
 
   @Watch("value")
   public changed() {
@@ -62,8 +63,6 @@ export default class TCListItem extends Vue {
 }
 </script>
 <style lang="scss" scoped>
-@import "../../../scss/variables";
-
 $size: 40px;
 
 .tc-list__dark {

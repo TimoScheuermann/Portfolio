@@ -5,10 +5,11 @@
   </router-link>
 </template>
 <script lang="ts">
-import { Vue, Component, Prop } from "vue-property-decorator";
+import { Vue, Component, Prop, Mixins } from "vue-property-decorator";
+import TCComponent from "../TC-Component.mixin";
 
 @Component
-export default class TCSidebarItem extends Vue {
+export default class TCSidebarItem extends Mixins(TCComponent) {
   @Prop({ default: "_blank" }) to!: string | object;
   @Prop() name!: string;
   @Prop() icon!: string;
@@ -16,7 +17,6 @@ export default class TCSidebarItem extends Vue {
 }
 </script>
 <style lang="scss" scoped>
-@import "../../../scss/variables";
 .tc-sidebar--item {
   display: flex;
   align-items: center;
@@ -36,15 +36,16 @@ export default class TCSidebarItem extends Vue {
 
   &.active,
   &.router-link-exact-active {
+    // width: calc(100% - 8px);
     opacity: 1;
     color: $primary;
     border-right: 4px solid $primary;
   }
-  display: flex;
   .icon {
     min-width: 30px;
   }
   .name {
+    flex-grow: 1;
     white-space: nowrap;
   }
 }

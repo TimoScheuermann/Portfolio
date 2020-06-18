@@ -124,7 +124,7 @@ import TCCard from "@/components/tc/card/TC-Card.vue";
   }
 })
 export default class TCComponentsDetailProgress extends Vue {
-  percent: number = 0;
+  percent = 0;
   created() {
     this.increment();
   }

@@ -23,9 +23,10 @@
   </div>
 </template>
 <script lang="ts">
-import { Vue, Component, Prop } from "vue-property-decorator";
+import { Vue, Component, Prop, Mixins } from "vue-property-decorator";
+import TCComponent from "../TC-Component.mixin";
 @Component
-export default class TCSteps extends Vue {
+export default class TCSteps extends Mixins(TCComponent) {
   @Prop({ default: 0 }) step!: number;
 
   public steps: string[] = [
@@ -54,10 +55,6 @@ export default class TCSteps extends Vue {
 
   private generateData(): void {
     this.data = this.steps.map((x, i) => {
-      console.log("x", x);
-      console.log("i", this.icons[i]);
-      console.log("d", this.descriptions[i]);
-
       return {
         step: x,
         description: this.descriptions[i],
@@ -68,11 +65,7 @@ export default class TCSteps extends Vue {
 }
 </script>
 <style lang="scss" scoped>
-@import "../../../scss/variables";
-@import "../colors";
 .indi-item {
-  //   display: inline-block;
-  //   margin-right: 10px;
   position: absolute;
 }
 .indi-enter-active,
@@ -80,20 +73,25 @@ export default class TCSteps extends Vue {
   position: absolute;
   transition: all 1s;
 }
-.indi-enter, .indi-leave-to /* .list-leave-active below version 2.1.8 */ {
+.indi-enter,
+.indi-leave-to {
   opacity: 0;
   transform: translateY(30px);
 }
 .tc-steps {
   user-select: none;
-  display: grid;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
   margin: 10px 0;
 
   .tc-steps--step {
     display: flex;
+    flex-grow: 1;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
+    padding: 0 10px;
     opacity: 0.5;
 
     transition: opacity 0.3s ease-in-out;
@@ -133,11 +131,18 @@ export default class TCSteps extends Vue {
       width: calc(50% - 10px);
       border-radius: 10px;
     }
-    &:nth-child(1)::before {
-      display: none;
+
+    &:nth-child(1) {
+      padding-left: 0;
+      &::before {
+        display: none;
+      }
     }
-    &:last-child::after {
-      display: none;
+    &:last-child {
+      padding-right: 0;
+      &::after {
+        display: none;
+      }
     }
     &::before {
       left: 0;

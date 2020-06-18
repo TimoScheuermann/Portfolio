@@ -24,7 +24,7 @@ import { Icon } from "../../../models/Icons/Icon.model";
 export default class ComponentHero extends Vue {
   icons: Icon[] = icons;
 
-  getRandomIcon(index: number, multi: number = 99): string {
+  getRandomIcon(index: number, multi = 99): string {
     const n = "ti-" + this.icons[(index * 99) % icons.length].name;
     if (n.endsWith("bucket") || n.endsWith("scale")) return "ti-camera";
     return n;
@@ -32,8 +32,6 @@ export default class ComponentHero extends Vue {
 }
 </script>
 <style lang="scss" scoped>
-@import "../../../scss/variables";
-
 .tc-hero {
   border: 3px solid red;
   .title {

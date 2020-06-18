@@ -14,6 +14,4 @@ import TCHeader from "@/components/tc/header/TC-Header.vue";
 export default class Projects extends Vue {}
 </script>
 
-<style lang="scss" scoped>
-@import "../../scss/variables.scss";
-</style>
+<style lang="scss" scoped></style>

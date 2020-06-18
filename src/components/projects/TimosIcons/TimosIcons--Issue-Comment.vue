@@ -66,7 +66,6 @@ export default class TimosIconsIssueComment extends Vue {
 }
 </script>
 <style lang="scss" scoped>
-@import "../../../scss/variables";
 .card--comments {
   margin-top: 30px;
 

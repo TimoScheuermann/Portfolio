@@ -1,6 +1,8 @@
 import { TCComponentApi } from "@/models/TCComponents/TCComponentApi.model";
 import { TCComponentGroup } from "@/models/TCComponents/TCComponentGroup.model";
 
+let tccolors = "primary, error, alarm, success";
+
 const tcComponent_Api: TCComponentApi[] = [
   { name: "dark", type: "boolean", description: "Toggles darkmode on or off" },
   { name: "color", type: "string", description: "Default font color" },
@@ -32,7 +34,7 @@ const tcComponents: TCComponentGroup[] = [
         api: []
       },
       {
-        name: "Auto Color",
+        name: "Auto Background",
         icon: "swap",
         api: []
       }
@@ -302,7 +304,7 @@ const tcComponents: TCComponentGroup[] = [
             type: "string",
             description: "Determines the color of the button",
             default: "primary",
-            parameters: "primary, error, success, alarm"
+            parameters: tccolors
           }
         ]
       },
@@ -693,6 +695,16 @@ const tcComponents: TCComponentGroup[] = [
       {
         name: "List",
         icon: "list-bullet",
+        api: []
+      },
+      {
+        name: "Steps",
+        icon: "dots",
+        api: []
+      },
+      {
+        name: "Badge",
+        icon: "notification",
         api: []
       }
     ].sort((a, b) => a.name.localeCompare(b.name))

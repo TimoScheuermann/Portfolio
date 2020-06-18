@@ -1,7 +1,7 @@
 <template>
   <div class="tc-select" :class="{ 'tc-select__dark': dark }">
     <div v-if="title" class="tc-select--ctitle">{{ title }}</div>
-    <label :for="id" class="tc-container" @click.stop="expanded = !expanded">
+    <label :for="id" @click.stop="expanded = !expanded">
       <i v-if="icon" :class="'ti-' + icon" />
       <span v-if="display">{{ display }}</span>
       <span v-else class="tc-select__placeholder">{{ placeholder }}</span>
@@ -55,21 +55,19 @@
   </div>
 </template>
 <script lang="ts">
-import { Vue, Component, Prop, Watch } from "vue-property-decorator";
-import uuidVue from "../uuid.vue";
+import { Vue, Component, Prop, Watch, Mixins } from "vue-property-decorator";
+import TCComponent from "../TC-Component.mixin";
 type TValues = string | number | boolean;
 
-@Component({ mixins: [uuidVue] })
-export default class TCSelect extends Vue {
+@Component
+export default class TCSelect extends Mixins(TCComponent) {
   @Prop() title!: string;
   @Prop({ default: "list" }) icon!: string;
-  @Prop({ default: false }) dark!: boolean;
   @Prop({ default: false }) multiple!: boolean;
   @Prop({ default: "Select one" }) placeholder!: string;
   @Prop() value!: TValues | TValues[];
   @Prop() values!: TValues[];
 
-  public uuid!: number;
   public expanded = false;
   public innerValue: TValues | TValues[] = this.value
     ? this.value
@@ -132,29 +130,26 @@ export default class TCSelect extends Vue {
     }
   }
   get id() {
-    return "tc-select_" + this.uuid;
+    return "tc-select_" + this.uuid_;
   }
   get display() {
     if (this.multiple) {
       const vals: TValues[] = this.innerValue as TValues[];
       if (vals.length == 1) return vals[0];
       else if (vals.length > 1) return vals.length + "x Items";
-    } else {
-      return this.innerValue;
     }
+    return this.innerValue;
   }
 }
 </script>
 <style lang="scss" scoped>
-@import "../../../scss/variables";
-@import "../../../scss/mixins";
-@import "../tc-container";
 // @supports (-webkit-touch-callout: none) { content: "ios"; }
 // @media (hover: hover) { content: "desktop"; }
 // @media (hover: none) { content: "mobile";  }
 
 .tc-select {
   display: inline-block;
+  color: $color;
   select {
     position: fixed;
     top: -200px;
@@ -290,6 +285,7 @@ export default class TCSelect extends Vue {
   }
 
   label {
+    @include tc-container__light();
     text-align: center;
     display: inline-flex;
     align-items: center;
@@ -309,12 +305,7 @@ export default class TCSelect extends Vue {
     color: #fff;
 
     label {
-      background: lighten($color, 20%);
-      color: #fff;
-      border-color: rgba(#fff, 0.01);
-      &:hover {
-        border-color: rgba(#fff, 0.4);
-      }
+      @include tc-container__dark();
       i {
         border-color: rgba(#fff, 0.5) !important;
       }

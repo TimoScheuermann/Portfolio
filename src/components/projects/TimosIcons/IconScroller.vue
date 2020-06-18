@@ -47,8 +47,6 @@ export default class IconScroller extends Vue {
 }
 </script>
 <style lang="scss" scoped>
-@import "../../../scss/variables";
-
 .icon-list-enter,
 .icon-list-leave-to {
   opacity: 0;

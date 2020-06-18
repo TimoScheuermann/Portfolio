@@ -23,12 +23,14 @@
   </div>
 </template>
 <script lang="ts">
-import { Vue, Component, Prop } from "vue-property-decorator";
+import { Vue, Component, Prop, Mixins } from "vue-property-decorator";
+import TCComponent from "../TC-Component.mixin";
+
 @Component
-export default class TCSegments extends Vue {
+export default class TCSegments extends Mixins(TCComponent) {
   @Prop() segments!: string[];
-  @Prop() dark!: boolean;
-  public currentlySelected: number = 0;
+
+  public currentlySelected = 0;
 
   get currentSegments(): string[] {
     return this.segments.filter((x, i) => i === this.currentlySelected);
@@ -48,7 +50,6 @@ export default class TCSegments extends Vue {
 }
 </script>
 <style lang="scss" scoped>
-@import "../../../scss/variables";
 .icon-trans-move {
   transition: all 0.4s ease-in-out;
 }

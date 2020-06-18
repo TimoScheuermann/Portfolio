@@ -22,18 +22,15 @@
         <i class="ti" :class="'ti-' + icon" />
       </div>
       <div class="tc-input--input">
-        <label
-          v-if="type && type.toLowerCase() === 'file'"
-          :for="'tc-input_' + uuid"
-        >
+        <label v-if="type && type.toLowerCase() === 'file'" :for="id">
           {{ filePlaceholder }}
         </label>
         <input
           v-model="innerValue"
           :type="type ? type.toLowerCase() : 'text'"
-          :id="'tc-input_' + uuid"
+          :id="id"
           :inputmode="inputMode()"
-          :style="style"
+          :style="styles"
           :placeholder="placeholder"
           :pattern="inputPattern()"
           :accept="accept"
@@ -49,7 +46,7 @@
           :readonly="readonly"
           :required="required"
           :step="step"
-          :ref="'tc-input_' + uuid"
+          :ref="id"
           @input="update()"
           @change="change"
         />
@@ -65,14 +62,12 @@
   </div>
 </template>
 <script lang="ts">
-import { Vue, Component, Prop } from "vue-property-decorator";
-import uuidVue from "../uuid.vue";
-@Component({
-  mixins: [uuidVue]
-})
-export default class TCInput extends Vue {
+import { Vue, Component, Prop, Mixins } from "vue-property-decorator";
+import TCComponent from "../TC-Component.mixin";
+
+@Component
+export default class TCInput extends Mixins(TCComponent) {
   @Prop() icon!: string;
-  @Prop() dark!: boolean;
   @Prop({ default: "Choose File" }) filePlaceholder!: string;
   @Prop() title!: string;
   @Prop() buttons!: boolean;
@@ -94,6 +89,8 @@ export default class TCInput extends Vue {
   @Prop() required!: boolean;
   @Prop({ default: 1 }) step!: number;
 
+  id: string = "tc-input_" + this.uuid_;
+
   innerValue: any = this.value || (this.type === "number" ? 0 : "");
 
   inputMode(): string {
@@ -107,7 +104,7 @@ export default class TCInput extends Vue {
     return this.buttons && this.type === "number";
   }
 
-  get style(): any {
+  get styles() {
     return {
       background: this.type === "color" ? this.innerValue : undefined
     };
@@ -135,8 +132,6 @@ export default class TCInput extends Vue {
 }
 </script>
 <style lang="scss" scoped>
-@import "../../../scss/variables";
-@import "../tc-container";
 $size: 30px;
 .tc-input {
   display: inline-block;

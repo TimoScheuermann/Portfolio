@@ -3,7 +3,7 @@
     <tc-header
       :title="!!issue && issue.title"
       backName="Icon Requests"
-      :autoColor="true"
+      :autoBackground="true"
       :backTo="{ name: constants.projectRoutes.timos_icons_requests }"
     />
 
@@ -99,7 +99,7 @@ import { formatDate } from "@/utils/DateFormatter";
 })
 export default class TimosIconsRequestsDetail extends Vue {
   public constants: {} = constants;
-  public error: boolean = false;
+  public error = false;
   public comments: IconIssueComment[] | null = null;
   public issue: IconIssue | null = null;
 
@@ -146,8 +146,6 @@ export default class TimosIconsRequestsDetail extends Vue {
 }
 </script>
 <style lang="scss" scoped>
-@import "../../../../scss/variables";
-
 .swap-enter-active,
 .swap-leave-active {
   transition: all 1s;

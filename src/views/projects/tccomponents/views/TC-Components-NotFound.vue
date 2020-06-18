@@ -1,5 +1,5 @@
 <template>
-  <div class="tc-component--notfound">
+  <div class="tc-component--notfound" tc-light-container>
     <h1>Component not found</h1>
     <p>
       This page does not exist at the moment. If you're coming from an external

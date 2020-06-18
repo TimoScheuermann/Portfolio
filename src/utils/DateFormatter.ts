@@ -11,7 +11,7 @@ export function formatDate(time: any) {
     default:
       time = +new Date();
   }
-  var time_formats = [
+  const time_formats = [
     [60, "seconds", 1], // 60
     [120, "1 minute ago", "1 minute from now"], // 60*2
     [3600, "minutes", 60], // 60*60, 60
@@ -28,7 +28,7 @@ export function formatDate(time: any) {
     [5806080000, "Last century", "Next century"], // 60*60*24*7*4*12*100*2
     [58060800000, "centuries", 2903040000] // 60*60*24*7*4*12*100*20, 60*60*24*7*4*12*100
   ];
-  var seconds = (+new Date() - time) / 1000,
+  let seconds = (+new Date() - time) / 1000,
     token = "ago",
     list_choice = 1;
 
@@ -40,7 +40,7 @@ export function formatDate(time: any) {
     token = "from now";
     list_choice = 2;
   }
-  var i = 0,
+  let i = 0,
     format;
   while ((format = time_formats[i++]))
     if (seconds < format[0]) {

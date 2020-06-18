@@ -13,16 +13,17 @@
   </div>
 </template>
 <script lang="ts">
-import { Vue, Component, Prop } from "vue-property-decorator";
+import { Vue, Component, Prop, Mixins } from "vue-property-decorator";
+import TCComponent from "../TC-Component.mixin";
+
 @Component
-export default class TCHeadline extends Vue {
+export default class TCHeadline extends Mixins(TCComponent) {
   @Prop() title!: string;
   @Prop() icon!: string;
-  @Prop() dark!: boolean;
 }
 </script>
+
 <style lang="scss" scoped>
-@import "../../../scss/variables";
 .tc-headline {
   display: flex;
   padding: 0 20px;
@@ -31,7 +32,8 @@ export default class TCHeadline extends Vue {
   align-items: center;
   flex-wrap: wrap;
   position: relative;
-  &.tc-headline__dark {
+  color: $color;
+  &.__dark {
     color: #fff;
   }
   .tc-headline--bar {

@@ -36,7 +36,6 @@ export default class IconSlotMashine extends Vue {
 }
 </script>
 <style lang="scss" scoped>
-@import "../../../scss/variables";
 .icon-slot-mashine {
   display: inline-block;
   position: relative;

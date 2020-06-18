@@ -6,6 +6,9 @@ Vue.use(Vuex);
 
 const store = new Vuex.Store({
   state: {
+    designer: {
+      component: ""
+    },
     uno: {
       players: [],
       games: [],
@@ -14,6 +17,9 @@ const store = new Vuex.Store({
     iconIssues: [] as IconIssue[]
   },
   getters: {
+    designerComponent: state => {
+      return state.designer.component;
+    },
     iconIssues: state => {
       return state.iconIssues;
     },
@@ -27,6 +33,9 @@ const store = new Vuex.Store({
   mutations: {
     updateIconIssues(state, issues: IconIssue[]) {
       state.iconIssues = issues;
+    },
+    updateDesignerComponent(state, comp: string) {
+      state.designer.component = comp;
     }
   }
 });

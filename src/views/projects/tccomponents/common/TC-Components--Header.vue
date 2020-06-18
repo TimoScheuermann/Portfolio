@@ -4,8 +4,18 @@
     :title="headerTitle"
     backName="Overview"
     :backTo="{ name: constants.projectRoutes.timos_components }"
-  />
-  <tc-header v-else :title="headerTitle" />
+    :autoBackground="true"
+    :key="headerTitle"
+  >
+    <tc-button
+      v-if="tcComponent"
+      name="Open in Designer"
+      variant="filled"
+      icon="tools"
+      @click="openDesigner()"
+    />
+  </tc-header>
+  <tc-header v-else :title="headerTitle" :autoBackground="true" />
 </template>
 <script lang="ts">
 import { Vue, Component, Watch } from "vue-property-decorator";
@@ -14,10 +24,12 @@ import TCHeader from "@/components/tc/header/TC-Header.vue";
 import constants from "@/constants";
 import tcComponents from "@/components/tc";
 import { TCComponentGroup } from "@/models/TCComponents/TCComponentGroup.model";
+import TCButton from "@/components/tc/button/TC-Button.vue";
 
 @Component({
   components: {
-    "tc-header": TCHeader
+    "tc-header": TCHeader,
+    "tc-button": TCButton
   }
 })
 export default class TCComponentsHeader extends Vue {
@@ -41,8 +53,13 @@ export default class TCComponentsHeader extends Vue {
       x => x.name.toLowerCase() === this.component
     )[0];
   }
+
+  public openDesigner() {
+    this.$store.commit("updateDesignerComponent", this.tcComponent!.name);
+    this.$router.push({
+      name: constants.projectRoutes.timos_components_designer
+    });
+  }
 }
 </script>
-<style lang="scss" scoped>
-@import "../../../../scss/variables";
-</style>
+<style lang="scss" scoped></style>

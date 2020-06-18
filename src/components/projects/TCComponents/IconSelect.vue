@@ -1,7 +1,7 @@
 <template>
   <div class="tc-select" :class="{ 'tc-select__dark': dark }">
     <div class="tc-select--ctitle">{{ title }}</div>
-    <label :for="id" class="tc-container" @click.stop="expanded = !expanded">
+    <label :for="id" @click.stop="expanded = !expanded">
       <i v-if="icon" :class="'ti-' + icon" />
       <span v-if="display">{{ display }}</span>
       <span v-else class="tc-select__placeholder">{{ placeholder }}</span>
@@ -34,15 +34,15 @@
   </div>
 </template>
 <script lang="ts">
-import { Vue, Component, Prop, Watch } from "vue-property-decorator";
+import { Vue, Component, Prop, Watch, Mixins } from "vue-property-decorator";
 import icons from "@/icons";
 import { Icon } from "@/models/Icons/Icon.model";
-import uuidVue from "../../tc/uuid.vue";
 import TCTooltip from "../../tc/tooltip/TC-Tooltip.vue";
+import TCComponent from "../../tc/TC-Component.mixin";
 type TValues = string | number | boolean;
 
-@Component({ mixins: [uuidVue], components: { "tc-tooltip": TCTooltip } })
-export default class TCIconSelect extends Vue {
+@Component({ components: { "tc-tooltip": TCTooltip } })
+export default class TCIconSelect extends Mixins(TCComponent) {
   public icons: Icon[] = icons;
   public query = "";
 
@@ -55,7 +55,6 @@ export default class TCIconSelect extends Vue {
   @Prop() value!: TValues | TValues[];
   @Prop() values!: TValues[];
 
-  public uuid!: number;
   public expanded = false;
   public innerValue: TValues | TValues[] = this.value
     ? this.value
@@ -116,7 +115,7 @@ export default class TCIconSelect extends Vue {
     }
   }
   get id() {
-    return "tc-select_" + this.uuid;
+    return "tc-select_" + this.uuid_;
   }
   get display() {
     if (this.multiple) {
@@ -130,9 +129,6 @@ export default class TCIconSelect extends Vue {
 }
 </script>
 <style lang="scss" scoped>
-@import "../../../scss/variables";
-@import "../../../scss/mixins";
-@import "../../tc/tc-container";
 // @supports (-webkit-touch-callout: none) { content: "ios"; }
 // @media (hover: hover) { content: "desktop"; }
 // @media (hover: none) { content: "mobile";  }
@@ -176,7 +172,7 @@ export default class TCIconSelect extends Vue {
       max-height: 300px;
       overflow: {
         y: auto;
-        x: none;
+        x: hidden;
       }
     }
     &::-webkit-scrollbar {
@@ -235,6 +231,7 @@ export default class TCIconSelect extends Vue {
   }
 
   label {
+    @include tc-container__light();
     text-align: center;
     display: inline-flex;
     align-items: center;
@@ -253,12 +250,7 @@ export default class TCIconSelect extends Vue {
   &__dark {
     color: #fff;
     label {
-      background: lighten($color, 20%);
-      color: #fff;
-      border-color: rgba(#fff, 0.01);
-      &:hover {
-        border-color: rgba(#fff, 0.4);
-      }
+      @include tc-container__dark();
       i {
         border-color: rgba(#fff, 0.5) !important;
       }

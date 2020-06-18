@@ -14,15 +14,14 @@
   </div>
 </template>
 <script lang="ts">
-import { Vue, Component, Prop } from "vue-property-decorator";
+import { Vue, Component, Prop, Mixins } from "vue-property-decorator";
+import TCComponent from "../TC-Component.mixin";
 @Component
-export default class TCQuote extends Vue {
+export default class TCQuote extends Mixins(TCComponent) {
   @Prop() title!: string;
-  @Prop() dark!: boolean;
 }
 </script>
 <style lang="scss" scoped>
-@import "../../../scss/variables";
 .tc-quote {
   background: $paragraph;
   &.tc-quote__dark {

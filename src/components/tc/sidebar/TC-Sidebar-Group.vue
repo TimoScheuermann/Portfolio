@@ -1,8 +1,8 @@
 <template>
   <div class="tc-sidebar--group">
     <div class="header">
-      <input type="checkbox" :id="'groupExpand_' + uuid" v-model="expanded" />
-      <label :for="'groupExpand_' + uuid">
+      <input type="checkbox" :id="id" v-model="expanded" />
+      <label :for="id">
         <div class="title"><i :class="'ti-' + icon"></i>{{ name }}</div>
         <div class="expander">
           <i class="ti-chevron-right"></i>
@@ -20,22 +20,24 @@
   </div>
 </template>
 <script lang="ts">
-import { Vue, Component, Prop } from "vue-property-decorator";
-import uuidVue from "../uuid.vue";
+import { Vue, Component, Prop, Mixins } from "vue-property-decorator";
+
 import TCDivider from "../divider/TC-Divider.vue";
+import TCComponent from "../TC-Component.mixin";
 @Component({
-  mixins: [uuidVue],
   components: {
     "tc-divider": TCDivider
   }
 })
-export default class TCSidebarGroup extends Vue {
+export default class TCSidebarGroup extends Mixins(TCComponent) {
   @Prop() name!: string;
   @Prop() icon!: string;
   @Prop({ default: "300px" }) maxHeight!: string;
 
-  public expanded: boolean = true;
-  get maxheight(): {} {
+  public expanded = true;
+  public id = "tc-sidebar-group_" + this.uuid_;
+
+  get maxheight() {
     return {
       "max-height": this.expanded ? this.maxHeight : "0px"
     };
@@ -43,7 +45,6 @@ export default class TCSidebarGroup extends Vue {
 }
 </script>
 <style lang="scss" scoped>
-@import "../../../scss/variables";
 .tc-sidebar--group {
   padding: 5px 0;
   .header {

@@ -1,36 +1,31 @@
 <template>
-  <router-link
-    tag="a"
+  <span
     class="tc-link"
-    v-if="to"
-    :to="to"
+    :class="'tc-link__' + tccolor_"
     @click="clicked($event)"
   >
     <slot />
-  </router-link>
-  <a
-    v-else
-    class="tc-link"
-    :href="href"
-    target="_blank"
-    @click="clicked($event)"
-    ><slot
-  /></a>
+  </span>
 </template>
 <script lang="ts">
-import { Vue, Component, Prop } from "vue-property-decorator";
+import { Vue, Component, Prop, Mixins } from "vue-property-decorator";
+import TCComponent from "../TC-Component.mixin";
 @Component
-export default class TCLink extends Vue {
+export default class TCLink extends Mixins(TCComponent) {
   @Prop() to!: any;
   @Prop() href!: string;
 
   public clicked(event: any): void {
+    if (this.to) {
+      this.$router.push(this.to);
+    } else if (this.href) {
+      window.open(this.href, "_blank");
+    }
     this.$emit("click", event);
   }
 }
 </script>
 <style lang="scss" scoped>
-@import "../../../scss/variables";
 .tc-link {
   color: $primary;
   cursor: pointer;
@@ -38,6 +33,13 @@ export default class TCLink extends Vue {
   position: relative;
   margin: 0 2px;
   text-align: center;
+
+  @each $n, $c in $color_colors {
+    &.tc-link__#{$n}::after {
+      background: $c;
+    }
+  }
+
   &::after {
     transition: 0.2s ease-in-out;
     position: absolute;
@@ -45,7 +47,6 @@ export default class TCLink extends Vue {
     bottom: 0;
     width: 0%;
     height: 1px;
-    background: $primary;
     left: 50%;
     transform: translateX(-50%);
   }

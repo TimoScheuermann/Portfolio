@@ -39,15 +39,15 @@
   </div>
 </template>
 <script lang="ts">
-import { Vue, Component, Prop } from "vue-property-decorator";
+import { Vue, Component, Prop, Mixins } from "vue-property-decorator";
+import TCComponent from "../TC-Component.mixin";
 @Component
-export default class TCProgress extends Vue {
+export default class TCProgress extends Mixins(TCComponent) {
   @Prop({ default: 0 }) percent!: number;
   @Prop({ default: 4 }) barHeight!: number;
   @Prop({ default: "bar" }) type!: string;
   @Prop({ default: 70 }) ringSize!: number;
   @Prop({ default: 8 }) ringWidth!: number;
-  @Prop() color!: string;
 
   getCircumference(): number {
     return this.radius * 2 * Math.PI;
@@ -69,8 +69,6 @@ export default class TCProgress extends Vue {
 }
 </script>
 <style lang="scss" scoped>
-@import "../../../scss/variables";
-
 .tc-progress {
   &.tc-progress__ring {
     svg {

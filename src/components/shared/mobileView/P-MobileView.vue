@@ -27,7 +27,7 @@ import TCTabbarItem from "../../tc/tabbar/TC-Tabbar-Item.vue";
   }
 })
 export default class PMobileView extends Vue {
-  scale: number = 1;
+  scale = 1;
 
   mounted() {
     window.addEventListener("resize", this.resize);

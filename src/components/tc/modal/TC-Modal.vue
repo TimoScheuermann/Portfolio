@@ -29,26 +29,22 @@
   </div>
 </template>
 <script lang="ts">
-import { Vue, Component, Prop, Watch } from "vue-property-decorator";
+import { Vue, Component, Prop, Watch, Mixins } from "vue-property-decorator";
 import "./swipe-events.js";
-import uuidVue from "../uuid.vue";
+import TCComponent from "../TC-Component.mixin";
 
-@Component({
-  mixins: [uuidVue]
-})
-export default class TCModal extends Vue {
-  @Prop() title!: string;
-  @Prop() subtitle!: string;
+export default class TCModal extends Mixins(TCComponent) {
+  @Prop({ default: "" }) title!: string;
+  @Prop({ default: "" }) subtitle!: string;
   @Prop() value!: boolean;
-  @Prop() dark!: boolean;
 
   public bodyOverflowBefore: string | null = document.body.style.overflow;
-  public uuid!: string;
-  public opened: boolean = this.value;
-  public id: string = "modal_" + this.uuid + "_head";
+  public opened = this.value;
+  public id: string = "tc-modal_" + this.uuid_ + "--head";
 
   @Watch("value")
   changed(updated: any, old: any) {
+    console.log("Modal changed");
     this.opened = updated;
     document.body.style.overflow = this.opened
       ? "hidden"
@@ -74,8 +70,6 @@ export default class TCModal extends Vue {
 }
 </script>
 <style lang="scss" scoped>
-@import "../../../scss/variables";
-
 .tc-modal {
   position: fixed;
   z-index: 1000;

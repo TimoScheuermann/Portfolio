@@ -50,9 +50,6 @@ export default class ProjectsDesktop extends Vue {
 </script>
 
 <style lang="scss" scoped>
-@import "../../scss/variables.scss";
-@import "../../scss/mixins";
-
 .projects-desktop {
   @media #{$isMobile} {
     display: none;

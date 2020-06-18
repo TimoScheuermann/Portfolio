@@ -61,8 +61,9 @@ export default class TimosIconsVersions extends Vue {
 }
 </script>
 <style lang="scss" scoped>
-@import "../../../../scss/variables";
-
+.tc-card {
+  overflow: visible;
+}
 .tc-card /deep/ .tc-card--content {
   display: grid;
   grid-gap: 10px;

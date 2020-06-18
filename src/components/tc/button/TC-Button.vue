@@ -9,11 +9,11 @@
   </div>
 </template>
 <script lang="ts">
-import { Vue, Component, Prop } from "vue-property-decorator";
-import TCComponent from "../tccomponent.vue";
+import { Vue, Component, Prop, Mixins } from "vue-property-decorator";
+import TCComponent from "../TC-Component.mixin";
 
 @Component
-export default class TCButton extends Vue {
+export default class TCButton extends Mixins(TCComponent) {
   @Prop() to!: object;
   @Prop() href!: string;
   @Prop() name!: string;
@@ -21,22 +21,16 @@ export default class TCButton extends Vue {
   @Prop({ default: "left" }) iconPosition!: string;
   @Prop() disabled!: boolean;
   @Prop() variant!: string;
-  @Prop() tccolor!: string;
 
   public variants: string[] = ["opaque", "border", "filled"];
-  public tccolors: string[] = ["primary", "error", "alarm", "success"];
 
   public getClasses(): any {
-    var classes: any = {
+    const classes: any = {
       "tc-button__withoutName": this.icon && !name,
       "tc-button__disabled": this.disabled
     };
 
-    if (!this.tccolor || !this.tccolors.includes(this.tccolor.toLowerCase())) {
-      classes["tc-button__primary"] = true;
-    } else {
-      classes["tc-button__" + this.tccolor.toLowerCase()] = true;
-    }
+    classes["tc-button__" + this.tccolor_] = true;
 
     if (!this.variant || !this.variants.includes(this.variant.toLowerCase())) {
       classes["tc-button__border"] = true;
@@ -63,9 +57,6 @@ export default class TCButton extends Vue {
 }
 </script>
 <style lang="scss" scoped>
-@import "../../../scss/variables";
-@import "../colors";
-
 .tc-button {
   display: inline-flex;
 

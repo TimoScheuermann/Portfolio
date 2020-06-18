@@ -80,7 +80,8 @@
       <!-- <h2 style="color: #fff">Slots</h2> -->
 
       <!-- <p color-fff>{{ data }}</p>
-      <p color-fff>{{ html }}</p> -->
+      <p color-fff>{{ html }}</p>
+      <p color-fff>{{ $store.getters.designerComponent }}</p> -->
 
       <div
         class="designer-canvas"
@@ -152,7 +153,7 @@ export default class TCComponentsDesigner extends Vue {
   )[0].components;
   public selectedComponent: string = "";
   public copyHTMLText: string = "Copy HTML Markup";
-  public darkCanvas: boolean = true;
+  public darkCanvas = true;
   public data: {} = {};
   public available: { [x: string]: string | any } = {
     Button: TCButton,
@@ -169,6 +170,14 @@ export default class TCComponentsDesigner extends Vue {
     Hero: TCHero,
     Image: TCImage
   };
+
+  mounted() {
+    const loadedComp: string = this.$store.getters.designerComponent;
+    if (loadedComp.length > 0) {
+      this.selectedComponent = loadedComp;
+      this.$store.commit("updateDesignerComponent", "");
+    }
+  }
 
   get componentList() {
     return this.components
@@ -234,8 +243,8 @@ export default class TCComponentsDesigner extends Vue {
   @Watch("data", { deep: true })
   public changed(): void {
     try {
-      var ComponentClass = Vue.extend(this.available[this.selectedComponent]);
-      var instance = new ComponentClass({
+      const ComponentClass = Vue.extend(this.available[this.selectedComponent]);
+      const instance = new ComponentClass({
         propsData: { ...this.data, dark: this.darkCanvas },
         parent: this
       });
@@ -286,8 +295,6 @@ export default class TCComponentsDesigner extends Vue {
       setTimeout(() => {
         this.data = data;
       }, 10);
-    } else {
-      //
     }
   }
 }

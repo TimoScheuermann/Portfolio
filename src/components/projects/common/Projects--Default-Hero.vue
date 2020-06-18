@@ -23,7 +23,6 @@ export default class ProjectsDefaultHero extends Vue {
 }
 </script>
 <style lang="scss" scoped>
-@import "../../../scss/variables";
 .tc-hero {
   background: $color;
 }

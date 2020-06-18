@@ -23,7 +23,6 @@ export default class TCGrid extends Vue {
 }
 </script>
 <style lang="scss" scoped>
-@import "../../../../scss/variables";
 .tc-grid {
   display: grid;
   grid-gap: 30px;

@@ -15,5 +15,13 @@ module.exports = {
       maskIcon: "img/icons/icon.svg",
       msTileImage: "img/icons/icon-144x144.png"
     }
+  },
+  css: {
+    loaderOptions: {
+      sass: {
+        prependData:
+          "@import '@/components/tc/_variables.scss';\n@import '@/components/tc/_mixins.scss';"
+      }
+    }
   }
 };

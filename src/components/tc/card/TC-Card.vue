@@ -1,5 +1,5 @@
 <template>
-  <div class="tc-card" :style="defaultStyle" :class="classes">
+  <div class="tc-card" :style="styles" :class="classes">
     <div
       v-if="title"
       class="tc-card--title__prestyled"
@@ -41,24 +41,26 @@
   </div>
 </template>
 <script lang="ts">
-import { Vue, Component, Prop } from "vue-property-decorator";
+import { Vue, Component, Prop, Mixins } from "vue-property-decorator";
 import TCButton from "../button/TC-Button.vue";
-import TCComponent from "../tccomponent.vue";
+import TCComponent from "../TC-Component.mixin";
 
 @Component({
   components: {
     "tc-button": TCButton
-  },
-  mixins: [TCComponent]
+  }
 })
-export default class TCCard extends Vue {
+export default class TCCard extends Mixins(TCComponent) {
   @Prop() title!: string;
   @Prop() subtitle!: string;
   @Prop() frosted!: boolean;
   @Prop({ default: true }) shadow!: boolean;
   @Prop() rounded!: boolean;
   @Prop() hover!: boolean;
-  dark!: boolean;
+
+  get usedSlots(): string[] {
+    return Object.keys(this.$slots);
+  }
 
   get classes() {
     return {
@@ -69,12 +71,16 @@ export default class TCCard extends Vue {
       "tc-card__dark": this.dark
     };
   }
+
+  get styles() {
+    return {
+      color: this.color,
+      background: this.background
+    };
+  }
 }
 </script>
 <style lang="scss" scoped>
-@import "../../../scss/variables";
-@import "../../../scss/mixins";
-
 .tc-card {
   background: $background;
   text-align: center;

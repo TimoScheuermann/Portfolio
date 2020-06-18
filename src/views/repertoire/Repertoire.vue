@@ -1,6 +1,6 @@
 <template>
   <div class="view--repertoire">
-    <tc-header title="Repertoire" :autoColor="true" />
+    <tc-header title="Repertoire" :autoBackground="true" />
     <tc-hero height="300" tc-dark-container>
       <img
         slot="background"
@@ -70,7 +70,6 @@ export default class Repertoire extends Vue {
 }
 </script>
 <style lang="scss" scoped>
-@import "../../scss/variables.scss";
 [content] {
   .tc-grid {
     margin: 30px 0;

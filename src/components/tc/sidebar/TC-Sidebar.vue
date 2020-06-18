@@ -1,5 +1,5 @@
 <template>
-  <div class="tc-sidebar" :style="defaultStyle" :class="{ dark: dark }">
+  <div class="tc-sidebar" :style="styles" :class="{ dark: dark }">
     <div class="header">
       <slot name="header"></slot>
     </div>
@@ -13,22 +13,26 @@
   </div>
 </template>
 <script lang="ts">
-import { Vue, Component, Prop } from "vue-property-decorator";
-import TCComponent from "../tccomponent.vue";
-@Component({
-  mixins: [TCComponent]
-})
-export default class TCSidebar extends Vue {}
+import { Vue, Component, Prop, Mixins } from "vue-property-decorator";
+import TCComponent from "../TC-Component.mixin";
+
+@Component
+export default class TCSidebar extends Mixins(TCComponent) {
+  get styles() {
+    return {
+      color: this.color,
+      background: this.background
+    };
+  }
+}
 </script>
 <style lang="scss" scoped>
-@import "../../../scss/variables";
 .tc-sidebar {
   background: $background;
   color: $color;
   box-shadow: $shadow;
   &.dark {
     background: $color;
-
     color: #fff;
   }
   user-select: none;

@@ -74,8 +74,6 @@ export default class TimosIconsFound extends Vue {
 }
 </script>
 <style lang="scss" scoped>
-@import "../../../scss/variables.scss";
-
 .timos-icons--found {
   padding-top: calc(50px + env(safe-area-inset-top));
 

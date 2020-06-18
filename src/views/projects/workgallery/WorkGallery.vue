@@ -4,7 +4,7 @@
       :title="project.title"
       backName="Projects"
       :backTo="{ name: constants.routes.projects }"
-      :autoColor="true"
+      :autoBackground="true"
     />
     <projects-default-hero
       :title="project.title"
@@ -93,12 +93,12 @@ export default class WorkGallery extends Vue {
   }
 
   private isScrolledIntoView(el: HTMLElement): boolean {
-    var rect = el.getBoundingClientRect();
-    var elemTop = rect.top;
-    var elemBottom = rect.bottom;
+    let rect = el.getBoundingClientRect();
+    let elemTop = rect.top;
+    let elemBottom = rect.bottom;
 
     // Only completely visible elements return true:
-    var isVisible = elemTop >= 0 && elemBottom <= window.innerHeight;
+    let isVisible = elemTop >= 0 && elemBottom <= window.innerHeight;
     // Partially visible elements return true:
     isVisible = elemTop < window.innerHeight && elemBottom >= 0;
     return isVisible;
@@ -123,7 +123,6 @@ export default class WorkGallery extends Vue {
 }
 </script>
 <style lang="scss" scoped>
-@import "../../../scss/variables.scss";
 [content] {
   padding-top: 40px;
 }

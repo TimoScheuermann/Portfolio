@@ -7,16 +7,12 @@
   </div>
 </template>
 <script lang="ts">
-import { Vue, Component, Prop } from "vue-property-decorator";
+import { Vue, Component, Prop, Mixins } from "vue-property-decorator";
+import TCComponent from "../TC-Component.mixin";
 @Component
-export default class TCList extends Vue {
-  @Prop({ default: false }) dark!: boolean;
-}
+export default class TCList extends Mixins(TCComponent) {}
 </script>
 <style lang="scss" scoped>
-@import "../../../scss/variables";
-@import "../../../scss/mixins";
-
 .tc-list {
   padding: 5px;
   border-radius: $border-radius;

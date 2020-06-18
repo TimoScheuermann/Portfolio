@@ -71,8 +71,6 @@ export default class GitHubRepoTile extends Vue {
 }
 </script>
 <style lang="scss" scoped>
-@import "../../scss/variables.scss";
-
 .indicator {
   $pad: 5px;
   user-select: none;

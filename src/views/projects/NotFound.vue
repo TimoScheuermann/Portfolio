@@ -39,8 +39,6 @@ export default class ProjectsNotFound extends Vue {
 </script>
 
 <style lang="scss" scoped>
-@import "../../scss/variables.scss";
-
 .projects--notfound {
   display: flex;
   justify-content: center;

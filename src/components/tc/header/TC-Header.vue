@@ -1,5 +1,5 @@
 <template>
-  <div class="tc-header" :id="id" :style="styles" :class="classes">
+  <div class="tc-header" :id="uuid_" :style="styles" :class="classes">
     <div class="tc-header--head">
       <div
         v-if="backTo || backHref"
@@ -18,7 +18,7 @@
     <div
       v-if="!itemsOverflow"
       class="tc-header--items"
-      :id="'tc-header--item_' + uuid"
+      :id="'tc-header--item-' + uuid"
     >
       <slot />
     </div>
@@ -34,7 +34,7 @@
       v-if="itemsOverflow"
       class="tc-overflow-items"
       :style="getOverflowStyle()"
-      :class="{ ...getClasses(), 'tc-overflow-items__visible': itemCard }"
+      :class="{ ...classes, 'tc-overflow-items__visible': itemCard }"
     >
       <div class="tc-overflow-items--container">
         <slot />
@@ -43,27 +43,17 @@
   </div>
 </template>
 <script lang="ts">
-import { Vue, Component, Prop, Watch } from "vue-property-decorator";
-import TCComponent from "../tccomponent.vue";
-import uuidVue from "../uuid.vue";
+import { Vue, Component, Prop, Watch, Mixins } from "vue-property-decorator";
 import TCCheckbox from "../checkbox/TC-Checkbox.vue";
-import TCAutoBackgroundMixin from "../TCAutoBackground.mixin.vue";
+import TCAutoBackground from "../TC-Auto-Background.mixin";
+
 @Component({
-  mixins: [TCComponent, uuidVue, TCAutoBackgroundMixin],
   components: {
     "tc-checkbox": TCCheckbox
   }
 })
-export default class TCHeader extends Vue {
-  @Prop({ default: false }) autoColor!: boolean;
-  _mounted!: any;
-  _destroyed!: any;
-  _routeChanged!: any;
-  uuid!: any;
-  isDark!: any;
-  dark!: boolean;
-  defaultStyle!: any;
-  id: string = "tc-header_" + this.uuid;
+export default class TCHeader extends Mixins(TCAutoBackground) {
+  id: string = "tc-header_" + this.uuid_;
 
   @Prop() title!: string;
   @Prop({ default: "fixed" }) variant!: "fixed" | "floating" | "sticky";
@@ -72,36 +62,16 @@ export default class TCHeader extends Vue {
   @Prop() backHref!: string;
   @Prop() backName!: string;
 
-  public itemsOverflow: boolean = false;
-  public itemCard: boolean = false;
+  public itemsOverflow = false;
+  public itemCard = false;
 
-  @Watch("dark")
-  dChanged() {
-    // console.error("Dark changed to", this.dark);
-    // console.log("Dark is", this.dark);
-    this.isDark = this.dark;
-  }
-  @Watch("isDark")
-  sdChanged(to: boolean, from: boolean) {
-    // console.error("isDark changed to", this.isDark);
-    // console.log("From: " + from + ", To:", to);
-    // console.log("Dark is", this.dark);
-  }
-
-  mounted() {
-    this._mounted();
+  created() {
     window.addEventListener("resize", this.resize);
     this.resize();
   }
 
   destroyed() {
-    this._destroyed();
     window.removeEventListener("resize", this.resize);
-  }
-
-  @Watch("$route", { deep: true, immediate: true })
-  routeChanged() {
-    this._routeChanged();
   }
 
   public clicked(event: any): void {
@@ -113,17 +83,17 @@ export default class TCHeader extends Vue {
   public resize(): void {
     this.itemsOverflow = false;
     setTimeout(() => {
-      const element = document.getElementById("tc-header--item_" + this.uuid)!;
+      const element = document.getElementById("tc-header--item-" + this.uuid_)!;
       this.itemsOverflow =
         element.scrollHeight > element.clientHeight ||
         element.scrollWidth > element.clientWidth;
-    }, 100);
+    }, 200);
   }
 
   get classes() {
     return {
-      "tc-header__dark": this.isDark,
-      "tc-header__light": !this.isDark,
+      "tc-header__dark": this.dark_,
+      "tc-header__light": !this.dark_,
       "tc-header__fixed": !(
         this.variant == "floating" || this.variant == "sticky"
       ),
@@ -132,23 +102,23 @@ export default class TCHeader extends Vue {
     };
   }
   get styles() {
-    var style = this.defaultStyle;
-    style.top = (this.variant === "floating" ? 40 : 0) + +this.top + "px";
-    return style;
+    return {
+      color: this.color,
+      background: this.background,
+      top: (this.variant === "floating" ? 40 : 0) + +this.top + "px"
+    };
   }
 
   getOverflowStyle() {
-    var style = this.defaultStyle;
-    style.top =
-      "calc(env(safe-area-inset-top) + " + (+(+this.top) + 50) + "px)";
-    return style;
+    return {
+      color: this.color,
+      background: this.background,
+      top: "calc(env(safe-area-inset-top) + " + (+(+this.top) + 50) + "px)"
+    };
   }
 }
 </script>
 <style lang="scss" scoped>
-@import "../../../scss/mixins";
-@import "../../../scss/variables";
-
 .tc-header {
   user-select: none;
   box-shadow: $shadow;

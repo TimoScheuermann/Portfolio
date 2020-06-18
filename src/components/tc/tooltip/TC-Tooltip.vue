@@ -15,13 +15,14 @@
   </div>
 </template>
 <script lang="ts">
-import { Vue, Component, Prop } from "vue-property-decorator";
+import { Vue, Component, Prop, Mixins } from "vue-property-decorator";
+import TCComponent from "../TC-Component.mixin";
 @Component
-export default class TCTooltip extends Vue {
+export default class TCTooltip extends Mixins(TCComponent) {
   @Prop({ default: "top" }) position!: string;
   @Prop({ default: "Tooltip" }) tooltip!: string;
 
-  touched: boolean = false;
+  touched = false;
 
   getPosition(): string {
     return ["top", "bottom", "left", "right"].includes(this.position)
@@ -31,7 +32,6 @@ export default class TCTooltip extends Vue {
 }
 </script>
 <style lang="scss" scoped>
-@import "../../../scss/variables";
 .tc-tooltip {
   position: relative;
 
@@ -51,7 +51,6 @@ export default class TCTooltip extends Vue {
       animation: anim 0.3s ease-in-out 0.3s both;
     }
   }
-
   position: relative;
   .tooltip {
     visibility: hidden;

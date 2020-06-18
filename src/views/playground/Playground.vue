@@ -1,5 +1,8 @@
 <template>
   <div content>
+    <tc-color-picker />
+    <!--  -->
+
     <!-- <tc-header title="Playground">
       <div class="header__project">Make window smaller to see</div>
       <div class="header__project">Timo's Icons</div>
@@ -10,10 +13,15 @@
         <tc-button name="Hello" icon="heart"></tc-button>
       </div>
     </tc-header> -->
-    <h1>Playground</h1>
+    <!-- <h1>Playground</h1>
 
     <h2>tc-bars</h2>
     <i class="tc-bars"></i>
+
+    <h2>Badges</h2>
+    <tc-badge value="1" max="99">
+      <tc-button name="Subscribe" icon="reply" />
+    </tc-badge>
 
     <div>
       <h2>tc-steps</h2>
@@ -111,7 +119,6 @@
     <div class="rainbow" :style="{ background: 'hsl(' + i + ', 216%, 56%)' }">
       <h2>Hallo</h2>
     </div>
-    <!-- <p-slideshow :images="slides()"></p-slideshow> -->
     <tc-button
       :navigation="{ name: 'Google.com', destiny: 'https://google.com' }"
     ></tc-button>
@@ -153,7 +160,7 @@
     <tc-link>Hallo Welt</tc-link>
     <tc-link><i class="ti-peace" /> Was geht ab</tc-link>
 
-    <tc-scroll-up icon="chevron-up" />
+    <tc-scroll-up icon="chevron-up" /> -->
   </div>
 </template>
 <script lang="ts">
@@ -179,29 +186,35 @@ import TCNavbarItem from "@/components/tc/navbar/TC-Navbar-Item.vue";
 import ComponentHero from "@/components/projects/TCComponents/ComponentHero.vue";
 import TCPreview from "../../components/tc/preview/TC-Preview.vue";
 import TCScrollUp from "../../components/tc/scrollup/TC-Scroll-Up.vue";
-import TCStep from "../../components/tc/step/TC-Step.vue";
+import TCSteps from "../../components/tc/steps/TC-Steps.vue";
+import TCBadge from "../../components/tc/badge/TC-Badge.vue";
+import TCColorPicker from "../../components/tc/color-picker/TC-Color-Picker.vue";
+import TCTestComponent from "../../components/tc/Test-Component.vue";
 
 @Component({
   components: {
-    "tc-navbar": TCNavbar,
-    "tc-navbar-item": TCNavbarItem,
-    "tc-button": TCButton,
-    "tc-card": TCCard,
-    "tc-checkbox": TCCheckbox,
-    "tc-header": TCHeader,
-    "tc-hero": TCHero,
-    "tc-switch": TCSwitch,
-    "tc-link": TCLink,
-    "tc-compHero": TCComponentHero,
-    "tc-slider": TCSlider,
-    "p-mobile-view": PMobileView,
-    "tc-modal": TCModal,
-    "tc-divider": TCDivider,
-    "tc-input": TCInput,
-    comph: ComponentHero,
-    "tc-preview": TCPreview,
-    "tc-scroll-up": TCScrollUp,
-    "tc-step": TCStep
+    // "tc-navbar": TCNavbar,
+    // "tc-navbar-item": TCNavbarItem,
+    // "tc-button": TCButton,
+    // "tc-card": TCCard,
+    // "tc-checkbox": TCCheckbox,
+    // "tc-header": TCHeader,
+    // "tc-hero": TCHero,
+    // "tc-switch": TCSwitch,
+    // "tc-link": TCLink,
+    // "tc-compHero": TCComponentHero,
+    // "tc-slider": TCSlider,
+    // "p-mobile-view": PMobileView,
+    // "tc-modal": TCModal,
+    // "tc-divider": TCDivider,
+    // "tc-input": TCInput,
+    // comph: ComponentHero,
+    // "tc-preview": TCPreview,
+    // "tc-scroll-up": TCScrollUp,
+    // "tc-step": TCStep,
+    // "tc-badge": TCBadge,
+    "tc-color-picker": TCColorPicker,
+    "tc-test-component": TCTestComponent
   }
 })
 export default class Playground extends Vue {
@@ -212,11 +225,13 @@ export default class Playground extends Vue {
     return [""];
     // return projects.map(x => x.images.background);
   }
-  public i: number = 0;
-  sliderVal: number = 33;
-  switchOne: boolean = true;
-  checkbox: boolean = false;
-  modal: boolean = false;
+  public tccolor!: "primary" | "error" | "alarm" | "success";
+
+  public i = 0;
+  sliderVal = 33;
+  switchOne = true;
+  checkbox = false;
+  modal = false;
   colVal: any = "";
   public currentStep = 0;
 
@@ -258,7 +273,6 @@ export default class Playground extends Vue {
 </script>
 
 <style lang="scss" scoped>
-@import "../../scss/variables";
 h1 {
   color: $primary;
   &::after {

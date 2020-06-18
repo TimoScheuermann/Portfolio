@@ -1,12 +1,7 @@
 <template>
   <div class="tc-switch">
-    <input
-      @input="updateVal()"
-      type="checkbox"
-      :id="'tc-switch_' + uuid"
-      v-model="toggled"
-    />
-    <label :for="'tc-switch_' + uuid">
+    <input @input="updateVal()" type="checkbox" :id="id" v-model="toggled" />
+    <label :for="id">
       <div class="container">
         <div class="ball"></div>
       </div>
@@ -14,20 +9,20 @@
   </div>
 </template>
 <script lang="ts">
-import { Vue, Component, Prop, Watch } from "vue-property-decorator";
-import uuidVue from "../uuid.vue";
-@Component({
-  mixins: [uuidVue]
-})
-export default class TCSwitch extends Vue {
+import { Vue, Component, Prop, Watch, Mixins } from "vue-property-decorator";
+import TCComponent from "../TC-Component.mixin";
+
+@Component
+export default class TCSwitch extends Mixins(TCComponent) {
   @Prop({ default: false }) value!: boolean;
+
+  public id = "tc-switch_" + this.uuid_;
+  public toggled = this.value;
 
   @Watch("value")
   public changed() {
     this.toggled = this.value;
   }
-
-  toggled: boolean = this.value;
 
   updateVal() {
     this.$emit("input", !this.toggled);
@@ -35,7 +30,6 @@ export default class TCSwitch extends Vue {
 }
 </script>
 <style lang="scss" scoped>
-@import "../../../scss/variables";
 .tc-switch {
   user-select: none;
   $ballSize: 21;

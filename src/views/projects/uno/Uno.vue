@@ -149,12 +149,12 @@ import VueApexCharts from "vue-apexcharts";
   }
 })
 export default class Uno extends Vue {
-  modalOpened: boolean = false;
+  modalOpened = false;
   newUserName: string = "";
   players: Player[] = [];
   games: Game[] = [];
-  currentPlayer: number = 0;
-  newPoints: number = 0;
+  currentPlayer = 0;
+  newPoints = 0;
   player_looser: string = "";
   player_winner: string = "";
   public options = {
@@ -209,7 +209,7 @@ export default class Uno extends Vue {
     );
   }
   public getPoints(player: Player): number {
-    var points = 0;
+    let points = 0;
     this.games
       .filter(x => x.looser.name == player.name)
       .forEach(x => (points += x.points));
@@ -258,7 +258,7 @@ export default class Uno extends Vue {
       });
       this.currentPlayer++;
       this.series.map(x => {
-        const old: number = x.data[x.data.length - 1] || 0;
+        const old = x.data[x.data.length - 1] || 0;
         if (x.name === this.player_looser) {
           x.data = [...x.data, +this.newPoints + old];
         } else {
@@ -272,7 +272,6 @@ export default class Uno extends Vue {
 </script>
 
 <style lang="scss" scoped>
-@import "../../../scss/variables.scss";
 [content] {
   background: #000;
   color: #fff;

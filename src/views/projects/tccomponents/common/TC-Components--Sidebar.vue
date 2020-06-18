@@ -52,7 +52,7 @@
 <script lang="ts">
 import { Vue, Component, Watch } from "vue-property-decorator";
 import TCSidebar from "@/components/tc/sidebar/TC-Sidebar.vue";
-import TCSidebarGroup from "@/components/tc/sidebar/TS-Sidebar-Group.vue";
+import TCSidebarGroup from "@/components/tc/sidebar/TC-Sidebar-Group.vue";
 import TCSidebarItem from "@/components/tc/sidebar/TC-Sidebar-Item.vue";
 import TCDivider from "@/components/tc/divider/TC-Divider.vue";
 import tcComponents from "@/components/tc";

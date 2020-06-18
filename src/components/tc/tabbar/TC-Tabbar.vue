@@ -1,51 +1,19 @@
 <template>
   <!-- // :style="defaultStyle" -->
-  <div class="tc-tabbar" :id="id" :class="{ dark: isDark, light: !isDark }">
+  <div class="tc-tabbar" :id="uuid_" :class="{ dark: dark_, light: !dark_ }">
     <div class="items">
       <slot />
     </div>
   </div>
 </template>
 <script lang="ts">
-import { Vue, Component, Prop, Watch } from "vue-property-decorator";
-import TCComponent from "../tccomponent.vue";
-import TCAutoBackgroundMixin from "../TCAutoBackground.mixin.vue";
-import uuidVue from "../uuid.vue";
-@Component({
-  mixins: [TCComponent, TCAutoBackgroundMixin, uuidVue]
-})
-export default class TCTabbar extends Vue {
-  @Prop() autoColor!: boolean;
-  _mounted!: any;
-  _destroyed!: any;
-  _routeChanged!: any;
-  uuid!: any;
-  isDark: any;
-  dark: any;
-  id = "tc-tabbar_" + this.uuid;
+import { Vue, Component, Prop, Watch, Mixins } from "vue-property-decorator";
+import TCAutoBackground from "../TC-Auto-Background.mixin";
 
-  @Watch("dark")
-  updated() {
-    this.isDark = this.dark;
-  }
-
-  mounted() {
-    this._mounted();
-  }
-  destroyed() {
-    this._destroyed();
-  }
-
-  @Watch("$route", { deep: true, immediate: true })
-  routeChanged(): void {
-    this._routeChanged();
-  }
-}
+@Component
+export default class TCTabbar extends Mixins(TCAutoBackground) {}
 </script>
 <style lang="scss" scoped>
-@import "../../../scss/mixins";
-@import "../../../scss/variables";
-
 .tc-tabbar {
   transition: color 0.1s ease-in-out, background 0.3s ease-in-out;
   // border-top: 1px solid currentColor;

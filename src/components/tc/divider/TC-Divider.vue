@@ -7,7 +7,7 @@
     <div
       class="tc-divider--bar"
       :class="{
-        'tc-divider--bar_small': position != 'left' && position == 'right'
+        'tc-divider--bar_small': position != 'right' && position == 'left'
       }"
     />
     <div class="tc-divider--content" v-if="icon || name">
@@ -17,20 +17,19 @@
     <div
       class="tc-divider--bar"
       :class="{
-        'tc-divider--bar_small': position != 'right' && position == 'left'
+        'tc-divider--bar_small': position != 'left' && position == 'right'
       }"
     />
   </div>
 </template>
 <script lang="ts">
-import { Vue, Component, Prop } from "vue-property-decorator";
+import { Vue, Component, Prop, Mixins } from "vue-property-decorator";
+import TCComponent from "../TC-Component.mixin";
 @Component
-export default class TCDivider extends Vue {
+export default class TCDivider extends Mixins(TCComponent) {
   @Prop() name!: string;
   @Prop() icon!: string;
   @Prop() position!: string;
-  @Prop() color!: string;
-  @Prop() dark!: boolean;
 
   get alignment() {
     return this.position || "center";

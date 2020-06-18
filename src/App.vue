@@ -41,7 +41,6 @@
           :to="{ name: p.routeName }"
         />
       </tc-sidebar-group>
-
       <tc-sidebar-item
         icon="tools"
         name="Reportoire"
@@ -71,7 +70,7 @@
 <script lang="ts">
 import { Vue, Component, Watch } from "vue-property-decorator";
 import TCSidebar from "@/components/tc/sidebar/TC-Sidebar.vue";
-import TCSidebarGroup from "@/components/tc/sidebar/TS-Sidebar-Group.vue";
+import TCSidebarGroup from "@/components/tc/sidebar/TC-Sidebar-Group.vue";
 import TCSidebarItem from "@/components/tc/sidebar/TC-Sidebar-Item.vue";
 import projects from "@/projects";
 import { Project } from "@/models/Projects/Project.model";
@@ -144,9 +143,6 @@ export default class App extends Vue {
 </script>
 
 <style lang="scss">
-@import "./scss/variables.scss";
-@import "./scss/mixins";
-
 html {
   font-family: -apple-system, BlinkMacSystemFont, SF Pro Display, Segoe UI,
     Roboto, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji,

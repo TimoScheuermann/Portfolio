@@ -69,7 +69,7 @@ import ProjectsTitle from "@/components/projects/common/Projects--Title.vue";
   }
 })
 export default class GitHubView extends Vue {
-  public loaded: boolean = false;
+  public loaded = false;
   public profile: any = {};
   public repositories: any[] = [];
 
@@ -122,9 +122,6 @@ export default class GitHubView extends Vue {
 }
 </script>
 <style lang="scss" scoped>
-@import "../../scss/variables.scss";
-@import "../../scss/mixins.scss";
-
 .github {
   background: #000;
 }

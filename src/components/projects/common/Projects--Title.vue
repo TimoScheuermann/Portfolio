@@ -13,7 +13,6 @@ export default class ProjectsTitle extends Vue {
 }
 </script>
 <style lang="scss" scoped>
-@import "../../../scss/variables";
 .projects--title {
   margin-top: 90px;
   &::before {

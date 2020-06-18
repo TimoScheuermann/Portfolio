@@ -24,6 +24,4 @@ export default class TimosIconsDownload extends Vue {
   public constants: {} = constants;
 }
 </script>
-<style lang="scss" scoped>
-@import "../../../../scss/variables";
-</style>
+<style lang="scss" scoped></style>

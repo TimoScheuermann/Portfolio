@@ -126,8 +126,6 @@ export default class TimosIcons extends Vue {
 </script>
 
 <style lang="scss" scoped>
-@import "../../../scss/variables.scss";
-
 .xd-indicator {
   color: $error;
   @media only screen and (min-width: 630px) {

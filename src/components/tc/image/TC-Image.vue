@@ -2,16 +2,15 @@
   <img class="tc-image" :src="src" @click="expand()" />
 </template>
 <script lang="ts">
-import { Vue, Component, Prop, Watch } from "vue-property-decorator";
-import projects from "@/projects";
-import uuidVue from "../uuid.vue";
+import { Vue, Component, Prop, Watch, Mixins } from "vue-property-decorator";
+import TCComponent from "../TC-Component.mixin";
 
 @Component
-export default class TCImage extends Vue {
+export default class TCImage extends Mixins(TCComponent) {
   @Prop() src!: string;
-  expanded: boolean = false;
+  expanded = false;
 
-  background: HTMLElement = document.createElement("div");
+  bgElement: HTMLElement = document.createElement("div");
   close: HTMLElement = document.createElement("div");
   img: HTMLImageElement = document.createElement("img");
 
@@ -21,9 +20,9 @@ export default class TCImage extends Vue {
   }
 
   mounted() {
-    this.background.setAttribute("class", "tc-image--expanded");
+    this.bgElement.setAttribute("class", "tc-image--expanded");
     this.close.innerHTML = "<i class='ti-cross' />";
-    this.background.addEventListener("click", e => {
+    this.bgElement.addEventListener("click", e => {
       e.stopPropagation();
       this.shrink();
     });
@@ -34,19 +33,19 @@ export default class TCImage extends Vue {
       e.stopPropagation();
     });
     this.img.src = this.src;
-    this.background.appendChild(this.close);
-    this.background.appendChild(this.img);
-    document.body.appendChild(this.background);
+    this.bgElement.appendChild(this.close);
+    this.bgElement.appendChild(this.img);
+    document.body.appendChild(this.bgElement);
   }
   beforeDestroy() {
-    document.body.removeChild(this.background);
+    document.body.removeChild(this.bgElement);
   }
 
   public expand(e: MouseEvent) {
-    this.background.setAttribute("expanded", "");
+    this.bgElement.setAttribute("expanded", "");
   }
   public shrink() {
-    this.background.removeAttribute("expanded");
+    this.bgElement.removeAttribute("expanded");
   }
 }
 </script>
@@ -56,8 +55,6 @@ export default class TCImage extends Vue {
 }
 </style>
 <style lang="scss">
-@import "../../../scss/variables";
-
 .tc-image--expanded {
   position: fixed;
   z-index: 99999;

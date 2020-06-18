@@ -40,7 +40,7 @@ import ProjectsProjectlist from "@/components/projects/ProjectsOverview/Projects
 })
 export default class ProjectsMobile extends Vue {
   public projects: Project[] = projects;
-  public currentProject: number = 0;
+  public currentProject = 0;
   public timeout: any;
 
   get project(): Project {
@@ -61,7 +61,7 @@ export default class ProjectsMobile extends Vue {
     this.next(-1);
   }
 
-  public next(amount: number = 1): void {
+  public next(amount = 1): void {
     this.currentProject += amount;
     clearTimeout(this.timeout);
     this.timeout = setTimeout(() => {
@@ -87,9 +87,6 @@ export default class ProjectsMobile extends Vue {
 </script>
 
 <style lang="scss" scoped>
-@import "../../scss/variables.scss";
-@import "../../scss/mixins";
-
 @keyframes title-appear {
   0% {
     letter-spacing: -0.5em;

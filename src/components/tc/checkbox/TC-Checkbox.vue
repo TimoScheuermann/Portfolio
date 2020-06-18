@@ -1,14 +1,14 @@
 <template>
-  <div class="tc-checkbox tc-container" :class="{ 'tc-checkbox__dark': dark }">
+  <div class="tc-checkbox" :class="{ 'tc-checkbox__dark': dark }">
     <input
       @input="updateVal()"
       v-model="checked"
       type="checkbox"
       name="check"
-      :id="'tc-checkbox_' + uuid"
+      :id="'tc-checkbox_' + uuid_"
     />
     <label
-      :for="'tc-checkbox_' + uuid"
+      :for="'tc-checkbox_' + uuid_"
       :class="{
         'tc-checkbox--label__left': position !== 'right',
         'tc-checkbox--label__right': position === 'right'
@@ -50,16 +50,13 @@
   </div>
 </template>
 <script lang="ts">
-import { Vue, Component, Prop, Watch } from "vue-property-decorator";
-import uuid from "../uuid.vue";
-@Component({
-  mixins: [uuid]
-})
-export default class TCCheckbox extends Vue {
+import { Vue, Component, Prop, Watch, Mixins } from "vue-property-decorator";
+import TCComponent from "../TC-Component.mixin";
+
+@Component
+export default class TCCheckbox extends Mixins(TCComponent) {
   @Prop({ default: false }) value!: boolean;
   @Prop() title!: string;
-  @Prop() color!: string;
-  @Prop() dark!: boolean;
   @Prop() position!: string;
   @Prop() iconChecked!: string;
   @Prop() iconUnchecked!: string;
@@ -70,7 +67,7 @@ export default class TCCheckbox extends Vue {
     this.checked = this.value;
   }
 
-  public checked: boolean = this.value;
+  public checked = this.value;
   public animations: string[] = ["scroll", "spin", "flip"];
   get animationName(): string {
     if (!this.iconAnimation) return this.animations[0];
@@ -94,9 +91,6 @@ export default class TCCheckbox extends Vue {
 }
 </script>
 <style lang="scss" scoped>
-@import "../../../scss/variables";
-@import "../tc-container";
-
 .icon-flip-move {
   transition: all 0.4s ease-in-out;
 }
@@ -162,13 +156,9 @@ export default class TCCheckbox extends Vue {
 }
 
 .tc-checkbox {
+  @include tc-container__light();
   &__dark {
-    background: lighten($color, 20%);
-    color: #fff;
-    border-color: rgba(#fff, 0.01);
-    &:hover {
-      border-color: rgba(#fff, 0.4);
-    }
+    @include tc-container__dark();
     input + label svg #border {
       stroke: #fff;
     }

@@ -8,11 +8,12 @@
   </div>
 </template>
 <script lang="ts">
-import { Vue, Component, Prop } from "vue-property-decorator";
+import { Vue, Component, Prop, Mixins } from "vue-property-decorator";
+import TCComponent from "../TC-Component.mixin";
 @Component
-export default class TCScrollUp extends Vue {
+export default class TCScrollUp extends Mixins(TCComponent) {
   @Prop({ default: "chevron-up" }) icon!: string;
-  public visible: boolean = false;
+  public visible = false;
 
   created() {
     document.onscroll = () => {

@@ -8,11 +8,12 @@
   </div>
 </template>
 <script lang="ts">
-import { Vue, Component, Prop } from "vue-property-decorator";
+import { Vue, Component, Prop, Mixins } from "vue-property-decorator";
+import TCComponent from "../TC-Component.mixin";
 @Component
-export default class TCSpinner extends Vue {
+export default class TCSpinner extends Mixins(TCComponent) {
   @Prop({ default: 30 }) size!: number;
-  @Prop() dark!: boolean;
+
   get styleAttr() {
     return {
       width: this.size + "px",

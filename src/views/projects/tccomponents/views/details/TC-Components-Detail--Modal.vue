@@ -56,6 +56,6 @@ import TCGrid from "@/components/tc/_layout/grid/TC-Grid.vue";
   }
 })
 export default class TCComponentsDetailModal extends Vue {
-  public modalOpened: boolean = false;
+  public modalOpened = false;
 }
 </script>

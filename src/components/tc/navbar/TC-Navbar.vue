@@ -1,12 +1,11 @@
 <template>
   <div
     class="tc-navbar"
-    :id="id"
+    :id="uuid_"
     :class="{
-      'tc-navbar__dark': isDark,
-      'tc-navbar__light': !isDark
+      'tc-navbar__dark': dark_,
+      'tc-navbar__light': !dark_
     }"
-    :style="defaultStyle"
   >
     <div
       tc-flex
@@ -35,42 +34,16 @@
   </div>
 </template>
 <script lang="ts">
-import { Vue, Component, Watch, Prop } from "vue-property-decorator";
-import TCComponent from "../tccomponent.vue";
-import uuidVue from "../uuid.vue";
-import TCAutoBackgroundMixin from "../TCAutoBackground.mixin.vue";
+import { Vue, Component, Watch, Prop, Mixins } from "vue-property-decorator";
+import TCAutoBackground from "../TC-Auto-Background.mixin";
 
-@Component({
-  mixins: [TCComponent, uuidVue, TCAutoBackgroundMixin]
-})
-export default class TCNavbar extends Vue {
-  @Prop() autoColor!: boolean;
-  _mounted!: any;
-  _destroyed!: any;
-  _routeChanged!: any;
-  uuid!: any;
-  dark: any;
-  isDark: any;
-  id = "tc-navbar_" + this.uuid;
-
-  public expanded: boolean = false;
+@Component
+export default class TCNavbar extends Mixins(TCAutoBackground) {
+  public expanded = false;
   public bodyOverflowBefore: string | null = document.body.style.overflow;
-
-  mounted() {
-    this._mounted();
-  }
-
-  destroyed() {
-    this._destroyed();
-  }
 
   public toggleExpander(): void {
     this.expanded = !this.expanded;
-  }
-
-  @Watch("dark")
-  updated() {
-    this.isDark = this.dark;
   }
 
   @Watch("expanded")
@@ -79,16 +52,12 @@ export default class TCNavbar extends Vue {
   }
 
   @Watch("$route", { deep: true, immediate: true })
-  routeChanged(to: string, from: string) {
+  closeExpander(to: string, from: string) {
     this.expanded = false;
-    this._routeChanged();
   }
 }
 </script>
 <style lang="scss" scoped>
-@import "../../../scss/mixins";
-@import "../../../scss/variables";
-
 .tc-navbar {
   &,
   [tc-flex] {

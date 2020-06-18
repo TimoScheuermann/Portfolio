@@ -1,5 +1,5 @@
 <template>
-  <div class="tc-hero" :style="style">
+  <div class="tc-hero" :style="styles">
     <div class="tc-hero--background">
       <slot name="background" />
     </div>
@@ -12,25 +12,22 @@
   </div>
 </template>
 <script lang="ts">
-import { Vue, Component, Prop } from "vue-property-decorator";
+import { Vue, Component, Prop, Mixins } from "vue-property-decorator";
 import TCHeadline from "@/components/tc/headline/TC-Headline.vue";
+import TCComponent from "../TC-Component.mixin";
 @Component
-export default class TCHero extends Vue {
+export default class TCHero extends Mixins(TCComponent) {
   @Prop({ default: 200 }) height!: string | number;
   @Prop({ default: "px" }) unit!: string;
   @Prop({ default: true }) hasFixedHeader!: boolean;
-  @Prop() background!: string;
 
-  get style(): any {
+  get styles() {
     return {
       background: this.background,
-      height:
-        "calc(" +
-        +this.height +
-        this.unit +
-        " + " +
-        (this.hasFixedHeader ? 50 : 0) +
-        "px)"
+      color: this.color,
+      height: `calc(${+this.height}${this.unit} + ${
+        this.hasFixedHeader ? 50 : 0
+      }px)`
     };
   }
 }

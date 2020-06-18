@@ -30,12 +30,10 @@ import TCListItem from "@/components/tc/list/TC-List-Item.vue";
 })
 export default class ProjectsProjectlist extends Vue {
   public projects: Project[] = projects;
-  public listOpened: boolean = false;
+  public listOpened = false;
 }
 </script>
 <style lang="scss" scoped>
-@import "../../../scss/variables.scss";
-@import "../../../scss/mixins";
 .projects-list {
   position: fixed;
   z-index: 30;

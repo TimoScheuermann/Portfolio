@@ -4,7 +4,7 @@
       title="Requests"
       backName="Timo's Icons"
       :backTo="{ name: constants.projectRoutes.timos_icons }"
-      :autoColor="true"
+      :autoBackground="true"
     />
 
     <tc-hero tc-dark-container>
@@ -149,8 +149,6 @@ export default class TimosIconsRequests extends Vue {
 }
 </script>
 <style lang="scss" scoped>
-@import "../../../../scss/variables";
-
 .timos-icons-requests {
   .hero {
     text-align: center;
