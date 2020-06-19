@@ -53,8 +53,6 @@ import TCAutoBackground from "../TC-Auto-Background.mixin";
   }
 })
 export default class TCHeader extends Mixins(TCAutoBackground) {
-  id: string = "tc-header_" + this.uuid_;
-
   @Prop() title!: string;
   @Prop({ default: "fixed" }) variant!: "fixed" | "floating" | "sticky";
   @Prop({ default: 0 }) top!: number;
@@ -73,6 +71,9 @@ export default class TCHeader extends Mixins(TCAutoBackground) {
   destroyed() {
     window.removeEventListener("resize", this.resize);
   }
+  get id(): string {
+    return "tc-header_" + this.uuid_;
+  }
 
   public clicked(event: any): void {
     this.$emit("click", event);
@@ -83,7 +84,8 @@ export default class TCHeader extends Mixins(TCAutoBackground) {
   public resize(): void {
     this.itemsOverflow = false;
     setTimeout(() => {
-      const element = document.getElementById("tc-header--item-" + this.uuid_)!;
+      const element = document.getElementById("tc-header--item-" + this.uuid_);
+      if (!element) return;
       this.itemsOverflow =
         element.scrollHeight > element.clientHeight ||
         element.scrollWidth > element.clientWidth;
@@ -139,6 +141,9 @@ export default class TCHeader extends Mixins(TCAutoBackground) {
     }
     @include backdrop-blur($color);
     color: #fff;
+    .tc-header--items__overflow .tc-checkbox /deep/ .icon {
+      color: #fff;
+    }
   }
   &.tc-header__light {
     &.tc-header__sticky,
@@ -214,8 +219,8 @@ export default class TCHeader extends Mixins(TCAutoBackground) {
         overflow: visible;
       }
       /deep/ .icon {
+        color: $color;
         transform: scaleX(2);
-        color: currentColor;
         opacity: 0.6;
       }
     }
@@ -233,6 +238,7 @@ export default class TCHeader extends Mixins(TCAutoBackground) {
       transition: 0.5s ease-in-out;
       transform: translateY(-30px);
       padding: 0;
+      text-align: center;
       opacity: 0;
     }
     &.tc-overflow-items__visible {
@@ -294,21 +300,6 @@ export default class TCHeader extends Mixins(TCAutoBackground) {
         background: #888;
         transition: 0.2s ease;
         cursor: grabbing;
-      }
-    }
-    .tc-overflow-items--container {
-      /deep/ {
-        & > * {
-          display: block;
-          margin: 0 5px;
-          font-weight: 500;
-          &:not(:last-child) {
-            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-          }
-          padding: 10px {
-            right: 0px;
-          }
-        }
       }
     }
   }

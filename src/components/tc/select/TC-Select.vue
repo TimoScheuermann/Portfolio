@@ -1,6 +1,16 @@
 <template>
   <div class="tc-select" :class="{ 'tc-select__dark': dark }">
-    <div v-if="title" class="tc-select--ctitle">{{ title }}</div>
+    <div class="tc-select--head" v-if="title || tooltip">
+      <div class="tc-select--title">
+        {{ title }}
+      </div>
+      <div class="tc-select--tooltip" v-if="tooltip">
+        <tc-tooltip :tooltip="tooltip">
+          <i class="ti-question-circle" />
+        </tc-tooltip>
+      </div>
+    </div>
+
     <label :for="id" @click.stop="expanded = !expanded">
       <i v-if="icon" :class="'ti-' + icon" />
       <span v-if="display">{{ display }}</span>
@@ -57,11 +67,17 @@
 <script lang="ts">
 import { Vue, Component, Prop, Watch, Mixins } from "vue-property-decorator";
 import TCComponent from "../TC-Component.mixin";
+import TCTooltip from "../tooltip/TC-Tooltip.vue";
 type TValues = string | number | boolean;
 
-@Component
+@Component({
+  components: {
+    "tc-tooltip": TCTooltip
+  }
+})
 export default class TCSelect extends Mixins(TCComponent) {
   @Prop() title!: string;
+  @Prop() tooltip!: string;
   @Prop({ default: "list" }) icon!: string;
   @Prop({ default: false }) multiple!: boolean;
   @Prop({ default: "Select one" }) placeholder!: string;
@@ -77,8 +93,13 @@ export default class TCSelect extends Mixins(TCComponent) {
   public innerValues: TValues[] = this.values ? this.values : [];
 
   @Watch("values")
-  changed(): void {
+  valuesChanged(): void {
     this.innerValues = this.values ? this.values : [];
+  }
+
+  @Watch("value")
+  valueChanged(): void {
+    this.innerValue = this.value;
   }
 
   @Watch("innerValue")
@@ -150,16 +171,27 @@ export default class TCSelect extends Mixins(TCComponent) {
 .tc-select {
   display: inline-block;
   color: $color;
+  max-width: 100%;
   select {
     position: fixed;
     top: -200px;
   }
-  .tc-select--ctitle {
-    text-align: left;
-    font-weight: bold;
-    opacity: 0.8;
-    margin-bottom: 3px;
-    margin-left: 3px;
+
+  .tc-select--head {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    margin: 3px {
+      bottom: 0;
+    }
+
+    .tc-select--title {
+      @include tc-container--title();
+    }
+    .tc-select--tooltip {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
   }
 
   .tc-select--custom {

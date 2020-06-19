@@ -21,22 +21,26 @@ const tcComponents: TCComponentGroup[] = [
       {
         name: "Default Tags",
         icon: "component",
-        api: []
+        api: [], // TODO:
+        slots: []
       },
       {
         name: "Colors",
         icon: "color-fan",
-        api: []
+        api: [], // TODO:
+        slots: []
       },
       {
         name: "Icons",
         icon: "heart",
-        api: []
+        api: [], // TODO:
+        slots: []
       },
       {
         name: "Auto Background",
         icon: "swap",
-        api: []
+        api: [], // TODO:
+        slots: []
       }
     ]
   },
@@ -189,7 +193,8 @@ const tcComponents: TCComponentGroup[] = [
             description:
               "Specifies the interval between legal numbers in an input field"
           }
-        ]
+        ],
+        slots: []
       },
       {
         name: "Card",
@@ -228,6 +233,20 @@ const tcComponents: TCComponentGroup[] = [
             type: "boolean"
           },
           ...tcComponent_Api
+        ],
+        slots: [
+          {
+            name: "header",
+            description: "TODO:"
+          },
+          {
+            name: "media",
+            description: "TODO:"
+          },
+          {
+            name: "default",
+            description: "TODO:"
+          }
         ]
       },
       {
@@ -262,7 +281,8 @@ const tcComponents: TCComponentGroup[] = [
             type: "boolean",
             description: "Toggles darkmode on or off"
           }
-        ]
+        ],
+        slots: []
       },
       {
         name: "Button",
@@ -306,12 +326,20 @@ const tcComponents: TCComponentGroup[] = [
             default: "primary",
             parameters: tccolors
           }
-        ]
+        ],
+        slots: []
       },
       {
         name: "Sidebar",
         icon: "sidebar",
-        api: []
+        api: [], // TODO:
+        slots: [
+          // TODO:
+          {
+            name: "default",
+            description: "TODO:"
+          }
+        ]
       },
       {
         name: "Checkbox",
@@ -372,7 +400,8 @@ const tcComponents: TCComponentGroup[] = [
             description:
               "Is called whenever the user changes the state of the checkbox"
           }
-        ]
+        ],
+        slots: []
       },
       {
         name: "Link",
@@ -385,6 +414,12 @@ const tcComponents: TCComponentGroup[] = [
           },
           { name: "href", type: "string", description: "" },
           { name: "@click", type: "function", description: "" }
+        ],
+        slots: [
+          {
+            name: "default",
+            description: "TODO:"
+          }
         ]
       },
       {
@@ -414,22 +449,37 @@ const tcComponents: TCComponentGroup[] = [
             description:
               "Is called whenever the user changes the state of the modal"
           }
-        ]
+        ],
+        slots: [] // TODO:
       },
       {
         name: "Tabbar",
         icon: "tabbar",
-        api: []
+        api: [], // TODO:
+        slots: [] // TODO:
       },
       {
         name: "Table",
         icon: "table",
-        api: []
+        api: [], // TODO:
+        slots: [
+          {
+            name: "default",
+            description: "TODO:"
+          }
+        ]
       },
       {
         name: "Scroll Up",
         icon: "chevron-up",
-        api: []
+        api: [
+          {
+            name: "src",
+            description: "Source to image, video, gif to be displayed",
+            type: "string"
+          }
+        ], // TODO:
+        slots: []
       },
       {
         name: "Image",
@@ -440,12 +490,14 @@ const tcComponents: TCComponentGroup[] = [
             description: "Source to image, video, gif to be displayed",
             type: "string"
           }
-        ]
+        ],
+        slots: []
       },
       {
         name: "Switch",
         icon: "toggle",
-        api: []
+        api: [], // TODO:
+        slots: []
       },
       {
         name: "Spinner",
@@ -463,7 +515,8 @@ const tcComponents: TCComponentGroup[] = [
             type: "boolean",
             default: false
           }
-        ]
+        ],
+        slots: []
       },
       {
         name: "Hero",
@@ -493,12 +546,23 @@ const tcComponents: TCComponentGroup[] = [
             description: "Background color of Hero",
             default: "transparent"
           }
-        ]
+        ],
+        slots: [] // TODO:
       },
       {
         name: "Revealer",
         icon: "cross",
-        api: []
+        api: [], // TODO:
+        slots: [
+          {
+            name: "background",
+            description: "TODO:"
+          },
+          {
+            name: "default",
+            description: "TODO:"
+          }
+        ]
       },
       {
         name: "Progress",
@@ -541,7 +605,8 @@ const tcComponents: TCComponentGroup[] = [
             default: "8",
             description: "Determines the width of the ring of the progress ring"
           }
-        ]
+        ],
+        slots: []
       },
       {
         name: "Quote",
@@ -551,6 +616,18 @@ const tcComponents: TCComponentGroup[] = [
             name: "title",
             type: "String",
             description: "Sets a prestyled title"
+          }
+        ],
+        slots: [
+          {
+            name: "default",
+            description:
+              "This slot is used, to place the quote you want to display, it can be any html element or tc-component"
+          },
+          {
+            name: "header",
+            description:
+              "You can use this slot, to style your own header. Property title will then be overwritten"
           }
         ]
       },
@@ -598,6 +675,16 @@ const tcComponents: TCComponentGroup[] = [
             type: "function",
             description: "Get called whenever a user clicks the back button"
           }
+        ],
+        slots: [
+          {
+            name: "title",
+            description: "TODO:"
+          },
+          {
+            name: "default",
+            description: "TODO:"
+          }
         ]
       },
       {
@@ -616,17 +703,29 @@ const tcComponents: TCComponentGroup[] = [
               "Inserts a Icon in front of Headline title (only visible with default title)",
             parameters: "Timo's Icons"
           }
+        ],
+        slots: [
+          {
+            name: "title",
+            description: "TODO:"
+          },
+          {
+            name: "default",
+            description: "TODO:"
+          }
         ]
       },
       {
         name: "Segments",
         icon: "segment",
-        api: []
+        api: [], // TODO:
+        slots: [] // TODO:
       },
       {
         name: "Slider",
         icon: "slider",
-        api: []
+        api: [], // TODO:
+        slots: []
       },
       {
         name: "Navbar",
@@ -647,6 +746,20 @@ const tcComponents: TCComponentGroup[] = [
             type: "string",
             parameters: "Timo's Icons",
             description: "Custom Icon to be displayed"
+          }
+        ],
+        slots: [
+          {
+            name: "logo",
+            description: "TODO:"
+          },
+          {
+            name: "actions",
+            description: "TODO:"
+          },
+          {
+            name: "default",
+            description: "TODO:"
           }
         ]
       },
@@ -685,27 +798,37 @@ const tcComponents: TCComponentGroup[] = [
             type: "(string | number | boolean)[]",
             description: ""
           }
-        ]
+        ],
+        slots: []
       },
       {
         name: "Tooltip",
         icon: "tooltip",
-        api: []
+        api: [], // TODO:
+        slots: []
       },
       {
         name: "List",
         icon: "list-bullet",
-        api: []
+        api: [], // TODO:
+        slots: [
+          {
+            name: "default",
+            description: "TODO:"
+          }
+        ]
       },
       {
         name: "Steps",
         icon: "dots",
-        api: []
+        api: [], // TODO:
+        slots: [] // TODO:
       },
       {
         name: "Badge",
         icon: "notification",
-        api: []
+        api: [], // TODO:
+        slots: [] // TODO:
       }
     ].sort((a, b) => a.name.localeCompare(b.name))
   },
@@ -716,7 +839,13 @@ const tcComponents: TCComponentGroup[] = [
       {
         name: "Grid",
         icon: "plus",
-        api: []
+        api: [], // TODO:
+        slots: [
+          {
+            name: "default",
+            description: "TODO:"
+          }
+        ]
       }
     ]
   }

@@ -21,7 +21,9 @@
   color: #fff;
   background: lighten($color, 20%);
   border-color: rgba(#fff, 0.01);
-  &:hover {
+  &:hover,
+  &:focus,
+  &:focus-within {
     border-color: rgba(#fff, 0.4);
   }
 }
@@ -31,7 +33,40 @@
   color: $color;
   background: $paragraph;
   border-radius: $border-radius;
-  &:hover {
+  &:hover,
+  &:focus,
+  &:focus-within {
     border-color: rgba($color, 0.4);
   }
+}
+
+@mixin tc-container--title {
+  text-align: left;
+  font-weight: bold;
+  opacity: 0.8;
+  margin-bottom: 3px;
+  margin-left: 3px;
+}
+
+@mixin custom-scrollbar__dark {
+  ::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+    position: absolute !important;
+    border-radius: 4px;
+    transition: 0.2s ease;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: lime;
+    border-radius: 4px;
+    transition: 0.2s ease;
+    &:hover {
+      background: #888;
+      transition: 0.2s ease;
+    }
+  }
+}
+
+@mixin custom-scrollbar__light {
 }

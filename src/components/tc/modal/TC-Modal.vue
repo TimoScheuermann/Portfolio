@@ -40,7 +40,10 @@ export default class TCModal extends Mixins(TCComponent) {
 
   public bodyOverflowBefore: string | null = document.body.style.overflow;
   public opened = this.value;
-  public id: string = "tc-modal_" + this.uuid_ + "--head";
+
+  get id(): string {
+    return "tc-modal_" + this.uuid_ + "--head";
+  }
 
   @Watch("value")
   changed(updated: any, old: any) {

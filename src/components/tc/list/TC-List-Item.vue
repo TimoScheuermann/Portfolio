@@ -5,7 +5,7 @@
     :class="{ 'tc-list-item__link': !isSwitch }"
   >
     <div class="tc-list-item--icon">
-      <i :class="icon"></i>
+      <i :class="'ti-' + icon"></i>
     </div>
     <div class="tc-list-item--container">
       <div class="tc-list-item--title">

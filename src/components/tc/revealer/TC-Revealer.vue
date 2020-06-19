@@ -31,7 +31,9 @@ export default class TCRevealer extends Mixins(TCComponent) {
   @Prop({ default: "Revealer", type: String }) title!: string;
   @Prop() icon!: string;
 
-  id: string = "tc-revealer_" + this.uuid_;
+  get id(): string {
+    return "tc-revealer_" + this.uuid_;
+  }
 }
 </script>
 <style lang="scss" scoped>

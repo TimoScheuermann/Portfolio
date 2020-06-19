@@ -63,7 +63,8 @@ export default class TCButton extends Mixins(TCComponent) {
   &.tc-button__icon-right {
     flex-direction: row-reverse;
   }
-  text-align: center;
+  justify-content: center;
+  align-items: center;
   margin: 3px;
   height: 20px;
   line-height: 20px;

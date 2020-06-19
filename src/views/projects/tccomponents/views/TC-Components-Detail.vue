@@ -1,13 +1,14 @@
 <template>
-  <div v-if="compFound">
+  <div v-if="exists">
     <tc-hero height="200" background="#000" tc-dark-container>
       <div class="title" v-if="tcComponent">TC-{{ tcComponent.name }}</div>
       <i v-if="tcComponent" :class="'ti-' + tcComponent.icon" />
     </tc-hero>
     <div content>
+      <!-- {{ tcComponent }} -->
       <component :is="currentComponent" />
       <div v-if="tcComponent && tcComponent.api.length > 0">
-        <tc-headline title="API" />
+        <tc-headline title="Properties" />
         <tc-table v-if="tcComponent">
           <tr>
             <th>Name</th>
@@ -52,6 +53,10 @@ import { TCComponentGroup } from "@/models/TCComponents/TCComponentGroup.model";
 export default class TCComponentsDetail extends Vue {
   public compFound = true;
   public tcComponents: TCComponentGroup[] = tcComponents;
+
+  get exists() {
+    return this.compFound && this.component.length > 0 && this.tcComponent;
+  }
 
   get component() {
     const comp = this.$route.params.comp;

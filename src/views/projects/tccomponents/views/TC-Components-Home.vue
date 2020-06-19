@@ -48,8 +48,7 @@
         class="group-show-real"
         :id="'show-real_' + group.group"
       >
-        <h1>{{ group.group }}</h1>
-        <tc-list class="tc-components-home--list">
+        <tc-list class="tc-components-home--list" :title="group.group">
           <tc-list-item
             v-for="comp in group.components"
             :key="comp.name"
@@ -58,7 +57,7 @@
               params: { comp: comp.name }
             }"
             :title="comp.name"
-            :icon="'ti-' + comp.icon"
+            :icon="comp.icon"
           />
         </tc-list>
         <tc-grid class="tc-components-home--grid" minWidth="200">
@@ -124,17 +123,8 @@ export default class TCComponentsHome extends Vue {
 }
 
 .group-show-real {
-  @media only screen and(max-width: 496px) {
-    background: $paragraph;
-    border-radius: $border-radius;
-    padding: 20px 20px {
-      bottom: 20px;
-    }
-    margin: 30px 0;
-    h1 {
-      text-align: center;
-      margin-bottom: 20px;
-    }
+  .tc-list {
+    margin-bottom: 20px;
   }
   @media only screen and(min-width: 497px) {
     &#show-real_Fundementals {

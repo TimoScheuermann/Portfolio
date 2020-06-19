@@ -1,7 +1,14 @@
 <template>
   <div class="tc-input" :class="{ 'tc-input__dark': dark }">
-    <div v-if="title" class="tc-input--title">
-      {{ title }}
+    <div class="tc-input--head" v-if="title || tooltip">
+      <div class="tc-input--title">
+        {{ title }}
+      </div>
+      <div class="tc-input--tooltip" v-if="tooltip">
+        <tc-tooltip :tooltip="tooltip">
+          <i class="ti-question-circle" />
+        </tc-tooltip>
+      </div>
     </div>
     <div
       class="tc-input--container"
@@ -64,11 +71,17 @@
 <script lang="ts">
 import { Vue, Component, Prop, Mixins } from "vue-property-decorator";
 import TCComponent from "../TC-Component.mixin";
+import TCTooltip from "../tooltip/TC-Tooltip.vue";
 
-@Component
+@Component({
+  components: {
+    "tc-tooltip": TCTooltip
+  }
+})
 export default class TCInput extends Mixins(TCComponent) {
   @Prop() icon!: string;
   @Prop({ default: "Choose File" }) filePlaceholder!: string;
+  @Prop() tooltip!: string;
   @Prop() title!: string;
   @Prop() buttons!: boolean;
   @Prop() placeholder!: string;
@@ -89,7 +102,9 @@ export default class TCInput extends Mixins(TCComponent) {
   @Prop() required!: boolean;
   @Prop({ default: 1 }) step!: number;
 
-  id: string = "tc-input_" + this.uuid_;
+  get id(): string {
+    return "tc-input_" + this.uuid_;
+  }
 
   innerValue: any = this.value || (this.type === "number" ? 0 : "");
 
@@ -138,17 +153,23 @@ $size: 30px;
   max-width: 100%;
   margin: 3px;
 
-  .tc-input--title {
-    text-align: left;
-    font-weight: bold;
-    opacity: 0.8;
+  .tc-input--head {
+    display: grid;
+    grid-template-columns: 1fr auto;
     margin-bottom: 3px;
+
+    .tc-input--title {
+      @include tc-container--title();
+    }
+    .tc-input--tooltip {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
   }
 
   &.tc-input__dark {
-    .tc-input--title {
-      color: #fff;
-    }
+    color: #fff;
     .tc-input--container,
     .tc-input--input input,
     .tc-input--input label {

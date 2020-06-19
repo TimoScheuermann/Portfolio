@@ -5,20 +5,16 @@
       backName="Projects"
       :backTo="{ name: constants.routes.projects }"
     >
-      <div class="tc-header--button">
-        <tc-button
-          icon="save"
-          name="Versions"
-          :to="{ name: constants.projectRoutes.timos_icons_versions }"
-        />
-      </div>
-      <div class="tc-header--button">
-        <tc-button
-          icon="download"
-          name="Getting started"
-          :to="{ name: constants.projectRoutes.timos_icons_getting_started }"
-        />
-      </div>
+      <tc-button
+        icon="save"
+        name="Versions"
+        :to="{ name: constants.projectRoutes.timos_icons_versions }"
+      />
+      <tc-button
+        icon="download"
+        name="Getting started"
+        :to="{ name: constants.projectRoutes.timos_icons_getting_started }"
+      />
     </tc-header>
     <tc-hero>
       <img slot="background" src="assets/projects/timosicons/hero.png" />

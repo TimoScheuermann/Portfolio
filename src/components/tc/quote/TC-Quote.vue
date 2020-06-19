@@ -26,11 +26,7 @@ export default class TCQuote extends Mixins(TCComponent) {
   background: $paragraph;
   &.tc-quote__dark {
     background: lighten($color, 20%);
-    .tc-quote--title__prestyled {
-      span {
-        color: #fff;
-      }
-    }
+    color: #fff;
   }
   border: {
     radius: 5px;

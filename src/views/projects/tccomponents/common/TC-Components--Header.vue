@@ -8,7 +8,7 @@
     :key="headerTitle"
   >
     <tc-button
-      v-if="tcComponent"
+      v-if="tcComponent && tcComponent.api.length > 0"
       name="Open in Designer"
       variant="filled"
       icon="tools"

@@ -33,7 +33,9 @@ export default class TCTooltip extends Mixins(TCComponent) {
 </script>
 <style lang="scss" scoped>
 .tc-tooltip {
+  cursor: help;
   position: relative;
+  display: inline-block;
 
   @keyframes anim {
     from {
@@ -51,7 +53,7 @@ export default class TCTooltip extends Mixins(TCComponent) {
       animation: anim 0.3s ease-in-out 0.3s both;
     }
   }
-  position: relative;
+
   .tooltip {
     visibility: hidden;
     z-index: 10;
@@ -109,6 +111,9 @@ export default class TCTooltip extends Mixins(TCComponent) {
     .tooltip--content {
       background: $primary;
       // width: fit-content;
+      width: max-content;
+      max-width: 300px;
+
       padding: 1px 12px {
         bottom: 3px;
       }

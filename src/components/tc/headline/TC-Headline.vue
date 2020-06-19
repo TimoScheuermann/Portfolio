@@ -33,7 +33,7 @@ export default class TCHeadline extends Mixins(TCComponent) {
   flex-wrap: wrap;
   position: relative;
   color: $color;
-  &.__dark {
+  &__dark {
     color: #fff;
   }
   .tc-headline--bar {

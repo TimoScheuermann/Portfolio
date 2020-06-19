@@ -1,6 +1,15 @@
 <template>
   <div class="tc-select" :class="{ 'tc-select__dark': dark }">
-    <div class="tc-select--ctitle">{{ title }}</div>
+    <div class="tc-select--head" v-if="title || tooltip">
+      <div class="tc-select--title">
+        {{ title }}
+      </div>
+      <div class="tc-select--tooltip" v-if="tooltip">
+        <tc-tooltip :tooltip="tooltip">
+          <i class="ti-question-circle" />
+        </tc-tooltip>
+      </div>
+    </div>
     <label :for="id" @click.stop="expanded = !expanded">
       <i v-if="icon" :class="'ti-' + icon" />
       <span v-if="display">{{ display }}</span>
@@ -47,6 +56,7 @@ export default class TCIconSelect extends Mixins(TCComponent) {
   public query = "";
 
   @Prop() title!: string;
+  @Prop() tooltip!: string;
   @Prop({ default: "heart" }) icon!: string;
   @Prop({ default: true }) dark!: boolean;
   @Prop({ default: false }) multiple!: boolean;
@@ -140,12 +150,21 @@ export default class TCIconSelect extends Mixins(TCComponent) {
     top: -200px;
   }
 
-  .tc-select--ctitle {
-    text-align: left;
-    font-weight: bold;
-    opacity: 0.8;
-    margin-bottom: 3px;
-    margin-left: 3px;
+  .tc-select--head {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    margin: 3px {
+      bottom: 0;
+    }
+
+    .tc-select--title {
+      @include tc-container--title();
+    }
+    .tc-select--tooltip {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
   }
 
   .tc-select--custom {

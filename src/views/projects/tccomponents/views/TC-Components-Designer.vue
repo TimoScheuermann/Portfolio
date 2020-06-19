@@ -32,7 +32,7 @@
         <h1>omponent Designer</h1>
       </section>
 
-      <tc-headline color-fff :dark="true" title="Toolbar">
+      <tc-headline :dark="true" :title="selectedComponent && 'Properties'">
         <div>
           <span select v-if="!selectedComponent">
             <span>
@@ -40,6 +40,17 @@
             </span>
             <i class="ti-arrow-right" />
           </span>
+          <tc-button
+            v-else
+            name="Examples"
+            icon="exchange"
+            variant="opaque"
+            tccolor="alarm"
+            :to="{
+              name: constants.projectRoutes.timos_components_detail,
+              params: { comp: selectedComponent }
+            }"
+          />
           <tc-select
             :dark="true"
             placeholder="Component"
@@ -49,12 +60,18 @@
         </div>
       </tc-headline>
 
-      <transition-group name="options-trans" tag="div" class="tc-options">
+      <transition-group
+        name="options-trans"
+        class="tc-properties"
+        is="tc-grid"
+        :minWidth="175"
+      >
         <tc-icon-select
           v-for="api in iconAttributes"
           :key="api.name"
           :title="api.name"
           v-model="data[api.name]"
+          :tooltip="api.description"
         />
         <tc-select
           v-for="api in selectAttributes"
@@ -64,6 +81,7 @@
           :placeholder="api.name"
           :values="api.selectValues"
           v-model="data[api.name]"
+          :tooltip="api.description"
         />
         <tc-input
           v-for="api in inputAttributes"
@@ -74,33 +92,37 @@
           :key="api.name"
           :placeholder="api.name"
           v-model="data[api.name]"
+          :tooltip="api.description"
         />
       </transition-group>
 
-      <!-- <h2 style="color: #fff">Slots</h2> -->
+      <div v-if="component && component.slots && component.slots.length > 0">
+        <tc-headline :dark="true" title="Slots" />
+        <tc-grid>
+          <tc-textarea
+            v-for="slot in component.slots"
+            :key="slot.name"
+            :title="slot.name"
+            :tooltip="slot.description"
+            v-model="slots[slot.name]"
+            :dark="true"
+          />
+        </tc-grid>
+      </div>
 
-      <!-- <p color-fff>{{ data }}</p>
-      <p color-fff>{{ html }}</p>
-      <p color-fff>{{ $store.getters.designerComponent }}</p> -->
-
-      <div
-        class="designer-canvas"
-        :class="{ 'designer-canvas__dark': darkCanvas }"
-      >
-        <div v-if="component" class="designer-canvas--header">
-          <div>
-            <h1>{{ selectedComponent }}</h1>
-          </div>
-          <div>
-            <tc-checkbox
-              :dark="darkCanvas"
-              v-model="darkCanvas"
-              title="Dark Canvas"
-            />
-            <tc-button :name="copyHTMLText" @click="copyHTML()" />
-          </div>
-        </div>
-        <div class="designer-canvas--element">
+      <div v-if="component">
+        <tc-headline title="Output" :dark="true">
+          <tc-checkbox :dark="true" v-model="darkCanvas" title="Dark Canvas" />
+          <tc-button
+            :name="copyHTMLText"
+            @click="copyHTML()"
+            style="min-width: 141px"
+          />
+        </tc-headline>
+        <div
+          class="designer-canvas"
+          :class="{ 'designer-canvas__dark': darkCanvas }"
+        >
           <div ref="container"></div>
         </div>
       </div>
@@ -133,6 +155,17 @@ import TCQuote from "@/components/tc/quote/TC-Quote.vue";
 import TCIconSelect from "@/components/projects/TCComponents/IconSelect.vue";
 import { TCComponentApi } from "@/models/TCComponents/TCComponentApi.model";
 import TCSpinner from "@/components/tc/spinner/TC-Spinner.vue";
+import TCGrid from "@/components/tc/_layout/grid/TC-Grid.vue";
+import TCTextarea from "@/components/tc/textarea/TC-Textarea.vue";
+import TCSegments from "@/components/tc/segments/TC-Segments.vue";
+import TCSidebar from "@/components/tc/sidebar/TC-Sidebar.vue";
+import TCSlider from "@/components/tc/slider/TC-Slider.vue";
+import TCSteps from "@/components/tc/steps/TC-Steps.vue";
+import TCSwitch from "@/components/tc/switch/TC-Switch.vue";
+import TCTabbar from "@/components/tc/tabbar/TC-Tabbar.vue";
+import TCTable from "@/components/tc/table/TC-Table.vue";
+import TCTooltip from "@/components/tc/tooltip/TC-Tooltip.vue";
+import TCBadge from "@/components/tc/badge/TC-Badge.vue";
 
 @Component({
   components: {
@@ -143,7 +176,9 @@ import TCSpinner from "@/components/tc/spinner/TC-Spinner.vue";
     "tc-input": TCInput,
     "tc-button": TCButton,
     "tc-icon-select": TCIconSelect,
-    "tc-checkbox": TCCheckbox
+    "tc-checkbox": TCCheckbox,
+    "tc-grid": TCGrid,
+    "tc-textarea": TCTextarea
   }
 })
 export default class TCComponentsDesigner extends Vue {
@@ -155,34 +190,54 @@ export default class TCComponentsDesigner extends Vue {
   public copyHTMLText: string = "Copy HTML Markup";
   public darkCanvas = true;
   public data: {} = {};
+  public slots = {};
   public available: { [x: string]: string | any } = {
+    Badge: TCBadge,
     Button: TCButton,
-    Input: TCInput,
     Card: TCCard,
     Checkbox: TCCheckbox,
     Divider: TCDivider,
-    Progress: TCProgress,
-    Select: TCSelect,
-    Spinner: TCSpinner,
-    Quote: TCQuote,
     Header: TCHeader,
     Headline: TCHeadline,
     Hero: TCHero,
-    Image: TCImage
+    Image: TCImage,
+    Input: TCInput,
+    Link: TCLink,
+    List: TCList,
+    Modal: TCModal,
+    Navbar: TCNavbar,
+    Progress: TCProgress,
+    Quote: TCQuote,
+    Revealer: TCRevealer,
+    "Scroll Up": TCScrollUp,
+    Segments: TCSegments,
+    Select: TCSelect,
+    Sidebar: TCSidebar,
+    Slider: TCSlider,
+    Spinner: TCSpinner,
+    Steps: TCSteps,
+    Switch: TCSwitch,
+    Tabbar: TCTabbar,
+    Table: TCTable,
+    Tooltip: TCTooltip
   };
 
   mounted() {
-    const loadedComp: string = this.$store.getters.designerComponent;
+    let loadedComp: string = this.$store.getters.designerComponent;
+    // loadedComp = "Button";
     if (loadedComp.length > 0) {
       this.selectedComponent = loadedComp;
       this.$store.commit("updateDesignerComponent", "");
+      this.changed();
     }
   }
 
   get componentList() {
     return this.components
+      .filter(x => x.api.length > 0)
       .map(x => x.name)
-      .filter(x => Object.keys(this.available).includes(x));
+      .filter(x => Object.keys(this.available).includes(x))
+      .sort((a, b) => a.localeCompare(b));
   }
   get component(): TCComponent | undefined {
     if (this.selectedComponent)
@@ -237,10 +292,15 @@ export default class TCComponentsDesigner extends Vue {
   @Watch("selectedComponent")
   public switch(): void {
     this.data = {};
+    this.slots = {};
+    this.$nextTick(() => {
+      this.changed();
+    });
   }
 
   @Watch("darkCanvas", { deep: true })
   @Watch("data", { deep: true })
+  @Watch("slots", { deep: true })
   public changed(): void {
     try {
       const ComponentClass = Vue.extend(this.available[this.selectedComponent]);
@@ -248,9 +308,11 @@ export default class TCComponentsDesigner extends Vue {
         propsData: { ...this.data, dark: this.darkCanvas },
         parent: this
       });
-      // instance.$slots.default = ["Click me!"];
-      instance.$mount(); // pass nothing
-      // appendChild(instance.$el);
+      for (const [key, value] of Object.entries(this.slots)) {
+        (instance.$slots as any)[key] = [value];
+      }
+
+      instance.$mount();
       const element: HTMLElement = this.$refs.container as HTMLElement;
       element.innerHTML = "";
       element.appendChild(instance.$el);
@@ -306,21 +368,11 @@ export default class TCComponentsDesigner extends Vue {
   min-height: calc(
     100vh - env(safe-area-inset-top) - env(safe-area-inset-bottom) - 100px
   );
+  overflow-x: hidden;
 }
 
 [color-fff] {
   color: #fff;
-}
-
-/deep/ .tc-card {
-  animation: none !important;
-}
-
-.tc-options {
-  display: flex;
-  flex-wrap: wrap;
-  position: relative;
-  min-height: 100px;
 }
 
 .designer-canvas {
@@ -329,35 +381,17 @@ export default class TCComponentsDesigner extends Vue {
   padding: 20px;
   border-radius: 5px;
   overflow: hidden;
+  text-align: center;
+  max-width: 100%;
 
   &__dark {
     background: #000;
-    .designer-canvas--header h1 {
-      color: #fff;
-    }
   }
-  &--header div,
-  &--header {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
+  /deep/ .tc-header {
+    position: relative !important;
   }
-  &--header {
-    justify-content: space-between;
-    .tc-button {
-      min-width: 141.292px;
-    }
-  }
-  &--element {
-    text-align: center;
-    padding-top: 20px;
-    max-width: 100%;
-    & > div {
-      max-width: 100%;
-    }
-    /deep/ .tc-header {
-      position: relative !important;
-    }
+  /deep/ .tc-card {
+    animation: none !important;
   }
 }
 
