@@ -1,6 +1,7 @@
 <template>
   <div content>
     <tc-color-picker />
+    <tc-expander title="Reveal me"></tc-expander>
     <!--  -->
 
     <!-- <tc-header title="Playground">
@@ -190,6 +191,7 @@ import TCSteps from "../../components/tc/steps/TC-Steps.vue";
 import TCBadge from "../../components/tc/badge/TC-Badge.vue";
 import TCColorPicker from "../../components/tc/color-picker/TC-Color-Picker.vue";
 import TCTestComponent from "../../components/tc/Test-Component.vue";
+import TCExpander from "../../components/TC-Expander.vue";
 
 @Component({
   components: {
@@ -214,7 +216,8 @@ import TCTestComponent from "../../components/tc/Test-Component.vue";
     // "tc-step": TCStep,
     // "tc-badge": TCBadge,
     "tc-color-picker": TCColorPicker,
-    "tc-test-component": TCTestComponent
+    "tc-test-component": TCTestComponent,
+    "tc-expander": TCExpander
   }
 })
 export default class Playground extends Vue {

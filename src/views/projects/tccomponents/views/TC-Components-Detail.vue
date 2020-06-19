@@ -6,7 +6,7 @@
     </tc-hero>
     <div content>
       <!-- {{ tcComponent }} -->
-      <component :is="currentComponent" />
+      <component :is="currentComponent" :component="tcComponent" />
       <div v-if="tcComponent && tcComponent.api.length > 0">
         <tc-headline title="Properties" />
         <tc-table v-if="tcComponent">

@@ -8,10 +8,24 @@
       iusto aspernatur magnam blanditiis.
     </p>
 
-    <tc-headline title="Slots" />
-    <h3>Header</h3>
-    <h3>Media</h3>
-    <h3>Default</h3>
+    <div v-if="component.slots && component.slots.length > 0">
+      <tc-grid arrangement="auto-fit">
+        <div>
+          <h2>Slots</h2>
+          <div v-for="slot in component.slots" :key="slot.name">
+            <h3>
+              {{ slot.name }}
+            </h3>
+            <p>
+              {{ slot.description }}
+            </p>
+          </div>
+        </div>
+        <div>
+          <tc-image src="assets/projects/tccomponents/prototypes/card.svg" />
+        </div>
+      </tc-grid>
+    </div>
 
     <tc-headline title="Options" />
 
@@ -73,21 +87,28 @@
   </div>
 </template>
 <script lang="ts">
-import { Vue, Component } from "vue-property-decorator";
+import { Vue, Component, Prop } from "vue-property-decorator";
 import TCHeadline from "@/components/tc/headline/TC-Headline.vue";
 import TCCard from "@/components/tc/card/TC-Card.vue";
 import PortfolioCodeExample from "@/components/projects/TCComponents/CodeExample.vue";
 import TCGrid from "@/components/tc/_layout/grid/TC-Grid.vue";
+import { TCComponent } from "../../../../../models/TCComponents/TCComponent.model";
+import TCImage from "../../../../../components/tc/image/TC-Image.vue";
 @Component({
   components: {
     "portfolio-code-example": PortfolioCodeExample,
     "tc-headline": TCHeadline,
     "tc-card": TCCard,
-    "tc-grid": TCGrid
+    "tc-grid": TCGrid,
+    "tc-image": TCImage
   }
 })
 export default class TCComponentsDetailCard extends Vue {
-  public src: string = "https://gradientjoy.com/400x300?id=44";
+  @Prop() component!: TCComponent;
+
+  public src: string =
+    "https://davidjrodger.files.wordpress.com/2013/06/travel-photo-arctic-circle-norway-misty-mountains-like-smoke-rising-from-forest-image-copyright-david-j-rodger.jpg";
+  // public src: string = "https://gradientjoy.com/400x300?id=44";
 }
 </script>
 <style lang="scss" scoped>
