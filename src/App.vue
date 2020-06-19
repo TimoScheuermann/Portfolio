@@ -132,7 +132,17 @@ export default class App extends Vue {
     } else {
       document.title = "Timo Scheuermann | Portfolio";
     }
+    this.updateMeta("title", document.title);
   }
+
+  private updateMeta(name: string, content: string): void {
+    document.querySelectorAll(`meta[name=${name}]`).forEach(elem => {
+      elem.remove();
+    });
+    document.head.innerHTML =
+      `<meta name="${name}" content="${content}" />` + document.head.innerHTML;
+  }
+
   private replaceTitlePlaceholder(params: object, title: string): string {
     for (let [key, value] of Object.entries(params)) {
       title = title.split("%" + key + "%").join(value);
