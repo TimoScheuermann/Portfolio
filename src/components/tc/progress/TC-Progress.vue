@@ -12,7 +12,6 @@
   </div>
   <div v-else class="tc-progress tc-progress__ring">
     <svg
-      xmlns="http://www.w3.org/2000/svg"
       :width="ringSize"
       :height="ringSize"
       :viewBox="'0 0 ' + ringSize + ' ' + ringSize + ''"

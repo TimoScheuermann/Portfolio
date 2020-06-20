@@ -20,7 +20,7 @@ module.exports = {
     loaderOptions: {
       sass: {
         prependData:
-          "@import '@/components/tc/_variables.scss';\n@import '@/components/tc/_mixins.scss';"
+          "@import '~@/components/tc/_variables.scss';\n@import '~@/components/tc/_mixins.scss';"
       }
     }
   }

@@ -2,7 +2,6 @@
   <div class="contact-view">
     <tc-header title="Contact" :dark="true" />
     <tc-hero height="100" unit="vh" :hasFixedHeader="false">
-      <!-- src="http://quotesideas.com/wp-content/uploads/2015/05/00482967dce2c1b3bf7fa0ce2e1d4a54.jpg" -->
       <img src="assets/contact/bg.PNG" slot="background" id="background" />
       <tc-card rounded="true" hover="true">
         <tc-button
