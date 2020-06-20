@@ -21,25 +21,6 @@ $color_colors: (
 $isMobile: "only screen and(max-width: 850px)";
 $isDesktop: "only screen and(min-width: 851px)";
 
-// Mobile Support
-
-@supports (top: constant(safe-area-inset-top)) {
-  :root {
-    --sa-top: constant(safe-area-inset-top);
-    --sa-right: constant(safe-area-inset-right);
-    --sa-bottom: constant(safe-area-inset-bottom);
-    --sa-left: constant(safe-area-inset-left);
-  }
-}
-@supports (top: env(safe-area-inset-top)) {
-  :root {
-    --sa-top: env(safe-area-inset-top);
-    --sa-right: env(safe-area-inset-right);
-    --sa-bottom: env(safe-area-inset-bottom);
-    --sa-left: env(safe-area-inset-left);
-  }
-}
-
 // Options
 $border-radius: 5px;
 

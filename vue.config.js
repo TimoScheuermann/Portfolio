@@ -19,16 +19,11 @@ module.exports = {
   css: {
     loaderOptions: {
       sass: {
-        prependData:
-          "@import '@/components/tc/variables.scss';\n@import '@/components/tc/mixins.scss';"
+        prependData: `
+          @import "@/components/tc/_variables.scss";
+          @import "@/components/tc/_mixins.scss";
+        `
       }
     }
   }
-  // chainWebpack: config => {
-  //   config.module
-  //     .rule("images")
-  //     .use("url-loader")
-  //     .loader("url-loader")
-  //     .tap(options => Object.assign(options, { limit: 10240 }));
-  // }
 };

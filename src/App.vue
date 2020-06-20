@@ -1,5 +1,9 @@
 <template lang="html">
   <div id="app">
+    <div class="pageloading" v-if="$store.getters.isRouteLoading">
+      Page is loading
+    </div>
+
     <tc-navbar v-if="false" :dark="darkTabbar">
       <b slot="logo">Logo</b>
       <tc-button slot="actions" name="Login" icon="login" />
@@ -106,6 +110,7 @@ export default class App extends Vue {
   ];
 
   showSidebar() {
+    console.log("loading", this.$store.getters.isRouteLoading);
     return !this.$route.meta.customSidebar;
   }
   get darkTabbar(): boolean {
@@ -160,6 +165,15 @@ html {
   scroll-behavior: smooth;
   text-rendering: auto;
   -webkit-font-smoothing: antialiased;
+}
+
+.pageloading {
+  z-index: 1000000;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: red;
 }
 
 body {

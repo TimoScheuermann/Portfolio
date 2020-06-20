@@ -174,7 +174,7 @@ import TCCard from "@/components/tc/card/TC-Card.vue";
 import TCHeader from "@/components/tc/header/TC-Header.vue";
 import TCHero from "@/components/tc/hero/TC-Hero.vue";
 import TCSwitch from "@/components/tc/switch/TC-Switch.vue";
-import TCComponentHero from "@/components/projects/TCComponents/ComponentHero.vue";
+
 import TCLink from "@/components/tc/link/TC-Link.vue";
 import TCSlider from "@/components/tc/slider/TC-Slider.vue";
 import TCCheckbox from "@/components/tc/checkbox/TC-Checkbox.vue";
@@ -184,7 +184,6 @@ import TCDivider from "@/components/tc/divider/TC-Divider.vue";
 import TCInput from "@/components/tc/input/TC-Input.vue";
 import TCNavbar from "@/components/tc/navbar/TC-Navbar.vue";
 import TCNavbarItem from "@/components/tc/navbar/TC-Navbar-Item.vue";
-import ComponentHero from "@/components/projects/TCComponents/ComponentHero.vue";
 import TCPreview from "../../components/tc/preview/TC-Preview.vue";
 import TCScrollUp from "../../components/tc/scrollup/TC-Scroll-Up.vue";
 import TCSteps from "../../components/tc/steps/TC-Steps.vue";
@@ -204,13 +203,12 @@ import TCExpander from "../../components/TC-Expander.vue";
     // "tc-hero": TCHero,
     // "tc-switch": TCSwitch,
     // "tc-link": TCLink,
-    // "tc-compHero": TCComponentHero,
     // "tc-slider": TCSlider,
     // "p-mobile-view": PMobileView,
     // "tc-modal": TCModal,
     // "tc-divider": TCDivider,
     // "tc-input": TCInput,
-    // comph: ComponentHero,
+
     // "tc-preview": TCPreview,
     // "tc-scroll-up": TCScrollUp,
     // "tc-step": TCStep,

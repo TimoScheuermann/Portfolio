@@ -12,6 +12,7 @@
 <script lang="ts">
 import { Vue, Component, Prop, Mixins } from "vue-property-decorator";
 import TCComponent from "../TC-Component.mixin";
+
 @Component
 export default class TCTooltip extends Mixins(TCComponent) {
   @Prop({ default: "top" }) position!: string;

@@ -1,5 +1,7 @@
 import constants from "@/constants";
+import store from "@/store";
 import EmptyRouter from "@/views/EmptyRouter.vue";
+import HomeView from "@/views/home/Home.vue";
 import Vue from "vue";
 import VueRouter from "vue-router";
 
@@ -15,7 +17,7 @@ const router = new VueRouter({
     {
       path: "/",
       name: "home",
-      component: () => import("@/views/home/Home.vue"),
+      component: HomeView,
       meta: {
         title: prefix + "Home"
       }
@@ -256,6 +258,19 @@ const router = new VueRouter({
       redirect: { name: "home" }
     }
   ]
+});
+
+router.beforeResolve((to, from, next) => {
+  if (to.name) {
+    console.log("loading");
+    store.commit("updateRouteLoading", true);
+  }
+  next();
+});
+
+router.afterEach((to, from) => {
+  console.log("Loaded");
+  store.commit("updateRouteLoading", false);
 });
 
 export default router;

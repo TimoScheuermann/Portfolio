@@ -37,10 +37,10 @@ export default class ComponentHero extends Vue {
   .title {
     font-weight: bold;
     font-size: 1.5em;
-    background: $paragraph;
+    background: #f0f0f0;
     padding: 5px;
   }
-  background: $paragraph;
+  background: #f0f0f0;
   padding-bottom: 10px;
   .tc-grid {
     width: 150vw;

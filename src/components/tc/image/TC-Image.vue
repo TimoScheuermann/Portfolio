@@ -54,7 +54,7 @@ export default class TCImage extends Mixins(TCComponent) {
   cursor: zoom-in;
 }
 </style>
-<style lang="scss">
+<style lang="scss" scoped>
 .tc-image--expanded {
   position: fixed;
   z-index: 99999;

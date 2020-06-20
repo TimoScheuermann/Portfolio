@@ -9,6 +9,7 @@ const store = new Vuex.Store({
     designer: {
       component: ""
     },
+    routeLoading: false,
     uno: {
       players: [],
       games: [],
@@ -28,6 +29,9 @@ const store = new Vuex.Store({
     },
     iconIssue: state => (number: number) => {
       return state.iconIssues.filter(x => x.number === number)[0];
+    },
+    isRouteLoading: state => {
+      return state.routeLoading;
     }
   },
   mutations: {
@@ -36,6 +40,10 @@ const store = new Vuex.Store({
     },
     updateDesignerComponent(state, comp: string) {
       state.designer.component = comp;
+    },
+    updateRouteLoading(state, loading: boolean) {
+      console.log("updateing loading state => ", loading);
+      state.routeLoading = loading;
     }
   }
 });
