@@ -1,7 +1,6 @@
 import constants from "@/constants";
 import store from "@/store";
 import EmptyRouter from "@/views/EmptyRouter.vue";
-import HomeView from "@/views/home/Home.vue";
 import Vue from "vue";
 import VueRouter from "vue-router";
 
@@ -17,7 +16,7 @@ const router = new VueRouter({
     {
       path: "/",
       name: "home",
-      component: HomeView,
+      component: () => import("@/views/home/Home.vue"),
       meta: {
         title: prefix + "Home"
       }
