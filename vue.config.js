@@ -23,5 +23,12 @@ module.exports = {
           "@import '~@/components/tc/_variables.scss';\n@import '~@/components/tc/_mixins.scss';"
       }
     }
+  },
+  chainWebpack: config => {
+    config.module
+      .rule("images")
+      .use("url-loader")
+      .loader("url-loader")
+      .tap(options => Object.assign(options, { limit: 10240 }));
   }
 };

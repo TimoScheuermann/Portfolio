@@ -48,6 +48,7 @@ import icons from "@/icons";
 import { Icon } from "@/models/Icons/Icon.model";
 import TCTooltip from "../../tc/tooltip/TC-Tooltip.vue";
 import TCComponent from "../../tc/TC-Component.mixin";
+
 type TValues = string | number | boolean;
 
 @Component({ components: { "tc-tooltip": TCTooltip } })

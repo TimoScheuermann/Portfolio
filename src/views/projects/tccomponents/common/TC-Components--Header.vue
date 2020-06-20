@@ -62,4 +62,3 @@ export default class TCComponentsHeader extends Vue {
   }
 }
 </script>
-<style lang="scss" scoped></style>

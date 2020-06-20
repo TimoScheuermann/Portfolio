@@ -1,10 +1,5 @@
 <template>
-  <div
-    class="tc-tooltip"
-    onTouchstart="() => { touched = true; }"
-    onTouchend="() => { touched = false; }"
-    :class="{ toched: touched }"
-  >
+  <div class="tc-tooltip">
     <div class="tooltip" :class="'tooltip--' + getPosition()">
       <div class="tooltip--content">{{ tooltip }}</div>
       <div class="arrow"></div>
@@ -21,8 +16,6 @@ import TCComponent from "../TC-Component.mixin";
 export default class TCTooltip extends Mixins(TCComponent) {
   @Prop({ default: "top" }) position!: string;
   @Prop({ default: "Tooltip" }) tooltip!: string;
-
-  touched = false;
 
   getPosition(): string {
     return ["top", "bottom", "left", "right"].includes(this.position)
@@ -46,8 +39,7 @@ export default class TCTooltip extends Mixins(TCComponent) {
     }
   }
 
-  &:hover,
-  &.touched {
+  &:hover {
     .tooltip {
       visibility: visible;
       animation: anim 0.3s ease-in-out 0.3s both;

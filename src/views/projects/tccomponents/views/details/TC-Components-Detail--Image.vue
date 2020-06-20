@@ -33,4 +33,3 @@ export default class TCComponentsDetailImage extends Vue {
   public src: string = "https://gradientjoy.com/400x300?id=44";
 }
 </script>
-<style lang="scss" scoped></style>

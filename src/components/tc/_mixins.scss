@@ -1,7 +1,7 @@
-@mixin backdrop-blur($color) {
-  background: $color;
+@mixin backdrop-blur($bdbColor) {
+  background: $bdbColor;
   @supports (backdrop-filter: blur(50px)) {
-    background: rgba($color, 0.6);
+    background: rgba($bdbColor, 0.6);
     backdrop-filter: blur(50px);
   }
 }

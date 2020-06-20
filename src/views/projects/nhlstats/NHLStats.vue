@@ -39,4 +39,3 @@ export default class NHLStats extends Vue {
   }
 }
 </script>
-<style lang="scss" scoped></style>
