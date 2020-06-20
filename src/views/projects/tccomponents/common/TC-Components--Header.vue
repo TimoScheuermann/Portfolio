@@ -5,6 +5,7 @@
     backName="Overview"
     :backTo="{ name: constants.projectRoutes.timos_components }"
     :autoBackground="true"
+    :dark="true"
     :key="headerTitle"
   >
     <tc-button

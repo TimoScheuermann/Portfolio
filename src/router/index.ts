@@ -15,8 +15,7 @@ const router = new VueRouter({
     {
       path: "/",
       name: "home",
-      component: () =>
-        import(/* webpackPrefetch: true */ "@/views/home/Home.vue"),
+      component: () => import("@/views/home/Home.vue"),
       meta: {
         title: prefix + "Home"
       }
@@ -24,8 +23,7 @@ const router = new VueRouter({
     {
       path: "/playground",
       name: "playground",
-      component: () =>
-        import(/* webpackPrefetch: true */ "@/views/playground/Playground.vue"),
+      component: () => import("@/views/playground/Playground.vue"),
       meta: {
         title: prefix + "Playground"
       }
@@ -33,8 +31,7 @@ const router = new VueRouter({
     {
       path: "/repertoire",
       name: "repertoire",
-      component: () =>
-        import(/* webpackPrefetch: true */ "@/views/repertoire/Repertoire.vue"),
+      component: () => import("@/views/repertoire/Repertoire.vue"),
       meta: {
         title: prefix + "Repertoire"
       }
@@ -42,8 +39,7 @@ const router = new VueRouter({
     {
       path: "/contact",
       name: "contact",
-      component: () =>
-        import(/* webpackPrefetch: true */ "@/views/contact/Contact.vue"),
+      component: () => import("@/views/contact/Contact.vue"),
       meta: {
         title: prefix + "Contact"
       }
@@ -51,8 +47,7 @@ const router = new VueRouter({
     {
       path: "/github",
       name: "github",
-      component: () =>
-        import(/* webpackPrefetch: true */ "@/views/github/GitHub.vue"),
+      component: () => import("@/views/github/GitHub.vue"),
       meta: {
         title: prefix + "GitHub"
       }
@@ -60,8 +55,7 @@ const router = new VueRouter({
     {
       path: "/resume",
       name: "resume",
-      component: () =>
-        import(/* webpackPrefetch: true */ "@/views/resume/Resume.vue"),
+      component: () => import("@/views/resume/Resume.vue"),
       meta: {
         title: prefix + "Resume"
       }
@@ -73,8 +67,7 @@ const router = new VueRouter({
         {
           path: "",
           name: constants.routes.projects,
-          component: () =>
-            import(/* webpackPrefetch: true */ "@/views/projects/Projects.vue"),
+          component: () => import("@/views/projects/Projects.vue"),
           meta: {
             title: prefix + "Projects"
           }
@@ -82,10 +75,7 @@ const router = new VueRouter({
         {
           path: "amspro",
           name: constants.projectRoutes.ams_pro,
-          component: () =>
-            import(
-              /* webpackPrefetch: true */ "@/views/projects/amspro/AMSPro.vue"
-            ),
+          component: () => import("@/views/projects/amspro/AMSPro.vue"),
           meta: {
             title: prefix + "AMS Pro"
           }
@@ -93,8 +83,7 @@ const router = new VueRouter({
         {
           path: "uno",
           name: "uno",
-          component: () =>
-            import(/* webpackPrefetch: true */ "@/views/projects/uno/Uno.vue"),
+          component: () => import("@/views/projects/uno/Uno.vue"),
           meta: {
             title: prefix + "Uno"
           }
@@ -104,7 +93,6 @@ const router = new VueRouter({
           name: constants.projectRoutes.investing_collectors,
           component: () =>
             import(
-              /* webpackPrefetch: true */
               "@/views/projects/investingcollectors/InvestingCollectors.vue"
             ),
           meta: {
@@ -114,10 +102,7 @@ const router = new VueRouter({
         {
           path: "dhbwrichie",
           name: constants.projectRoutes.dhbw_richie,
-          component: () =>
-            import(
-              /* webpackPrefetch: true */ "@/views/projects/dhbwrichie/DHBWRichie.vue"
-            ),
+          component: () => import("@/views/projects/dhbwrichie/DHBWRichie.vue"),
           meta: {
             title: prefix + "DHBW Richie"
           }
@@ -125,10 +110,7 @@ const router = new VueRouter({
         {
           path: "nhlstats",
           name: constants.projectRoutes.nhl_stats,
-          component: () =>
-            import(
-              /* webpackPrefetch: true */ "@/views/projects/nhlstats/NHLStats.vue"
-            ),
+          component: () => import("@/views/projects/nhlstats/NHLStats.vue"),
           meta: {
             title: prefix + "NHL Stats"
           }
@@ -142,9 +124,7 @@ const router = new VueRouter({
               name: constants.projectRoutes.timos_components,
               meta: { customSidebar: true, title: "Timo's Components | Home" },
               component: () =>
-                import(
-                  /* webpackPrefetch: true */ "@/views/projects/tccomponents/TC-Components.vue"
-                )
+                import("@/views/projects/tccomponents/TC-Components.vue")
             },
             {
               path: "designer",
@@ -154,9 +134,7 @@ const router = new VueRouter({
                 title: "Timo's Components | Designer"
               },
               component: () =>
-                import(
-                  /* webpackPrefetch: true */ "@/views/projects/tccomponents/TC-Components.vue"
-                )
+                import("@/views/projects/tccomponents/TC-Components.vue")
             },
             {
               path: "getting-started",
@@ -166,9 +144,7 @@ const router = new VueRouter({
                 title: "Timo's Components | Getting Started"
               },
               component: () =>
-                import(
-                  /* webpackPrefetch: true */ "@/views/projects/tccomponents/TC-Components.vue"
-                )
+                import("@/views/projects/tccomponents/TC-Components.vue")
             },
             {
               path: ":comp",
@@ -178,9 +154,7 @@ const router = new VueRouter({
                 title: "Timo's Components | %comp%"
               },
               component: () =>
-                import(
-                  /* webpackPrefetch: true */ "@/views/projects/tccomponents/TC-Components.vue"
-                )
+                import("@/views/projects/tccomponents/TC-Components.vue")
             }
           ]
         },
@@ -192,9 +166,7 @@ const router = new VueRouter({
               name: constants.projectRoutes.timos_icons,
               path: "",
               component: () =>
-                import(
-                  /* webpackPrefetch: true */ "@/views/projects/timosicons/Timos-Icons.vue"
-                ),
+                import("@/views/projects/timosicons/Timos-Icons.vue"),
               meta: {
                 title: "Timo's Icons | Home"
               }
@@ -208,7 +180,6 @@ const router = new VueRouter({
                   path: "",
                   component: () =>
                     import(
-                      /* webpackPrefetch: true */
                       "@/views/projects/timosicons/resources/Timos-Icons-Requests.vue"
                     ),
                   meta: {
@@ -220,7 +191,6 @@ const router = new VueRouter({
                   path: ":issue",
                   component: () =>
                     import(
-                      /* webpackPrefetch: true */
                       "@/views/projects/timosicons/resources/Timos-Icons-Requests-Detail.vue"
                     ),
                   meta: {
@@ -234,7 +204,6 @@ const router = new VueRouter({
               path: "resources/versions",
               component: () =>
                 import(
-                  /* webpackPrefetch: true */
                   "@/views/projects/timosicons/resources/Timos-Icons-Versions.vue"
                 ),
               meta: {
@@ -246,7 +215,6 @@ const router = new VueRouter({
               path: "resources/howto",
               component: () =>
                 import(
-                  /* webpackPrefetch: true */
                   "@/views/projects/timosicons/resources/Timos-Icons-GettingStarted.vue"
                 ),
               meta: {
@@ -257,9 +225,7 @@ const router = new VueRouter({
               name: constants.projectRoutes.timos_icons_detail,
               path: ":icon",
               component: () =>
-                import(
-                  /* webpackPrefetch: true */ "@/views/projects/timosicons/Timos-Icons-Detail.vue"
-                ),
+                import("@/views/projects/timosicons/Timos-Icons-Detail.vue"),
               meta: {
                 title: "Timo's Icons | %icon%"
               }
@@ -270,9 +236,7 @@ const router = new VueRouter({
           path: "workgallery",
           name: constants.projectRoutes.work_gallery,
           component: () =>
-            import(
-              /* webpackPrefetch: true */ "@/views/projects/workgallery/WorkGallery.vue"
-            ),
+            import("@/views/projects/workgallery/WorkGallery.vue"),
           meta: {
             title: prefix + "Work Gallery"
           }
@@ -280,8 +244,7 @@ const router = new VueRouter({
         {
           path: "*",
           name: constants.projectRoutes.not_found,
-          component: () =>
-            import(/* webpackPrefetch: true */ "@/views/projects/NotFound.vue"),
+          component: () => import("@/views/projects/NotFound.vue"),
           meta: {
             title: prefix + "Projects"
           }

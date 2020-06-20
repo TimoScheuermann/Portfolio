@@ -20,15 +20,15 @@ module.exports = {
     loaderOptions: {
       sass: {
         prependData:
-          "@import '~@/components/tc/_variables.scss';\n@import '~@/components/tc/_mixins.scss';"
+          "@import '@/components/tc/variables.scss';\n@import '@/components/tc/mixins.scss';"
       }
     }
-  },
-  chainWebpack: config => {
-    config.module
-      .rule("images")
-      .use("url-loader")
-      .loader("url-loader")
-      .tap(options => Object.assign(options, { limit: 10240 }));
   }
+  // chainWebpack: config => {
+  //   config.module
+  //     .rule("images")
+  //     .use("url-loader")
+  //     .loader("url-loader")
+  //     .tap(options => Object.assign(options, { limit: 10240 }));
+  // }
 };

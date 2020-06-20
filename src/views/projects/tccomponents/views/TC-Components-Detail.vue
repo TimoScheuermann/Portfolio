@@ -1,10 +1,10 @@
 <template>
   <div v-if="exists">
-    <tc-hero height="200" background="#000" tc-dark-container>
+    <tc-hero height="200" background="#000">
       <div class="title" v-if="tcComponent">TC-{{ tcComponent.name }}</div>
       <i v-if="tcComponent" :class="'ti-' + tcComponent.icon" />
     </tc-hero>
-    <div content>
+    <div content tc-light-container>
       <!-- {{ tcComponent }} -->
       <component :is="currentComponent" :component="tcComponent" />
       <div v-if="tcComponent && tcComponent.api.length > 0">
