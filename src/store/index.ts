@@ -29,9 +29,6 @@ const store = new Vuex.Store({
     },
     iconIssue: state => (number: number) => {
       return state.iconIssues.filter(x => x.number === number)[0];
-    },
-    isRouteLoading: state => {
-      return state.routeLoading;
     }
   },
   mutations: {
