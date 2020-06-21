@@ -54,7 +54,11 @@
       <tc-sidebar-item icon="github" name="GitHub" :to="{ name: 'github' }" />
       <tc-sidebar-item icon="pin" name="Resume" :to="{ name: 'resume' }" />
     </tc-sidebar>
-    <tc-tabbar :dark="darkTabbar" class="app--tabbar">
+    <tc-tabbar
+      :dark="darkTabbar"
+      :key="'tb_' + $route.name"
+      class="app--tabbar"
+    >
       <tc-tabbar-item routeName="home" />
       <tc-tabbar-item title="Projects" icon="todo" routeName="projects" />
       <tc-tabbar-item title="Repertoire" icon="tools" routeName="repertoire" />

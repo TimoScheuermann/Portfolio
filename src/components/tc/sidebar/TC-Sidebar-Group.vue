@@ -35,7 +35,10 @@ export default class TCSidebarGroup extends Mixins(TCComponent) {
   @Prop({ default: "300px" }) maxHeight!: string;
 
   public expanded = true;
-  public id = "tc-sidebar-group_" + this.uuid_;
+
+  get id(): string {
+    return "tc-sidebar-group_" + this.uuid_;
+  }
 
   get maxheight() {
     return {

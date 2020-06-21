@@ -64,6 +64,10 @@ export default class TCAutoBackground extends Mixins(TCComponent) {
     if (this.autoBackground) {
       this.updateContainerLists();
       this.handleScroll();
+      this.$nextTick(() => {
+        this.updateContainerLists();
+        this.handleScroll();
+      });
     }
   }
 

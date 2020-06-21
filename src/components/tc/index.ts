@@ -496,7 +496,22 @@ const tcComponents: TCComponentGroup[] = [
       {
         name: "Switch",
         icon: "toggle",
-        api: [], // TODO:
+        api: [
+          {
+            name: "value",
+            type: "any",
+            description: "Determines the state of your switch",
+            default: "false"
+          },
+          { name: "v-model", type: "boolean", description: "" },
+          {
+            name: "tccolor",
+            type: "string",
+            description: "Determines the color of the button",
+            default: "primary",
+            parameters: tccolors
+          }
+        ], // TODO:
         slots: []
       },
       {

@@ -1,6 +1,8 @@
 import * as uuid from "uuid";
 import { Component, Prop, Vue } from "vue-property-decorator";
 
+let usedUUIDs: string[] = [];
+
 @Component
 export default class TCComponent extends Vue {
   @Prop({ default: false }) dark!: boolean;
@@ -13,7 +15,13 @@ export default class TCComponent extends Vue {
   public colors: string[] = ["primary", "error", "alarm", "success"];
 
   beforeCreate() {
-    this.uuid = uuid.v4();
+    let u = uuid.v4();
+    while (usedUUIDs.includes(u)) {
+      console.log("Already exists:", u);
+      u = uuid.v4();
+    }
+    this.uuid = u;
+    console.log("Asigned uuid", u);
   }
 
   get uuid_() {

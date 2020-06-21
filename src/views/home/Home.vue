@@ -7,6 +7,7 @@
     </tc-hero>
     <div content>
       <project-title title="Projects" subtitle="I've worked on" />
+
       <div class="projects">
         <router-link
           v-for="p in projects"
@@ -24,7 +25,7 @@
             <img :src="p.assets[p.displayAs]" alt="" /> </tc-card
         ></router-link>
       </div>
-      <tc-headline title="Resume">
+      <tc-headline :dark="true" title="Resume">
         <tc-button :to="{ name: 'uno' }" icon="photos" name="Uno" />
       </tc-headline>
       Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam minus
@@ -62,6 +63,8 @@ export default class Home extends Vue {
 .home {
   background: #000;
   color: #fff;
+
+  @include custom-scrollbar__dark();
 
   @keyframes title-appear {
     0% {
@@ -127,24 +130,6 @@ export default class Home extends Vue {
       grid-template-areas: "tc ti ic wg dh ns am";
       grid-template-columns: repeat(7, minmax(300px, 30vw));
       grid-template-rows: 250px;
-    }
-  }
-
-  ::-webkit-scrollbar {
-    width: 4px;
-    height: 4px;
-    position: absolute !important;
-    border-radius: 4px;
-    transition: 0.2s ease;
-  }
-
-  ::-webkit-scrollbar-thumb {
-    background: #666;
-    border-radius: 4px;
-    transition: 0.2s ease;
-    &:hover {
-      background: #888;
-      transition: 0.2s ease;
     }
   }
 }

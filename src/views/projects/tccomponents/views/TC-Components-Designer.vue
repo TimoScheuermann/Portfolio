@@ -22,16 +22,16 @@
       />
     </tc-header>
 
-    <div content>
-      <section hero color-fff>
-        <div>
-          <i class="ti-color-fan"></i>
-          <i class="ti-tools"></i>
-          <i class="ti-component"></i>
-        </div>
-        <h1>omponent Designer</h1>
-      </section>
+    <tc-hero height="200" background="#000">
+      <div class="title">Designer</div>
+      <div class="icons">
+        <i class="ti-color-fan" />
+        <i class="ti-tools" />
+        <i class="ti-component" />
+      </div>
+    </tc-hero>
 
+    <div content>
       <tc-headline :dark="true" :title="selectedComponent && 'Properties'">
         <div>
           <span select v-if="!selectedComponent">
@@ -369,6 +369,7 @@ export default class TCComponentsDesigner extends Vue {
     100vh - env(safe-area-inset-top) - env(safe-area-inset-bottom) - 100px
   );
   overflow-x: hidden;
+  padding-top: 0px;
 }
 
 [color-fff] {
@@ -395,31 +396,32 @@ export default class TCComponentsDesigner extends Vue {
   }
 }
 
-section[hero] {
-  padding-top: 30px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  div {
-    i {
-      font-size: 3em;
-      margin: 0 20px;
-      opacity: 0.7;
-    }
+.tc-hero {
+  color: #fff;
+  @media #{$isDesktop} {
+    padding-left: 45px;
   }
-  h1 {
-    font-size: 3em;
-    padding-left: 0.8em;
-    &::before {
-      margin-left: -0.8em;
-      opacity: 0.8;
-      content: "C";
-      position: absolute;
-      transform: rotate(-35deg);
+  .title {
+    text-align: center;
+    font-weight: bold;
+    font-size: 4em;
+  }
+  .icons {
+    opacity: 0.25;
+    font-size: 11em;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: block;
+    text-align: center;
+    padding-top: 50px;
+    i {
+      margin: 0 20px;
     }
   }
 }
+
 span[select] {
   color: #08f;
   position: relative;

@@ -27,6 +27,7 @@ export default class TCSidebarItem extends Mixins(TCComponent) {
   padding: 5px {
     right: 0;
   }
+
   cursor: pointer;
   &:hover,
   &:focus {

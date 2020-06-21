@@ -56,9 +56,9 @@ export default class TCSidebar extends Mixins(TCComponent) {
 
   transition: min-width 0.2s ease-out;
   &:hover {
+    min-width: 200px;
     transition: min-width 0.4s cubic-bezier(0.87, 1.46, 0.52, 0.75);
     box-shadow: $shadow-hover;
-    min-width: 200px;
     .content {
       /deep/ .tc-sidebar--group {
         .tc-sidebar--items.expanded {
