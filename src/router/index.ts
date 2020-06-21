@@ -1,6 +1,6 @@
 import constants from "@/constants";
-import store from "@/store";
 import EmptyRouter from "@/views/EmptyRouter.vue";
+import NProgress from "nprogress";
 import Vue from "vue";
 import VueRouter from "vue-router";
 
@@ -261,15 +261,13 @@ const router = new VueRouter({
 
 router.beforeResolve((to, from, next) => {
   if (to.name) {
-    console.log("loading");
-    store.commit("updateRouteLoading", true);
+    NProgress.start();
   }
   next();
 });
 
 router.afterEach((to, from) => {
-  console.log("Loaded");
-  store.commit("updateRouteLoading", false);
+  NProgress.done();
 });
 
 export default router;

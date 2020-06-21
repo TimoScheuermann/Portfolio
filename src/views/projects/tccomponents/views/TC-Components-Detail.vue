@@ -98,7 +98,9 @@ export default class TCComponentsDetail extends Vue {
     padding-left: 45px;
   }
   .title {
+    text-align: center;
     font-weight: bold;
+
     font-size: 4em;
   }
   i {

@@ -11,3 +11,5 @@ declare module "*.txt" {
 declare module "markdown-it";
 declare module "uuid";
 declare module "modernizr";
+declare module "nprogress";
+declare module "vue-router-md-transition";

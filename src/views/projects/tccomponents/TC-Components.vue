@@ -2,10 +2,12 @@
   <div class="tc-components--view">
     <tc-components--sidebar />
     <tc-components--header v-if="isHome || isDetails" />
-    <tc-components-designer v-if="isDesigner" />
-    <tc-components-getting-started v-else-if="isGettingStarted" />
-    <tc-components-home v-else-if="isHome" />
-    <tc-components-detail v-else-if="isDetails" :key="getComponent()" />
+    <transition-group name="swap">
+      <tc-components-designer key="designer" v-if="isDesigner" />
+      <tc-components-getting-started key="gs" v-else-if="isGettingStarted" />
+      <tc-components-home key="home" v-else-if="isHome" />
+      <tc-components-detail v-for="com in getComponent()" :key="com" />
+    </transition-group>
   </div>
 </template>
 <script lang="ts">
@@ -53,15 +55,32 @@ export default class TCComponents extends Vue {
     );
   }
 
-  getComponent(): string {
+  getComponent(): string[] {
     const comp = this.$route.params.comp;
-    if (comp) return comp;
-    return "";
+    if (comp) return [comp];
+    return [];
   }
 }
 </script>
 <style lang="scss" scoped>
 p {
   padding-left: 200px;
+}
+.swap-enter-active,
+.swap-leave-active {
+  transition: all 1s;
+  min-height: 100vh;
+  min-width: 100vw;
+}
+.swap-enter {
+  opacity: 0;
+  transform: translateY(30px);
+}
+.swap-leave-to {
+  opacity: 0;
+  transform: translateY(30px);
+}
+.swap-leave-active {
+  position: absolute;
 }
 </style>

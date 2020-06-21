@@ -1,9 +1,5 @@
 <template lang="html">
   <div id="app">
-    <div class="pageloading" v-if="$store.getters.isRouteLoading">
-      Page is loading
-    </div>
-
     <tc-navbar v-if="false" :dark="darkTabbar">
       <b slot="logo">Logo</b>
       <tc-button slot="actions" name="Login" icon="login" />
@@ -17,7 +13,7 @@
       />
     </tc-navbar>
 
-    <tc-sidebar :dark="darkTabbar" v-if="showSidebar()">
+    <tc-sidebar :dark="darkTabbar" v-if="showSidebar">
       <div slot="header" class="tc-sidebar--header">
         <div class="icon">
           <img src="https://avatars0.githubusercontent.com/u/48986503" />
@@ -66,7 +62,9 @@
       <tc-tabbar-item title="GitHub" icon="github" routeName="github" />
     </tc-tabbar>
     <div class="view">
-      <router-view :key="$route.name" />
+      <md-transition>
+        <router-view />
+      </md-transition>
     </div>
   </div>
 </template>
@@ -86,6 +84,7 @@ import TCNavbarItem from "@/components/tc/navbar/TC-Navbar-Item.vue";
 import TCButton from "./components/tc/button/TC-Button.vue";
 import constants from "./constants";
 import { Route } from "vue-router";
+import MaterialDesignTransition from "vue-router-md-transition";
 
 @Component({
   components: {
@@ -96,7 +95,8 @@ import { Route } from "vue-router";
     "tc-sidebar-group": TCSidebarGroup,
     "tc-sidebar-item": TCSidebarItem,
     "tc-tabbar": TCTabbar,
-    "tc-tabbar-item": TCTabbarItem
+    "tc-tabbar-item": TCTabbarItem,
+    "md-transition": MaterialDesignTransition
   }
 })
 export default class App extends Vue {
@@ -109,10 +109,10 @@ export default class App extends Vue {
     constants.projectRoutes.timos_components_designer
   ];
 
-  showSidebar() {
-    console.log("loading", this.$store.getters.isRouteLoading);
+  get showSidebar() {
     return !this.$route.meta.customSidebar;
   }
+
   get darkTabbar(): boolean {
     return this.darkRoutes.includes(this.$route.name as string);
   }
@@ -156,6 +156,93 @@ export default class App extends Vue {
   }
 }
 </script>
+
+<style lang="scss">
+/* Make clicks pass-through */
+#nprogress {
+  pointer-events: none;
+  .bar {
+    background: #08f;
+
+    z-index: 10000;
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 2px;
+  }
+  .peg {
+    display: block;
+    position: absolute;
+    right: 0px;
+    width: 100px;
+    height: 100%;
+    box-shadow: 0 0 10px #29d, 0 0 5px #29d;
+    opacity: 1;
+
+    -webkit-transform: rotate(3deg) translate(0px, -4px);
+    -ms-transform: rotate(3deg) translate(0px, -4px);
+    transform: rotate(3deg) translate(0px, -4px);
+  }
+  .spinner {
+    display: block;
+    position: fixed;
+    z-index: 1031;
+    top: 15px;
+    right: 15px;
+  }
+  .spinner-icon {
+    width: 18px;
+    height: 18px;
+    box-sizing: border-box;
+
+    border: solid 2px transparent;
+    border-top-color: #29d;
+    border-left-color: #29d;
+    border-radius: 50%;
+
+    -webkit-animation: nprogress-spinner 400ms linear infinite;
+    animation: nprogress-spinner 400ms linear infinite;
+  }
+}
+
+/* Fancy blur effect */
+#nprogress
+
+/* Remove these to get rid of the spinner */
+#nprogress
+
+#nprogress
+
+.nprogress-custom-parent {
+  overflow: hidden;
+  position: relative;
+  #nprogress {
+    .spinner,
+    .bar {
+      position: absolute;
+    }
+  }
+}
+
+@-webkit-keyframes nprogress-spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+@keyframes nprogress-spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+</style>
 
 <style lang="scss">
 html {
