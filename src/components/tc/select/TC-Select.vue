@@ -64,15 +64,15 @@
   </div>
 </template>
 <script lang="ts">
-import { Vue, Component, Prop, Watch, Mixins } from "vue-property-decorator";
+import { Component, Prop, Watch, Mixins } from "vue-property-decorator";
 import TCComponent from "../TC-Component.mixin";
 import TCTooltip from "../tooltip/TC-Tooltip.vue";
 type TValues = string | number | boolean;
 
 @Component({
   components: {
-    "tc-tooltip": TCTooltip
-  }
+    "tc-tooltip": TCTooltip,
+  },
 })
 export default class TCSelect extends Mixins(TCComponent) {
   @Prop() title!: string;
@@ -106,10 +106,10 @@ export default class TCSelect extends Mixins(TCComponent) {
     this.$emit("input", this.innerValue);
   }
 
-  mounted() {
+  mounted(): void {
     window.addEventListener("click", this.clicked);
   }
-  beforeDestroy() {
+  beforeDestroy(): void {
     window.removeEventListener("click", this.clicked);
   }
 
@@ -142,17 +142,17 @@ export default class TCSelect extends Mixins(TCComponent) {
     }
   }
 
-  public isSelected(value: TValues) {
+  public isSelected(value: TValues): boolean {
     if (this.multiple) {
       return (this.innerValue as TValues[]).includes(value);
     } else {
       return this.innerValue === value;
     }
   }
-  get id() {
+  get id(): string {
     return "tc-select_" + this.uuid_;
   }
-  get display() {
+  get display(): TValues | TValues[] {
     if (this.multiple) {
       const vals: TValues[] = this.innerValue as TValues[];
       if (vals.length == 1) return vals[0];
@@ -163,6 +163,9 @@ export default class TCSelect extends Mixins(TCComponent) {
 }
 </script>
 <style lang="scss" scoped>
+@import "../_variables.scss";
+@import "../_mixins.scss";
+
 // @supports (-webkit-touch-callout: none) { content: "ios"; }
 // @media (hover: hover) { content: "desktop"; }
 // @media (hover: none) { content: "mobile";  }

@@ -43,39 +43,39 @@
   </div>
 </template>
 <script lang="ts">
-import { Vue, Component, Prop, Watch, Mixins } from "vue-property-decorator";
+import { Component, Prop, Mixins } from "vue-property-decorator";
 import TCCheckbox from "../checkbox/TC-Checkbox.vue";
 import TCAutoBackground from "../TC-Auto-Background.mixin";
 
 @Component({
   components: {
-    "tc-checkbox": TCCheckbox
-  }
+    "tc-checkbox": TCCheckbox,
+  },
 })
 export default class TCHeader extends Mixins(TCAutoBackground) {
   @Prop() title!: string;
   @Prop({ default: "fixed" }) variant!: "fixed" | "floating" | "sticky";
   @Prop({ default: 0 }) top!: number;
-  @Prop() backTo!: any;
+  @Prop() backTo!: Record<string, unknown>;
   @Prop() backHref!: string;
   @Prop() backName!: string;
 
   public itemsOverflow = false;
   public itemCard = false;
 
-  created() {
+  created(): void {
     window.addEventListener("resize", this.resize);
     this.resize();
   }
 
-  destroyed() {
+  destroyed(): void {
     window.removeEventListener("resize", this.resize);
   }
   get id(): string {
     return "tc-header_" + this.uuid_;
   }
 
-  public clicked(event: any): void {
+  public clicked(event: MouseEvent): void {
     this.$emit("click", event);
     if (this.backTo) this.$router.push(this.backTo);
     else if (this.backHref) window.open(this.backHref, "_blank");
@@ -92,7 +92,7 @@ export default class TCHeader extends Mixins(TCAutoBackground) {
     }, 200);
   }
 
-  get classes() {
+  get classes(): Record<string, unknown> {
     return {
       "tc-header__dark": this.dark_,
       "tc-header__light": !this.dark_,
@@ -100,27 +100,30 @@ export default class TCHeader extends Mixins(TCAutoBackground) {
         this.variant == "floating" || this.variant == "sticky"
       ),
       "tc-header__sticky": this.variant == "sticky",
-      "tc-header__floating": this.variant == "floating"
+      "tc-header__floating": this.variant == "floating",
     };
   }
-  get styles() {
+  get styles(): Record<string, unknown> {
     return {
       color: this.color,
       background: this.background,
-      top: (this.variant === "floating" ? 40 : 0) + +this.top + "px"
+      top: (this.variant === "floating" ? 40 : 0) + +this.top + "px",
     };
   }
 
-  getOverflowStyle() {
+  getOverflowStyle(): Record<string, unknown> {
     return {
       color: this.color,
       background: this.background,
-      top: "calc(env(safe-area-inset-top) + " + (+(+this.top) + 50) + "px)"
+      top: "calc(env(safe-area-inset-top) + " + (+(+this.top) + 50) + "px)",
     };
   }
 }
 </script>
 <style lang="scss" scoped>
+@import "../_variables.scss";
+@import "../_mixins.scss";
+
 .tc-header {
   user-select: none;
   box-shadow: $shadow;

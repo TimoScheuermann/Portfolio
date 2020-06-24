@@ -8,7 +8,7 @@
   </router-link>
 </template>
 <script lang="ts">
-import { Vue, Component, Prop, Mixins } from "vue-property-decorator";
+import { Vue, Component, Prop } from "vue-property-decorator";
 import { Icon } from "@/models/Icons/Icon.model";
 @Component
 export default class IconTile extends Vue {
@@ -16,7 +16,11 @@ export default class IconTile extends Vue {
   @Prop({ default: true }) showName!: boolean;
 }
 </script>
+
 <style lang="scss" scoped>
+@import "../../tc/_variables.scss";
+@import "../../tc/_mixins.scss";
+
 .timosicons--icontile {
   color: $color;
   padding: 20px;

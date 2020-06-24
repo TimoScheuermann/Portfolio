@@ -48,7 +48,7 @@
             tccolor="alarm"
             :to="{
               name: constants.projectRoutes.timos_components_detail,
-              params: { comp: selectedComponent }
+              params: { comp: selectedComponent },
             }"
           />
           <tc-select
@@ -116,7 +116,7 @@
           <tc-button
             :name="copyHTMLText"
             @click="copyHTML()"
-            style="min-width: 141px"
+            style="min-width: 141px;"
           />
         </tc-headline>
         <div
@@ -166,6 +166,8 @@ import TCTabbar from "@/components/tc/tabbar/TC-Tabbar.vue";
 import TCTable from "@/components/tc/table/TC-Table.vue";
 import TCTooltip from "@/components/tc/tooltip/TC-Tooltip.vue";
 import TCBadge from "@/components/tc/badge/TC-Badge.vue";
+import { VueClass } from "vue-class-component/lib/declarations";
+import { TCComponentGroup } from "../../../../models/TCComponents/TCComponentGroup.model";
 
 @Component({
   components: {
@@ -178,20 +180,20 @@ import TCBadge from "@/components/tc/badge/TC-Badge.vue";
     "tc-icon-select": TCIconSelect,
     "tc-checkbox": TCCheckbox,
     "tc-grid": TCGrid,
-    "tc-textarea": TCTextarea
-  }
+    "tc-textarea": TCTextarea,
+  },
 })
 export default class TCComponentsDesigner extends Vue {
-  public constants: {} = constants;
+  public constants: Record<string, unknown> = constants;
   public components: TCComponent[] = tcComponents.filter(
-    x => x.group === "Components"
+    (x: TCComponentGroup) => x.group === "Components"
   )[0].components;
-  public selectedComponent: string = "";
-  public copyHTMLText: string = "Copy HTML Markup";
+  public selectedComponent = "";
+  public copyHTMLText = "Copy HTML Markup";
   public darkCanvas = true;
-  public data: {} = {};
+  public data: Record<string, unknown> = {};
   public slots = {};
-  public available: { [x: string]: string | any } = {
+  public available: { [x: string]: VueClass<Vue> } = {
     Badge: TCBadge,
     Button: TCButton,
     Card: TCCard,
@@ -219,10 +221,10 @@ export default class TCComponentsDesigner extends Vue {
     Switch: TCSwitch,
     Tabbar: TCTabbar,
     Table: TCTable,
-    Tooltip: TCTooltip
+    Tooltip: TCTooltip,
   };
 
-  mounted() {
+  mounted(): void {
     let loadedComp: string = this.$store.getters.designerComponent;
     // loadedComp = "Button";
     if (loadedComp.length > 0) {
@@ -232,16 +234,18 @@ export default class TCComponentsDesigner extends Vue {
     }
   }
 
-  get componentList() {
+  get componentList(): string[] {
     return this.components
-      .filter(x => x.api.length > 0)
-      .map(x => x.name)
-      .filter(x => Object.keys(this.available).includes(x))
-      .sort((a, b) => a.localeCompare(b));
+      .filter((x: TCComponent) => x.api.length > 0)
+      .map((x: TCComponent) => x.name)
+      .filter((x: string) => Object.keys(this.available).includes(x))
+      .sort((a: string, b: string) => a.localeCompare(b));
   }
   get component(): TCComponent | undefined {
     if (this.selectedComponent)
-      return this.components.filter(x => x.name === this.selectedComponent)[0];
+      return this.components.filter(
+        (x: TCComponent) => x.name === this.selectedComponent
+      )[0];
     return undefined;
   }
 
@@ -259,29 +263,32 @@ export default class TCComponentsDesigner extends Vue {
   }
 
   get allAttributes(): TCComponentApi[] {
-    if (this.selectedComponent) return this.component!.api;
+    if (this.selectedComponent) {
+      const comp = this.component;
+      if (comp) return comp.api;
+    }
     return [];
   }
 
   get iconAttributes(): TCComponentApi[] {
     return this.allAttributes.filter(
-      x => x.parameters && x.parameters === "Timo's Icons"
+      (x: TCComponentApi) => x.parameters && x.parameters === "Timo's Icons"
     );
   }
   get inputAttributes(): TCComponentApi[] {
     return this.allAttributes.filter(
-      x => !(x.parameters || x.type === "boolean")
+      (x: TCComponentApi) => !(x.parameters || x.type === "boolean")
     );
   }
   get selectAttributes(): TCComponentApi[] {
     return this.allAttributes
       .filter(
-        x =>
+        (x: TCComponentApi) =>
           ((x.parameters && x.parameters !== "Timo's Icons") ||
             x.type === "boolean") &&
           x.name !== "dark"
       )
-      .map(x => {
+      .map((x: TCComponentApi) => {
         x.selectValues = x.parameters
           ? x.parameters.split(", ")
           : [true, false];
@@ -306,10 +313,10 @@ export default class TCComponentsDesigner extends Vue {
       const ComponentClass = Vue.extend(this.available[this.selectedComponent]);
       const instance = new ComponentClass({
         propsData: { ...this.data, dark: this.darkCanvas },
-        parent: this
+        parent: this,
       });
       for (const [key, value] of Object.entries(this.slots)) {
-        (instance.$slots as any)[key] = [value];
+        (instance.$slots as Record<string, unknown>)[key] = [value];
       }
 
       instance.$mount();
@@ -339,7 +346,7 @@ export default class TCComponentsDesigner extends Vue {
       JSON.stringify({
         ...this.data,
         component: this.selectedComponent,
-        dark: this.darkCanvas
+        dark: this.darkCanvas,
       })
     )}`;
     const anchor = window.document.createElement("a");
@@ -347,7 +354,7 @@ export default class TCComponentsDesigner extends Vue {
     anchor.setAttribute("download", `${this.selectedComponent}.tccomponent`);
     anchor.click();
   }
-  public fileLoaded(content: string) {
+  public fileLoaded(content: string): void {
     const data = JSON.parse(content);
     if (data && data.component) {
       this.selectedComponent = data.component;
@@ -363,6 +370,9 @@ export default class TCComponentsDesigner extends Vue {
 </script>
 
 <style lang="scss" scoped>
+@import "../../../../components/tc/_variables.scss";
+@import "../../../../components/tc/_mixins.scss";
+
 [content] {
   background: #000;
   min-height: calc(

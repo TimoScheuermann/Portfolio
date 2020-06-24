@@ -14,8 +14,8 @@ import TCScrollUp from "@/components/tc/scrollup/TC-Scroll-Up.vue";
 @Component({
   components: {
     "tc-headline": TCHeadline,
-    "tc-scroll-up": TCScrollUp
-  }
+    "tc-scroll-up": TCScrollUp,
+  },
 })
 export default class TCComponentsDetailScrollUp extends Vue {}
 </script>

@@ -15,7 +15,7 @@
       :class="{
         'tc-input__buttons': buttonsVisible(),
         'tc-input__icon': icon,
-        'tc-input__disabled': disabled
+        'tc-input__disabled': disabled,
       }"
     >
       <div
@@ -69,14 +69,14 @@
   </div>
 </template>
 <script lang="ts">
-import { Vue, Component, Prop, Mixins } from "vue-property-decorator";
+import { Component, Prop, Mixins } from "vue-property-decorator";
 import TCComponent from "../TC-Component.mixin";
 import TCTooltip from "../tooltip/TC-Tooltip.vue";
 
 @Component({
   components: {
-    "tc-tooltip": TCTooltip
-  }
+    "tc-tooltip": TCTooltip,
+  },
 })
 export default class TCInput extends Mixins(TCComponent) {
   @Prop() icon!: string;
@@ -86,7 +86,7 @@ export default class TCInput extends Mixins(TCComponent) {
   @Prop() buttons!: boolean;
   @Prop() placeholder!: string;
   @Prop() type!: string;
-  @Prop() value!: any;
+  @Prop() value!: string | number;
   @Prop() accept!: string;
   @Prop() autocomplete!: "on" | "off";
   @Prop() autofocus!: boolean;
@@ -106,7 +106,7 @@ export default class TCInput extends Mixins(TCComponent) {
     return "tc-input_" + this.uuid_;
   }
 
-  innerValue: any = this.value || (this.type === "number" ? 0 : "");
+  innerValue: string | number = this.value || (this.type === "number" ? 0 : "");
 
   inputMode(): string {
     return this.type == "number" ? "numeric" : "";
@@ -119,9 +119,9 @@ export default class TCInput extends Mixins(TCComponent) {
     return this.buttons && this.type === "number";
   }
 
-  get styles() {
+  get styles(): Record<string, unknown> {
     return {
-      background: this.type === "color" ? this.innerValue : undefined
+      background: this.type === "color" ? this.innerValue : undefined,
     };
   }
 
@@ -130,15 +130,15 @@ export default class TCInput extends Mixins(TCComponent) {
     this.update();
   }
 
-  update() {
+  update(): void {
     this.$emit("input", this.innerValue);
   }
-  change(changeEvent: Event) {
+  change(changeEvent: Event): void {
     this.$emit("change", changeEvent);
     const target: HTMLInputElement = changeEvent.target as HTMLInputElement;
     const fileList: FileList = target.files as FileList;
     const reader = new FileReader();
-    reader.onload = loaded => {
+    reader.onload = (loaded) => {
       const loadTarget = loaded.target as FileReader;
       this.$emit("fileLoaded", loadTarget.result);
     };
@@ -147,6 +147,9 @@ export default class TCInput extends Mixins(TCComponent) {
 }
 </script>
 <style lang="scss" scoped>
+@import "../_variables.scss";
+@import "../_mixins.scss";
+
 $size: 30px;
 .tc-input {
   display: inline-block;

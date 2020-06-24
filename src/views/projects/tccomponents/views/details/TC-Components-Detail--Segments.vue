@@ -47,8 +47,8 @@ import TCCard from "@/components/tc/card/TC-Card.vue";
   components: {
     "tc-headline": TCHeadline,
     "tc-segments": TCSegments,
-    "tc-card": TCCard
-  }
+    "tc-card": TCCard,
+  },
 })
 export default class TCComponentsDetailSegment extends Vue {
   public segments: string[] = ["Section 1", "Section 2", "Section 3"];

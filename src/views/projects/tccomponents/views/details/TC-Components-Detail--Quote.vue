@@ -32,7 +32,7 @@
       >
         <tc-quote>
           <div slot="header">
-            <b style="margin-right: 10px">Really cool article</b>
+            <b style="margin-right: 10px;">Really cool article</b>
             <tc-button icon="heart" name="10 Likes" />
           </div>
           Nisi obcaecati distinctio laudantium assumenda.
@@ -54,8 +54,8 @@ import PortfolioCodeExample from "@/components/projects/TCComponents/CodeExample
     "tc-quote": TCQuote,
     "tc-grid": TCGrid,
     "tc-button": TCButton,
-    "portfolio-code-example": PortfolioCodeExample
-  }
+    "portfolio-code-example": PortfolioCodeExample,
+  },
 })
 export default class TCComponentsDetailQuote extends Vue {}
 </script>

@@ -28,8 +28,8 @@ import TCBadge from "@/components/tc/badge/TC-Badge.vue";
     "tc-headline": TCHeadline,
     "tc-button": TCButton,
     "tc-grid": TCGrid,
-    "tc-badge": TCBadge
-  }
+    "tc-badge": TCBadge,
+  },
 })
 export default class TCComponentsDetailBadge extends Vue {
   public colors: string[] = ["primary", "error", "success", "alarm"];

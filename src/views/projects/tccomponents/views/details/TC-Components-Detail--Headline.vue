@@ -52,8 +52,8 @@ import PortfolioCodeExample from "@/components/projects/TCComponents/CodeExample
     "portfolio-code-example": PortfolioCodeExample,
     "tc-headline": TCHeadline,
     "tc-button": TCButton,
-    "tc-grid": TCGrid
-  }
+    "tc-grid": TCGrid,
+  },
 })
 export default class TCComponentsDetailHeadline extends Vue {}
 </script>

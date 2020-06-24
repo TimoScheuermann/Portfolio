@@ -120,15 +120,15 @@ import TCCard from "@/components/tc/card/TC-Card.vue";
     "tc-progress": TCProgress,
     "portfolio-code-example": PortfolioCodeExample,
     "tc-grid": TCGrid,
-    "tc-card": TCCard
-  }
+    "tc-card": TCCard,
+  },
 })
 export default class TCComponentsDetailProgress extends Vue {
   percent = 0;
-  created() {
+  created(): void {
     this.increment();
   }
-  increment() {
+  increment(): void {
     this.percent++;
     if (this.percent > 100) this.percent = 0;
     setTimeout(

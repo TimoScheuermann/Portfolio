@@ -9,7 +9,7 @@
   </div>
 </template>
 <script lang="ts">
-import { Vue, Component, Prop, Watch, Mixins } from "vue-property-decorator";
+import { Component, Prop, Watch, Mixins } from "vue-property-decorator";
 import TCComponent from "../TC-Component.mixin";
 
 @Component
@@ -19,8 +19,8 @@ export default class TCSwitch extends Mixins(TCComponent) {
   get id(): string {
     return "tc-switch_" + this.uuid_;
   }
-  get classes() {
-    let x: any = { "tc-switch__dark": this.dark };
+  get classes(): Record<string, unknown> {
+    let x: Record<string, unknown> = { "tc-switch__dark": this.dark };
     x[`tc-switch__${this.tccolor_}`] = true;
     return x;
   }
@@ -28,16 +28,19 @@ export default class TCSwitch extends Mixins(TCComponent) {
   public toggled = this.value;
 
   @Watch("value")
-  public changed() {
+  public changed(): void {
     this.toggled = this.value;
   }
 
-  updateVal() {
+  updateVal(): void {
     this.$emit("input", !this.toggled);
   }
 }
 </script>
 <style lang="scss" scoped>
+@import "../_variables.scss";
+@import "../_mixins.scss";
+
 .tc-switch {
   user-select: none;
   $ballSize: 21;

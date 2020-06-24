@@ -26,10 +26,10 @@ import PortfolioCodeExample from "@/components/projects/TCComponents/CodeExample
     "tc-headline": TCHeadline,
     "tc-image": TCImage,
     "tc-grid": TCGrid,
-    "portfolio-code-example": PortfolioCodeExample
-  }
+    "portfolio-code-example": PortfolioCodeExample,
+  },
 })
 export default class TCComponentsDetailImage extends Vue {
-  public src: string = "https://gradientjoy.com/400x300?id=44";
+  public src = "https://gradientjoy.com/400x300?id=44";
 }
 </script>

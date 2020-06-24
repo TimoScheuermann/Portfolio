@@ -8,7 +8,7 @@ Vue.use(VueRouter);
 const prefix = "Timo Scheuermann | ";
 
 const router = new VueRouter({
-  scrollBehavior(to, from, savedPosition) {
+  scrollBehavior() {
     return { x: 0, y: 0 };
   },
   mode: "history",
@@ -18,48 +18,48 @@ const router = new VueRouter({
       name: "home",
       component: () => import("@/views/home/Home.vue"),
       meta: {
-        title: prefix + "Home"
-      }
+        title: prefix + "Home",
+      },
     },
     {
       path: "/playground",
       name: "playground",
       component: () => import("@/views/playground/Playground.vue"),
       meta: {
-        title: prefix + "Playground"
-      }
+        title: prefix + "Playground",
+      },
     },
     {
       path: "/repertoire",
       name: "repertoire",
       component: () => import("@/views/repertoire/Repertoire.vue"),
       meta: {
-        title: prefix + "Repertoire"
-      }
+        title: prefix + "Repertoire",
+      },
     },
     {
       path: "/contact",
       name: "contact",
       component: () => import("@/views/contact/Contact.vue"),
       meta: {
-        title: prefix + "Contact"
-      }
+        title: prefix + "Contact",
+      },
     },
     {
       path: "/github",
       name: "github",
       component: () => import("@/views/github/GitHub.vue"),
       meta: {
-        title: prefix + "GitHub"
-      }
+        title: prefix + "GitHub",
+      },
     },
     {
       path: "/resume",
       name: "resume",
       component: () => import("@/views/resume/Resume.vue"),
       meta: {
-        title: prefix + "Resume"
-      }
+        title: prefix + "Resume",
+      },
     },
     {
       path: "/projects",
@@ -70,24 +70,24 @@ const router = new VueRouter({
           name: constants.routes.projects,
           component: () => import("@/views/projects/Projects.vue"),
           meta: {
-            title: prefix + "Projects"
-          }
+            title: prefix + "Projects",
+          },
         },
         {
           path: "amspro",
           name: constants.projectRoutes.ams_pro,
           component: () => import("@/views/projects/amspro/AMSPro.vue"),
           meta: {
-            title: prefix + "AMS Pro"
-          }
+            title: prefix + "AMS Pro",
+          },
         },
         {
           path: "uno",
           name: "uno",
           component: () => import("@/views/projects/uno/Uno.vue"),
           meta: {
-            title: prefix + "Uno"
-          }
+            title: prefix + "Uno",
+          },
         },
         {
           path: "investingcollectors",
@@ -97,24 +97,24 @@ const router = new VueRouter({
               "@/views/projects/investingcollectors/InvestingCollectors.vue"
             ),
           meta: {
-            title: prefix + "Investing Collectors"
-          }
+            title: prefix + "Investing Collectors",
+          },
         },
         {
           path: "dhbwrichie",
           name: constants.projectRoutes.dhbw_richie,
           component: () => import("@/views/projects/dhbwrichie/DHBWRichie.vue"),
           meta: {
-            title: prefix + "DHBW Richie"
-          }
+            title: prefix + "DHBW Richie",
+          },
         },
         {
           path: "nhlstats",
           name: constants.projectRoutes.nhl_stats,
           component: () => import("@/views/projects/nhlstats/NHLStats.vue"),
           meta: {
-            title: prefix + "NHL Stats"
-          }
+            title: prefix + "NHL Stats",
+          },
         },
         {
           path: "timoscomponents",
@@ -125,39 +125,39 @@ const router = new VueRouter({
               name: constants.projectRoutes.timos_components,
               meta: { customSidebar: true, title: "Timo's Components | Home" },
               component: () =>
-                import("@/views/projects/tccomponents/TC-Components.vue")
+                import("@/views/projects/tccomponents/TC-Components.vue"),
             },
             {
               path: "designer",
               name: constants.projectRoutes.timos_components_designer,
               meta: {
                 customSidebar: true,
-                title: "Timo's Components | Designer"
+                title: "Timo's Components | Designer",
               },
               component: () =>
-                import("@/views/projects/tccomponents/TC-Components.vue")
+                import("@/views/projects/tccomponents/TC-Components.vue"),
             },
             {
               path: "getting-started",
               name: constants.projectRoutes.timos_components_getting_started,
               meta: {
                 customSidebar: true,
-                title: "Timo's Components | Getting Started"
+                title: "Timo's Components | Getting Started",
               },
               component: () =>
-                import("@/views/projects/tccomponents/TC-Components.vue")
+                import("@/views/projects/tccomponents/TC-Components.vue"),
             },
             {
               path: ":comp",
               name: constants.projectRoutes.timos_components_detail,
               meta: {
                 customSidebar: true,
-                title: "Timo's Components | %comp%"
+                title: "Timo's Components | %comp%",
               },
               component: () =>
-                import("@/views/projects/tccomponents/TC-Components.vue")
-            }
-          ]
+                import("@/views/projects/tccomponents/TC-Components.vue"),
+            },
+          ],
         },
         {
           path: "timosicons",
@@ -169,8 +169,8 @@ const router = new VueRouter({
               component: () =>
                 import("@/views/projects/timosicons/Timos-Icons.vue"),
               meta: {
-                title: "Timo's Icons | Home"
-              }
+                title: "Timo's Icons | Home",
+              },
             },
             {
               path: "resources/requests",
@@ -184,8 +184,8 @@ const router = new VueRouter({
                       "@/views/projects/timosicons/resources/Timos-Icons-Requests.vue"
                     ),
                   meta: {
-                    title: "Timo's Icons | Requests"
-                  }
+                    title: "Timo's Icons | Requests",
+                  },
                 },
                 {
                   name: constants.projectRoutes.timos_icons_requests_detail,
@@ -195,10 +195,10 @@ const router = new VueRouter({
                       "@/views/projects/timosicons/resources/Timos-Icons-Requests-Detail.vue"
                     ),
                   meta: {
-                    title: "Timo's Icons | Request #%issue%"
-                  }
-                }
-              ]
+                    title: "Timo's Icons | Request #%issue%",
+                  },
+                },
+              ],
             },
             {
               name: constants.projectRoutes.timos_icons_versions,
@@ -208,8 +208,8 @@ const router = new VueRouter({
                   "@/views/projects/timosicons/resources/Timos-Icons-Versions.vue"
                 ),
               meta: {
-                title: "Timo's Icons | Versions"
-              }
+                title: "Timo's Icons | Versions",
+              },
             },
             {
               name: constants.projectRoutes.timos_icons_getting_started,
@@ -219,8 +219,8 @@ const router = new VueRouter({
                   "@/views/projects/timosicons/resources/Timos-Icons-GettingStarted.vue"
                 ),
               meta: {
-                title: "Timo's Icons | How To"
-              }
+                title: "Timo's Icons | How To",
+              },
             },
             {
               name: constants.projectRoutes.timos_icons_detail,
@@ -228,10 +228,10 @@ const router = new VueRouter({
               component: () =>
                 import("@/views/projects/timosicons/Timos-Icons-Detail.vue"),
               meta: {
-                title: "Timo's Icons | %icon%"
-              }
-            }
-          ]
+                title: "Timo's Icons | %icon%",
+              },
+            },
+          ],
         },
         {
           path: "workgallery",
@@ -239,34 +239,35 @@ const router = new VueRouter({
           component: () =>
             import("@/views/projects/workgallery/WorkGallery.vue"),
           meta: {
-            title: prefix + "Work Gallery"
-          }
+            title: prefix + "Work Gallery",
+          },
         },
         {
           path: "*",
           name: constants.projectRoutes.not_found,
           component: () => import("@/views/projects/NotFound.vue"),
           meta: {
-            title: prefix + "Projects"
-          }
-        }
-      ]
+            title: prefix + "Projects",
+          },
+        },
+      ],
     },
     {
       path: "*",
-      redirect: { name: "home" }
-    }
-  ]
+      redirect: { name: "home" },
+    },
+  ],
 });
 
-router.beforeResolve((to, from, next) => {
+// eslint-disable-next-line
+router.beforeResolve((to: any, _from: any, next: any) => {
   if (to.name) {
     NProgress.start();
   }
   next();
 });
 
-router.afterEach((to, from) => {
+router.afterEach(() => {
   NProgress.done();
 });
 

@@ -35,13 +35,13 @@ import "./swipe-events.js";
 import ProjectsProjectlist from "@/components/projects/ProjectsOverview/Projects-Projectlist.vue";
 @Component({
   components: {
-    "project-list": ProjectsProjectlist
-  }
+    "project-list": ProjectsProjectlist,
+  },
 })
 export default class ProjectsMobile extends Vue {
   public projects: Project[] = projects;
   public currentProject = 0;
-  public timeout: any;
+  public timeout!: number;
 
   get project(): Project {
     return this.projects[
@@ -53,7 +53,7 @@ export default class ProjectsMobile extends Vue {
     return Math.abs(this.currentProject) % 2 == 0;
   }
 
-  public open() {
+  public open(): void {
     this.$router.push({ name: this.project.routeName });
   }
 
@@ -69,24 +69,29 @@ export default class ProjectsMobile extends Vue {
     }, 5000);
   }
 
-  mounted() {
+  mounted(): void {
     this.next(0);
-    const elem = document.getElementById("phone")!;
-    elem.addEventListener("swiped-right", () => {
-      this.next();
-    });
-    elem.addEventListener("swiped-left", () => {
-      this.prev();
-    });
+    const elem = document.getElementById("phone");
+    if (elem) {
+      elem.addEventListener("swiped-right", () => {
+        this.next();
+      });
+      elem.addEventListener("swiped-left", () => {
+        this.prev();
+      });
+    }
   }
 
-  beforeDestroy() {
+  beforeDestroy(): void {
     clearTimeout(this.timeout);
   }
 }
 </script>
 
 <style lang="scss" scoped>
+@import "../../components/tc/_variables.scss";
+@import "../../components/tc/_mixins.scss";
+
 @keyframes title-appear {
   0% {
     letter-spacing: -0.5em;

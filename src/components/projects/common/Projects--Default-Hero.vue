@@ -13,8 +13,8 @@ import { Vue, Component, Prop } from "vue-property-decorator";
 import TCHero from "@/components/tc/hero/TC-Hero.vue";
 @Component({
   components: {
-    "tc-hero": TCHero
-  }
+    "tc-hero": TCHero,
+  },
 })
 export default class ProjectsDefaultHero extends Vue {
   @Prop() title!: string;
@@ -23,6 +23,9 @@ export default class ProjectsDefaultHero extends Vue {
 }
 </script>
 <style lang="scss" scoped>
+@import "../../tc/_variables.scss";
+@import "../../tc/_mixins.scss";
+
 .tc-hero {
   background: $color;
 }

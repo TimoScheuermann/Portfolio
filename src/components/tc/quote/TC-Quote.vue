@@ -14,7 +14,7 @@
   </div>
 </template>
 <script lang="ts">
-import { Vue, Component, Prop, Mixins } from "vue-property-decorator";
+import { Component, Prop, Mixins } from "vue-property-decorator";
 import TCComponent from "../TC-Component.mixin";
 @Component
 export default class TCQuote extends Mixins(TCComponent) {
@@ -22,6 +22,9 @@ export default class TCQuote extends Mixins(TCComponent) {
 }
 </script>
 <style lang="scss" scoped>
+@import "../_variables.scss";
+@import "../_mixins.scss";
+
 .tc-quote {
   background: $paragraph;
   &.tc-quote__dark {

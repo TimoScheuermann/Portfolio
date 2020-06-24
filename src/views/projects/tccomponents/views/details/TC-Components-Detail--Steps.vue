@@ -15,7 +15,6 @@
 <script lang="ts">
 import { Vue, Component } from "vue-property-decorator";
 import TCHeadline from "@/components/tc/headline/TC-Headline.vue";
-import TCButton from "@/components/tc/button/TC-Button.vue";
 import PortfolioCodeExample from "@/components/projects/TCComponents/CodeExample.vue";
 import TCGrid from "@/components/tc/_layout/grid/TC-Grid.vue";
 import TCSteps from "@/components/tc/steps/TC-Steps.vue";
@@ -24,8 +23,8 @@ import TCSteps from "@/components/tc/steps/TC-Steps.vue";
     "portfolio-code-example": PortfolioCodeExample,
     "tc-headline": TCHeadline,
     "tc-grid": TCGrid,
-    "tc-steps": TCSteps
-  }
+    "tc-steps": TCSteps,
+  },
 })
 export default class TCComponentsDetailSteps extends Vue {}
 </script>

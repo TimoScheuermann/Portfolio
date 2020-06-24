@@ -109,11 +109,11 @@ import { Project } from "@/models/Projects/Project.model";
     "tc-grid": TCGrid,
     "tc-card": TCCard,
     "icon-slot-mashine": IconSlotMashine,
-    "tc-tooltip": TCTooltip
-  }
+    "tc-tooltip": TCTooltip,
+  },
 })
 export default class TimosIcons extends Vue {
-  public constants: object = constants;
+  public constants: Record<string, unknown> = constants;
 
   get project(): Project {
     return getProject();
@@ -122,6 +122,9 @@ export default class TimosIcons extends Vue {
 </script>
 
 <style lang="scss" scoped>
+@import "../../../components/tc/_variables.scss";
+@import "../../../components/tc/_mixins.scss";
+
 .xd-indicator {
   color: $error;
   @media only screen and (min-width: 630px) {
@@ -186,7 +189,7 @@ export default class TimosIcons extends Vue {
       2: "#45aaf2",
       3: "#26de81",
       4: "#2bcbba",
-      5: "#e67e22"
+      5: "#e67e22",
     );
     @each $i, $color in $colors {
       /deep/ .icon-slot-mashine {

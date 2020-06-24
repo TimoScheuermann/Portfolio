@@ -55,11 +55,11 @@ import { getProject } from "@/utils/ProjectUtils";
     "tc-card": TCCard,
     "tc-button": TCButton,
     "tc-image": TCImage,
-    "projects-default-hero": ProjectsDefaultHero
-  }
+    "projects-default-hero": ProjectsDefaultHero,
+  },
 })
 export default class WorkGallery extends Vue {
-  public constants: {} = constants;
+  public constants: Record<string, unknown> = constants;
   public projects: Project[] = projects;
   public gallery: WorkGalleryItem[] = workGalleryItems;
   // .map(x => [
@@ -76,7 +76,9 @@ export default class WorkGallery extends Vue {
 
   private getProject(routeName: string): Project {
     return this.projects.filter(
-      x => x.routeName === (constants.projectRoutes as any)[routeName]
+      (x) =>
+        x.routeName ===
+        (constants.projectRoutes as Record<string, unknown>)[routeName]
     )[0];
   }
 
@@ -104,19 +106,19 @@ export default class WorkGallery extends Vue {
     return isVisible;
   }
 
-  mounted() {
+  mounted(): void {
     window.addEventListener("scroll", this.handleScroll);
     this.handleScroll();
   }
 
-  beforeDestroy() {
+  beforeDestroy(): void {
     window.removeEventListener("scroll", this.handleScroll);
   }
 
   private handleScroll(): void {
     [...document.querySelectorAll("[appear]")]
-      .filter(x => this.isScrolledIntoView(x as HTMLElement))
-      .forEach(x => {
+      .filter((x) => this.isScrolledIntoView(x as HTMLElement))
+      .forEach((x) => {
         x.removeAttribute("appear");
       });
   }

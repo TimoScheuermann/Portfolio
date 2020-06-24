@@ -4,14 +4,19 @@
       <li>UUID: {{ uuid_ }}</li>
       <li>TCCO: {{ tccolor_ }}</li>
       <li>DARK: {{ dark }}</li>
-      <li>ISDA: {{ dark_ }}</li>
+      <li>ISDA <span>hello</span>: {{ dark_ }}</li>
     </ul>
   </div>
 </template>
 <script lang="ts">
-import { Vue, Component, Mixins } from "vue-property-decorator";
-import TCComponent from "./TC-Component.mixin";
+import { Component, Mixins } from "vue-property-decorator";
 import TCAutoBackground from "./TC-Auto-Background.mixin";
 @Component
 export default class TCTestComponent extends Mixins(TCAutoBackground) {}
 </script>
+
+<style scoped>
+span {
+  color: red;
+}
+</style>

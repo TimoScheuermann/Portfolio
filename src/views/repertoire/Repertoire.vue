@@ -43,14 +43,13 @@
   </div>
 </template>
 <script lang="ts">
-import { Vue, Component, Prop } from "vue-property-decorator";
+import { Vue, Component } from "vue-property-decorator";
 import TCHeader from "@/components/tc/header/TC-Header.vue";
 import TCHero from "@/components/tc/hero/TC-Hero.vue";
 import tools from "@/tools";
 import { Tool } from "@/models/Tools/Tool";
 import TCHeadline from "@/components/tc/headline/TC-Headline.vue";
 import TCGrid from "@/components/tc/_layout/grid/TC-Grid.vue";
-import PortfolioToolImage from "@/components/repertoire/ToolImage.vue";
 import TCCard from "@/components/tc/card/TC-Card.vue";
 import ProjectsTitle from "@/components/projects/common/Projects--Title.vue";
 
@@ -60,10 +59,9 @@ import ProjectsTitle from "@/components/projects/common/Projects--Title.vue";
     "tc-hero": TCHero,
     "tc-headline": TCHeadline,
     "tc-grid": TCGrid,
-    "portfolio-tool-image": PortfolioToolImage,
     "tc-card": TCCard,
-    "project-title": ProjectsTitle
-  }
+    "project-title": ProjectsTitle,
+  },
 })
 export default class Repertoire extends Vue {
   public tools: Tool[][] = tools;

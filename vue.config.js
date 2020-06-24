@@ -1,7 +1,7 @@
 module.exports = {
   pwa: {
     manifestOptions: {
-      display: "fullscreen"
+      display: "fullscreen",
     },
     name: "Portfolio",
     themeColor: "#f0f0f0",
@@ -13,17 +13,10 @@ module.exports = {
       favicon16: "img/icons/favicon-16x16.png",
       appleTouchIcon: "img/icons/icon-152x152.png",
       maskIcon: "img/icons/icon.svg",
-      msTileImage: "img/icons/icon-144x144.png"
-    }
+      msTileImage: "img/icons/icon-144x144.png",
+    },
   },
-  css: {
-    loaderOptions: {
-      sass: {
-        prependData: `
-          @import "@/components/tc/_variables.scss";
-          @import "@/components/tc/_mixins.scss";
-        `
-      }
-    }
-  }
+  devServer: {
+    disableHostCheck: true,
+  },
 };

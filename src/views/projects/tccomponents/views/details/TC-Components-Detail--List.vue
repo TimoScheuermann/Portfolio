@@ -21,7 +21,6 @@
 <script lang="ts">
 import { Vue, Component } from "vue-property-decorator";
 import TCHeadline from "@/components/tc/headline/TC-Headline.vue";
-import TCButton from "@/components/tc/button/TC-Button.vue";
 import PortfolioCodeExample from "@/components/projects/TCComponents/CodeExample.vue";
 import TCGrid from "@/components/tc/_layout/grid/TC-Grid.vue";
 import TCList from "@/components/tc/list/TC-List.vue";
@@ -32,8 +31,8 @@ import TCListItem from "@/components/tc/list/TC-List-Item.vue";
     "tc-headline": TCHeadline,
     "tc-grid": TCGrid,
     "tc-list": TCList,
-    "tc-list-item": TCListItem
-  }
+    "tc-list-item": TCListItem,
+  },
 })
 export default class TCComponentsDetailList extends Vue {}
 </script>

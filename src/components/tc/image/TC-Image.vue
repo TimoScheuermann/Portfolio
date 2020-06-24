@@ -2,7 +2,7 @@
   <img class="tc-image" :src="src" @click="expand()" />
 </template>
 <script lang="ts">
-import { Vue, Component, Prop, Watch, Mixins } from "vue-property-decorator";
+import { Component, Prop, Watch, Mixins } from "vue-property-decorator";
 import TCComponent from "../TC-Component.mixin";
 
 @Component
@@ -19,17 +19,17 @@ export default class TCImage extends Mixins(TCComponent) {
     this.img.src = this.src;
   }
 
-  mounted() {
+  mounted(): void {
     this.bgElement.setAttribute("class", "tc-image--expanded");
     this.close.innerHTML = "<i class='ti-cross' />";
-    this.bgElement.addEventListener("click", e => {
+    this.bgElement.addEventListener("click", (e) => {
       e.stopPropagation();
       this.shrink();
     });
     this.close.addEventListener("click", () => {
       this.shrink();
     });
-    this.img.addEventListener("click", e => {
+    this.img.addEventListener("click", (e) => {
       e.stopPropagation();
     });
     this.img.src = this.src;
@@ -37,14 +37,15 @@ export default class TCImage extends Mixins(TCComponent) {
     this.bgElement.appendChild(this.img);
     document.body.appendChild(this.bgElement);
   }
-  beforeDestroy() {
+
+  beforeDestroy(): void {
     document.body.removeChild(this.bgElement);
   }
 
-  public expand(e: MouseEvent) {
+  public expand(): void {
     this.bgElement.setAttribute("expanded", "");
   }
-  public shrink() {
+  public shrink(): void {
     this.bgElement.removeAttribute("expanded");
   }
 }
@@ -55,6 +56,9 @@ export default class TCImage extends Mixins(TCComponent) {
 }
 </style>
 <style lang="scss">
+@import "../_variables.scss";
+@import "../_mixins.scss";
+
 .tc-image--expanded {
   position: fixed;
   z-index: 99999;

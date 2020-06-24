@@ -29,8 +29,8 @@ import IconSlotMashine from "@/components/projects/TimosIcons/IconSlotMashine.vu
 @Component({
   components: {
     "tc-button": TCButton,
-    "icon-slot-mashine": IconSlotMashine
-  }
+    "icon-slot-mashine": IconSlotMashine,
+  },
 })
 export default class TimosIconsNotFound extends Vue {
   public timos_icons: string = constants.projectRoutes.timos_icons;
@@ -50,7 +50,7 @@ export default class TimosIconsNotFound extends Vue {
     2: "#45aaf2",
     3: "#26de81",
     4: "#2bcbba",
-    5: "#e67e22"
+    5: "#e67e22",
   );
   @each $i, $color in $colors {
     /deep/ .icon-slot-mashine {

@@ -12,7 +12,7 @@
   </div>
 </template>
 <script lang="ts">
-import { Vue, Component, Prop, Mixins } from "vue-property-decorator";
+import { Component, Prop, Mixins } from "vue-property-decorator";
 import TCComponent from "../TC-Component.mixin";
 @Component
 export default class TCSlider extends Mixins(TCComponent) {
@@ -24,12 +24,15 @@ export default class TCSlider extends Mixins(TCComponent) {
 
   public data = this.value;
 
-  public updateVal() {
+  public updateVal(): void {
     this.$emit("input", this.data);
   }
 }
 </script>
 <style lang="scss" scoped>
+@import "../_variables.scss";
+@import "../_mixins.scss";
+
 .tc-slider {
   display: inline-flex;
   justify-content: center;

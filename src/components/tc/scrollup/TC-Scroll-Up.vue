@@ -8,14 +8,14 @@
   </div>
 </template>
 <script lang="ts">
-import { Vue, Component, Prop, Mixins } from "vue-property-decorator";
+import { Component, Prop, Mixins } from "vue-property-decorator";
 import TCComponent from "../TC-Component.mixin";
 @Component
 export default class TCScrollUp extends Mixins(TCComponent) {
   @Prop({ default: "chevron-up" }) icon!: string;
   public visible = false;
 
-  created() {
+  created(): void {
     document.onscroll = () => {
       this.visible =
         document.body.scrollTop > 20 || document.documentElement.scrollTop > 20;
@@ -29,6 +29,9 @@ export default class TCScrollUp extends Mixins(TCComponent) {
 }
 </script>
 <style lang="scss" scoped>
+@import "../_variables.scss";
+@import "../_mixins.scss";
+
 $size: 50px;
 .tc-scroll-up {
   display: flex;

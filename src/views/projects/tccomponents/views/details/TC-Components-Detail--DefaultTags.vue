@@ -43,15 +43,15 @@ import { Vue, Component } from "vue-property-decorator";
 import TCHeadline from "@/components/tc/headline/TC-Headline.vue";
 @Component({
   components: {
-    "tc-headline": TCHeadline
-  }
+    "tc-headline": TCHeadline,
+  },
 })
 export default class TCComponentsDetailDefaultTags extends Vue {
   public tags: { tag: string; example: string }[] = [
     {
       tag: "h1",
-      example: "Heading 1"
-    }
+      example: "Heading 1",
+    },
   ];
 }
 </script>

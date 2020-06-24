@@ -1,7 +1,7 @@
 import { TCComponentApi } from "@/models/TCComponents/TCComponentApi.model";
 import { TCComponentGroup } from "@/models/TCComponents/TCComponentGroup.model";
 
-let tccolors = "primary, error, alarm, success";
+const tccolors = "primary, error, alarm, success";
 
 const tcComponent_Api: TCComponentApi[] = [
   { name: "dark", type: "boolean", description: "Toggles darkmode on or off" },
@@ -9,8 +9,8 @@ const tcComponent_Api: TCComponentApi[] = [
   {
     name: "background",
     type: "string",
-    description: "Default background color"
-  }
+    description: "Default background color",
+  },
 ];
 
 const tcComponents: TCComponentGroup[] = [
@@ -22,27 +22,27 @@ const tcComponents: TCComponentGroup[] = [
         name: "Default Tags",
         icon: "component",
         api: [], // TODO:
-        slots: []
+        slots: [],
       },
       {
         name: "Colors",
         icon: "color-fan",
         api: [], // TODO:
-        slots: []
+        slots: [],
       },
       {
         name: "Icons",
         icon: "heart",
         api: [], // TODO:
-        slots: []
+        slots: [],
       },
       {
         name: "Auto Background",
         icon: "swap",
         api: [], // TODO:
-        slots: []
-      }
-    ]
+        slots: [],
+      },
+    ],
   },
   {
     group: "Components",
@@ -56,145 +56,146 @@ const tcComponents: TCComponentGroup[] = [
             name: "icon",
             type: "string",
             description: "Adds an Icon in front of the input field",
-            parameters: "Timo's Icons"
+            parameters: "Timo's Icons",
           },
           {
             name: "title",
             type: "string",
-            description: "Sets a prestyled title on top of the input field"
+            description: "Sets a prestyled title on top of the input field",
           },
           {
             name: "buttons",
             type: "boolean",
-            description: "Adds +/- Buttons (only for type='number')"
+            description: "Adds +/- Buttons (only for type='number')",
           },
           {
             name: "placeholder",
             type: "string",
             description:
-              "Specifies a short hint that describes the expected value of an <tc-input> element"
+              "Specifies a short hint that describes the expected value of an <tc-input> element",
           },
           {
             name: "filePlaceholder",
             type: "string",
             description:
               "Specifie a placeholder for your file upload input field",
-            default: "Choose File"
+            default: "Choose File",
           },
           {
             name: "type",
             type: "string",
             description: "Input type",
-            default: "text"
+            default: "text",
           },
           {
             name: "value",
             type: "any",
             description: "Determines the value of your input field",
-            default: "false"
+            default: "false",
           },
           { name: "v-model", type: "any", description: "" },
           {
             name: "@input",
             type: "function",
             description:
-              "Is called whenever the user changes the content inside the input field"
+              "Is called whenever the user changes the content inside the input field",
           },
           {
             name: "@change",
             type: "function",
             description:
-              "Is called whenever the user has selected a file to upload"
+              "Is called whenever the user has selected a file to upload",
           },
           {
             name: "@fileLoaded",
             type: "function(value: string)",
-            description: "Is called whenever the selected file has been read"
+            description: "Is called whenever the selected file has been read",
           },
           {
             name: "accept",
             type: "string",
             description:
-              "Specifies a filter for what file types the user can pick from the file input dialog box (only for type='file')"
+              "Specifies a filter for what file types the user can pick from the file input dialog box (only for type='file')",
           },
           {
             name: "autocomplete",
             type: "string",
             parameters: "on, off",
             description:
-              "Specifies whether an <tc-input> element should have autocomplete enabled"
+              "Specifies whether an <tc-input> element should have autocomplete enabled",
           },
           {
             name: "autofocus",
             type: "boolean",
             description:
-              "Specifies that an <tc-input> element should automatically get focus when the page loads"
+              "Specifies that an <tc-input> element should automatically get focus when the page loads",
           },
           {
             name: "disabled",
             type: "boolean",
             description:
-              "Specifies that an <tc-input> element should be disabled"
+              "Specifies that an <tc-input> element should be disabled",
           },
           {
             name: "form",
             type: "string",
-            description: "Specifies the form the <tc-input> element belongs to"
+            description: "Specifies the form the <tc-input> element belongs to",
           },
           {
             name: "max",
             type: "number | date",
-            description: "Specifies the maximum value for an <tc-input> element"
+            description:
+              "Specifies the maximum value for an <tc-input> element",
           },
           {
             name: "maxlength",
             type: "number",
             description:
-              "Specifies the maximum number of characters allowed in an <tc-input> element"
+              "Specifies the maximum number of characters allowed in an <tc-input> element",
           },
           {
             name: "min",
             type: "number | date",
-            description: "Specifies a minimum value for an <tc-input> element"
+            description: "Specifies a minimum value for an <tc-input> element",
           },
           {
             name: "minlength",
             type: "number",
             description:
-              "Specifies the minimum number of characters required in an <tc-input> element"
+              "Specifies the minimum number of characters required in an <tc-input> element",
           },
           {
             name: "multiple",
             type: "boolean",
             description:
-              "Specifies that a user can enter more than one value in an <tc-input> element"
+              "Specifies that a user can enter more than one value in an <tc-input> element",
           },
           {
             name: "pattern",
             type: "string",
             description:
-              "Specifies a regular expression that an <tc-input> element's value is checked against"
+              "Specifies a regular expression that an <tc-input> element's value is checked against",
           },
           {
             name: "readonly",
             type: "boolean",
-            description: "Specifies that an input field is read-only"
+            description: "Specifies that an input field is read-only",
           },
           {
             name: "required",
             type: "boolean",
             description:
-              "Specifies that an input field must be filled out before submitting the form"
+              "Specifies that an input field must be filled out before submitting the form",
           },
           {
             name: "step",
             type: "number",
             default: "1",
             description:
-              "Specifies the interval between legal numbers in an input field"
-          }
+              "Specifies the interval between legal numbers in an input field",
+          },
         ],
-        slots: []
+        slots: [],
       },
       {
         name: "Card",
@@ -203,51 +204,51 @@ const tcComponents: TCComponentGroup[] = [
           {
             name: "title",
             type: "string",
-            description: "Set a pre-styled title to the card"
+            description: "Set a pre-styled title to the card",
           },
           {
             description: "Set a pre-styled subtitle to the card",
             name: "subtitle",
-            type: "string"
+            type: "string",
           },
           {
             name: "frosted",
             type: "boolean",
             description:
-              "Determines if the card should have a frosted appearance"
+              "Determines if the card should have a frosted appearance",
           },
           {
             name: "shadow",
             type: "boolean",
             default: "true",
-            description: "Determines if the card should have a base shadow"
+            description: "Determines if the card should have a base shadow",
           },
           {
             description: "Determines if the card's borders are rounded",
             name: "rounded",
-            type: "boolean"
+            type: "boolean",
           },
           {
             description: "Determines if a shadow should appear on hover",
             name: "hover",
-            type: "boolean"
+            type: "boolean",
           },
-          ...tcComponent_Api
+          ...tcComponent_Api,
         ],
         slots: [
           {
             name: "header",
-            description: "TODO:"
+            description: "TODO:",
           },
           {
             name: "media",
-            description: "TODO:"
+            description: "TODO:",
           },
           {
             name: "default",
-            description: "TODO:"
-          }
-        ]
+            description: "TODO:",
+          },
+        ],
       },
       {
         name: "Divider",
@@ -256,33 +257,33 @@ const tcComponents: TCComponentGroup[] = [
           {
             name: "name",
             type: "String",
-            description: "Text to be displayed"
+            description: "Text to be displayed",
           },
           {
             name: "icon",
             type: "String",
             description: "Icon to be displayed",
-            parameters: "Timo's Icons"
+            parameters: "Timo's Icons",
           },
           {
             name: "position",
             type: "String",
             description: "Name/Icon Position",
             parameters: "left, center, right",
-            default: "center"
+            default: "center",
           },
           {
             name: "color",
             type: "String",
-            description: "Determines the color of TC-Divider"
+            description: "Determines the color of TC-Divider",
           },
           {
             name: "dark",
             type: "boolean",
-            description: "Toggles darkmode on or off"
-          }
+            description: "Toggles darkmode on or off",
+          },
         ],
-        slots: []
+        slots: [],
       },
       {
         name: "Button",
@@ -293,41 +294,41 @@ const tcComponents: TCComponentGroup[] = [
           {
             name: "name",
             type: "string",
-            description: "Title to be displayed"
+            description: "Title to be displayed",
           },
           {
             name: "@click",
             type: "function",
-            description: "Is triggered, when ever a button is clicked"
+            description: "Is triggered, when ever a button is clicked",
           },
           {
             name: "icon",
             type: "string",
             description: "Icon to be displayed",
-            parameters: "Timo's Icons"
+            parameters: "Timo's Icons",
           },
           {
             name: "disabled",
             type: "boolean",
             description: "Determines if the button is disabled",
-            default: "false"
+            default: "false",
           },
           {
             name: "variant",
             type: "string",
             description: "Determines the style of the button",
             default: "border",
-            parameters: "opaque, border, filled"
+            parameters: "opaque, border, filled",
           },
           {
             name: "tccolor",
             type: "string",
             description: "Determines the color of the button",
             default: "primary",
-            parameters: tccolors
-          }
+            parameters: tccolors,
+          },
         ],
-        slots: []
+        slots: [],
       },
       {
         name: "Sidebar",
@@ -337,9 +338,9 @@ const tcComponents: TCComponentGroup[] = [
           // TODO:
           {
             name: "default",
-            description: "TODO:"
-          }
-        ]
+            description: "TODO:",
+          },
+        ],
       },
       {
         name: "Checkbox",
@@ -348,60 +349,60 @@ const tcComponents: TCComponentGroup[] = [
           {
             name: "title",
             type: "string",
-            description: "Sets a title next to the checkbox"
+            description: "Sets a title next to the checkbox",
           },
           {
             name: "position",
             type: "string",
             description: "",
             parameters: "left, right",
-            default: "left"
+            default: "left",
           },
           {
             name: "dark",
             type: "boolean",
-            description: "Toggles darkmode on or off"
+            description: "Toggles darkmode on or off",
           },
           {
             name: "iconChecked",
             type: "string",
             description: "",
-            parameters: "Timo's Icons"
+            parameters: "Timo's Icons",
           },
           {
             name: "iconUnchecked",
             type: "string",
             description: "",
-            parameters: "Timo's Icons"
+            parameters: "Timo's Icons",
           },
           {
             name: "iconAnimation",
             type: "string",
             description: "",
             parameters: "step, spin, flip",
-            default: "step"
+            default: "step",
           },
           {
             name: "color",
             type: "string",
             description: "Determines the color of the checkmark",
-            default: "#0088ff"
+            default: "#0088ff",
           },
           {
             name: "value",
             type: "boolean",
             description: "Determines the state of the checkbox",
-            default: "false"
+            default: "false",
           },
           { name: "v-model", type: "boolean", description: "" },
           {
             name: "@input",
             type: "function",
             description:
-              "Is called whenever the user changes the state of the checkbox"
-          }
+              "Is called whenever the user changes the state of the checkbox",
+          },
         ],
-        slots: []
+        slots: [],
       },
       {
         name: "Link",
@@ -410,17 +411,17 @@ const tcComponents: TCComponentGroup[] = [
           {
             name: "to",
             type: "any",
-            description: ""
+            description: "",
           },
           { name: "href", type: "string", description: "" },
-          { name: "@click", type: "function", description: "" }
+          { name: "@click", type: "function", description: "" },
         ],
         slots: [
           {
             name: "default",
-            description: "TODO:"
-          }
-        ]
+            description: "TODO:",
+          },
+        ],
       },
       {
         name: "Modal",
@@ -429,34 +430,34 @@ const tcComponents: TCComponentGroup[] = [
           {
             name: "title",
             type: "string",
-            description: "Set a pre-styled title to the modal"
+            description: "Set a pre-styled title to the modal",
           },
           {
             description: "Set a pre-styled subtitle to the modal",
             name: "subtitle",
-            type: "string"
+            type: "string",
           },
           {
             name: "value",
             type: "boolean",
             description: "Determines the state of the modal",
-            default: "false"
+            default: "false",
           },
           { name: "v-model", type: "boolean", description: "" },
           {
             name: "@input",
             type: "function",
             description:
-              "Is called whenever the user changes the state of the modal"
-          }
+              "Is called whenever the user changes the state of the modal",
+          },
         ],
-        slots: [] // TODO:
+        slots: [], // TODO:
       },
       {
         name: "Tabbar",
         icon: "tabbar",
         api: [], // TODO:
-        slots: [] // TODO:
+        slots: [], // TODO:
       },
       {
         name: "Table",
@@ -465,9 +466,9 @@ const tcComponents: TCComponentGroup[] = [
         slots: [
           {
             name: "default",
-            description: "TODO:"
-          }
-        ]
+            description: "TODO:",
+          },
+        ],
       },
       {
         name: "Scroll Up",
@@ -476,10 +477,10 @@ const tcComponents: TCComponentGroup[] = [
           {
             name: "src",
             description: "Source to image, video, gif to be displayed",
-            type: "string"
-          }
+            type: "string",
+          },
         ], // TODO:
-        slots: []
+        slots: [],
       },
       {
         name: "Image",
@@ -488,10 +489,10 @@ const tcComponents: TCComponentGroup[] = [
           {
             name: "src",
             description: "Source to image, video, gif to be displayed",
-            type: "string"
-          }
+            type: "string",
+          },
         ],
-        slots: []
+        slots: [],
       },
       {
         name: "Switch",
@@ -501,7 +502,7 @@ const tcComponents: TCComponentGroup[] = [
             name: "value",
             type: "any",
             description: "Determines the state of your switch",
-            default: "false"
+            default: "false",
           },
           { name: "v-model", type: "boolean", description: "" },
           {
@@ -509,10 +510,10 @@ const tcComponents: TCComponentGroup[] = [
             type: "string",
             description: "Determines the color of the button",
             default: "primary",
-            parameters: tccolors
-          }
+            parameters: tccolors,
+          },
         ], // TODO:
-        slots: []
+        slots: [],
       },
       {
         name: "Spinner",
@@ -522,16 +523,16 @@ const tcComponents: TCComponentGroup[] = [
             name: "size",
             description: "Determines the size of the spinner",
             type: "number",
-            default: 30
+            default: 30,
           },
           {
             name: "dark",
             description: "Toggles darkmode on or off",
             type: "boolean",
-            default: false
-          }
+            default: false,
+          },
         ],
-        slots: []
+        slots: [],
       },
       {
         name: "Hero",
@@ -541,28 +542,28 @@ const tcComponents: TCComponentGroup[] = [
             default: "200",
             name: "height",
             type: "number",
-            description: "Height of Hero Container"
+            description: "Height of Hero Container",
           },
           {
             default: "px",
             name: "unit",
             type: "string",
-            description: "Unit of height"
+            description: "Unit of height",
           },
           {
             default: "true",
             name: "hasFixedHeader",
             type: "boolean",
-            description: "Determines if top should have a padding of 50px"
+            description: "Determines if top should have a padding of 50px",
           },
           {
             name: "background",
             type: "string",
             description: "Background color of Hero",
-            default: "transparent"
-          }
+            default: "transparent",
+          },
         ],
-        slots: [] // TODO:
+        slots: [], // TODO:
       },
       {
         name: "Revealer",
@@ -571,13 +572,13 @@ const tcComponents: TCComponentGroup[] = [
         slots: [
           {
             name: "background",
-            description: "TODO:"
+            description: "TODO:",
           },
           {
             name: "default",
-            description: "TODO:"
-          }
-        ]
+            description: "TODO:",
+          },
+        ],
       },
       {
         name: "Progress",
@@ -587,41 +588,42 @@ const tcComponents: TCComponentGroup[] = [
             name: "percent",
             type: "number",
             default: "0",
-            description: "Percentage to be displayed"
+            description: "Percentage to be displayed",
           },
           {
             name: "type",
             type: "string",
             default: "bar",
             parameters: "bar, ring",
-            description: "Progress Type"
+            description: "Progress Type",
           },
           {
             name: "color",
             type: "string",
             description: "Determines the color of the bar/ring",
-            default: "#0088ff"
+            default: "#0088ff",
           },
           {
             name: "barHeight",
             type: "number",
             default: "4",
-            description: "Determines the height of the progress bar"
+            description: "Determines the height of the progress bar",
           },
           {
             name: "ringSize",
             type: "number",
             default: "70",
-            description: "Determines the size of the progress ring"
+            description: "Determines the size of the progress ring",
           },
           {
             name: "ringWidth",
             type: "number",
             default: "8",
-            description: "Determines the width of the ring of the progress ring"
-          }
+            description:
+              "Determines the width of the ring of the progress ring",
+          },
         ],
-        slots: []
+        slots: [],
       },
       {
         name: "Quote",
@@ -630,21 +632,21 @@ const tcComponents: TCComponentGroup[] = [
           {
             name: "title",
             type: "String",
-            description: "Sets a prestyled title"
-          }
+            description: "Sets a prestyled title",
+          },
         ],
         slots: [
           {
             name: "default",
             description:
-              "This slot is used, to place the quote you want to display, it can be any html element or tc-component"
+              "This slot is used, to place the quote you want to display, it can be any html element or tc-component",
           },
           {
             name: "header",
             description:
-              "You can use this slot, to style your own header. Property title will then be overwritten"
-          }
-        ]
+              "You can use this slot, to style your own header. Property title will then be overwritten",
+          },
+        ],
       },
       {
         name: "Header",
@@ -653,54 +655,54 @@ const tcComponents: TCComponentGroup[] = [
           {
             name: "title",
             type: "string",
-            description: "Sets a prestyled title"
+            description: "Sets a prestyled title",
           },
           {
             name: "variant",
             type: "string",
             description: "Determines the variant used for TC-Header",
             parameters: "fixed, floating, sticky",
-            default: "fixed"
+            default: "fixed",
           },
           {
             name: "top",
             type: "number",
             description: "Determines the position of TC-Header",
-            default: "0 (if variant=floating +40)"
+            default: "0 (if variant=floating +40)",
           },
           {
             name: "backTo",
             type: "any",
-            description: "Sets the destination for a prestyled back button"
+            description: "Sets the destination for a prestyled back button",
           },
           {
             name: "backHref",
             type: "string",
-            description: "Sets the destination for a prestyled back button"
+            description: "Sets the destination for a prestyled back button",
           },
           {
             name: "backName",
             type: "string",
             default: "back",
             description:
-              "Sets the title for a prestyled back button (only visible if backTo or backHref is set)"
+              "Sets the title for a prestyled back button (only visible if backTo or backHref is set)",
           },
           {
             name: "@click",
             type: "function",
-            description: "Get called whenever a user clicks the back button"
-          }
+            description: "Get called whenever a user clicks the back button",
+          },
         ],
         slots: [
           {
             name: "title",
-            description: "TODO:"
+            description: "TODO:",
           },
           {
             name: "default",
-            description: "TODO:"
-          }
-        ]
+            description: "TODO:",
+          },
+        ],
       },
       {
         name: "Headline",
@@ -709,38 +711,38 @@ const tcComponents: TCComponentGroup[] = [
           {
             name: "title",
             type: "string",
-            description: "Sets a prestyled title"
+            description: "Sets a prestyled title",
           },
           {
             name: "icon",
             type: "string",
             description:
               "Inserts a Icon in front of Headline title (only visible with default title)",
-            parameters: "Timo's Icons"
-          }
+            parameters: "Timo's Icons",
+          },
         ],
         slots: [
           {
             name: "title",
-            description: "TODO:"
+            description: "TODO:",
           },
           {
             name: "default",
-            description: "TODO:"
-          }
-        ]
+            description: "TODO:",
+          },
+        ],
       },
       {
         name: "Segments",
         icon: "segment",
         api: [], // TODO:
-        slots: [] // TODO:
+        slots: [], // TODO:
       },
       {
         name: "Slider",
         icon: "slider",
         api: [], // TODO:
-        slots: []
+        slots: [],
       },
       {
         name: "Navbar",
@@ -749,34 +751,34 @@ const tcComponents: TCComponentGroup[] = [
           {
             name: "[TC-Navbar-Item]: to",
             type: "string | object",
-            description: "Location, a user is forwarded to"
+            description: "Location, a user is forwarded to",
           },
           {
             name: "[TC-Navbar-Item]: name",
             type: "string",
-            description: "Name to be displayed"
+            description: "Name to be displayed",
           },
           {
             name: "[TC-Navbar-Item]: icon",
             type: "string",
             parameters: "Timo's Icons",
-            description: "Custom Icon to be displayed"
-          }
+            description: "Custom Icon to be displayed",
+          },
         ],
         slots: [
           {
             name: "logo",
-            description: "TODO:"
+            description: "TODO:",
           },
           {
             name: "actions",
-            description: "TODO:"
+            description: "TODO:",
           },
           {
             name: "default",
-            description: "TODO:"
-          }
-        ]
+            description: "TODO:",
+          },
+        ],
       },
       {
         name: "Select",
@@ -788,39 +790,39 @@ const tcComponents: TCComponentGroup[] = [
             name: "icon",
             type: "string",
             parameters: "Timo's Icons",
-            description: ""
+            description: "",
           },
           { default: false, name: "dark", type: "boolean", description: "" },
           {
             default: false,
             name: "multiple",
             type: "boolean",
-            description: ""
+            description: "",
           },
           {
             default: "Select one",
             name: "placeholder",
             type: "string",
-            description: ""
+            description: "",
           },
           {
             name: "value",
             type: "(string | number | boolean) | (string | number | boolean)[]",
-            description: ""
+            description: "",
           },
           {
             name: "values",
             type: "(string | number | boolean)[]",
-            description: ""
-          }
+            description: "",
+          },
         ],
-        slots: []
+        slots: [],
       },
       {
         name: "Tooltip",
         icon: "tooltip",
         api: [], // TODO:
-        slots: []
+        slots: [],
       },
       {
         name: "List",
@@ -829,23 +831,23 @@ const tcComponents: TCComponentGroup[] = [
         slots: [
           {
             name: "default",
-            description: "TODO:"
-          }
-        ]
+            description: "TODO:",
+          },
+        ],
       },
       {
         name: "Steps",
         icon: "dots",
         api: [], // TODO:
-        slots: [] // TODO:
+        slots: [], // TODO:
       },
       {
         name: "Badge",
         icon: "notification",
         api: [], // TODO:
-        slots: [] // TODO:
-      }
-    ].sort((a, b) => a.name.localeCompare(b.name))
+        slots: [], // TODO:
+      },
+    ].sort((a, b) => a.name.localeCompare(b.name)),
   },
   {
     group: "Layout",
@@ -858,12 +860,12 @@ const tcComponents: TCComponentGroup[] = [
         slots: [
           {
             name: "default",
-            description: "TODO:"
-          }
-        ]
-      }
-    ]
-  }
+            description: "TODO:",
+          },
+        ],
+      },
+    ],
+  },
 ];
 
 export default tcComponents;

@@ -3,7 +3,7 @@ export default {
     home: "home",
     projects: "projects",
     github: "github",
-    contact: "contact"
+    contact: "contact",
   },
   projectRoutes: {
     portfolio: "home",
@@ -22,6 +22,6 @@ export default {
     timos_components_getting_started: "timoscomponentsgettingstarted",
     ams_pro: "amspro",
     investing_collectors: "investingcollectors",
-    not_found: "projectsNF"
-  }
+    not_found: "projectsNF",
+  },
 };

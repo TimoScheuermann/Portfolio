@@ -12,9 +12,9 @@ import icons from "@/icons";
 @Component
 export default class IconSlotMashine extends Vue {
   @Prop({ default: 3 }) amount!: number;
-  public icon: string = "";
+  public icon = "";
 
-  mounted() {
+  mounted(): void {
     setTimeout(() => {
       this.run();
     }, Math.random() * 1000);

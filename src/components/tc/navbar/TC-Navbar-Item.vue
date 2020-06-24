@@ -7,16 +7,19 @@
   </router-link>
 </template>
 <script lang="ts">
-import { Vue, Component, Prop, Mixins } from "vue-property-decorator";
+import { Component, Prop, Mixins } from "vue-property-decorator";
 import TCComponent from "../TC-Component.mixin";
 @Component
 export default class TCNavbarItem extends Mixins(TCComponent) {
-  @Prop({ default: "_blank" }) to!: string | object;
+  @Prop({ default: "_blank" }) to!: string | Record<string, unknown>;
   @Prop() name!: string;
   @Prop() icon!: string;
 }
 </script>
 <style lang="scss" scoped>
+@import "../_variables.scss";
+@import "../_mixins.scss";
+
 .tc-navbar-item {
   color: inherit;
   display: block;

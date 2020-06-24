@@ -11,8 +11,8 @@ import TCSelect from "@/components/tc/select/TC-Select.vue";
 @Component({
   components: {
     "tc-headline": TCHeadline,
-    "tc-select": TCSelect
-  }
+    "tc-select": TCSelect,
+  },
 })
 export default class TCComponentsDetailSelect extends Vue {}
 </script>

@@ -47,7 +47,7 @@
         title: 'Title',
         backName: 'Home',
         backTo: to,
-        '@click': 'clicked'
+        '@click': 'clicked',
       }"
     >
       <tc-header
@@ -67,7 +67,7 @@
         title: 'Title',
         backName: 'Previous Page',
         backTo: 'to',
-        '@click': 'clicked'
+        '@click': 'clicked',
       }"
     >
       <tc-header
@@ -86,7 +86,7 @@
       title="Fixed / Sticky"
       tag="tc-header"
       :attr="{
-        title: 'Example'
+        title: 'Example',
       }"
     >
       <tc-header class="tc-header__example" title="Example"></tc-header>
@@ -96,7 +96,7 @@
       tag="tc-header"
       :attr="{
         title: 'Example',
-        variant: 'floating'
+        variant: 'floating',
       }"
     >
       <tc-header
@@ -121,13 +121,13 @@ import PortfolioCodeExample from "@/components/projects/TCComponents/CodeExample
     "tc-headline": TCHeadline,
     "tc-header": TCHeader,
     "tc-button": TCButton,
-    "tc-segments": TCSegments
-  }
+    "tc-segments": TCSegments,
+  },
 })
 export default class TCComponentsDetailHeader extends Vue {
   public to = {
     to: constants.projectRoutes.timos_components_detail,
-    comp: "header"
+    comp: "header",
   };
   public clicked(): void {
     alert("back button clicked");

@@ -20,8 +20,8 @@ import TCButton from "@/components/tc/button/TC-Button.vue";
 import constants from "@/constants";
 @Component({
   components: {
-    "tc-button": TCButton
-  }
+    "tc-button": TCButton,
+  },
 })
 export default class TCComponentsNotFound extends Vue {
   public timos_components: string = constants.projectRoutes.timos_components;

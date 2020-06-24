@@ -28,11 +28,11 @@ import { Project } from "@/models/Projects/Project.model";
   components: {
     "tc-header": TCHeader,
     "projects-default-hero": ProjectsDefaultHero,
-    "project-title": ProjectsTitle
-  }
+    "project-title": ProjectsTitle,
+  },
 })
 export default class NHLStats extends Vue {
-  public constants: {} = constants;
+  public constants: Record<string, unknown> = constants;
 
   get project(): Project {
     return getProject();

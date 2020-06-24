@@ -11,8 +11,8 @@ import TCSpinner from "@/components/tc/spinner/TC-Spinner.vue";
 @Component({
   components: {
     "tc-headline": TCHeadline,
-    "tc-spinner": TCSpinner
-  }
+    "tc-spinner": TCSpinner,
+  },
 })
 export default class TCComponentsDetailSpinner extends Vue {}
 </script>

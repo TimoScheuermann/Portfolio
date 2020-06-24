@@ -32,7 +32,6 @@
 </template>
 <script lang="ts">
 import { Vue, Component } from "vue-property-decorator";
-import TCSpinner from "@/components/tc/spinner/TC-Spinner.vue";
 import TCComponentsNotFound from "./TC-Components-NotFound.vue";
 import TCHeadline from "@/components/tc/headline/TC-Headline.vue";
 import TCTable from "@/components/tc/table/TC-Table.vue";
@@ -41,24 +40,25 @@ import { TCComponent } from "@/models/TCComponents/TCComponent.model";
 import TCHero from "@/components/tc/hero/TC-Hero.vue";
 import constants from "@/constants";
 import { TCComponentGroup } from "@/models/TCComponents/TCComponentGroup.model";
+import { AsyncComponentPromise } from "vue/types/options";
 
 @Component({
   components: {
     "tc-components-not-found": TCComponentsNotFound,
     "tc-headline": TCHeadline,
     "tc-table": TCTable,
-    "tc-hero": TCHero
-  }
+    "tc-hero": TCHero,
+  },
 })
 export default class TCComponentsDetail extends Vue {
   public compFound = true;
   public tcComponents: TCComponentGroup[] = tcComponents;
 
-  get exists() {
-    return this.compFound && this.component.length > 0 && this.tcComponent;
+  get exists(): boolean {
+    return !!(this.compFound && this.component.length > 0 && this.tcComponent);
   }
 
-  get component() {
+  get component(): string {
     const comp = this.$route.params.comp;
     if (comp) {
       const name: string = comp.toLowerCase();
@@ -72,26 +72,36 @@ export default class TCComponentsDetail extends Vue {
 
   get tcComponent(): TCComponent | undefined {
     const everyComponent: TCComponent[] = [];
-    this.tcComponents.forEach(x => everyComponent.push(...x.components));
+    this.tcComponents.forEach((x) => everyComponent.push(...x.components));
     return everyComponent.filter(
-      x => x.name.toLowerCase() === this.component
+      (x) => x.name.toLowerCase() === this.component
     )[0];
   }
 
-  get currentComponent() {
+  get currentComponent(): string | AsyncComponentPromise {
     this.compFound = true;
-    return () =>
-      import(
-        `@/views/projects/tccomponents/views/details/TC-Components-Detail--${this.tcComponent!.name.split(
-          " "
-        ).join("")}.vue`
-      ).catch(() => {
-        this.compFound = false;
-      });
+    const comp = this.tcComponent;
+    if (!comp) {
+      this.compFound = false;
+      return "";
+    } else {
+      return () =>
+        import(
+          `@/views/projects/tccomponents/views/details/TC-Components-Detail--${comp.name
+            .split(" ")
+            .join("")}.vue`
+        ).catch(() => {
+          this.compFound = false;
+        });
+    }
   }
 }
 </script>
+
 <style lang="scss" scoped>
+@import "../../../../components/tc/_variables.scss";
+@import "../../../../components/tc/_mixins.scss";
+
 .tc-hero {
   color: #fff;
   @media #{$isDesktop} {

@@ -18,14 +18,14 @@
   </div>
 </template>
 <script lang="ts">
-import { Vue, Component, Prop, Mixins } from "vue-property-decorator";
+import { Component, Prop, Mixins } from "vue-property-decorator";
 
 import TCHeadline from "../headline/TC-Headline.vue";
 import TCComponent from "../TC-Component.mixin";
 @Component({
   components: {
-    "tc-headline": TCHeadline
-  }
+    "tc-headline": TCHeadline,
+  },
 })
 export default class TCRevealer extends Mixins(TCComponent) {
   @Prop({ default: "Revealer", type: String }) title!: string;
@@ -37,6 +37,9 @@ export default class TCRevealer extends Mixins(TCComponent) {
 }
 </script>
 <style lang="scss" scoped>
+@import "../_variables.scss";
+@import "../_mixins.scss";
+
 .tc-revealer {
   & > input {
     display: none;

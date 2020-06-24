@@ -16,10 +16,10 @@ import TCHeader from "@/components/tc/header/TC-Header.vue";
 import constants from "@/constants";
 @Component({
   components: {
-    "tc-header": TCHeader
-  }
+    "tc-header": TCHeader,
+  },
 })
 export default class TCComponentsGettingStarted extends Vue {
-  public constants: {} = constants;
+  public constants: Record<string, unknown> = constants;
 }
 </script>

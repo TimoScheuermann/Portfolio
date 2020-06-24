@@ -17,25 +17,28 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop, Mixins } from "vue-property-decorator";
+import { Component, Prop, Mixins } from "vue-property-decorator";
 import TCComponent from "./tc/TC-Component.mixin";
 import TCCard from "./tc/card/TC-Card.vue";
 
 @Component({
   components: {
-    "tc-card": TCCard
-  }
+    "tc-card": TCCard,
+  },
 })
 export default class TCExpander extends Mixins(TCComponent) {
   @Prop() title!: string;
-  public reveal: boolean = false;
+  public reveal = false;
 
-  public toggle() {
+  public toggle(): void {
     this.reveal = !this.reveal;
   }
 }
 </script>
 <style lang="scss" scoped>
+@import "./tc/_variables.scss";
+@import "./tc/_mixins.scss";
+
 .tc-revealer--head {
   position: relative;
   .tc-revealer--indicator {

@@ -58,22 +58,26 @@ import TCLink from "../../../components/tc/link/TC-Link.vue";
     "tc-tabbar": TCTabbar,
     "tc-tabbar-item": TCTabbarItem,
     "tc-grid": TCGrid,
-    "tc-link": TCLink
-  }
+    "tc-link": TCLink,
+  },
 })
 export default class TimosIconsFound extends Vue {
   public timos_icons: string = constants.projectRoutes.timos_icons;
   public icons: Icon[] = icons;
 
-  get icon() {
+  get icon(): string {
     return this.$route.params.icon;
   }
-  get displayName() {
+  get displayName(): string {
     return this.icon.split("-").join(" ");
   }
 }
 </script>
+
 <style lang="scss" scoped>
+@import "../../../components/tc/_variables.scss";
+@import "../../../components/tc/_mixins.scss";
+
 .timos-icons--found {
   padding-top: calc(50px + env(safe-area-inset-top));
 

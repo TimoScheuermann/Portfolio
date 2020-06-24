@@ -50,11 +50,11 @@ import { Project } from "@/models/Projects/Project.model";
     "tc-headline": TCHeadline,
     "projects-default-hero": ProjectsDefaultHero,
     "project-title": ProjectsTitle,
-    "tc-grid": TCGrid
-  }
+    "tc-grid": TCGrid,
+  },
 })
 export default class AMSPro extends Vue {
-  public constants: {} = constants;
+  public constants: Record<string, unknown> = constants;
 
   get project(): Project {
     return getProject();
@@ -72,7 +72,7 @@ export default class AMSPro extends Vue {
     "ams-8",
     "ams-9",
     "ams-10",
-    "ams-11"
+    "ams-11",
   ];
 }
 </script>

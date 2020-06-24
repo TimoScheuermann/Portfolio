@@ -16,10 +16,10 @@
       @click="openDesigner()"
     />
   </tc-header>
-  <tc-header v-else :title="headerTitle" :autoBackground="true" />
+  <tc-header v-else :title="headerTitle" />
 </template>
 <script lang="ts">
-import { Vue, Component, Watch } from "vue-property-decorator";
+import { Vue, Component } from "vue-property-decorator";
 import { TCComponent } from "@/models/TCComponents/TCComponent.model";
 import TCHeader from "@/components/tc/header/TC-Header.vue";
 import constants from "@/constants";
@@ -30,11 +30,11 @@ import TCButton from "@/components/tc/button/TC-Button.vue";
 @Component({
   components: {
     "tc-header": TCHeader,
-    "tc-button": TCButton
-  }
+    "tc-button": TCButton,
+  },
 })
 export default class TCComponentsHeader extends Vue {
-  public constants: object = constants;
+  public constants: Record<string, unknown> = constants;
   public tcComponents: TCComponentGroup[] = tcComponents;
 
   get headerTitle(): string {
@@ -49,16 +49,17 @@ export default class TCComponentsHeader extends Vue {
 
   get tcComponent(): TCComponent | undefined {
     const everyComponent: TCComponent[] = [];
-    this.tcComponents.forEach(x => everyComponent.push(...x.components));
+    this.tcComponents.forEach((x) => everyComponent.push(...x.components));
     return everyComponent.filter(
-      x => x.name.toLowerCase() === this.component
+      (x) => x.name.toLowerCase() === this.component
     )[0];
   }
 
-  public openDesigner() {
-    this.$store.commit("updateDesignerComponent", this.tcComponent!.name);
+  public openDesigner(): void {
+    const comp = this.tcComponent;
+    if (comp) this.$store.commit("updateDesignerComponent", comp.name);
     this.$router.push({
-      name: constants.projectRoutes.timos_components_designer
+      name: constants.projectRoutes.timos_components_designer,
     });
   }
 }

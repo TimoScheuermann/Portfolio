@@ -10,14 +10,14 @@ export default class TCGrid extends Vue {
   @Prop({ default: "300" }) minWidth!: string;
   @Prop({ default: "auto-fill" }) arrangement!: string;
 
-  get arrange() {
+  get arrange(): string {
     if (this.arrangement !== "auto-fit") return "auto-fill";
     return this.arrangement;
   }
 
-  get style() {
+  get style(): Record<string, string> {
     return {
-      "grid-template-columns": `repeat(${this.arrange}, minmax(${this.minWidth}px, 1fr))`
+      "grid-template-columns": `repeat(${this.arrange}, minmax(${this.minWidth}px, 1fr))`,
     };
   }
 }

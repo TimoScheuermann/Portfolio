@@ -38,13 +38,13 @@ import TCTooltip from "@/components/tc/tooltip/TC-Tooltip.vue";
     "tc-headline": TCHeadline,
     "tc-card": TCCard,
     "ti-icontile": IconTile,
-    "tc-tooltip": TCTooltip
-  }
+    "tc-tooltip": TCTooltip,
+  },
 })
 export default class TimosIconsVersions extends Vue {
-  public constants: {} = constants;
+  public constants: Record<string, unknown> = constants;
   public getVersions(): string[] {
-    return [...new Set(icons.map(x => (x.version ? x.version : "1.0")))].sort(
+    return [...new Set(icons.map((x) => (x.version ? x.version : "1.0")))].sort(
       (a, b) => this.versionToNumber(b) - this.versionToNumber(a)
     );
   }
@@ -55,7 +55,7 @@ export default class TimosIconsVersions extends Vue {
 
   public getVersionIcons(version: string): Icon[] {
     return icons
-      .filter(x => (x.version ? x.version === version : version === "1.0"))
+      .filter((x) => (x.version ? x.version === version : version === "1.0"))
       .sort((a, b) => b.name.localeCompare(a.name));
   }
 }

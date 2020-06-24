@@ -18,7 +18,7 @@
         :attr="{
           'v-model': 'modalOpened',
           title: 'Modal Demo',
-          subtitle: 'Very Simple'
+          subtitle: 'Very Simple',
         }"
         tag="tc-modal"
         inner="Open Dev-Tools for a mobile demo**<tc-button**slot='buttons'**variant='filled'**@click='modalOpened = false'**name='I like it'**icon='heart'**/>"
@@ -52,8 +52,8 @@ import TCGrid from "@/components/tc/_layout/grid/TC-Grid.vue";
     "portfolio-code-example": PortfolioCodeExample,
     "tc-modal": TCModal,
     "tc-button": TCButton,
-    "tc-grid": TCGrid
-  }
+    "tc-grid": TCGrid,
+  },
 })
 export default class TCComponentsDetailModal extends Vue {
   public modalOpened = false;

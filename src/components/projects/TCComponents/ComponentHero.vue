@@ -9,23 +9,22 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop } from "vue-property-decorator";
+import { Vue, Component } from "vue-property-decorator";
 import TCGrid from "@/components/tc/_layout/grid/TC-Grid.vue";
 import TCHero from "../../tc/hero/TC-Hero.vue";
-import { TCComponent } from "@/models/TCComponents/TCComponent.model";
 import icons from "@/icons";
-import { Icon } from "../../../models/Icons/Icon.model";
+import { Icon } from "@/models/Icons/Icon.model";
 @Component({
   components: {
     "tc-grid": TCGrid,
-    "tc-hero": TCHero
-  }
+    "tc-hero": TCHero,
+  },
 })
 export default class ComponentHero extends Vue {
   icons: Icon[] = icons;
 
   getRandomIcon(index: number, multi = 99): string {
-    const n = "ti-" + this.icons[(index * 99) % icons.length].name;
+    const n = "ti-" + this.icons[(index * multi) % icons.length].name;
     if (n.endsWith("bucket") || n.endsWith("scale")) return "ti-camera";
     return n;
   }

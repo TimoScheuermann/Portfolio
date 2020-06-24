@@ -13,28 +13,32 @@
   </div>
 </template>
 <script lang="ts">
-import { Vue, Component, Prop, Mixins } from "vue-property-decorator";
+import { Component, Mixins } from "vue-property-decorator";
 import TCComponent from "../TC-Component.mixin";
 
 @Component
 export default class TCSidebar extends Mixins(TCComponent) {
-  get styles() {
+  get styles(): Record<string, unknown> {
     return {
       color: this.color,
-      background: this.background
+      background: this.background,
     };
   }
 }
 </script>
 <style lang="scss" scoped>
+@import "../_variables.scss";
+@import "../_mixins.scss";
+
 .tc-sidebar {
-  background: $background;
+  // background: $background;
+  background: red;
   color: $color;
   box-shadow: $shadow;
-  &.dark {
-    background: $color;
-    color: #fff;
-  }
+  // &.dark {
+  //   background: $color;
+  //   color: #fff;
+  // }
   user-select: none;
   z-index: 1000;
   position: fixed;

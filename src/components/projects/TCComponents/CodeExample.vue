@@ -44,13 +44,13 @@ import TCCard from "@/components/tc/card/TC-Card.vue";
 @Component({
   components: {
     "tc-segments": TCSegments,
-    "tc-card": TCCard
-  }
+    "tc-card": TCCard,
+  },
 })
 export default class PortfolioCodeExample extends Vue {
   @Prop() title!: string;
   @Prop() tag!: string;
-  @Prop() attr!: any;
+  @Prop() attr!: Record<string, unknown>;
   @Prop() inner!: string;
 }
 </script>

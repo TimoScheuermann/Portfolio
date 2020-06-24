@@ -33,24 +33,24 @@ import TCInput from "../../tc/input/TC-Input.vue";
   components: {
     "icon-tile": IconTile,
     "tc-headline": TCHeadline,
-    "tc-input": TCInput
-  }
+    "tc-input": TCInput,
+  },
 })
 export default class IconGallery extends Vue {
   @Prop() selectAble!: boolean;
 
-  public constants: {} = constants;
-  public searchQuery: string = "";
+  public constants: Record<string, unknown> = constants;
+  public searchQuery = "";
 
   get iconsSorted(): Icon[] {
     return icons
-      .map(x => {
+      .map((x) => {
         return {
           words: x.name.split("-"),
-          icon: x
+          icon: x,
         };
       })
-      .filter(x => {
+      .filter((x) => {
         if (this.searchQuery.length == 0) return true;
         for (let q of this.searchQuery.toLowerCase().split(" ")) {
           for (let w of x.words) {
@@ -59,7 +59,7 @@ export default class IconGallery extends Vue {
         }
         return false;
       })
-      .map(x => x.icon)
+      .map((x) => x.icon)
       .sort((a, b) => a.name.localeCompare(b.name));
   }
 

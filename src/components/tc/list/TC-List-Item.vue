@@ -21,18 +21,18 @@
   </div>
 </template>
 <script lang="ts">
-import { Vue, Component, Prop, Watch, Mixins } from "vue-property-decorator";
+import { Component, Prop, Watch, Mixins } from "vue-property-decorator";
 import TCSwitch from "../switch/TC-Switch.vue";
 import TCComponent from "../TC-Component.mixin";
 @Component({
   components: {
-    "tc-switch": TCSwitch
-  }
+    "tc-switch": TCSwitch,
+  },
 })
 export default class TCListItem extends Mixins(TCComponent) {
   @Prop() title!: string;
   @Prop() icon!: string;
-  @Prop() to!: any;
+  @Prop() to!: Record<string, unknown>;
   @Prop() href!: string;
   @Prop({ default: false }) value!: boolean;
   @Prop({ default: false }) isSwitch!: boolean;
@@ -40,7 +40,7 @@ export default class TCListItem extends Mixins(TCComponent) {
   public innerValue = this.value;
 
   @Watch("value")
-  public changed() {
+  public changed(): void {
     this.innerValue = this.value;
   }
 
@@ -63,6 +63,9 @@ export default class TCListItem extends Mixins(TCComponent) {
 }
 </script>
 <style lang="scss" scoped>
+@import "../_variables.scss";
+@import "../_mixins.scss";
+
 $size: 40px;
 
 .tc-list__dark {

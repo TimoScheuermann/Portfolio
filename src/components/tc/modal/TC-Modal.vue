@@ -29,10 +29,11 @@
   </div>
 </template>
 <script lang="ts">
-import { Vue, Component, Prop, Watch, Mixins } from "vue-property-decorator";
+import { Component, Prop, Watch, Mixins } from "vue-property-decorator";
 import "./swipe-events.js";
 import TCComponent from "../TC-Component.mixin";
 
+@Component
 export default class TCModal extends Mixins(TCComponent) {
   @Prop({ default: "" }) title!: string;
   @Prop({ default: "" }) subtitle!: string;
@@ -46,33 +47,42 @@ export default class TCModal extends Mixins(TCComponent) {
   }
 
   @Watch("value")
-  changed(updated: any, old: any) {
+  changed(updated: boolean): void {
     console.log("Modal changed");
     this.opened = updated;
     document.body.style.overflow = this.opened
       ? "hidden"
-      : this.bodyOverflowBefore!;
+      : this.bodyOverflowBefore || "";
     if (this.opened) {
-      document.getElementById(this.id)!.focus();
+      const elem: HTMLElement | null = document.getElementById(this.id);
+      if (elem) {
+        elem.focus();
+      }
     }
   }
 
-  mounted() {
-    document.getElementById(this.id)!.addEventListener("swiped-down", e => {
-      this.close();
-    });
+  mounted(): void {
+    const elem: HTMLElement | null = document.getElementById(this.id);
+    if (elem) {
+      elem.addEventListener("swiped-down", () => {
+        this.close();
+      });
+    }
   }
 
-  close() {
+  close(): void {
     this.opened = false;
     this.update();
   }
-  update() {
+  update(): void {
     this.$emit("input", this.opened);
   }
 }
 </script>
 <style lang="scss" scoped>
+@import "../_variables.scss";
+@import "../_mixins.scss";
+
 .tc-modal {
   position: fixed;
   z-index: 1000;

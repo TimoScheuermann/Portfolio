@@ -37,7 +37,7 @@
         :icon="comp.icon"
         :to="{
           name: constants.projectRoutes.timos_components_detail,
-          params: { comp: comp.name }
+          params: { comp: comp.name },
         }"
       ></tc-sidebar-item>
     </tc-sidebar-group>
@@ -50,7 +50,7 @@
   </tc-sidebar>
 </template>
 <script lang="ts">
-import { Vue, Component, Watch } from "vue-property-decorator";
+import { Vue, Component } from "vue-property-decorator";
 import TCSidebar from "@/components/tc/sidebar/TC-Sidebar.vue";
 import TCSidebarGroup from "@/components/tc/sidebar/TC-Sidebar-Group.vue";
 import TCSidebarItem from "@/components/tc/sidebar/TC-Sidebar-Item.vue";
@@ -68,14 +68,14 @@ import TCLink from "@/components/tc/link/TC-Link.vue";
     "tc-sidebar-item": TCSidebarItem,
     "tc-divider": TCDivider,
     "tc-button": TCButton,
-    "tc-link": TCLink
-  }
+    "tc-link": TCLink,
+  },
 })
 export default class TCComponentsSidebar extends Vue {
-  public constants: {} = constants;
+  public constants: Record<string, unknown> = constants;
   public tcComponents: TCComponentGroup[] = tcComponents;
 
-  get dark() {
+  get dark(): boolean {
     return (
       this.$route.name == constants.projectRoutes.timos_components_designer
     );

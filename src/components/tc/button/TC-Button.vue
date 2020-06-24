@@ -9,12 +9,12 @@
   </div>
 </template>
 <script lang="ts">
-import { Vue, Component, Prop, Mixins } from "vue-property-decorator";
+import { Component, Prop, Mixins } from "vue-property-decorator";
 import TCComponent from "../TC-Component.mixin";
 
 @Component
 export default class TCButton extends Mixins(TCComponent) {
-  @Prop() to!: object;
+  @Prop() to!: Record<string, unknown>;
   @Prop() href!: string;
   @Prop() name!: string;
   @Prop() icon!: string;
@@ -24,10 +24,10 @@ export default class TCButton extends Mixins(TCComponent) {
 
   public variants: string[] = ["opaque", "border", "filled"];
 
-  public getClasses(): any {
-    const classes: any = {
+  public getClasses(): Record<string, unknown> {
+    const classes: Record<string, unknown> = {
       "tc-button__withoutName": this.icon && !name,
-      "tc-button__disabled": this.disabled
+      "tc-button__disabled": this.disabled,
     };
 
     classes["tc-button__" + this.tccolor_] = true;
@@ -57,6 +57,9 @@ export default class TCButton extends Mixins(TCComponent) {
 }
 </script>
 <style lang="scss" scoped>
+@import "../_variables.scss";
+@import "../_mixins.scss";
+
 .tc-button {
   display: inline-flex;
 

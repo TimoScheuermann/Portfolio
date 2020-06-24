@@ -8,22 +8,25 @@
   </div>
 </template>
 <script lang="ts">
-import { Vue, Component, Prop, Mixins } from "vue-property-decorator";
+import { Component, Prop, Mixins } from "vue-property-decorator";
 import TCComponent from "../TC-Component.mixin";
 @Component
 export default class TCSpinner extends Mixins(TCComponent) {
   @Prop({ default: 30 }) size!: number;
 
-  get styleAttr() {
+  get styleAttr(): Record<string, unknown> {
     return {
       width: this.size + "px",
       height: this.size / 2 + "px",
-      "padding-top": this.size / 2 + "px"
+      "padding-top": this.size / 2 + "px",
     };
   }
 }
 </script>
 <style lang="scss" scoped>
+@import "../_variables.scss";
+@import "../_mixins.scss";
+
 .tc-spinner {
   position: relative;
   display: inline-block;

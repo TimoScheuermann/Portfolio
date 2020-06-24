@@ -1,27 +1,27 @@
-import { Component, Mixins, Prop, Watch } from "vue-property-decorator";
+import { Component, Mixins, Prop, Vue, Watch } from "vue-property-decorator";
 import TCComponent from "./TC-Component.mixin";
 
 @Component
-export default class TCAutoBackground extends Mixins(TCComponent) {
+export default class TCAutoBackground extends Mixins(TCComponent, Vue) {
   @Prop({ default: true }) autoBackground!: boolean;
 
   public dark_: boolean = this.dark;
   @Watch("dark")
-  darkChanged() {
+  darkChanged(): void {
     this.handleScroll();
   }
 
   // Container
   private lightContainer: HTMLElement[] = [];
   private darkContainer: HTMLElement[] = [];
-  private mainContainer!: HTMLElement;
+  private mainContainer: HTMLElement | null = null;
 
   // Timer
-  private recheck: any;
+  private recheck!: number;
 
-  async mounted() {
+  async mounted(): Promise<void> {
     if (this.autoBackground && document.getElementById(this.uuid_)) {
-      this.mainContainer = document.getElementById(this.uuid_)!;
+      this.mainContainer = document.getElementById(this.uuid_);
       window.addEventListener("scroll", this.handleScroll);
       this.updateContainerLists();
       this.handleScroll();
@@ -31,7 +31,7 @@ export default class TCAutoBackground extends Mixins(TCComponent) {
     }
   }
 
-  destroyed() {
+  destroyed(): void {
     window.removeEventListener("scroll", this.handleScroll);
     clearTimeout(this.recheck);
   }
@@ -56,7 +56,9 @@ export default class TCAutoBackground extends Mixins(TCComponent) {
   }
 
   collidesWithAny(elements: HTMLElement[]): boolean {
-    return elements.filter(x => this.collide(x, this.mainContainer)).length > 0;
+    const cont = this.mainContainer;
+    if (!cont) return false;
+    else return elements.filter((x) => this.collide(x, cont)).length > 0;
   }
 
   @Watch("$route", { deep: true, immediate: true })
@@ -72,7 +74,7 @@ export default class TCAutoBackground extends Mixins(TCComponent) {
   }
 
   updateContainerList(prefix: "dark" | "light"): void {
-    document.querySelectorAll("[tc-" + prefix + "-container]").forEach(x => {
+    document.querySelectorAll("[tc-" + prefix + "-container]").forEach((x) => {
       if (prefix === "dark") {
         this.darkContainer.push(x as HTMLElement);
       } else {

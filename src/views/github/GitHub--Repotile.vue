@@ -33,30 +33,31 @@ import { Vue, Component, Prop } from "vue-property-decorator";
 import TCCard from "@/components/tc/card/TC-Card.vue";
 import TCButton from "@/components/tc/button/TC-Button.vue";
 import TCDivider from "@/components/tc/divider/TC-Divider.vue";
+import IGitHubRepo from "@/models/GitHub/IGitHubRepo";
 
 @Component({
   components: {
     "tc-card": TCCard,
     "tc-button": TCButton,
-    "tc-divider": TCDivider
-  }
+    "tc-divider": TCDivider,
+  },
 })
 export default class GitHubRepoTile extends Vue {
-  @Prop() repo!: any;
+  @Prop() repo!: IGitHubRepo;
   @Prop({ default: false }) dark!: boolean;
   @Prop() index!: number;
 
-  public changes: any = [
+  public changes: { icon: string; attr: string; title: string }[] = [
     {
       icon: "gears",
       attr: "created_at",
-      title: "Created"
+      title: "Created",
     },
     {
       icon: "tools",
       attr: "updated_at",
-      title: "Updated"
-    }
+      title: "Updated",
+    },
   ];
   // {
   //   icon: "share",
@@ -71,6 +72,9 @@ export default class GitHubRepoTile extends Vue {
 }
 </script>
 <style lang="scss" scoped>
+@import "../../components/tc/_variables.scss";
+@import "../../components/tc/_mixins.scss";
+
 .indicator {
   $pad: 5px;
   user-select: none;
@@ -97,7 +101,7 @@ export default class GitHubRepoTile extends Vue {
     CSS: #3498db,
     Java: #f1c40f,
     HTML: #e67e22,
-    TypeScript: #2980b9
+    TypeScript: #2980b9,
   );
 
   @each $l, $c in $lang {

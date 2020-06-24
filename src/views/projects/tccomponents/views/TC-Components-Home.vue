@@ -28,7 +28,7 @@
         <div>
           <tc-button
             :to="{
-              name: constants.projectRoutes.timos_components_getting_started
+              name: constants.projectRoutes.timos_components_getting_started,
             }"
             variant="filled"
             icon="login"
@@ -54,7 +54,7 @@
             :key="comp.name"
             :to="{
               name: constants.projectRoutes.timos_components_detail,
-              params: { comp: comp.name }
+              params: { comp: comp.name },
             }"
             :title="comp.name"
             :icon="comp.icon"
@@ -66,7 +66,7 @@
             :key="comp.name"
             :to="{
               name: constants.projectRoutes.timos_components_detail,
-              params: { comp: comp.name }
+              params: { comp: comp.name },
             }"
           >
             <tc-card rounded="true">
@@ -86,8 +86,6 @@ import TCHero from "@/components/tc/hero/TC-Hero.vue";
 import TCCard from "@/components/tc/card/TC-Card.vue";
 import tcComponents from "@/components/tc";
 import constants from "@/constants";
-import { Icon } from "@/models/Icons/Icon.model";
-import { TCComponent } from "@/models/TCComponents/TCComponent.model";
 import TCButton from "@/components/tc/button/TC-Button.vue";
 import TCGrid from "@/components/tc/_layout/grid/TC-Grid.vue";
 import TCList from "@/components/tc/list/TC-List.vue";
@@ -101,15 +99,18 @@ import { TCComponentGroup } from "@/models/TCComponents/TCComponentGroup.model";
     "tc-button": TCButton,
     "tc-grid": TCGrid,
     "tc-list": TCList,
-    "tc-list-item": TCListItem
-  }
+    "tc-list-item": TCListItem,
+  },
 })
 export default class TCComponentsHome extends Vue {
-  public constants: {} = constants;
+  public constants: Record<string, unknown> = constants;
   public tcComponents: TCComponentGroup[] = tcComponents;
 }
 </script>
 <style lang="scss" scoped>
+@import "../../../../components/tc/_variables.scss";
+@import "../../../../components/tc/_mixins.scss";
+
 [content] {
   @media #{$isDesktop} {
     padding-top: 10px;
@@ -180,7 +181,7 @@ export default class TCComponentsHome extends Vue {
       1: "#eb3b5a",
       2: "#45aaf2",
       3: "#26de81",
-      4: "#2bcbba"
+      4: "#2bcbba",
     );
     span {
       @each $i, $color in $colors {

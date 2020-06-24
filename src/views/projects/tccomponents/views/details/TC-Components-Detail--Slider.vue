@@ -11,8 +11,8 @@ import TCSlider from "@/components/tc/slider/TC-Slider.vue";
 @Component({
   components: {
     "tc-headline": TCHeadline,
-    "tc-slider": TCSlider
-  }
+    "tc-slider": TCSlider,
+  },
 })
 export default class TCComponentsDetailSlider extends Vue {}
 </script>

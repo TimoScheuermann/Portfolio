@@ -9,7 +9,7 @@
       :key="s.step"
       :class="{
         'tc-steps--step__checked': i < step,
-        'tc-steps--step__current': i === step
+        'tc-steps--step__current': i === step,
       }"
     >
       <transition-group name="indi" tag="div" class="tc-step--indicator">
@@ -23,7 +23,7 @@
   </div>
 </template>
 <script lang="ts">
-import { Vue, Component, Prop, Mixins } from "vue-property-decorator";
+import { Component, Prop, Mixins } from "vue-property-decorator";
 import TCComponent from "../TC-Component.mixin";
 @Component
 export default class TCSteps extends Mixins(TCComponent) {
@@ -33,14 +33,14 @@ export default class TCSteps extends Mixins(TCComponent) {
     "Validation",
     "Authentication",
     "Confirmation",
-    "Welcome Home"
+    "Welcome Home",
   ];
   public descriptions: string[] = ["", "", "", "You're all set"];
   public icons: (string | undefined)[] = [
     undefined,
     undefined,
     undefined,
-    "database"
+    "database",
   ];
 
   public data: {
@@ -49,7 +49,7 @@ export default class TCSteps extends Mixins(TCComponent) {
     icon: string | undefined;
   }[] = [];
 
-  mounted() {
+  mounted(): void {
     this.generateData();
   }
 
@@ -58,13 +58,16 @@ export default class TCSteps extends Mixins(TCComponent) {
       return {
         step: x,
         description: this.descriptions[i],
-        icon: this.icons[i]
+        icon: this.icons[i],
       };
     });
   }
 }
 </script>
 <style lang="scss" scoped>
+@import "../_variables.scss";
+@import "../_mixins.scss";
+
 .indi-item {
   position: absolute;
 }

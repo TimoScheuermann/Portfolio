@@ -21,19 +21,19 @@ import { Icon } from "@/models/Icons/Icon.model";
 export default class IconScroller extends Vue {
   public timos_icons: string = constants.projectRoutes.timos_icons;
   public icons: Icon[] = icons;
-  private timeout: any;
+  private timeout!: number;
 
-  mounted() {
+  mounted(): void {
     this.move();
   }
-  destroyed() {
+  destroyed(): void {
     clearTimeout(this.timeout);
   }
 
   goTo(icon: Icon): void {
     this.$router.push({
       name: constants.projectRoutes.timos_icons_detail,
-      params: { icon: icon.name }
+      params: { icon: icon.name },
     });
   }
 
@@ -46,7 +46,11 @@ export default class IconScroller extends Vue {
   }
 }
 </script>
+
 <style lang="scss" scoped>
+@import "../../tc/_variables.scss";
+@import "../../tc/_mixins.scss";
+
 .icon-list-enter,
 .icon-list-leave-to {
   opacity: 0;

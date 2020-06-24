@@ -6,16 +6,16 @@
  * @author John Doherty <www.johndoherty.info>
  * @license MIT
  */
-(function(window, document) {
+(function (window, document) {
   "use strict";
 
   // patch CustomEvent to allow constructor creation (IE/Chrome)
   if (typeof window.CustomEvent !== "function") {
-    window.CustomEvent = function(event, params) {
+    window.CustomEvent = function (event, params) {
       params = params || {
         bubbles: false,
         cancelable: false,
-        detail: undefined
+        detail: undefined,
       };
 
       var evt = document.createEvent("CustomEvent");

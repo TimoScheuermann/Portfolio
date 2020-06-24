@@ -12,7 +12,7 @@
       </tc-list>
     </div>
     <div class="projects-list-opener" @click="listOpened = !listOpened">
-      <span>All Projects <i class="ti-chevron-up"/></span>
+      <span>All Projects <i class="ti-chevron-up" /></span>
     </div>
   </div>
 </template>
@@ -25,8 +25,8 @@ import TCListItem from "@/components/tc/list/TC-List-Item.vue";
 @Component({
   components: {
     "tc-list": TCList,
-    "tc-list-item": TCListItem
-  }
+    "tc-list-item": TCListItem,
+  },
 })
 export default class ProjectsProjectlist extends Vue {
   public projects: Project[] = projects;
@@ -34,6 +34,9 @@ export default class ProjectsProjectlist extends Vue {
 }
 </script>
 <style lang="scss" scoped>
+@import "../../tc/_variables.scss";
+@import "../../tc/_mixins.scss";
+
 .projects-list {
   position: fixed;
   z-index: 30;

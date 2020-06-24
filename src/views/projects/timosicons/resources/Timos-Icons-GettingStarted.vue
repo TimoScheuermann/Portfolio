@@ -17,10 +17,10 @@ import IconGallery from "@/components/projects/TimosIcons/IconGallery.vue";
 @Component({
   components: {
     "tc-header": TCHeader,
-    "icon-gallery": IconGallery
-  }
+    "icon-gallery": IconGallery,
+  },
 })
 export default class TimosIconsDownload extends Vue {
-  public constants: {} = constants;
+  public constants: Record<string, unknown> = constants;
 }
 </script>

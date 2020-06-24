@@ -29,9 +29,7 @@
       title="Simple Hero Section with Background Slot"
       tag="tc-hero"
       :attr="{ hasFixedHeader: false }"
-      :inner="
-        `<img src='${src}' slot='background' />**Lorem ipsum, dolor sit amet consectetur adipisicing elit. Distinctio mollitia eaque velit accusantium iusto veritatis tenetur possimus, aut placeat vitae aspernatur reprehenderit quas, cupiditate minima facilis. Expedita repudiandae vitae voluptatum.`
-      "
+      :inner="`<img src='${src}' slot='background' />**Lorem ipsum, dolor sit amet consectetur adipisicing elit. Distinctio mollitia eaque velit accusantium iusto veritatis tenetur possimus, aut placeat vitae aspernatur reprehenderit quas, cupiditate minima facilis. Expedita repudiandae vitae voluptatum.`"
     >
       <tc-hero :hasFixedHeader="false">
         <img :src="src" slot="background" />
@@ -54,11 +52,11 @@ import PortfolioCodeExample from "@/components/projects/TCComponents/CodeExample
     "tc-headline": TCHeadline,
     "tc-hero": TCHero,
     "tc-grid": TCGrid,
-    "portfolio-code-example": PortfolioCodeExample
-  }
+    "portfolio-code-example": PortfolioCodeExample,
+  },
 })
 export default class TCComponentsHero extends Vue {
-  public src: string = "https://gradientjoy.com/400x300?id=44";
+  public src = "https://gradientjoy.com/400x300?id=44";
 }
 </script>
 <style lang="scss" scoped>

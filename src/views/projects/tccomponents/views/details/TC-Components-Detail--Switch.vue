@@ -11,8 +11,8 @@ import TCSwitch from "@/components/tc/switch/TC-Switch.vue";
 @Component({
   components: {
     "tc-headline": TCHeadline,
-    "tc-switch": TCSwitch
-  }
+    "tc-switch": TCSwitch,
+  },
 })
 export default class TCComponentsDetailSwitch extends Vue {}
 </script>

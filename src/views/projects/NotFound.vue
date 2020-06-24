@@ -30,8 +30,8 @@ import TCLink from "@/components/tc/link/TC-Link.vue";
 @Component({
   components: {
     "tc-header": TCHeader,
-    "tc-link": TCLink
-  }
+    "tc-link": TCLink,
+  },
 })
 export default class ProjectsNotFound extends Vue {
   public projects: Project[] = projects;

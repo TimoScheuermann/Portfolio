@@ -4,7 +4,7 @@
     :id="uuid_"
     :class="{
       'tc-navbar__dark': dark_,
-      'tc-navbar__light': !dark_
+      'tc-navbar__light': !dark_,
     }"
   >
     <div
@@ -34,7 +34,7 @@
   </div>
 </template>
 <script lang="ts">
-import { Vue, Component, Watch, Prop, Mixins } from "vue-property-decorator";
+import { Component, Watch, Mixins } from "vue-property-decorator";
 import TCAutoBackground from "../TC-Auto-Background.mixin";
 
 @Component
@@ -47,17 +47,22 @@ export default class TCNavbar extends Mixins(TCAutoBackground) {
   }
 
   @Watch("expanded")
-  expandedChanged(to: any, from: any) {
-    document.body.style.overflow = to ? "hidden" : this.bodyOverflowBefore!;
+  expandedChanged(to: Record<string, unknown>): void {
+    document.body.style.overflow = to
+      ? "hidden"
+      : this.bodyOverflowBefore || "";
   }
 
   @Watch("$route", { deep: true, immediate: true })
-  closeExpander(to: string, from: string) {
+  closeExpander(): void {
     this.expanded = false;
   }
 }
 </script>
 <style lang="scss" scoped>
+@import "../_variables.scss";
+@import "../_mixins.scss";
+
 .tc-navbar {
   &,
   [tc-flex] {

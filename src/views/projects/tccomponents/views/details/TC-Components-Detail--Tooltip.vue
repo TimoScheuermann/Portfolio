@@ -30,8 +30,8 @@ import TCTooltip from "@/components/tc/tooltip/TC-Tooltip.vue";
     "tc-headline": TCHeadline,
     "tc-spinner": TCSpinner,
     "tc-card": TCCard,
-    "tc-tooltip": TCTooltip
-  }
+    "tc-tooltip": TCTooltip,
+  },
 })
 export default class TCComponentsDetailTooltip extends Vue {}
 </script>

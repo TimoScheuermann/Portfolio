@@ -79,8 +79,8 @@ import TCGrid from "@/components/tc/_layout/grid/TC-Grid.vue";
     "portfolio-code-example": PortfolioCodeExample,
     "tc-headline": TCHeadline,
     "tc-divider": TCDivider,
-    "tc-grid": TCGrid
-  }
+    "tc-grid": TCGrid,
+  },
 })
 export default class TCComponentsDetailDivider extends Vue {}
 </script>

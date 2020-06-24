@@ -7,7 +7,7 @@
   </div>
 </template>
 <script lang="ts">
-import { Vue, Component, Prop, Mixins } from "vue-property-decorator";
+import { Component, Prop, Mixins } from "vue-property-decorator";
 import TCComponent from "../TC-Component.mixin";
 @Component
 export default class TCBadge extends Mixins(TCComponent) {
@@ -25,8 +25,8 @@ export default class TCBadge extends Mixins(TCComponent) {
     return this.value;
   }
 
-  get badgeClass(): any {
-    const classes: any = {};
+  get badgeClass(): Record<string, unknown> {
+    const classes: Record<string, unknown> = {};
 
     classes[`tc-badge__${this.tccolor_}`] = true;
 
@@ -40,6 +40,9 @@ export default class TCBadge extends Mixins(TCComponent) {
 }
 </script>
 <style lang="scss" scoped>
+@import "../_variables.scss";
+@import "../_mixins.scss";
+
 .tc-badge {
   position: relative;
   display: inline-block;

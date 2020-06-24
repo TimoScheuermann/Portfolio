@@ -25,20 +25,20 @@ import constants from "@/constants";
     "tc-header": TCHeader,
     "tc-button": TCButton,
     "timos-icons-notfound": TimosIconsNotFound,
-    "timos-icons-found": TimosIconsFound
-  }
+    "timos-icons-found": TimosIconsFound,
+  },
 })
 export default class TimosIconsDetail extends Vue {
-  public constants: {} = constants;
+  public constants: Record<string, unknown> = constants;
 
-  get iconName() {
+  get iconName(): string {
     if (this.icon) return this.icon.name;
     return "Not Found";
   }
 
   get icon(): Icon {
     return icons.filter(
-      x => x.name.toLowerCase() === this.$route.params.icon.toLowerCase()
+      (x) => x.name.toLowerCase() === this.$route.params.icon.toLowerCase()
     )[0];
   }
 }

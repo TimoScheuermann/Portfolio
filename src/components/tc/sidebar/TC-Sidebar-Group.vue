@@ -20,14 +20,14 @@
   </div>
 </template>
 <script lang="ts">
-import { Vue, Component, Prop, Mixins } from "vue-property-decorator";
+import { Component, Prop, Mixins } from "vue-property-decorator";
 
 import TCDivider from "../divider/TC-Divider.vue";
 import TCComponent from "../TC-Component.mixin";
 @Component({
   components: {
-    "tc-divider": TCDivider
-  }
+    "tc-divider": TCDivider,
+  },
 })
 export default class TCSidebarGroup extends Mixins(TCComponent) {
   @Prop() name!: string;
@@ -40,14 +40,17 @@ export default class TCSidebarGroup extends Mixins(TCComponent) {
     return "tc-sidebar-group_" + this.uuid_;
   }
 
-  get maxheight() {
+  get maxheight(): Record<string, unknown> {
     return {
-      "max-height": this.expanded ? this.maxHeight : "0px"
+      "max-height": this.expanded ? this.maxHeight : "0px",
     };
   }
 }
 </script>
 <style lang="scss" scoped>
+@import "../_variables.scss";
+@import "../_mixins.scss";
+
 .tc-sidebar--group {
   padding: 5px 0;
   .header {

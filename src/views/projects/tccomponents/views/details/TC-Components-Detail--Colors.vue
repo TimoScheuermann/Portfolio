@@ -35,8 +35,8 @@ import TCGrid from "@/components/tc/_layout/grid/TC-Grid.vue";
   components: {
     "tc-headline": TCHeadline,
     "tc-card": TCCard,
-    "tc-grid": TCGrid
-  }
+    "tc-grid": TCGrid,
+  },
 })
 export default class TCComponentsDetailColors extends Vue {
   public colors: { name: string; code: string }[] = [
@@ -46,7 +46,7 @@ export default class TCComponentsDetailColors extends Vue {
     { name: "primary", code: "#08f" },
     { name: "error", code: "#ff4757" },
     { name: "success", code: "#2ed573" },
-    { name: "alarm", code: "#f1c40f" }
+    { name: "alarm", code: "#f1c40f" },
   ];
 }
 </script>

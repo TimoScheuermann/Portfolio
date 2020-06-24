@@ -1,11 +1,11 @@
 <template>
   <tc-card rounded="true" :dark="isFromTimo(comment)" class="card--comments">
     <div class="head">
-      <img class="avatar" :src="comment.avatar || comment.user_avatar" />
+      <img class="avatar" :src="comment.user.avatar_url" />
       <div class="info">
-        <div class="author">{{ comment.author || comment.user_name }}</div>
+        <div class="author">{{ comment.user.login }}</div>
         <div class="time">
-          {{ timePrefix }} {{ formatDate(comment.created) }}
+          {{ timePrefix }} {{ formatDate(comment.created_at) }}
         </div>
       </div>
       <div
@@ -27,45 +27,48 @@
 <script lang="ts">
 import { Vue, Component, Prop, Watch } from "vue-property-decorator";
 import TCCard from "@/components/tc/card/TC-Card.vue";
-import { IconIssueComment } from "@/models/Icons/IconIssueComment.model";
-import { IconIssue } from "@/models/Icons/IconIssue.model";
 import { formatDate } from "@/utils/DateFormatter";
 import * as MarkdownIt from "markdown-it";
+import IGitHubIssueComment from "@/models/GitHub/IGutHubIssueComment";
+import IGitHubIssue from "@/models/GitHub/IGitHubIssue";
 
 @Component({
   components: {
-    "tc-card": TCCard
-  }
+    "tc-card": TCCard,
+  },
 })
 export default class TimosIconsIssueComment extends Vue {
-  @Prop() comment!: IconIssueComment;
-  @Prop() issue!: IconIssue;
+  @Prop() comment!: IGitHubIssueComment;
+  @Prop() issue!: IGitHubIssue;
   @Prop() timePrefix!: string;
   @Prop({ default: "" }) title!: string;
 
   @Watch("comment")
-  commentChanged() {
+  commentChanged(): void {
     const md = new MarkdownIt();
     (this.$refs.body as HTMLElement).innerHTML = md.render(this.comment.body);
   }
 
-  mounted() {
+  mounted(): void {
     this.commentChanged();
   }
 
-  public isFromTimo(comment: IconIssueComment): boolean {
-    return comment.association === "OWNER";
+  public isFromTimo(comment: IGitHubIssueComment): boolean {
+    return comment.author_association === "OWNER";
   }
-  public hasOpenedIssue(comment: IconIssueComment) {
-    return comment.author === this.issue!.user_name;
+  public hasOpenedIssue(comment: IGitHubIssueComment): boolean {
+    return comment.user.login === this.issue.user.login;
   }
 
-  public formatDate(date: any) {
+  public formatDate(date: string): string {
     return formatDate(date);
   }
 }
 </script>
 <style lang="scss" scoped>
+@import "../../tc/_variables.scss";
+@import "../../tc/_mixins.scss";
+
 .card--comments {
   margin-top: 30px;
 

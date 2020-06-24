@@ -30,7 +30,7 @@
           title: 'Custom Icon',
           iconChecked: 'checkmark',
           iconUnchecked: 'cross',
-          iconAnimation: 'spin'
+          iconAnimation: 'spin',
         }"
       >
         <tc-checkbox
@@ -76,7 +76,7 @@
           title: 'Color: Orange',
           color: 'orange',
           iconChecked: 'sun',
-          iconUnchecked: 'moon'
+          iconUnchecked: 'moon',
         }"
       >
         <tc-checkbox
@@ -94,7 +94,7 @@
           title: 'Animation: step',
           iconChecked: 'minus',
           iconUnchecked: 'plus',
-          iconAnimation: 'step'
+          iconAnimation: 'step',
         }"
       >
         <tc-checkbox
@@ -112,7 +112,7 @@
           title: 'Animation: spin',
           iconChecked: 'arrow-down',
           iconUnchecked: 'arrow-up',
-          iconAnimation: 'spin'
+          iconAnimation: 'spin',
         }"
       >
         <tc-checkbox
@@ -130,7 +130,7 @@
           title: 'Animation: flip',
           iconChecked: 'key',
           iconUnchecked: 'lock-closed',
-          iconAnimation: 'flip'
+          iconAnimation: 'flip',
         }"
       >
         <tc-checkbox
@@ -154,8 +154,8 @@ import TCGrid from "@/components/tc/_layout/grid/TC-Grid.vue";
     "portfolio-code-example": PortfolioCodeExample,
     "tc-headline": TCHeadline,
     "tc-checkbox": TCCheckbox,
-    "tc-grid": TCGrid
-  }
+    "tc-grid": TCGrid,
+  },
 })
 export default class TCComponentsDetailCheckbox extends Vue {
   //TC-Components-Detail--Button.vue

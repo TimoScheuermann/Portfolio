@@ -49,8 +49,8 @@ import TCGrid from "@/components/tc/_layout/grid/TC-Grid.vue";
     "tc-headline": TCHeadline,
     "tc-navbar": TCNavbar,
     "tc-navbar-item": TCNavbarItem,
-    "tc-grid": TCGrid
-  }
+    "tc-grid": TCGrid,
+  },
 })
 export default class TCComponentsDetailNavbar extends Vue {}
 </script>

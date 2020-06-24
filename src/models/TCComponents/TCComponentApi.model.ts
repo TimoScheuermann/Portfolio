@@ -1,8 +1,8 @@
 export class TCComponentApi {
-  name: string = "";
-  type: string = "";
+  name = "";
+  type = "";
   parameters?: string;
-  description: string = "";
+  description = "";
   default?: string | boolean | number;
   selectValues?: (string | boolean)[];
 }

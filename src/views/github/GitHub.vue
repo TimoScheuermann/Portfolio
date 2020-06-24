@@ -56,6 +56,8 @@ import GitHubRepoTile from "./GitHub--Repotile.vue";
 import TCGrid from "@/components/tc/_layout/grid/TC-Grid.vue";
 import axios from "@/axios";
 import ProjectsTitle from "@/components/projects/common/Projects--Title.vue";
+import IGitHubProfile from "@/models/GitHub/IGitHubProfile";
+import IGitHubRepo from "@/models/GitHub/IGitHubRepo";
 
 @Component({
   components: {
@@ -65,24 +67,24 @@ import ProjectsTitle from "@/components/projects/common/Projects--Title.vue";
     "tc-spinner": TCSpinner,
     "tc-grid": TCGrid,
     "github-repo-tile": GitHubRepoTile,
-    "project-title": ProjectsTitle
-  }
+    "project-title": ProjectsTitle,
+  },
 })
 export default class GitHubView extends Vue {
   public loaded = false;
-  public profile: any = {};
-  public repositories: any[] = [];
+  public profile!: IGitHubProfile;
+  public repositories: IGitHubRepo[] = [];
 
-  async mounted() {
+  async mounted(): Promise<void> {
     await this.loadRepos();
     await this.loadProfile();
     this.loaded = true;
   }
 
-  get creationDate() {
+  get creationDate(): string {
     return this.convertDate(this.profile.created_at);
   }
-  get getRepos() {
+  get getRepos(): IGitHubRepo[] {
     return this.repositories.sort(
       (b, a) =>
         this.getLongFromDate(a.updated_at) - this.getLongFromDate(b.updated_at)
@@ -122,6 +124,9 @@ export default class GitHubView extends Vue {
 }
 </script>
 <style lang="scss" scoped>
+@import "../../components/tc/_variables.scss";
+@import "../../components/tc/_mixins.scss";
+
 .github {
   background: #000;
 }

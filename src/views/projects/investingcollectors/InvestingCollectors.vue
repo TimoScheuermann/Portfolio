@@ -28,11 +28,11 @@ import constants from "@/constants";
   components: {
     "tc-header": TCHeader,
     "projects-default-hero": ProjectsDefaultHero,
-    "project-title": ProjectsTitle
-  }
+    "project-title": ProjectsTitle,
+  },
 })
 export default class InvestingCollectors extends Vue {
-  public constants: {} = constants;
+  public constants: Record<string, unknown> = constants;
 
   get project(): Project {
     return getProject();

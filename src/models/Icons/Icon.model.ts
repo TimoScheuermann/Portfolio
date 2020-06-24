@@ -1,5 +1,4 @@
 export class Icon {
-  name: string = "";
+  name = "";
   version?: string = "unknown";
-  selected? = false;
 }

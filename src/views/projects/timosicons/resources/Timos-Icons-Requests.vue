@@ -66,12 +66,12 @@
             :key="issue.id"
             @click="open(issue.number)"
           >
-            <td class="img"><img :src="issue.user_avatar" /></td>
+            <td class="img"><img :src="issue.user.avatar_url" /></td>
             <td class="type" :style="{ color: '#' + issue.labels[0].color }">
               <span>{{ issue.labels[0].name }}</span>
             </td>
             <td>{{ issue.title }}</td>
-            <td>{{ formatDate(issue.created) }}</td>
+            <td>{{ formatDate(issue.created_at) }}</td>
             <td class="state">
               <span :class="issue.state">{{ issue.state }}</span>
             </td>
@@ -80,7 +80,7 @@
             </td>
             <td>
               <tc-button
-                :href="issue.url"
+                :href="issue.html_url"
                 icon="github"
                 variant="filled"
                 @click.stop.prevent
@@ -98,9 +98,6 @@ import { Vue, Component } from "vue-property-decorator";
 import axios from "@/axios";
 import constants from "@/constants";
 
-import { IconIssue } from "@/models/Icons/IconIssue.model";
-import { IconIssueLabel } from "@/models/Icons/IconIssueLabel.model";
-
 import TCTable from "@/components/tc/table/TC-Table.vue";
 import TCHeader from "@/components/tc/header/TC-Header.vue";
 import TCButton from "@/components/tc/button/TC-Button.vue";
@@ -108,7 +105,7 @@ import TCHero from "@/components/tc/hero/TC-Hero.vue";
 import TCCard from "@/components/tc/card/TC-Card.vue";
 import TCGrid from "@/components/tc/_layout/grid/TC-Grid.vue";
 import { formatDate } from "@/utils/DateFormatter";
-
+import IGitHubIssue from "@/models/GitHub/IGitHubIssue";
 @Component({
   components: {
     "tc-header": TCHeader,
@@ -116,26 +113,23 @@ import { formatDate } from "@/utils/DateFormatter";
     "tc-hero": TCHero,
     "tc-card": TCCard,
     "tc-button": TCButton,
-    "tc-grid": TCGrid
-  }
+    "tc-grid": TCGrid,
+  },
 })
 export default class TimosIconsRequests extends Vue {
-  public constants: {} = constants;
-  public issues: [] = [];
+  public constants: Record<string, unknown> = constants;
+  public issues: IGitHubIssue[] = [];
 
-  public formatDate(date: any) {
+  public formatDate(date: string): string {
     return formatDate(date);
   }
 
-  async mounted() {
+  async mounted(): Promise<void> {
     if (!this.$store.getters.hasIconRequests) {
       const { data } = await axios.get(
         "https://api.github.com/repos/TimoScheuermann/Timos-Icons/issues"
       );
-      this.$store.commit(
-        "updateIconIssues",
-        data.map((x: any) => new IconIssue(x))
-      );
+      this.$store.commit("updateIconIssues", data);
     }
     this.issues = this.$store.getters.iconIssues;
   }
@@ -143,12 +137,15 @@ export default class TimosIconsRequests extends Vue {
   public open(number: string): void {
     this.$router.push({
       name: constants.projectRoutes.timos_icons_requests_detail,
-      params: { issue: number }
+      params: { issue: number },
     });
   }
 }
 </script>
 <style lang="scss" scoped>
+@import "../../../../components/tc/_variables.scss";
+@import "../../../../components/tc/_mixins.scss";
+
 .timos-icons-requests {
   .hero {
     text-align: center;

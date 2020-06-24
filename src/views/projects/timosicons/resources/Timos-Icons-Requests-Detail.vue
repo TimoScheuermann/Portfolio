@@ -24,7 +24,7 @@
               {{ issue.state }}
             </div>
             <tc-button
-              :href="issue.url"
+              :href="issue.html_url"
               variant="filled"
               name="View on GitHub"
               iconPosition="right"
@@ -68,23 +68,21 @@
 </template>
 <script lang="ts">
 import { Vue, Component } from "vue-property-decorator";
-import TCTable from "@/components/tc/table/TC-Table.vue";
 import TCHeader from "@/components/tc/header/TC-Header.vue";
 
 import axios from "@/axios";
 import constants from "@/constants";
-import TCHeadline from "@/components/tc/headline/TC-Headline.vue";
-import TCSelect from "@/components/tc/select/TC-Select.vue";
-import TCInput from "@/components/tc/input/TC-Input.vue";
 import TCButton from "@/components/tc/button/TC-Button.vue";
-import { IconIssueComment } from "@/models/Icons/IconIssueComment.model";
+
 import TCGrid from "@/components/tc/_layout/grid/TC-Grid.vue";
 import TCHero from "@/components/tc/hero/TC-Hero.vue";
-import { IconIssue } from "@/models/Icons/IconIssue.model";
+
 import TCSpinner from "@/components/tc/spinner/TC-Spinner.vue";
 import TCCard from "@/components/tc/card/TC-Card.vue";
 import TimosIconsIssueComment from "@/components/projects/TimosIcons/TimosIcons--Issue-Comment.vue";
 import { formatDate } from "@/utils/DateFormatter";
+import IGitHubIssueComment from "../../../../models/GitHub/IGutHubIssueComment";
+import IGitHubIssue from "../../../../models/GitHub/IGitHubIssue";
 
 @Component({
   components: {
@@ -94,58 +92,58 @@ import { formatDate } from "@/utils/DateFormatter";
     "tc-spinner": TCSpinner,
     "tc-card": TCCard,
     "tc-button": TCButton,
-    "timosicons-issue-comment": TimosIconsIssueComment
-  }
+    "timosicons-issue-comment": TimosIconsIssueComment,
+  },
 })
 export default class TimosIconsRequestsDetail extends Vue {
-  public constants: {} = constants;
+  public constants: Record<string, unknown> = constants;
   public error = false;
-  public comments: IconIssueComment[] | null = null;
-  public issue: IconIssue | null = null;
+  public comments: IGitHubIssueComment[] | null = null;
+  public issue: IGitHubIssue | null = null;
 
   get loaded(): boolean {
     return !!this.comments && !!this.issue;
   }
 
-  get number() {
+  get number(): string {
     return this.$route.params.issue;
   }
 
-  public formatDate(date: any) {
+  public formatDate(date: Record<string, unknown>): string {
     return formatDate(date);
   }
 
-  async created() {
+  async created(): Promise<void> {
     this.loadComments();
     this.loadIssue();
   }
 
-  async loadComments() {
+  async loadComments(): Promise<void> {
     const { data } = await axios.get(
       `https://api.github.com/repos/TimoScheuermann/Timos-Icons/issues/${this.number}/comments`
     );
     if (data) {
-      const dataMapped = data.map((x: any) => new IconIssueComment(x));
-      this.comments = dataMapped;
+      this.comments = data;
     } else {
       this.error = true;
-      return;
     }
   }
-  async loadIssue() {
+  async loadIssue(): Promise<void> {
     const { data } = await axios.get(
       `https://api.github.com/repos/TimoScheuermann/Timos-Icons/issues/${this.number}`
     );
     if (data) {
-      this.issue = new IconIssue(data);
+      this.issue = data;
     } else {
       this.error = true;
-      return;
     }
   }
 }
 </script>
 <style lang="scss" scoped>
+@import "../../../../components/tc/_variables.scss";
+@import "../../../../components/tc/_mixins.scss";
+
 .swap-enter-active,
 .swap-leave-active {
   transition: all 1s;
@@ -183,7 +181,6 @@ section {
     x: visible;
   }
   h1 {
-    background: #fff;
     z-index: 10;
     padding-top: 20px;
     text-align: center;

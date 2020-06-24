@@ -11,9 +11,7 @@
   </div>
 </template>
 <script lang="ts">
-import { Vue, Component, Watch } from "vue-property-decorator";
-import { TCComponent } from "@/models/TCComponents/TCComponent.model";
-import tcComponents from "@/components/tc";
+import { Vue, Component } from "vue-property-decorator";
 import constants from "@/constants";
 import TCComponentsHeader from "./common/TC-Components--Header.vue";
 import TCComponentsSidebar from "./common/TC-Components--Sidebar.vue";
@@ -31,25 +29,25 @@ import TCComponentsGettingStarted from "./views/TC-Components-GettingStarted.vue
     "tc-components-not-found": TCComponentsNotFound,
     "tc-components-detail": TCComponentsDetail,
     "tc-components-designer": TCComponentsDesigner,
-    "tc-components-getting-started": TCComponentsGettingStarted
-  }
+    "tc-components-getting-started": TCComponentsGettingStarted,
+  },
 })
 export default class TCComponents extends Vue {
-  public constants: {} = constants;
+  public constants: Record<string, unknown> = constants;
 
-  get route() {
-    return this.$route.name;
+  get route(): string {
+    return "" + this.$route.name;
   }
-  get isDesigner() {
+  get isDesigner(): boolean {
     return this.route == constants.projectRoutes.timos_components_designer;
   }
-  get isDetails() {
+  get isDetails(): boolean {
     return this.route == constants.projectRoutes.timos_components_detail;
   }
-  get isHome() {
+  get isHome(): boolean {
     return this.route == constants.projectRoutes.timos_components;
   }
-  get isGettingStarted() {
+  get isGettingStarted(): boolean {
     return (
       this.route == constants.projectRoutes.timos_components_getting_started
     );

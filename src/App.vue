@@ -100,8 +100,8 @@ import MaterialDesignTransition from "vue-router-md-transition";
     "tc-sidebar-item": TCSidebarItem,
     "tc-tabbar": TCTabbar,
     "tc-tabbar-item": TCTabbarItem,
-    "md-transition": MaterialDesignTransition
-  }
+    "md-transition": MaterialDesignTransition,
+  },
 })
 export default class App extends Vue {
   public projects: Project[] = projects;
@@ -110,10 +110,10 @@ export default class App extends Vue {
     "github",
     "contact",
     "uno",
-    constants.projectRoutes.timos_components_designer
+    constants.projectRoutes.timos_components_designer,
   ];
 
-  get showSidebar() {
+  get showSidebar(): boolean {
     return !this.$route.meta.customSidebar;
   }
 
@@ -122,10 +122,10 @@ export default class App extends Vue {
   }
 
   @Watch("$route", { deep: true, immediate: true })
-  changed(to: Route, from: Route) {
+  changed(to: Route): void {
     this.updateTitle();
     window.scrollTo(0, 0);
-    if (this.darkRoutes.includes(to.name!)) {
+    if (to.name && this.darkRoutes.includes(to.name)) {
       document.body.style.background = "#000";
       return;
     }
@@ -145,14 +145,17 @@ export default class App extends Vue {
   }
 
   private updateMeta(name: string, content: string): void {
-    document.querySelectorAll(`meta[name=${name}]`).forEach(elem => {
+    document.querySelectorAll(`meta[name=${name}]`).forEach((elem) => {
       elem.remove();
     });
     document.head.innerHTML =
       `<meta name="${name}" content="${content}" />` + document.head.innerHTML;
   }
 
-  private replaceTitlePlaceholder(params: object, title: string): string {
+  private replaceTitlePlaceholder(
+    params: Record<string, string>,
+    title: string
+  ): string {
     for (let [key, value] of Object.entries(params)) {
       title = title.split("%" + key + "%").join(value);
     }
@@ -160,6 +163,11 @@ export default class App extends Vue {
   }
 }
 </script>
+
+<style lang="scss">
+@import "./components/tc/_mixins.scss";
+@import "./components/tc/_variables.scss";
+</style>
 
 <style lang="scss">
 /* Make clicks pass-through */
@@ -249,6 +257,9 @@ export default class App extends Vue {
 </style>
 
 <style lang="scss">
+@import "./components/tc/_variables.scss";
+@import "./components/tc/_mixins.scss";
+
 html {
   font-family: -apple-system, BlinkMacSystemFont, SF Pro Display, Segoe UI,
     Roboto, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji,

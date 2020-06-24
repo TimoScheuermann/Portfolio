@@ -8,8 +8,8 @@ import { Vue, Component } from "vue-property-decorator";
 import TCHeadline from "@/components/tc/headline/TC-Headline.vue";
 @Component({
   components: {
-    "tc-headline": TCHeadline
-  }
+    "tc-headline": TCHeadline,
+  },
 })
 export default class TCComponentsDetailGrid extends Vue {}
 </script>

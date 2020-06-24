@@ -5,18 +5,21 @@
   </router-link>
 </template>
 <script lang="ts">
-import { Vue, Component, Prop, Mixins } from "vue-property-decorator";
+import { Component, Prop, Mixins } from "vue-property-decorator";
 import TCComponent from "../TC-Component.mixin";
 
 @Component
 export default class TCSidebarItem extends Mixins(TCComponent) {
-  @Prop({ default: "_blank" }) to!: string | object;
+  @Prop({ default: "_blank" }) to!: string | Record<string, unknown>;
   @Prop() name!: string;
   @Prop() icon!: string;
   @Prop() active!: boolean;
 }
 </script>
 <style lang="scss" scoped>
+@import "../_variables.scss";
+@import "../_mixins.scss";
+
 .tc-sidebar--item {
   display: flex;
   align-items: center;

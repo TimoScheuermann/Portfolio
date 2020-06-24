@@ -43,7 +43,7 @@
   </div>
 </template>
 <script lang="ts">
-import { Vue, Component, Prop, Watch, Mixins } from "vue-property-decorator";
+import { Component, Prop, Watch, Mixins } from "vue-property-decorator";
 import icons from "@/icons";
 import { Icon } from "@/models/Icons/Icon.model";
 import TCTooltip from "../../tc/tooltip/TC-Tooltip.vue";
@@ -73,8 +73,8 @@ export default class TCIconSelect extends Mixins(TCComponent) {
     ? []
     : "";
 
-  get innerValues() {
-    return this.icons.map(x => x.name).sort((a, b) => a.localeCompare(b));
+  get innerValues(): string[] {
+    return this.icons.map((x) => x.name).sort((a, b) => a.localeCompare(b));
   }
 
   @Watch("innerValue")
@@ -82,10 +82,10 @@ export default class TCIconSelect extends Mixins(TCComponent) {
     this.$emit("input", this.innerValue);
   }
 
-  mounted() {
+  mounted(): void {
     window.addEventListener("click", this.clicked);
   }
-  beforeDestroy() {
+  beforeDestroy(): void {
     window.removeEventListener("click", this.clicked);
   }
 
@@ -118,28 +118,30 @@ export default class TCIconSelect extends Mixins(TCComponent) {
     }
   }
 
-  public isSelected(value: TValues) {
+  public isSelected(value: TValues): boolean {
     if (this.multiple) {
       return (this.innerValue as TValues[]).includes(value);
     } else {
       return this.innerValue === value;
     }
   }
-  get id() {
+  get id(): string {
     return "tc-select_" + this.uuid_;
   }
-  get display() {
+  get display(): string | number | boolean | TValues[] {
     if (this.multiple) {
       const vals: TValues[] = this.innerValue as TValues[];
       if (vals.length == 1) return vals[0];
       else if (vals.length > 1) return vals.length + "x Items";
-    } else {
-      return this.innerValue;
     }
+    return this.innerValue;
   }
 }
 </script>
 <style lang="scss" scoped>
+@import "../../tc/_variables.scss";
+@import "../../tc/_mixins.scss";
+
 // @supports (-webkit-touch-callout: none) { content: "ios"; }
 // @media (hover: hover) { content: "desktop"; }
 // @media (hover: none) { content: "mobile";  }

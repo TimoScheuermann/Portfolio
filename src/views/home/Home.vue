@@ -52,14 +52,17 @@ import ProjectsTitle from "@/components/projects/common/Projects--Title.vue";
     "tc-headline": TCHeadline,
     "tc-button": TCButton,
     "tc-card": TCCard,
-    "project-title": ProjectsTitle
-  }
+    "project-title": ProjectsTitle,
+  },
 })
 export default class Home extends Vue {
   public projects: Project[] = projects;
 }
 </script>
 <style lang="scss" scoped>
+@import "../../components/tc/_variables.scss";
+@import "../../components/tc/_mixins.scss";
+
 .home {
   background: #000;
   color: #fff;

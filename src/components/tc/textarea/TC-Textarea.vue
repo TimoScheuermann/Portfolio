@@ -39,8 +39,8 @@ import TCTooltip from "../tooltip/TC-Tooltip.vue";
 
 @Component({
   components: {
-    "tc-tooltip": TCTooltip
-  }
+    "tc-tooltip": TCTooltip,
+  },
 })
 export default class TCTextarea extends Mixins(TCComponent) {
   @Prop({ default: "" }) value!: string;
@@ -63,16 +63,19 @@ export default class TCTextarea extends Mixins(TCComponent) {
   private innerValue: string = this.value;
 
   @Watch("value")
-  valueChanged() {
+  valueChanged(): void {
     this.innerValue = this.value;
   }
 
-  innerValueChanged() {
+  innerValueChanged(): void {
     this.$emit("input", this.innerValue);
   }
 }
 </script>
 <style lang="scss" scoped>
+@import "../_variables.scss";
+@import "../_mixins.scss";
+
 .tc-textarea {
   color: $color;
 

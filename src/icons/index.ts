@@ -228,7 +228,7 @@ const icons: Icon[] = [
   { name: "i-circle", version: "2.0" },
   { name: "save", version: "2.0" },
   { name: "stars", version: "2.0" },
-  { name: "thunder", version: "2.0" }
+  { name: "thunder", version: "2.0" },
 ];
 
 export default icons;

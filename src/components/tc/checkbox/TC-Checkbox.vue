@@ -11,7 +11,7 @@
       :for="'tc-checkbox_' + uuid_"
       :class="{
         'tc-checkbox--label__left': position !== 'right',
-        'tc-checkbox--label__right': position === 'right'
+        'tc-checkbox--label__right': position === 'right',
       }"
     >
       <transition-group
@@ -48,7 +48,7 @@
   </div>
 </template>
 <script lang="ts">
-import { Vue, Component, Prop, Watch, Mixins } from "vue-property-decorator";
+import { Component, Prop, Watch, Mixins } from "vue-property-decorator";
 import TCComponent from "../TC-Component.mixin";
 
 @Component
@@ -83,12 +83,15 @@ export default class TCCheckbox extends Mixins(TCComponent) {
     return [this.checked ? this.iconChecked : this.iconUnchecked];
   }
 
-  updateVal() {
+  updateVal(): void {
     this.$emit("input", !this.checked);
   }
 }
 </script>
 <style lang="scss" scoped>
+@import "../_variables.scss";
+@import "../_mixins.scss";
+
 .icon-flip-move {
   transition: all 0.4s ease-in-out;
 }

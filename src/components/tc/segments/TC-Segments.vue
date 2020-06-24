@@ -23,7 +23,7 @@
   </div>
 </template>
 <script lang="ts">
-import { Vue, Component, Prop, Mixins } from "vue-property-decorator";
+import { Component, Prop, Mixins } from "vue-property-decorator";
 import TCComponent from "../TC-Component.mixin";
 
 @Component
@@ -36,20 +36,23 @@ export default class TCSegments extends Mixins(TCComponent) {
     return this.segments.filter((x, i) => i === this.currentlySelected);
   }
 
-  getBackgroundStyle(): any {
+  getBackgroundStyle(): Record<string, unknown> {
     return {
       width: `calc(${100 / this.segments.length}% - 10px)`,
-      left: `calc(5px + 100% / ${this.segments.length} * ${this.currentlySelected})`
+      left: `calc(5px + 100% / ${this.segments.length} * ${this.currentlySelected})`,
     };
   }
-  getItemsStyle(): any {
+  getItemsStyle(): Record<string, unknown> {
     return {
-      gridTemplateColumns: `repeat(${this.segments.length}, 1fr)`
+      gridTemplateColumns: `repeat(${this.segments.length}, 1fr)`,
     };
   }
 }
 </script>
 <style lang="scss" scoped>
+@import "../_variables.scss";
+@import "../_mixins.scss";
+
 .icon-trans-move {
   transition: all 0.4s ease-in-out;
 }

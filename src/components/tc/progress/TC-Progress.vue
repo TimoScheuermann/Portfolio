@@ -28,7 +28,7 @@
           'stroke-width': ringWidth + 'px',
           'stroke-dasharray': dasharray,
           'stroke-dashoffset': dashoffset,
-          stroke: color
+          stroke: color,
         }"
         :cx="ringSize / 2"
         :cy="ringSize / 2"
@@ -38,7 +38,7 @@
   </div>
 </template>
 <script lang="ts">
-import { Vue, Component, Prop, Mixins } from "vue-property-decorator";
+import { Component, Prop, Mixins } from "vue-property-decorator";
 import TCComponent from "../TC-Component.mixin";
 @Component
 export default class TCProgress extends Mixins(TCComponent) {
@@ -68,6 +68,9 @@ export default class TCProgress extends Mixins(TCComponent) {
 }
 </script>
 <style lang="scss" scoped>
+@import "../_variables.scss";
+@import "../_mixins.scss";
+
 .tc-progress {
   &.tc-progress__ring {
     svg {

@@ -29,8 +29,8 @@ import TCRevealer from "@/components/tc/revealer/TC-Revealer.vue";
 @Component({
   components: {
     "tc-headline": TCHeadline,
-    "tc-revealer": TCRevealer
-  }
+    "tc-revealer": TCRevealer,
+  },
 })
 export default class TCComponentsDetailRevealer extends Vue {}
 </script>

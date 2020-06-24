@@ -15,9 +15,9 @@ const projects: Project[] = [
       thumbnail: "assets/projects/tccomponents/thumbnail.png",
       combined: "assets/projects/tccomponents/preview.png",
       mobile: "assets/projects/tccomponents/preview_mobile.png",
-      desktop: "assets/projects/tccomponents/preview_desktop.png"
+      desktop: "assets/projects/tccomponents/preview_desktop.png",
     },
-    displayAs: "combined"
+    displayAs: "combined",
   },
   {
     routeName: constants.projectRoutes.timos_icons,
@@ -32,9 +32,9 @@ const projects: Project[] = [
       thumbnail: "assets/projects/timosicons/thumbnail.png",
       combined: "assets/projects/timosicons/preview.png",
       mobile: "assets/projects/timosicons/preview_mobile.png",
-      desktop: "assets/projects/timosicons/preview_desktop.png"
+      desktop: "assets/projects/timosicons/preview_desktop.png",
     },
-    displayAs: "combined"
+    displayAs: "combined",
   },
   {
     routeName: constants.projectRoutes.investing_collectors,
@@ -50,9 +50,9 @@ const projects: Project[] = [
       thumbnail: "assets/projects/investingcollectors/thumbnail.png",
       combined: "assets/projects/investingcollectors/preview.png",
       mobile: "assets/projects/investingcollectors/preview_mobile.png",
-      desktop: "assets/projects/investingcollectors/preview_desktop.png"
+      desktop: "assets/projects/investingcollectors/preview_desktop.png",
     },
-    displayAs: "mobile"
+    displayAs: "mobile",
   },
   {
     routeName: constants.projectRoutes.work_gallery,
@@ -67,9 +67,9 @@ const projects: Project[] = [
       thumbnail: "assets/projects/workgallery/thumbnail.png",
       combined: "assets/projects/workgallery/hero.png",
       mobile: "assets/projects/workgallery/preview_mobile.png",
-      desktop: "assets/projects/workgallery/preview_desktop.png"
+      desktop: "assets/projects/workgallery/preview_desktop.png",
     },
-    displayAs: "mobile"
+    displayAs: "mobile",
   },
   {
     routeName: constants.projectRoutes.dhbw_richie,
@@ -84,9 +84,9 @@ const projects: Project[] = [
       thumbnail: "assets/projects/dhbwrichie/thumbnail.png",
       combined: "assets/projects/dhbwrichie/preview.png",
       mobile: "assets/projects/dhbwrichie/preview_mobile.png",
-      desktop: "assets/projects/dhbwrichie/preview_desktop.png"
+      desktop: "assets/projects/dhbwrichie/preview_desktop.png",
     },
-    displayAs: "desktop"
+    displayAs: "desktop",
   },
   {
     routeName: constants.projectRoutes.nhl_stats,
@@ -101,9 +101,9 @@ const projects: Project[] = [
       thumbnail: "assets/projects/nhlstats/thumbnail.png",
       combined: "assets/projects/nhlstats/preview.png",
       mobile: "assets/projects/nhlstats/preview_mobile.png",
-      desktop: "assets/projects/nhlstats/preview_desktop.png"
+      desktop: "assets/projects/nhlstats/preview_desktop.png",
     },
-    displayAs: "desktop"
+    displayAs: "desktop",
   },
   {
     routeName: constants.projectRoutes.ams_pro,
@@ -117,10 +117,10 @@ const projects: Project[] = [
       thumbnail: "assets/projects/amspro/thumbnail.png",
       combined: "assets/projects/amspro/preview.png",
       mobile: "assets/projects/amspro/preview_mobile.png",
-      desktop: "assets/projects/amspro/preview_desktop.png"
+      desktop: "assets/projects/amspro/preview_desktop.png",
     },
-    displayAs: "combined"
-  }
+    displayAs: "combined",
+  },
 ];
 
 export default projects;

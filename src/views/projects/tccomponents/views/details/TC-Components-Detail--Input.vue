@@ -115,15 +115,15 @@ import TCLink from "@/components/tc/link/TC-Link.vue";
     "tc-headline": TCHeadline,
     "tc-input": TCInput,
     "tc-grid": TCGrid,
-    "tc-link": TCLink
-  }
+    "tc-link": TCLink,
+  },
 })
 export default class TCComponentsDetailInput extends Vue {
   // TODO:
   // Add placeholder example
   // Add Title example
 
-  currentType: string = "text";
+  currentType = "text";
   inputTypes: string[] = [
     "button",
     "checkbox",
@@ -146,7 +146,7 @@ export default class TCComponentsDetailInput extends Vue {
     "text",
     "time",
     "url",
-    "week"
+    "week",
   ];
 }
 </script>

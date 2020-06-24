@@ -68,7 +68,7 @@
           title: 'Card Title',
           subtitle: 'Subtitle',
           dark: 'true',
-          rounded: 'true'
+          rounded: 'true',
         }"
         :inner="`<img slot='media' src='${src}' />**Hello World!`"
       >
@@ -100,13 +100,13 @@ import TCImage from "../../../../../components/tc/image/TC-Image.vue";
     "tc-headline": TCHeadline,
     "tc-card": TCCard,
     "tc-grid": TCGrid,
-    "tc-image": TCImage
-  }
+    "tc-image": TCImage,
+  },
 })
 export default class TCComponentsDetailCard extends Vue {
   @Prop() component!: TCComponent;
 
-  public src: string =
+  public src =
     "https://davidjrodger.files.wordpress.com/2013/06/travel-photo-arctic-circle-norway-misty-mountains-like-smoke-rising-from-forest-image-copyright-david-j-rodger.jpg";
   // public src: string = "https://gradientjoy.com/400x300?id=44";
 }

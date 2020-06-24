@@ -2,13 +2,13 @@ import constants from "@/constants";
 import { ProjectAssets } from "./ProjectAssets";
 
 export class Project {
-  title: string = "%title%";
-  description: string = "%description%";
-  type: string = "%type%";
+  title = "%title%";
+  description = "%description%";
+  type = "%type%";
   routeName: string = constants.routes.home;
-  mainComponent: string = "@/views/projects/%title%";
-  icon: string = "";
+  mainComponent = "@/views/projects/%title%";
+  icon = "";
   assets: ProjectAssets = new ProjectAssets();
   displayAs: "mobile" | "desktop" | "combined" = "combined";
-  shortName: string = "";
+  shortName = "";
 }

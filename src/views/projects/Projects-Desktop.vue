@@ -12,7 +12,7 @@
         :class="{
           'span-c': p.displayAs == 'combined',
           'span-r': p.displayAs == 'mobile',
-          'span-c2': p.displayAs == 'desktop'
+          'span-c2': p.displayAs == 'desktop',
         }"
       >
         <tc-card
@@ -41,8 +41,8 @@ import TCGrid from "@/components/tc/_layout/grid/TC-Grid.vue";
     "project-title": ProjectsTitle,
     "tc-card": TCCard,
     "project-default-hero": ProjectsDefaultHero,
-    "tc-grid": TCGrid
-  }
+    "tc-grid": TCGrid,
+  },
 })
 export default class ProjectsDesktop extends Vue {
   public projects: Project[] = projects;
@@ -50,6 +50,9 @@ export default class ProjectsDesktop extends Vue {
 </script>
 
 <style lang="scss" scoped>
+@import "../../components/tc/_variables.scss";
+@import "../../components/tc/_mixins.scss";
+
 .projects-desktop {
   @media #{$isMobile} {
     display: none;

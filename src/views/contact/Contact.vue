@@ -67,8 +67,8 @@ import TCButton from "@/components/tc/button/TC-Button.vue";
     "tc-hero": TCHero,
     "tc-card": TCCard,
     "tc-link": TCLink,
-    "tc-button": TCButton
-  }
+    "tc-button": TCButton,
+  },
 })
 export default class ContactView extends Vue {}
 </script>

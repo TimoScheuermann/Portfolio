@@ -4,71 +4,71 @@ const tools: Tool[][] = [
   [
     {
       name: "Adobe XD",
-      img: "assets/repertoire/adobexd.png"
+      img: "assets/repertoire/adobexd.png",
     },
     {
       name: "Photoshop",
-      img: "assets/repertoire/photoshop.svg"
+      img: "assets/repertoire/photoshop.svg",
     },
     {
       name: "Affinity Photo",
-      img: "assets/repertoire/affinity.png"
-    }
+      img: "assets/repertoire/affinity.png",
+    },
   ],
   [
     {
       name: "HTML 5",
-      img: "assets/repertoire/html.png"
+      img: "assets/repertoire/html.png",
     },
     {
       name: "CSS 3",
-      img: "assets/repertoire/css.png"
+      img: "assets/repertoire/css.png",
     },
     {
       name: "JavaScript",
-      img: "assets/repertoire/js.png"
+      img: "assets/repertoire/js.png",
     },
     {
       name: "TypeScript",
-      img: "assets/repertoire/ts.png"
+      img: "assets/repertoire/ts.png",
     },
     {
       name: "Node JS",
-      img: "assets/repertoire/nodejs.png"
+      img: "assets/repertoire/nodejs.png",
     },
     {
       name: "Vue JS",
-      img: "assets/repertoire/vuejs.png"
+      img: "assets/repertoire/vuejs.png",
     },
     {
       name: "Angular",
-      img: "assets/repertoire/angular.png"
+      img: "assets/repertoire/angular.png",
     },
     {
       name: "Nest.js",
-      img: "assets/repertoire/nest.svg"
+      img: "assets/repertoire/nest.svg",
     },
     {
       name: "MongoDB",
-      img: "assets/repertoire/mongodb.png"
+      img: "assets/repertoire/mongodb.png",
     },
     {
       name: "MySQL",
-      img: "assets/repertoire/mysql.png"
+      img: "assets/repertoire/mysql.png",
     },
     {
       name: "Git",
-      img: "assets/repertoire/git.png"
+      img: "assets/repertoire/git.png",
     },
     {
       name: "NPM",
-      img: "assets/repertoire/npm.png"
+      img: "assets/repertoire/npm.png",
     },
     {
       name: "Yarn",
-      img: "assets/repertoire/yarn.png"
-    }
-  ]
+      img: "assets/repertoire/yarn.png",
+    },
+  ],
 ];
 
 export default tools;

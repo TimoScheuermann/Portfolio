@@ -21,7 +21,7 @@
           variant: variant.split(' ')[0].toLowerCase(),
           name: 'Default | \'\'',
           icon: 'heart | \'\'',
-          disabled: 'true | false'
+          disabled: 'true | false',
         }"
       >
         <tc-button :variant="variant" name="Default" icon="" disabled="" />
@@ -42,7 +42,7 @@
           tccolor: color,
           variant: 'border | filled | opaque',
           name: color,
-          icon: 'color-fan'
+          icon: 'color-fan',
         }"
       >
         <tc-button
@@ -68,8 +68,8 @@ import TCGrid from "@/components/tc/_layout/grid/TC-Grid.vue";
     "portfolio-code-example": PortfolioCodeExample,
     "tc-headline": TCHeadline,
     "tc-button": TCButton,
-    "tc-grid": TCGrid
-  }
+    "tc-grid": TCGrid,
+  },
 })
 export default class TCComponentsDetailButton extends Vue {
   public variants: string[] = ["Border (default)", "Filled", "Opaque"];

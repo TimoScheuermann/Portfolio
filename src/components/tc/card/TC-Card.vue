@@ -16,7 +16,7 @@
       :class="{
         'tc-card--subtitle__withoutContent': !(
           usedSlots.includes('default') || usedSlots.includes('media')
-        )
+        ),
       }"
     >
       {{ subtitle }}
@@ -32,7 +32,7 @@
       :class="{
         'tc-card--content__hasMedia': usedSlots.includes('media'),
         'tc-card--content__hasTitle':
-          usedSlots.includes('title') || title || subtitle
+          usedSlots.includes('title') || title || subtitle,
       }"
       v-if="usedSlots.includes('default')"
     >
@@ -41,14 +41,14 @@
   </div>
 </template>
 <script lang="ts">
-import { Vue, Component, Prop, Mixins } from "vue-property-decorator";
+import { Component, Prop, Mixins } from "vue-property-decorator";
 import TCButton from "../button/TC-Button.vue";
 import TCComponent from "../TC-Component.mixin";
 
 @Component({
   components: {
-    "tc-button": TCButton
-  }
+    "tc-button": TCButton,
+  },
 })
 export default class TCCard extends Mixins(TCComponent) {
   @Prop() title!: string;
@@ -62,25 +62,28 @@ export default class TCCard extends Mixins(TCComponent) {
     return Object.keys(this.$slots);
   }
 
-  get classes() {
+  get classes(): Record<string, unknown> {
     return {
       "tc-card__frosted": this.frosted,
       "tc-card__shadow": this.shadow,
       "tc-card__rounded": this.rounded,
       "tc-card__hover": this.hover,
-      "tc-card__dark": this.dark
+      "tc-card__dark": this.dark,
     };
   }
 
-  get styles() {
+  get styles(): Record<string, unknown> {
     return {
       color: this.color,
-      background: this.background
+      background: this.background,
     };
   }
 }
 </script>
 <style lang="scss" scoped>
+@import "../_variables.scss";
+@import "../_mixins.scss";
+
 .tc-card {
   background: $background;
   text-align: center;

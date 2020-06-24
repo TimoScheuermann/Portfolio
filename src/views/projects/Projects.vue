@@ -15,12 +15,16 @@ import TCHeader from "@/components/tc/header/TC-Header.vue";
   components: {
     "projects-mobile": ProjectsMobile,
     "projects-desktop": ProjectsDesktop,
-    "tc-header": TCHeader
-  }
+    "tc-header": TCHeader,
+  },
 })
 export default class Projects extends Vue {}
 </script>
+
 <style lang="scss" scoped>
+@import "../../components/tc/_variables.scss";
+@import "../../components/tc/_mixins.scss";
+
 .projects-mobile {
   @media #{$isDesktop} {
     display: none;
