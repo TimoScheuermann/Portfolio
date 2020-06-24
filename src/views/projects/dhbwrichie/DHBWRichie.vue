@@ -41,5 +41,6 @@ export default class DHBWRichie extends Vue {
 </script>
 <style lang="scss" scoped>
 .projects--dhbwrichie {
+  color: inherit;
 }
 </style>

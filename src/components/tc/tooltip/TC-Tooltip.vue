@@ -4,7 +4,7 @@
       <div class="tooltip--content">{{ tooltip }}</div>
       <div class="arrow"></div>
     </div>
-    <div class="content">
+    <div>
       <slot />
     </div>
   </div>
@@ -120,8 +120,6 @@ export default class TCTooltip extends Mixins(TCComponent) {
       border-radius: $border-radius;
       color: #fff;
     }
-  }
-  .content {
   }
 }
 </style>

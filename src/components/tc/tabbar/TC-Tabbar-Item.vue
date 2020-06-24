@@ -42,10 +42,6 @@ export default class TCTabbarItem extends Mixins(TCComponent) {
   span {
     height: 20px;
     line-height: 20px;
-    // background: green;
-  }
-  span {
-    // background: orange;
   }
   &.router-link-exact-active {
     color: $primary;
