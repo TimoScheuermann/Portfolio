@@ -26,17 +26,12 @@
 </template>
 <script lang="ts">
 import { Vue, Component, Prop, Watch } from "vue-property-decorator";
-import TCCard from "@/components/tc/card/TC-Card.vue";
 import { formatDate } from "@/utils/DateFormatter";
 import * as MarkdownIt from "markdown-it";
 import IGitHubIssueComment from "@/models/GitHub/IGutHubIssueComment";
 import IGitHubIssue from "@/models/GitHub/IGitHubIssue";
 
-@Component({
-  components: {
-    "tc-card": TCCard,
-  },
-})
+@Component
 export default class TimosIconsIssueComment extends Vue {
   @Prop() comment!: IGitHubIssueComment;
   @Prop() issue!: IGitHubIssue;
@@ -66,9 +61,6 @@ export default class TimosIconsIssueComment extends Vue {
 }
 </script>
 <style lang="scss" scoped>
-@import "../../tc/_variables.scss";
-@import "../../tc/_mixins.scss";
-
 .card--comments {
   margin-top: 30px;
 

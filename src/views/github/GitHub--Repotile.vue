@@ -30,18 +30,9 @@
 </template>
 <script lang="ts">
 import { Vue, Component, Prop } from "vue-property-decorator";
-import TCCard from "@/components/tc/card/TC-Card.vue";
-import TCButton from "@/components/tc/button/TC-Button.vue";
-import TCDivider from "@/components/tc/divider/TC-Divider.vue";
 import IGitHubRepo from "@/models/GitHub/IGitHubRepo";
 
-@Component({
-  components: {
-    "tc-card": TCCard,
-    "tc-button": TCButton,
-    "tc-divider": TCDivider,
-  },
-})
+@Component
 export default class GitHubRepoTile extends Vue {
   @Prop() repo!: IGitHubRepo;
   @Prop({ default: false }) dark!: boolean;
@@ -72,9 +63,6 @@ export default class GitHubRepoTile extends Vue {
 }
 </script>
 <style lang="scss" scoped>
-@import "../../components/tc/_variables.scss";
-@import "../../components/tc/_mixins.scss";
-
 .indicator {
   $pad: 5px;
   user-select: none;

@@ -38,20 +38,12 @@
 
 <script lang="ts">
 import { Vue, Component } from "vue-property-decorator";
-import TCHero from "@/components/tc/hero/TC-Hero.vue";
-import TCHeadline from "@/components/tc/headline/TC-Headline.vue";
-import TCButton from "@/components/tc/button/TC-Button.vue";
-import TCCard from "@/components/tc/card/TC-Card.vue";
 import projects from "@/projects";
 import { Project } from "@/models/Projects/Project.model";
 import ProjectsTitle from "@/components/projects/common/Projects--Title.vue";
 
 @Component({
   components: {
-    "tc-hero": TCHero,
-    "tc-headline": TCHeadline,
-    "tc-button": TCButton,
-    "tc-card": TCCard,
     "project-title": ProjectsTitle,
   },
 })
@@ -60,9 +52,6 @@ export default class Home extends Vue {
 }
 </script>
 <style lang="scss" scoped>
-@import "../../components/tc/_variables.scss";
-@import "../../components/tc/_mixins.scss";
-
 .home {
   background: #000;
   color: #fff;

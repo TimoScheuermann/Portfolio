@@ -42,23 +42,13 @@
 </template>
 <script lang="ts">
 import { Vue, Component } from "vue-property-decorator";
-import TCButton from "@/components/tc/button/TC-Button.vue";
 import constants from "@/constants";
 import icons from "@/icons";
 import { Icon } from "@/models/Icons/Icon.model";
 import IconScroller from "@/components/projects/TimosIcons/IconScroller.vue";
-import TCTabbar from "@/components/tc/tabbar/TC-Tabbar.vue";
-import TCTabbarItem from "@/components/tc/tabbar/TC-Tabbar-Item.vue";
-import TCGrid from "@/components/tc/_layout/grid/TC-Grid.vue";
-import TCLink from "../../../components/tc/link/TC-Link.vue";
 @Component({
   components: {
-    "tc-button": TCButton,
     "icon-scroller": IconScroller,
-    "tc-tabbar": TCTabbar,
-    "tc-tabbar-item": TCTabbarItem,
-    "tc-grid": TCGrid,
-    "tc-link": TCLink,
   },
 })
 export default class TimosIconsFound extends Vue {
@@ -75,9 +65,6 @@ export default class TimosIconsFound extends Vue {
 </script>
 
 <style lang="scss" scoped>
-@import "../../../components/tc/_variables.scss";
-@import "../../../components/tc/_mixins.scss";
-
 .timos-icons--found {
   padding-top: calc(50px + env(safe-area-inset-top));
 

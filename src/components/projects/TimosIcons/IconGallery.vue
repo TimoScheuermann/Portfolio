@@ -27,13 +27,10 @@ import IconTile from "./IconTile.vue";
 import { Icon } from "@/models/Icons/Icon.model";
 import icons from "@/icons";
 import constants from "@/constants";
-import TCHeadline from "../../tc/headline/TC-Headline.vue";
-import TCInput from "../../tc/input/TC-Input.vue";
+
 @Component({
   components: {
     "icon-tile": IconTile,
-    "tc-headline": TCHeadline,
-    "tc-input": TCInput,
   },
 })
 export default class IconGallery extends Vue {
@@ -44,22 +41,22 @@ export default class IconGallery extends Vue {
 
   get iconsSorted(): Icon[] {
     return icons
-      .map((x) => {
+      .map((x: Icon) => {
         return {
           words: x.name.split("-"),
           icon: x,
         };
       })
-      .filter((x) => {
+      .filter((x: { words: string[]; icon: Icon }) => {
         if (this.searchQuery.length == 0) return true;
-        for (let q of this.searchQuery.toLowerCase().split(" ")) {
-          for (let w of x.words) {
+        for (const q of this.searchQuery.toLowerCase().split(" ")) {
+          for (const w of x.words) {
             if (w.includes(q)) return true;
           }
         }
         return false;
       })
-      .map((x) => x.icon)
+      .map((x: { words: string[]; icon: Icon }) => x.icon)
       .sort((a, b) => a.name.localeCompare(b.name));
   }
 

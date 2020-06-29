@@ -1,3 +1,4 @@
+/* eslint-disable */
 /*!
  * swiped-events.js - v@version@
  * Pure JavaScript swipe events

@@ -68,30 +68,16 @@
 </template>
 <script lang="ts">
 import { Vue, Component } from "vue-property-decorator";
-import TCHeader from "@/components/tc/header/TC-Header.vue";
 
 import axios from "@/axios";
 import constants from "@/constants";
-import TCButton from "@/components/tc/button/TC-Button.vue";
-
-import TCGrid from "@/components/tc/_layout/grid/TC-Grid.vue";
-import TCHero from "@/components/tc/hero/TC-Hero.vue";
-
-import TCSpinner from "@/components/tc/spinner/TC-Spinner.vue";
-import TCCard from "@/components/tc/card/TC-Card.vue";
 import TimosIconsIssueComment from "@/components/projects/TimosIcons/TimosIcons--Issue-Comment.vue";
 import { formatDate } from "@/utils/DateFormatter";
-import IGitHubIssueComment from "../../../../models/GitHub/IGutHubIssueComment";
-import IGitHubIssue from "../../../../models/GitHub/IGitHubIssue";
+import IGitHubIssueComment from "@/models/GitHub/IGutHubIssueComment";
+import IGitHubIssue from "@/models/GitHub/IGitHubIssue";
 
 @Component({
   components: {
-    "tc-header": TCHeader,
-    "tc-grid": TCGrid,
-    "tc-hero": TCHero,
-    "tc-spinner": TCSpinner,
-    "tc-card": TCCard,
-    "tc-button": TCButton,
     "timosicons-issue-comment": TimosIconsIssueComment,
   },
 })
@@ -141,9 +127,6 @@ export default class TimosIconsRequestsDetail extends Vue {
 }
 </script>
 <style lang="scss" scoped>
-@import "../../../../components/tc/_variables.scss";
-@import "../../../../components/tc/_mixins.scss";
-
 .swap-enter-active,
 .swap-leave-active {
   transition: all 1s;

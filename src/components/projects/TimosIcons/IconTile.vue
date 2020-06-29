@@ -18,9 +18,6 @@ export default class IconTile extends Vue {
 </script>
 
 <style lang="scss" scoped>
-@import "../../tc/_variables.scss";
-@import "../../tc/_mixins.scss";
-
 .timosicons--icontile {
   color: $color;
   padding: 20px;

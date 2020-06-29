@@ -10,13 +10,11 @@
 </template>
 <script lang="ts">
 import { Vue, Component } from "vue-property-decorator";
-import TCHeader from "@/components/tc/header/TC-Header.vue";
 import constants from "@/constants";
 import IconGallery from "@/components/projects/TimosIcons/IconGallery.vue";
 
 @Component({
   components: {
-    "tc-header": TCHeader,
     "icon-gallery": IconGallery,
   },
 })

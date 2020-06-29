@@ -17,7 +17,6 @@
 </template>
 <script lang="ts">
 import { Vue, Component } from "vue-property-decorator";
-import TCHeader from "@/components/tc/header/TC-Header.vue";
 import constants from "@/constants";
 import ProjectsDefaultHero from "@/components/projects/common/Projects--Default-Hero.vue";
 import ProjectsTitle from "@/components/projects/common/Projects--Title.vue";
@@ -26,7 +25,6 @@ import { Project } from "@/models/Projects/Project.model";
 
 @Component({
   components: {
-    "tc-header": TCHeader,
     "projects-default-hero": ProjectsDefaultHero,
     "project-title": ProjectsTitle,
   },

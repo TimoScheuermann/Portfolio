@@ -10,12 +10,8 @@
 </template>
 <script lang="ts">
 import { Vue, Component, Prop } from "vue-property-decorator";
-import TCHero from "@/components/tc/hero/TC-Hero.vue";
-@Component({
-  components: {
-    "tc-hero": TCHero,
-  },
-})
+
+@Component
 export default class ProjectsDefaultHero extends Vue {
   @Prop() title!: string;
   @Prop() src!: string;
@@ -23,9 +19,6 @@ export default class ProjectsDefaultHero extends Vue {
 }
 </script>
 <style lang="scss" scoped>
-@import "../../tc/_variables.scss";
-@import "../../tc/_mixins.scss";
-
 .tc-hero {
   background: $color;
 }

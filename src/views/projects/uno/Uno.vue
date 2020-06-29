@@ -123,16 +123,9 @@
 </template>
 <script lang="ts">
 import { Vue, Component, Watch } from "vue-property-decorator";
-import TCHeader from "@/components/tc/header/TC-Header.vue";
-import TCModal from "@/components/tc/modal/TC-Modal.vue";
-import TCButton from "@/components/tc/button/TC-Button.vue";
-import TCInput from "@/components/tc/input/TC-Input.vue";
+
 import { Player } from "./Player.model";
 import { Game } from "./Game.model";
-import TCRevealer from "@/components/tc/revealer/TC-Revealer.vue";
-import TCDivider from "@/components/tc/divider/TC-Divider.vue";
-import TCCard from "@/components/tc/card/TC-Card.vue";
-import TCSelect from "@/components/tc/select/TC-Select.vue";
 import VueApexCharts from "vue-apexcharts";
 
 interface UpdateFunction {
@@ -144,14 +137,6 @@ interface ChartElement extends HTMLElement {
 
 @Component({
   components: {
-    "tc-header": TCHeader,
-    "tc-modal": TCModal,
-    "tc-button": TCButton,
-    "tc-input": TCInput,
-    "tc-revealer": TCRevealer,
-    "tc-divider": TCDivider,
-    "tc-card": TCCard,
-    "tc-select": TCSelect,
     apexchart: VueApexCharts,
   },
 })
@@ -196,7 +181,7 @@ export default class Uno extends Vue {
   }
 
   get playerNames(): string[] {
-    return this.players.map((x) => x.name);
+    return this.players.map((x: Player) => x.name);
   }
 
   public addPlayer(name = ""): void {
@@ -209,7 +194,7 @@ export default class Uno extends Vue {
   public getWinPerc(player: Player): number {
     return (
       Math.round(
-        (this.games.filter((x) => x.winner.name == player.name).length /
+        (this.games.filter((x: Game) => x.winner.name == player.name).length /
           this.games.length) *
           10000
       ) / 100
@@ -218,19 +203,19 @@ export default class Uno extends Vue {
   public getPoints(player: Player): number {
     let points = 0;
     this.games
-      .filter((x) => x.looser.name == player.name)
-      .forEach((x) => (points += x.points));
+      .filter((x: Game) => x.looser.name == player.name)
+      .forEach((x: Game) => (points += x.points));
     return points;
   }
   public getWins(player: Player): number {
-    return this.games.filter((x) => x.winner.name == player.name).length;
+    return this.games.filter((x: Game) => x.winner.name == player.name).length;
   }
   public getLoses(player: Player): number {
-    return this.games.filter((x) => x.looser.name == player.name).length;
+    return this.games.filter((x: Game) => x.looser.name == player.name).length;
   }
   public getWinner(): Player {
     return this.players
-      .map((x) => {
+      .map((x: Player) => {
         x.total = this.getPoints(x);
         return x;
       })
@@ -238,7 +223,7 @@ export default class Uno extends Vue {
   }
   public getLooser(): Player {
     return this.players
-      .map((x) => {
+      .map((x: Player) => {
         x.total = this.getPoints(x);
         return x;
       })
@@ -246,18 +231,20 @@ export default class Uno extends Vue {
   }
   public removeGame(index: number): void {
     this.games = this.games.filter((x, i) => i != index);
-    this.series.map((x) => (x.data = x.data.filter((x, i) => i != index)));
+    this.series.map(
+      (x, a) => (x.data = x.data.filter((x, i) => i != index && a == a))
+    );
     (this.$refs.chart as ChartElement).updateSeries(this.series);
   }
   public getPlayer(name: string): Player {
-    return this.players.filter((x) => x.name === name)[0];
+    return this.players.filter((x: Player) => x.name === name)[0];
   }
   public save(): void {
     if (this.player_looser) {
       const winner: Player =
         this.players.length != 2
           ? this.getPlayer(this.player_winner)
-          : this.players.filter((x) => x.name != this.player_looser)[0];
+          : this.players.filter((x: Player) => x.name != this.player_looser)[0];
 
       this.games.push({
         looser: this.getPlayer(this.player_looser),
@@ -265,8 +252,8 @@ export default class Uno extends Vue {
         winner: winner,
       });
       this.currentPlayer++;
-      this.series.map((x) => {
-        const old = x.data[x.data.length - 1] || 0;
+      this.series.map((x, i) => {
+        const old = x.data[x.data.length - 1] || 0 || i;
         if (x.name === this.player_looser) {
           x.data = [...x.data, +this.newPoints + old];
         } else {
@@ -281,8 +268,6 @@ export default class Uno extends Vue {
 </script>
 
 <style lang="scss" scoped>
-@import "../../../components/tc/_variables.scss";
-@import "../../../components/tc/_mixins.scss";
 [content] {
   background: #000;
   color: #fff;

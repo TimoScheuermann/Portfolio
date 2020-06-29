@@ -87,29 +87,15 @@
 <script lang="ts">
 import { Vue, Component } from "vue-property-decorator";
 import constants from "@/constants";
-import TCButton from "@/components/tc/button/TC-Button.vue";
 import IconGallery from "@/components/projects/TimosIcons/IconGallery.vue";
-import TCHeader from "@/components/tc/header/TC-Header.vue";
-import TCHero from "@/components/tc/hero/TC-Hero.vue";
-import TCHeadline from "@/components/tc/headline/TC-Headline.vue";
 import IconSlotMashine from "@/components/projects/TimosIcons/IconSlotMashine.vue";
-import TCGrid from "@/components/tc/_layout/grid/TC-Grid.vue";
-import TCCard from "@/components/tc/card/TC-Card.vue";
-import TCTooltip from "@/components/tc/tooltip/TC-Tooltip.vue";
 import { getProject } from "@/utils/ProjectUtils";
 import { Project } from "@/models/Projects/Project.model";
 
 @Component({
   components: {
     "icon-gallery": IconGallery,
-    "tc-button": TCButton,
-    "tc-header": TCHeader,
-    "tc-hero": TCHero,
-    "tc-headline": TCHeadline,
-    "tc-grid": TCGrid,
-    "tc-card": TCCard,
     "icon-slot-mashine": IconSlotMashine,
-    "tc-tooltip": TCTooltip,
   },
 })
 export default class TimosIcons extends Vue {
@@ -122,9 +108,6 @@ export default class TimosIcons extends Vue {
 </script>
 
 <style lang="scss" scoped>
-@import "../../../components/tc/_variables.scss";
-@import "../../../components/tc/_mixins.scss";
-
 .xd-indicator {
   color: $error;
   @media only screen and (min-width: 630px) {

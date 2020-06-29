@@ -12,7 +12,7 @@ export default class ProjectsTitle extends Vue {
   @Prop() subtitle!: string;
 }
 </script>
-<style lang="scss" scoped>
+<style scoped lang="scss">
 .projects--title {
   margin-top: 90px;
   &::before {

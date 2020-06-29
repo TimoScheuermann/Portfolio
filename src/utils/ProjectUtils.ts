@@ -3,5 +3,7 @@ import projects from "@/projects";
 import router from "@/router";
 
 export function getProject(): Project {
-  return projects.filter((x) => x.routeName === router.currentRoute.name)[0];
+  return projects.filter(
+    (x: Project) => x.routeName === router.currentRoute.name
+  )[0];
 }

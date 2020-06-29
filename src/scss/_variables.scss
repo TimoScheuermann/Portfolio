@@ -1,4 +1,7 @@
 // Main Colors
+$background: #fff;
+$paragraph: #f0f0f0;
+
 $color: #111;
 $background: #fff;
 $paragraph: #f0f0f0;
@@ -8,10 +11,11 @@ $success: #25ca49;
 $alarm: #f1c40f;
 
 $color_colors: (
-  primary: $primary,
-  error: $error,
-  success: $success,
-  alarm: $alarm,
+    primary: $primary,
+    error: $error,
+    success: $success,
+    alarm: $alarm,
+    paragraph: darken($paragraph, 5%),
 );
 
 // Media Queries

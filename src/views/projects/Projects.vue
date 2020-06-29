@@ -9,22 +9,17 @@
 import { Vue, Component } from "vue-property-decorator";
 import ProjectsMobile from "./Projects-Mobile.vue";
 import ProjectsDesktop from "./Projects-Desktop.vue";
-import TCHeader from "@/components/tc/header/TC-Header.vue";
 
 @Component({
   components: {
     "projects-mobile": ProjectsMobile,
     "projects-desktop": ProjectsDesktop,
-    "tc-header": TCHeader,
   },
 })
 export default class Projects extends Vue {}
 </script>
 
 <style lang="scss" scoped>
-@import "../../components/tc/_variables.scss";
-@import "../../components/tc/_mixins.scss";
-
 .projects-mobile {
   @media #{$isDesktop} {
     display: none;

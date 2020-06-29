@@ -48,12 +48,7 @@
 </template>
 <script lang="ts">
 import { Vue, Component } from "vue-property-decorator";
-import TCCard from "@/components/tc/card/TC-Card.vue";
-import TCHeader from "@/components/tc/header/TC-Header.vue";
-import TCHero from "@/components/tc/hero/TC-Hero.vue";
-import TCSpinner from "@/components/tc/spinner/TC-Spinner.vue";
 import GitHubRepoTile from "./GitHub--Repotile.vue";
-import TCGrid from "@/components/tc/_layout/grid/TC-Grid.vue";
 import axios from "@/axios";
 import ProjectsTitle from "@/components/projects/common/Projects--Title.vue";
 import IGitHubProfile from "@/models/GitHub/IGitHubProfile";
@@ -61,11 +56,6 @@ import IGitHubRepo from "@/models/GitHub/IGitHubRepo";
 
 @Component({
   components: {
-    "tc-card": TCCard,
-    "tc-header": TCHeader,
-    "tc-hero": TCHero,
-    "tc-spinner": TCSpinner,
-    "tc-grid": TCGrid,
     "github-repo-tile": GitHubRepoTile,
     "project-title": ProjectsTitle,
   },
@@ -124,9 +114,6 @@ export default class GitHubView extends Vue {
 }
 </script>
 <style lang="scss" scoped>
-@import "../../components/tc/_variables.scss";
-@import "../../components/tc/_mixins.scss";
-
 .github {
   background: #000;
 }

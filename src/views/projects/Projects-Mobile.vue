@@ -89,9 +89,6 @@ export default class ProjectsMobile extends Vue {
 </script>
 
 <style lang="scss" scoped>
-@import "../../components/tc/_variables.scss";
-@import "../../components/tc/_mixins.scss";
-
 @keyframes title-appear {
   0% {
     letter-spacing: -0.5em;

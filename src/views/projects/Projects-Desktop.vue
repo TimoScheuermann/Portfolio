@@ -32,16 +32,12 @@ import { Vue, Component } from "vue-property-decorator";
 import projects from "@/projects";
 import { Project } from "@/models/Projects/Project.model";
 import ProjectsTitle from "@/components/projects/common/Projects--Title.vue";
-import TCCard from "@/components/tc/card/TC-Card.vue";
 import ProjectsDefaultHero from "@/components/projects/common/Projects--Default-Hero.vue";
-import TCGrid from "@/components/tc/_layout/grid/TC-Grid.vue";
 
 @Component({
   components: {
     "project-title": ProjectsTitle,
-    "tc-card": TCCard,
     "project-default-hero": ProjectsDefaultHero,
-    "tc-grid": TCGrid,
   },
 })
 export default class ProjectsDesktop extends Vue {
@@ -50,9 +46,6 @@ export default class ProjectsDesktop extends Vue {
 </script>
 
 <style lang="scss" scoped>
-@import "../../components/tc/_variables.scss";
-@import "../../components/tc/_mixins.scss";
-
 .projects-desktop {
   @media #{$isMobile} {
     display: none;

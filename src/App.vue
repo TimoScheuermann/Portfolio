@@ -75,31 +75,14 @@
 
 <script lang="ts">
 import { Vue, Component, Watch } from "vue-property-decorator";
-import TCSidebar from "@/components/tc/sidebar/TC-Sidebar.vue";
-import TCSidebarGroup from "@/components/tc/sidebar/TC-Sidebar-Group.vue";
-import TCSidebarItem from "@/components/tc/sidebar/TC-Sidebar-Item.vue";
 import projects from "@/projects";
 import { Project } from "@/models/Projects/Project.model";
-import TCTabbar from "./components/tc/tabbar/TC-Tabbar.vue";
-import TCTabbarItem from "./components/tc/tabbar/TC-Tabbar-Item.vue";
-
-import TCNavbar from "@/components/tc/navbar/TC-Navbar.vue";
-import TCNavbarItem from "@/components/tc/navbar/TC-Navbar-Item.vue";
-import TCButton from "./components/tc/button/TC-Button.vue";
 import constants from "./constants";
 import { Route } from "vue-router";
 import MaterialDesignTransition from "vue-router-md-transition";
 
 @Component({
   components: {
-    "tc-button": TCButton,
-    "tc-navbar": TCNavbar,
-    "tc-navbar-item": TCNavbarItem,
-    "tc-sidebar": TCSidebar,
-    "tc-sidebar-group": TCSidebarGroup,
-    "tc-sidebar-item": TCSidebarItem,
-    "tc-tabbar": TCTabbar,
-    "tc-tabbar-item": TCTabbarItem,
     "md-transition": MaterialDesignTransition,
   },
 })
@@ -145,7 +128,7 @@ export default class App extends Vue {
   }
 
   private updateMeta(name: string, content: string): void {
-    document.querySelectorAll(`meta[name=${name}]`).forEach((elem) => {
+    document.querySelectorAll(`meta[name=${name}]`).forEach((elem: Element) => {
       elem.remove();
     });
     document.head.innerHTML =
@@ -156,18 +139,13 @@ export default class App extends Vue {
     params: Record<string, string>,
     title: string
   ): string {
-    for (let [key, value] of Object.entries(params)) {
+    for (const [key, value] of Object.entries(params)) {
       title = title.split("%" + key + "%").join(value);
     }
     return title;
   }
 }
 </script>
-
-<style lang="scss">
-@import "./components/tc/_mixins.scss";
-@import "./components/tc/_variables.scss";
-</style>
 
 <style lang="scss">
 /* Make clicks pass-through */
@@ -219,14 +197,6 @@ export default class App extends Vue {
   }
 }
 
-/* Fancy blur effect */
-#nprogress
-
-/* Remove these to get rid of the spinner */
-#nprogress
-
-#nprogress
-
 .nprogress-custom-parent {
   overflow: hidden;
   position: relative;
@@ -257,9 +227,6 @@ export default class App extends Vue {
 </style>
 
 <style lang="scss">
-@import "./components/tc/_variables.scss";
-@import "./components/tc/_mixins.scss";
-
 html {
   font-family: -apple-system, BlinkMacSystemFont, SF Pro Display, Segoe UI,
     Roboto, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji,

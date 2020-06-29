@@ -23,12 +23,10 @@
 </template>
 <script lang="ts">
 import { Vue, Component } from "vue-property-decorator";
-import TCButton from "@/components/tc/button/TC-Button.vue";
 import constants from "@/constants";
 import IconSlotMashine from "@/components/projects/TimosIcons/IconSlotMashine.vue";
 @Component({
   components: {
-    "tc-button": TCButton,
     "icon-slot-mashine": IconSlotMashine,
   },
 })

@@ -37,24 +37,16 @@
 </template>
 <script lang="ts">
 import { Vue, Component } from "vue-property-decorator";
-import TCHeader from "@/components/tc/header/TC-Header.vue";
-import TCCard from "@/components/tc/card/TC-Card.vue";
-import TCButton from "@/components/tc/button/TC-Button.vue";
 import constants from "@/constants";
 import workGalleryItems from "@/projects/workgallery";
 import { WorkGalleryItem } from "@/models/WorkGallery/WorkGalleryItem";
 import projects from "@/projects";
 import { Project } from "@/models/Projects/Project.model";
-import TCImage from "@/components/tc/image/TC-Image.vue";
 import ProjectsDefaultHero from "@/components/projects/common/Projects--Default-Hero.vue";
 import { getProject } from "@/utils/ProjectUtils";
 
 @Component({
   components: {
-    "tc-header": TCHeader,
-    "tc-card": TCCard,
-    "tc-button": TCButton,
-    "tc-image": TCImage,
     "projects-default-hero": ProjectsDefaultHero,
   },
 })
@@ -76,7 +68,7 @@ export default class WorkGallery extends Vue {
 
   private getProject(routeName: string): Project {
     return this.projects.filter(
-      (x) =>
+      (x: Project) =>
         x.routeName ===
         (constants.projectRoutes as Record<string, unknown>)[routeName]
     )[0];
@@ -95,9 +87,9 @@ export default class WorkGallery extends Vue {
   }
 
   private isScrolledIntoView(el: HTMLElement): boolean {
-    let rect = el.getBoundingClientRect();
-    let elemTop = rect.top;
-    let elemBottom = rect.bottom;
+    const rect = el.getBoundingClientRect();
+    const elemTop = rect.top;
+    const elemBottom = rect.bottom;
 
     // Only completely visible elements return true:
     let isVisible = elemTop >= 0 && elemBottom <= window.innerHeight;
@@ -117,8 +109,8 @@ export default class WorkGallery extends Vue {
 
   private handleScroll(): void {
     [...document.querySelectorAll("[appear]")]
-      .filter((x) => this.isScrolledIntoView(x as HTMLElement))
-      .forEach((x) => {
+      .filter((x: Element) => this.isScrolledIntoView(x as HTMLElement))
+      .forEach((x: Element) => {
         x.removeAttribute("appear");
       });
   }

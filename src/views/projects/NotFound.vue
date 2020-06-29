@@ -23,16 +23,10 @@
 </template>
 <script lang="ts">
 import { Vue, Component } from "vue-property-decorator";
-import TCHeader from "@/components/tc/header/TC-Header.vue";
 import projects from "@/projects";
 import { Project } from "@/models/Projects/Project.model";
-import TCLink from "@/components/tc/link/TC-Link.vue";
-@Component({
-  components: {
-    "tc-header": TCHeader,
-    "tc-link": TCLink,
-  },
-})
+
+@Component
 export default class ProjectsNotFound extends Vue {
   public projects: Project[] = projects;
 }

@@ -16,7 +16,12 @@ module.exports = {
       msTileImage: "img/icons/icon-144x144.png",
     },
   },
-  devServer: {
-    disableHostCheck: true,
+  css: {
+    loaderOptions: {
+      sass: {
+        prependData:
+          "@import '@/scss/_variables.scss';\n@import '@/scss/_mixins.scss';",
+      },
+    },
   },
 };

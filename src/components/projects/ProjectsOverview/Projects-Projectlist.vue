@@ -12,7 +12,8 @@
       </tc-list>
     </div>
     <div class="projects-list-opener" @click="listOpened = !listOpened">
-      <span>All Projects <i class="ti-chevron-up" /></span>
+      <!-- eslint-disable-next-line -->
+      <span>All Projects <i class="ti-chevron-up"/></span>
     </div>
   </div>
 </template>
@@ -20,23 +21,14 @@
 import { Vue, Component } from "vue-property-decorator";
 import projects from "@/projects";
 import { Project } from "@/models/Projects/Project.model";
-import TCList from "@/components/tc/list/TC-List.vue";
-import TCListItem from "@/components/tc/list/TC-List-Item.vue";
-@Component({
-  components: {
-    "tc-list": TCList,
-    "tc-list-item": TCListItem,
-  },
-})
+
+@Component
 export default class ProjectsProjectlist extends Vue {
   public projects: Project[] = projects;
   public listOpened = false;
 }
 </script>
 <style lang="scss" scoped>
-@import "../../tc/_variables.scss";
-@import "../../tc/_mixins.scss";
-
 .projects-list {
   position: fixed;
   z-index: 30;

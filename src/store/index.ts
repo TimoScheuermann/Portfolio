@@ -7,10 +7,6 @@ Vue.use(Vuex);
 
 const store = new Vuex.Store({
   state: {
-    designer: {
-      component: "",
-    },
-
     uno: {
       players: [],
       games: [],
@@ -19,9 +15,6 @@ const store = new Vuex.Store({
     iconIssues: [] as IGitHubIssue[],
   },
   getters: {
-    designerComponent: (state: any) => {
-      return state.designer.component;
-    },
     iconIssues: (state: any) => {
       return state.iconIssues;
     },
@@ -37,9 +30,6 @@ const store = new Vuex.Store({
   mutations: {
     updateIconIssues(state: any, issues: IGitHubIssue[]) {
       state.iconIssues = issues;
-    },
-    updateDesignerComponent(state: any, comp: string) {
-      state.designer.component = comp;
     },
   },
 });

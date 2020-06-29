@@ -31,26 +31,16 @@
 </template>
 <script lang="ts">
 import { Vue, Component } from "vue-property-decorator";
-import TCHeader from "@/components/tc/header/TC-Header.vue";
-import TCCard from "@/components/tc/card/TC-Card.vue";
-import TCButton from "@/components/tc/button/TC-Button.vue";
-import TCHeadline from "@/components/tc/headline/TC-Headline.vue";
 import ProjectsDefaultHero from "@/components/projects/common/Projects--Default-Hero.vue";
 import constants from "@/constants";
 import ProjectsTitle from "@/components/projects/common/Projects--Title.vue";
-import TCGrid from "@/components/tc/_layout/grid/TC-Grid.vue";
 import { getProject } from "@/utils/ProjectUtils";
 import { Project } from "@/models/Projects/Project.model";
 
 @Component({
   components: {
-    "tc-header": TCHeader,
-    "tc-card": TCCard,
-    "tc-button": TCButton,
-    "tc-headline": TCHeadline,
     "projects-default-hero": ProjectsDefaultHero,
     "project-title": ProjectsTitle,
-    "tc-grid": TCGrid,
   },
 })
 export default class AMSPro extends Vue {

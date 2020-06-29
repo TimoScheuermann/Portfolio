@@ -22,14 +22,6 @@ const router = new VueRouter({
       },
     },
     {
-      path: "/playground",
-      name: "playground",
-      component: () => import("@/views/playground/Playground.vue"),
-      meta: {
-        title: prefix + "Playground",
-      },
-    },
-    {
       path: "/repertoire",
       name: "repertoire",
       component: () => import("@/views/repertoire/Repertoire.vue"),
@@ -118,46 +110,10 @@ const router = new VueRouter({
         },
         {
           path: "timoscomponents",
-          component: EmptyRouter,
-          children: [
-            {
-              path: "",
-              name: constants.projectRoutes.timos_components,
-              meta: { customSidebar: true, title: "Timo's Components | Home" },
-              component: () =>
-                import("@/views/projects/tccomponents/TC-Components.vue"),
-            },
-            {
-              path: "designer",
-              name: constants.projectRoutes.timos_components_designer,
-              meta: {
-                customSidebar: true,
-                title: "Timo's Components | Designer",
-              },
-              component: () =>
-                import("@/views/projects/tccomponents/TC-Components.vue"),
-            },
-            {
-              path: "getting-started",
-              name: constants.projectRoutes.timos_components_getting_started,
-              meta: {
-                customSidebar: true,
-                title: "Timo's Components | Getting Started",
-              },
-              component: () =>
-                import("@/views/projects/tccomponents/TC-Components.vue"),
-            },
-            {
-              path: ":comp",
-              name: constants.projectRoutes.timos_components_detail,
-              meta: {
-                customSidebar: true,
-                title: "Timo's Components | %comp%",
-              },
-              component: () =>
-                import("@/views/projects/tccomponents/TC-Components.vue"),
-            },
-          ],
+          name: constants.projectRoutes.timos_components,
+          beforeEnter: () => {
+            window.location.replace("https://components.timos.design");
+          },
         },
         {
           path: "timosicons",

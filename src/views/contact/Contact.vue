@@ -55,21 +55,8 @@
 </template>
 <script lang="ts">
 import { Vue, Component } from "vue-property-decorator";
-import TCHeader from "@/components/tc/header/TC-Header.vue";
-import TCHero from "@/components/tc/hero/TC-Hero.vue";
-import TCCard from "@/components/tc/card/TC-Card.vue";
-import TCLink from "@/components/tc/link/TC-Link.vue";
-import TCButton from "@/components/tc/button/TC-Button.vue";
 
-@Component({
-  components: {
-    "tc-header": TCHeader,
-    "tc-hero": TCHero,
-    "tc-card": TCCard,
-    "tc-link": TCLink,
-    "tc-button": TCButton,
-  },
-})
+@Component
 export default class ContactView extends Vue {}
 </script>
 <style lang="scss" scoped>

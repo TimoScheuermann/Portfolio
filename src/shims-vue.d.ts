@@ -8,6 +8,7 @@ declare module "*.txt" {
   export default content;
 }
 
+declare module "tccomponent_vue";
 declare module "markdown-it";
 declare module "uuid";
 declare module "modernizr";

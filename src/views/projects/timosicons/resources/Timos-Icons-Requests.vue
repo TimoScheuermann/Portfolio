@@ -98,24 +98,10 @@ import { Vue, Component } from "vue-property-decorator";
 import axios from "@/axios";
 import constants from "@/constants";
 
-import TCTable from "@/components/tc/table/TC-Table.vue";
-import TCHeader from "@/components/tc/header/TC-Header.vue";
-import TCButton from "@/components/tc/button/TC-Button.vue";
-import TCHero from "@/components/tc/hero/TC-Hero.vue";
-import TCCard from "@/components/tc/card/TC-Card.vue";
-import TCGrid from "@/components/tc/_layout/grid/TC-Grid.vue";
 import { formatDate } from "@/utils/DateFormatter";
 import IGitHubIssue from "@/models/GitHub/IGitHubIssue";
-@Component({
-  components: {
-    "tc-header": TCHeader,
-    "tc-table": TCTable,
-    "tc-hero": TCHero,
-    "tc-card": TCCard,
-    "tc-button": TCButton,
-    "tc-grid": TCGrid,
-  },
-})
+
+@Component
 export default class TimosIconsRequests extends Vue {
   public constants: Record<string, unknown> = constants;
   public issues: IGitHubIssue[] = [];
@@ -143,9 +129,6 @@ export default class TimosIconsRequests extends Vue {
 }
 </script>
 <style lang="scss" scoped>
-@import "../../../../components/tc/_variables.scss";
-@import "../../../../components/tc/_mixins.scss";
-
 .timos-icons-requests {
   .hero {
     text-align: center;
