@@ -21,6 +21,7 @@ export default class ProjectsDefaultHero extends Vue {
 <style lang="scss" scoped>
 .tc-hero {
   background: $color;
+  margin-top: -50px;
 }
 
 .hero-container {

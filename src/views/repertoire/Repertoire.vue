@@ -1,6 +1,6 @@
 <template>
   <div class="view--repertoire">
-    <tc-header title="Repertoire" :autoBackground="true" />
+    <tc-header variant="sticky" title="Repertoire" :autoBackground="true" />
     <tc-hero height="300" tc-dark-container>
       <img
         slot="background"
@@ -18,7 +18,7 @@
       <br />
 
       <project-title title="Creative Design" subtitle="Tools" />
-      <tc-grid first arrangement="auto-fit">
+      <tl-grid first arrangement="auto-fit">
         <div class="tool" v-for="(tool, index) in tools[0]" :key="'t_' + index">
           <tc-card rounded="true">
             <div class="tool-header">
@@ -27,9 +27,9 @@
             </div>
           </tc-card>
         </div>
-      </tc-grid>
+      </tl-grid>
       <project-title title="Web Development" subtitle="Frameworks & more" />
-      <tc-grid arrangement="auto-fit">
+      <tl-grid arrangement="auto-fit">
         <div class="tool" v-for="(tool, index) in tools[1]" :key="'t_' + index">
           <tc-card rounded="true">
             <div class="tool-header">
@@ -38,7 +38,7 @@
             </div>
           </tc-card>
         </div>
-      </tc-grid>
+      </tl-grid>
     </div>
   </div>
 </template>
@@ -59,8 +59,11 @@ export default class Repertoire extends Vue {
 }
 </script>
 <style lang="scss" scoped>
+.tc-hero {
+  margin-top: -50px;
+}
 [content] {
-  .tc-grid {
+  .tl-grid {
     margin: 30px 0;
     &[first] {
       margin-bottom: 160px;

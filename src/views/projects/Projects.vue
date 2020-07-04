@@ -1,6 +1,6 @@
 <template>
   <div class="projects">
-    <tc-header title="Projects" :autoBackground="true" />
+    <tc-header variant="sticky" title="Projects" :autoBackground="true" />
     <projects-mobile />
     <projects-desktop />
   </div>

@@ -1,6 +1,7 @@
 <template>
   <div class="projects--ams-pro">
     <tc-header
+      variant="sticky"
       :title="project.title"
       backName="Projects"
       :backTo="{ name: constants.routes.projects }"
@@ -20,12 +21,12 @@
     <div content>
       <project-title :title="project.type" :subtitle="project.title" />
 
-      <tc-grid class="ams-pro--icons" arrangement="auto-fit">
+      <tl-grid class="ams-pro--icons" arrangement="auto-fit">
         <tc-card class="ams-pro--icon" v-for="i in icons" :key="i">
           <i :class="i"></i>
           <div class="name">{{ i }}</div>
         </tc-card>
-      </tc-grid>
+      </tl-grid>
     </div>
   </div>
 </template>

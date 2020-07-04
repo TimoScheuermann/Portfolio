@@ -1,6 +1,7 @@
 <template>
   <div class="projects--dhbwrichie">
     <tc-header
+      variant="sticky"
       :title="project.title"
       backName="Projects"
       :backTo="{ name: constants.routes.projects }"

@@ -19,7 +19,7 @@
       </div>
     </tc-modal>
 
-    <tc-header :dark="true" title="UNO">
+    <tc-header variant="sticky" :dark="true" title="UNO">
       <tc-button
         variant="filled"
         icon="plus"

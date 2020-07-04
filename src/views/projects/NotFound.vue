@@ -1,6 +1,6 @@
 <template>
   <div>
-    <tc-header title="Projects" />
+    <tc-header variant="sticky" title="Projects" />
 
     <div class="projects--notfound">
       <h1><i class="ti-cross-circle" /> Project not found</h1>

@@ -8252,16 +8252,18 @@ tar@^2.0.0:
     fstream "^1.0.12"
     inherits "2"
 
-tccomponents_vue@^0.2.2:
-  version "0.2.2"
-  resolved "https://registry.yarnpkg.com/tccomponents_vue/-/tccomponents_vue-0.2.2.tgz#4e84c43209d0cb24659a8991afa8f547af3e6027"
-  integrity sha512-YYHtoXQYusEEKyIiTXsHUfGQU+lbUuIUSYgPOmKYJVlJkJDSC1fsEDUPdru40Ul2Dki+9hsS35xQW5G67GpSlg==
+tccomponents_vue@^0.3.1:
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/tccomponents_vue/-/tccomponents_vue-0.3.1.tgz#b645c6ab9040491bc610fa08a2c53ec8e7344e72"
+  integrity sha512-uZi1Tp4HBTFtG+NXMihbnT/py4Kmy3tQRGR8A1viVIakHLZcZ8QFun4anrxZTCWowwBWCKyJqErytRwE9ADbpg==
   dependencies:
     core-js "^3.6.4"
     node-sass "^4.13.1"
+    register-service-worker "^1.7.1"
     uuid "^8.1.0"
     vue "^2.6.11"
     vue-router "^3.3.4"
+    vuex "^3.4.0"
 
 terser-webpack-plugin@^1.4.3:
   version "1.4.4"

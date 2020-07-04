@@ -117,77 +117,10 @@ const router = new VueRouter({
         },
         {
           path: "timosicons",
-          component: EmptyRouter,
-          children: [
-            {
-              name: constants.projectRoutes.timos_icons,
-              path: "",
-              component: () =>
-                import("@/views/projects/timosicons/Timos-Icons.vue"),
-              meta: {
-                title: "Timo's Icons | Home",
-              },
-            },
-            {
-              path: "resources/requests",
-              component: EmptyRouter,
-              children: [
-                {
-                  name: constants.projectRoutes.timos_icons_requests,
-                  path: "",
-                  component: () =>
-                    import(
-                      "@/views/projects/timosicons/resources/Timos-Icons-Requests.vue"
-                    ),
-                  meta: {
-                    title: "Timo's Icons | Requests",
-                  },
-                },
-                {
-                  name: constants.projectRoutes.timos_icons_requests_detail,
-                  path: ":issue",
-                  component: () =>
-                    import(
-                      "@/views/projects/timosicons/resources/Timos-Icons-Requests-Detail.vue"
-                    ),
-                  meta: {
-                    title: "Timo's Icons | Request #%issue%",
-                  },
-                },
-              ],
-            },
-            {
-              name: constants.projectRoutes.timos_icons_versions,
-              path: "resources/versions",
-              component: () =>
-                import(
-                  "@/views/projects/timosicons/resources/Timos-Icons-Versions.vue"
-                ),
-              meta: {
-                title: "Timo's Icons | Versions",
-              },
-            },
-            {
-              name: constants.projectRoutes.timos_icons_getting_started,
-              path: "resources/howto",
-              component: () =>
-                import(
-                  "@/views/projects/timosicons/resources/Timos-Icons-GettingStarted.vue"
-                ),
-              meta: {
-                title: "Timo's Icons | How To",
-              },
-            },
-            {
-              name: constants.projectRoutes.timos_icons_detail,
-              path: ":icon",
-              component: () =>
-                import("@/views/projects/timosicons/Timos-Icons-Detail.vue"),
-              meta: {
-                title: "Timo's Icons | %icon%",
-              },
-            },
-          ],
+          name: constants.projectRoutes.timos_icons,
+          beforeEnter: () => {
+            window.location.replace("https://icons.timos.design");
+          },
         },
         {
           path: "workgallery",

@@ -10,9 +10,14 @@ import Vue from "vue";
 Vue.config.productionTip = false;
 
 for (const component in TCComponents) {
-  Vue.component(component.replace("TC", "Tc"), TCComponents[component]);
+  Vue.component(
+    component
+      .replace("TC", "Tc")
+      .replace("TF", "Tf")
+      .replace("TL", "Tl"),
+    TCComponents[component]
+  );
 }
-
 new Vue({
   router,
   store,

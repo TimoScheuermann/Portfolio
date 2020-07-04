@@ -1,6 +1,6 @@
 <template>
   <div class="github">
-    <tc-header :dark="true" title="GitHub" />
+    <tc-header variant="sticky" :dark="true" title="GitHub" />
     <tc-hero>
       <img
         slot="background"
@@ -34,7 +34,7 @@
     <div content v-if="loaded">
       <project-title title="Repositories" subtitle="Most Recent" />
       <!-- <h1>Repositories</h1> -->
-      <tc-grid minWidth="330" class="__repositories">
+      <tl-grid minWidth="330" class="__repositories">
         <github-repo-tile
           v-for="(repo, index) in getRepos"
           :dark="index === 0 || true"
@@ -42,7 +42,7 @@
           :index="index"
           :key="repo.id"
         />
-      </tc-grid>
+      </tl-grid>
     </div>
   </div>
 </template>
@@ -114,6 +114,9 @@ export default class GitHubView extends Vue {
 }
 </script>
 <style lang="scss" scoped>
+.tc-hero {
+  margin-top: -50px;
+}
 .github {
   background: #000;
 }
@@ -202,7 +205,7 @@ export default class GitHubView extends Vue {
     }
   }
 }
-.tc-grid {
+.tl-grid {
   margin-top: 20px;
   .tc-card:nth-child(1) {
     @media only screen and (min-width: 780px) {

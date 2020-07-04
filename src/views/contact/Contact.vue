@@ -1,6 +1,6 @@
 <template>
   <div class="contact-view">
-    <tc-header title="Contact" :dark="true" />
+    <tc-header variant="sticky" title="Contact" :dark="true" />
     <tc-hero height="100" unit="vh" :hasFixedHeader="false">
       <img src="assets/contact/bg.PNG" slot="background" id="background" />
       <tc-card rounded="true" hover="true">
@@ -60,11 +60,14 @@ import { Vue, Component } from "vue-property-decorator";
 export default class ContactView extends Vue {}
 </script>
 <style lang="scss" scoped>
-/deep/ #background {
-  filter: blur(20px) brightness(50%);
-  padding: 80px;
-  margin-left: -55px;
-  margin-top: -55px;
+.tc-hero {
+  margin-top: -51px;
+  #background {
+    filter: blur(20px) brightness(50%);
+    padding: 80px;
+    margin-left: -55px;
+    margin-top: -55px;
+  }
 }
 .tc-button {
   position: absolute !important;

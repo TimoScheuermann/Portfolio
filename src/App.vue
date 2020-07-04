@@ -1,75 +1,69 @@
 <template lang="html">
   <div id="app">
-    <tc-navbar v-if="false" :dark="darkTabbar">
-      <b slot="logo">Logo</b>
-      <tc-button slot="actions" name="Login" icon="login" />
-      <tc-navbar-item name="Home" icon="house" :to="{ name: 'home' }" />
-      <tc-navbar-item
-        v-for="p in projects"
-        :key="p.title"
-        :name="p.title"
-        :icon="p.icon"
-        :to="{ name: p.routeName }"
-      />
-    </tc-navbar>
-
-    <tc-sidebar :dark="darkTabbar" v-if="showSidebar">
-      <div slot="header" class="tc-sidebar--header">
+    <tl-sidebar
+      sidebarBackgroundImage="https://images.unsplash.com/photo-1551309292-e185c0b6e22a"
+      :collapsed="false"
+      :blurred="true"
+    >
+      <div v-if="sidebarVisible" slot="sidebar-header" class="sidebar-head">
         <div class="icon">
           <img src="https://avatars0.githubusercontent.com/u/48986503" />
         </div>
-        <div class="title">
-          Timo Scheuermann
-          <br />
-          <span>Portfolio</span>
-        </div>
+        <div class="title">Timo Scheuermann</div>
+        <div class="subtitle">Portfolio</div>
       </div>
+      <template v-if="sidebarVisible" slot="sidebar-content">
+        <tc-sidebar-item icon="house" name="Home" :to="{ name: 'home' }" />
 
-      <tc-sidebar-item icon="house" name="Home" :to="{ name: 'home' }" />
-
-      <tc-sidebar-group icon="book-p" name="Projects">
+        <tc-sidebar-group icon="book-p" name="Projects">
+          <tc-sidebar-item
+            name="All Projects"
+            icon="stop"
+            :to="{ name: 'projects' }"
+          />
+          <tc-sidebar-item
+            v-for="p in projects"
+            :key="p.title"
+            :icon="p.icon"
+            :name="p.title"
+            :to="{ name: p.routeName }"
+          />
+        </tc-sidebar-group>
+        <tc-divider />
         <tc-sidebar-item
-          name="All Projects"
-          icon="stop"
-          :to="{ name: 'projects' }"
+          icon="tools"
+          name="Reportoire"
+          :to="{ name: 'repertoire' }"
         />
         <tc-sidebar-item
-          v-for="p in projects"
-          :key="p.title"
-          :icon="p.icon"
-          :name="p.title"
-          :to="{ name: p.routeName }"
+          icon="user-card"
+          name="Contact"
+          :to="{ name: 'contact' }"
         />
-      </tc-sidebar-group>
-      <tc-sidebar-item
-        icon="tools"
-        name="Reportoire"
-        :to="{ name: 'repertoire' }"
-      />
-      <tc-sidebar-item
-        icon="user-card"
-        name="Contact"
-        :to="{ name: 'contact' }"
-      />
-      <tc-sidebar-item icon="github" name="GitHub" :to="{ name: 'github' }" />
-      <tc-sidebar-item icon="pin" name="Resume" :to="{ name: 'resume' }" />
-    </tc-sidebar>
-    <tc-tabbar
-      :dark="darkTabbar"
-      :key="'tb_' + $route.name"
-      class="app--tabbar"
-    >
-      <tc-tabbar-item routeName="home" />
-      <tc-tabbar-item title="Projects" icon="todo" routeName="projects" />
-      <tc-tabbar-item title="Repertoire" icon="tools" routeName="repertoire" />
-      <tc-tabbar-item title="Contact" icon="user-card" routeName="contact" />
-      <tc-tabbar-item title="GitHub" icon="github" routeName="github" />
-    </tc-tabbar>
-    <div class="view">
-      <md-transition>
-        <router-view />
-      </md-transition>
-    </div>
+        <tc-sidebar-item icon="github" name="GitHub" :to="{ name: 'github' }" />
+        <tc-sidebar-item icon="pin" name="Resume" :to="{ name: 'resume' }" />
+      </template>
+      <tc-tabbar
+        :dark="darkTabbar"
+        v-if="!sidebarVisible"
+        :key="'tb_' + $route.name"
+      >
+        <tc-tabbar-item routeName="home" />
+        <tc-tabbar-item title="Projects" icon="todo" routeName="projects" />
+        <tc-tabbar-item
+          title="Repertoire"
+          icon="tools"
+          routeName="repertoire"
+        />
+        <tc-tabbar-item title="Contact" icon="user-card" routeName="contact" />
+        <tc-tabbar-item title="GitHub" icon="github" routeName="github" />
+      </tc-tabbar>
+      <div class="view">
+        <md-transition>
+          <router-view />
+        </md-transition>
+      </div>
+    </tl-sidebar>
   </div>
 </template>
 
@@ -77,7 +71,6 @@
 import { Vue, Component, Watch } from "vue-property-decorator";
 import projects from "@/projects";
 import { Project } from "@/models/Projects/Project.model";
-import constants from "./constants";
 import { Route } from "vue-router";
 import MaterialDesignTransition from "vue-router-md-transition";
 
@@ -88,17 +81,7 @@ import MaterialDesignTransition from "vue-router-md-transition";
 })
 export default class App extends Vue {
   public projects: Project[] = projects;
-  public darkRoutes: string[] = [
-    "home",
-    "github",
-    "contact",
-    "uno",
-    constants.projectRoutes.timos_components_designer,
-  ];
-
-  get showSidebar(): boolean {
-    return !this.$route.meta.customSidebar;
-  }
+  public darkRoutes: string[] = ["home", "github", "contact", "uno"];
 
   get darkTabbar(): boolean {
     return this.darkRoutes.includes(this.$route.name as string);
@@ -144,11 +127,26 @@ export default class App extends Vue {
     }
     return title;
   }
+
+  public sidebarVisible = window.matchMedia("(min-width: 851px)").matches;
+  mounted() {
+    window.addEventListener("resize", this.recheckSidebarVisible);
+    this.recheckSidebarVisible();
+  }
+
+  destroyed() {
+    window.removeEventListener("resize", this.recheckSidebarVisible);
+  }
+
+  private recheckSidebarVisible(): void {
+    this.sidebarVisible = window.matchMedia("(min-width: 851px)").matches;
+  }
 }
 </script>
 
 <style lang="scss">
 /* Make clicks pass-through */
+
 #nprogress {
   pointer-events: none;
   .bar {
@@ -236,15 +234,6 @@ html {
   -webkit-font-smoothing: antialiased;
 }
 
-.pageloading {
-  z-index: 1000000;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: red;
-}
-
 body {
   background: $background;
   color: $color;
@@ -274,51 +263,7 @@ h3 {
   opacity: 0.6;
 }
 
-@media #{$isMobile} {
-  .tc-sidebar {
-    display: none !important;
-  }
-}
-@media #{$isDesktop} {
-  .app--tabbar {
-    display: none !important;
-  }
-  .tc-header .title {
-    padding-left: 5vw;
-  }
-}
-
-.tc-sidebar {
-  & > .header {
-    height: 160px;
-  }
-  & > .footer {
-    font-weight: bold;
-    opacity: 0;
-    padding: 10px;
-    transition: 0.2s ease-in-out;
-  }
-  &:hover {
-    & > .footer {
-      opacity: 0.5;
-    }
-    .tc-sidebar--header {
-      padding: 20px 10px;
-      .title {
-        opacity: 1;
-      }
-      .icon {
-        $scale: 80px;
-        width: $scale;
-        height: $scale;
-        border-radius: $scale;
-        font-size: 25px;
-        margin-bottom: 10px;
-      }
-    }
-  }
-}
-.tc-sidebar--header {
+.sidebar-head {
   padding: 10px;
   display: flex;
   flex-direction: column;
@@ -327,7 +272,7 @@ h3 {
   transition: 0.4s ease-in-out;
 
   .icon {
-    $scale: 30px;
+    $scale: 100px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -344,14 +289,18 @@ h3 {
       border-radius: inherit;
     }
   }
+  .title,
+  .subtitle {
+    color: #fff;
+  }
+  .subtitle {
+    opacity: 0.5;
+  }
   .title {
-    opacity: 0;
+    margin: 5px 0;
     transition: inherit;
     white-space: nowrap;
     text-align: center;
-    span {
-      opacity: 0.5;
-    }
   }
 }
 
@@ -359,9 +308,6 @@ h3 {
   padding: 50px 5vw {
     top: calc(50px + env(safe-area-inset-top));
     bottom: calc(50px + env(safe-area-inset-bottom));
-  }
-  @media #{$isDesktop} {
-    padding-left: calc(5vw + 45px);
   }
   @media #{$isMobile} {
     padding-bottom: calc(70px + env(safe-area-inset-bottom));

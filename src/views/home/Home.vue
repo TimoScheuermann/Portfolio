@@ -56,8 +56,6 @@ export default class Home extends Vue {
   background: #000;
   color: #fff;
 
-  @include custom-scrollbar__dark();
-
   @keyframes title-appear {
     0% {
       letter-spacing: -0.5em;
@@ -98,6 +96,8 @@ export default class Home extends Vue {
   }
 
   .projects {
+    @include custom-scrollbar__dark();
+
     .tc-card {
       cursor: pointer;
       height: 100%;

@@ -2,7 +2,7 @@
   <div content class="projects-desktop">
     <project-title title="Most Recent" subtitle="Projects" />
 
-    <tc-grid minWidth="100" arrangement="auto-fit" class="project-grid">
+    <tl-grid minWidth="100" arrangement="auto-fit" class="project-grid">
       <router-link
         tsg="div"
         class="project-item"
@@ -24,7 +24,7 @@
           <img :src="p.assets[p.displayAs]" />
         </tc-card>
       </router-link>
-    </tc-grid>
+    </tl-grid>
   </div>
 </template>
 <script lang="ts">
