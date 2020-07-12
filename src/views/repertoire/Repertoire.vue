@@ -8,16 +8,7 @@
       />
     </tc-hero>
     <div content>
-      <h1 center>The Tools</h1>
-      <h3 center>
-        I use a variety of programs that make design and development much
-        easier.
-      </h3>
-
-      <br />
-      <br />
-
-      <project-title title="Creative Design" subtitle="Tools" />
+      <portfolio-big-heading title="Creative Design" subtitle="Tools" />
       <tl-grid first arrangement="auto-fit">
         <div class="tool" v-for="(tool, index) in tools[0]" :key="'t_' + index">
           <tc-card rounded="true">
@@ -28,7 +19,10 @@
           </tc-card>
         </div>
       </tl-grid>
-      <project-title title="Web Development" subtitle="Frameworks & more" />
+      <portfolio-big-heading
+        title="Web Development"
+        subtitle="Frameworks & more"
+      />
       <tl-grid arrangement="auto-fit">
         <div class="tool" v-for="(tool, index) in tools[1]" :key="'t_' + index">
           <tc-card rounded="true">
@@ -43,15 +37,15 @@
   </div>
 </template>
 <script lang="ts">
-import { Vue, Component } from "vue-property-decorator";
-import tools from "@/tools";
-import { Tool } from "@/models/Tools/Tool";
+import { Vue, Component } from 'vue-property-decorator';
 
-import ProjectsTitle from "@/components/projects/common/Projects--Title.vue";
+import tools from '@/tools';
+import { Tool } from '@/models/Tool';
+import PortfolioBigHeading from '@/components/Portfolio-BigHeading.vue';
 
 @Component({
   components: {
-    "project-title": ProjectsTitle,
+    'portfolio-big-heading': PortfolioBigHeading,
   },
 })
 export default class Repertoire extends Vue {
@@ -59,9 +53,6 @@ export default class Repertoire extends Vue {
 }
 </script>
 <style lang="scss" scoped>
-.tc-hero {
-  margin-top: -50px;
-}
 [content] {
   .tl-grid {
     margin: 30px 0;

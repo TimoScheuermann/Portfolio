@@ -1,30 +1,24 @@
 <template>
   <div content class="project-uno">
     <tc-modal :dark="true" v-model="modalOpened" title="Spieler hinzufügen">
-      <div class="uno-modal-input">
-        <tc-input
-          :dark="true"
-          title="Spielername"
-          v-model="newUserName"
-          icon="user"
-        />
-      </div>
-      <div slot="buttons">
+      <tc-input
+        :dark="true"
+        title="Spielername"
+        v-model="newUserName"
+        icon="user"
+      />
+      <div slot="footer">
         <tc-button
           variant="filled"
           name="Hinzufügen"
           icon="plus"
           @click="addPlayer()"
-        ></tc-button>
+        />
       </div>
     </tc-modal>
 
     <tc-header variant="sticky" :dark="true" title="UNO">
-      <tc-button
-        variant="filled"
-        icon="plus"
-        @click="modalOpened = true"
-      ></tc-button>
+      <tc-button variant="filled" icon="plus" @click="modalOpened = true" />
     </tc-header>
 
     <div class="players">
@@ -32,7 +26,7 @@
         <div class="name" :class="{ w: p.name == getWinner().name }">
           {{ p.name }}
         </div>
-        <div class="perc">{{ getWinPerc(p) || "0" }}</div>
+        <div class="perc">{{ getWinPerc(p) || '0' }}</div>
         <div class="points">{{ getPoints(p) }}</div>
         <div class="kd">{{ getWins(p) }}/{{ getLoses(p) }}</div>
         <div class="myTurn" v-if="games.length % players.length == i">
@@ -57,7 +51,6 @@
         <tc-button name="Speichern" @click="save()" />
       </div>
       <div v-if="players.length != 2">
-        <div class="tit">Gewinner</div>
         <tc-select
           v-model="player_winner"
           :values="playerNames"
@@ -67,16 +60,13 @@
         />
       </div>
 
-      <div>
-        <div class="tit">Verlierer</div>
-        <tc-select
-          v-model="player_looser"
-          :values="playerNames"
-          placeholder="Verlierer"
-          title="Verlierer"
-          :dark="true"
-        />
-      </div>
+      <tc-select
+        v-model="player_looser"
+        :values="playerNames"
+        placeholder="Verlierer"
+        title="Verlierer"
+        :dark="true"
+      />
 
       <tc-input
         title="Punktzahl"
@@ -100,33 +90,31 @@
 
     <div class="options">
       <h2>Spiele</h2>
-      <div class="games">
-        <table>
-          <tr>
-            <th>Spiel #</th>
-            <th>Gewinner</th>
-            <th>Verlierer</th>
-            <th>Punkte</th>
-            <th></th>
-          </tr>
-          <tr v-for="(g, index) in games" :key="index">
-            <td>{{ index + 1 }}</td>
-            <td>{{ g.winner.name }}</td>
-            <td>{{ g.looser.name }}</td>
-            <td>{{ g.points }}</td>
-            <td @click="removeGame(index)"><i class="ti-cross"></i></td>
-          </tr>
-        </table>
-      </div>
+      <tc-table :dark="true">
+        <tr>
+          <th>Spiel #</th>
+          <th>Gewinner</th>
+          <th>Verlierer</th>
+          <th>Punkte</th>
+          <th></th>
+        </tr>
+        <tr v-for="(g, index) in games" :key="index">
+          <td>{{ index + 1 }}</td>
+          <td>{{ g.winner.name }}</td>
+          <td>{{ g.looser.name }}</td>
+          <td>{{ g.points }}</td>
+          <td @click="removeGame(index)"><i class="ti-cross"></i></td>
+        </tr>
+      </tc-table>
     </div>
   </div>
 </template>
 <script lang="ts">
-import { Vue, Component, Watch } from "vue-property-decorator";
+import { Vue, Component, Watch } from 'vue-property-decorator';
 
-import { Player } from "./Player.model";
-import { Game } from "./Game.model";
-import VueApexCharts from "vue-apexcharts";
+import { Player } from './Player.model';
+import { Game } from './Game.model';
+import VueApexCharts from 'vue-apexcharts';
 
 interface UpdateFunction {
   (series: { name: string; data: number[] }[]): void;
@@ -142,28 +130,28 @@ interface ChartElement extends HTMLElement {
 })
 export default class Uno extends Vue {
   modalOpened = false;
-  newUserName = "";
+  newUserName = '';
   players: Player[] = [];
   games: Game[] = [];
   currentPlayer = 0;
   newPoints = 0;
-  player_looser = "";
-  player_winner = "";
+  player_looser = '';
+  player_winner = '';
   public options = {
     chart: {
-      id: "uno-point-chart",
-      background: "#252525",
+      id: 'uno-point-chart',
+      background: '#252525',
     },
-    theme: { mode: "dark" },
+    theme: { mode: 'dark' },
     xaxis: {
       categories: [],
     },
   };
   public series: { name: string; data: number[] }[] = [];
 
-  @Watch("players")
-  @Watch("games")
-  @Watch("series")
+  @Watch('players')
+  @Watch('games')
+  @Watch('series')
   public changed(): void {
     this.$store.state.uno.players = this.players;
     this.$store.state.uno.games = this.games;
@@ -184,10 +172,10 @@ export default class Uno extends Vue {
     return this.players.map((x: Player) => x.name);
   }
 
-  public addPlayer(name = ""): void {
+  public addPlayer(name = ''): void {
     if (name.length == 0) name = this.newUserName;
     this.players.push({ name: name } as Player);
-    this.newUserName = "";
+    this.newUserName = '';
     this.modalOpened = false;
     this.series.push({ name: name, data: [] });
   }
@@ -266,7 +254,15 @@ export default class Uno extends Vue {
   }
 }
 </script>
-
+<style lang="scss">
+.tc-input,
+.tc-select {
+  margin-top: 40px !important;
+}
+td i {
+  color: $error;
+}
+</style>
 <style lang="scss" scoped>
 [content] {
   background: #000;
@@ -282,6 +278,11 @@ export default class Uno extends Vue {
 .filler {
   flex-grow: 1;
 }
+h2 {
+  margin: 0 {
+    bottom: 10px;
+  }
+}
 .options {
   background: lighten($color, 8%);
   border-radius: 10px;
@@ -296,49 +297,6 @@ export default class Uno extends Vue {
     font-weight: bold;
     margin-bottom: 3px;
     opacity: 0.8;
-  }
-  .tc-input,
-  .tc-select {
-    width: 100%;
-    /deep/ .tc-input--container {
-      width: 100%;
-    }
-  }
-  select {
-    width: 100%;
-    background: #444444;
-    border-radius: $border-radius;
-    margin: 3px;
-    color: #fff;
-    outline: none;
-    padding: 5px;
-    font: inherit;
-    text-align: center;
-    border: none;
-  }
-}
-
-.games {
-  table {
-    width: 100%;
-    text-align: center;
-    border-collapse: collapse;
-    tr {
-      td,
-      th {
-        padding: 5px 0;
-      }
-      td {
-        border-top: 1px solid rgba(#fff, 0.5);
-        &:first-child {
-          color: #08f;
-          font-weight: bold;
-        }
-        i {
-          color: red;
-        }
-      }
-    }
   }
 }
 
@@ -356,7 +314,7 @@ export default class Uno extends Vue {
       &.w {
         color: goldenrod;
         &::before {
-          content: "👑 ";
+          content: '👑 ';
         }
       }
     }
@@ -367,7 +325,7 @@ export default class Uno extends Vue {
     }
     .perc {
       &::after {
-        content: "%";
+        content: '%';
       }
     }
     .points {

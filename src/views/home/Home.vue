@@ -1,12 +1,12 @@
 <template>
   <div class="home">
-    <tc-hero :hasFixedHeader="false">
+    <tc-hero>
       <img src="assets/home/hero.jpg" slot="background" />
       <div class="title">Timo Scheuermann</div>
       <div class="subtitle">UI / UX Designer from Mannheim, Germany</div>
     </tc-hero>
     <div content>
-      <project-title title="Projects" subtitle="I've worked on" />
+      <portfolio-big-heading title="Projects" subtitle="I've worked on" />
 
       <div class="projects">
         <router-link
@@ -37,14 +37,15 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component } from "vue-property-decorator";
-import projects from "@/projects";
-import { Project } from "@/models/Projects/Project.model";
-import ProjectsTitle from "@/components/projects/common/Projects--Title.vue";
+import { Vue, Component } from 'vue-property-decorator';
+
+import projects from '@/projects';
+import { Project } from '@/models/Project.model';
+import PortfolioBigHeading from '@/components/Portfolio-BigHeading.vue';
 
 @Component({
   components: {
-    "project-title": ProjectsTitle,
+    'portfolio-big-heading': PortfolioBigHeading,
   },
 })
 export default class Home extends Vue {
@@ -53,9 +54,6 @@ export default class Home extends Vue {
 </script>
 <style lang="scss" scoped>
 .home {
-  background: #000;
-  color: #fff;
-
   @keyframes title-appear {
     0% {
       letter-spacing: -0.5em;
@@ -113,13 +111,13 @@ export default class Home extends Vue {
 
     @media #{$isDesktop} {
       grid-template-areas:
-        "tc tc ic wg dh ns"
-        "ti ti ic wg am am";
+        'tc tc ic wg dh ns'
+        'ti ti ic wg am am';
       grid-template-columns: repeat(6, minmax(300px, 60vw));
       grid-template-rows: repeat(2, minmax(250px, 20vw));
     }
     @media #{$isMobile} {
-      grid-template-areas: "tc ti ic wg dh ns am";
+      grid-template-areas: 'tc ti ic wg dh ns am';
       grid-template-columns: repeat(7, minmax(300px, 30vw));
       grid-template-rows: 250px;
     }

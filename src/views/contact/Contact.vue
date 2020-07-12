@@ -54,14 +54,13 @@
   </div>
 </template>
 <script lang="ts">
-import { Vue, Component } from "vue-property-decorator";
+import { Vue, Component } from 'vue-property-decorator';
 
 @Component
 export default class ContactView extends Vue {}
 </script>
 <style lang="scss" scoped>
 .tc-hero {
-  margin-top: -51px;
   #background {
     filter: blur(20px) brightness(50%);
     padding: 80px;
@@ -75,7 +74,7 @@ export default class ContactView extends Vue {}
   right: 10px;
 }
 .tc-card {
-  background: url("../../../public/assets/contact/world-map.png") #222 {
+  background: url('../../../public/assets/contact/world-map.png') #222 {
     size: cover;
     position: top center;
     repeat: no-repeat;
@@ -111,7 +110,7 @@ export default class ContactView extends Vue {}
     padding: 20px {
       top: 50px;
     }
-    background: url("../../../public/assets/contact/v-card-footer.svg") {
+    background: url('../../../public/assets/contact/v-card-footer.svg') {
       size: cover;
       position: top center;
       repeat: no-repeat;

@@ -1,16 +1,6 @@
 <template>
   <div class="projects-workgallery">
-    <tc-header
-      variant="sticky"
-      :title="project.title"
-      backName="Projects"
-      :backTo="{ name: constants.routes.projects }"
-      :autoBackground="true"
-    />
-    <projects-default-hero
-      :title="project.title"
-      :src="project.assets.combined"
-    />
+    <portfolio-project-header /><portfolio-project-hero />
     <div content>
       <div class="gallery">
         <div class="gallery-item" v-for="item in gallery" :key="item.fileName">
@@ -32,18 +22,21 @@
   </div>
 </template>
 <script lang="ts">
-import { Vue, Component } from "vue-property-decorator";
-import constants from "@/constants";
-import workGalleryItems from "@/projects/workgallery";
-import { WorkGalleryItem } from "@/models/WorkGallery/WorkGalleryItem";
-import projects from "@/projects";
-import { Project } from "@/models/Projects/Project.model";
-import ProjectsDefaultHero from "@/components/projects/common/Projects--Default-Hero.vue";
-import { getProject } from "@/utils/ProjectUtils";
+import { Vue, Component } from 'vue-property-decorator';
+import constants from '@/constants';
+import workGalleryItems from '@/projects/workgallery';
+import { WorkGalleryItem } from '@/models/WorkGalleryItem';
+import projects from '@/projects';
+import { Project } from '@/models/Project.model';
+
+import { getProject } from '@/utils';
+import PortfolioProjectHeader from '@/components/project/Portfolio-ProjectHeader.vue';
+import PortfolioProjectHero from '@/components/project/Portfolio-ProjectHero.vue';
 
 @Component({
   components: {
-    "projects-default-hero": ProjectsDefaultHero,
+    'portfolio-project-header': PortfolioProjectHeader,
+    'portfolio-project-hero': PortfolioProjectHero,
   },
 })
 export default class WorkGallery extends Vue {
@@ -66,13 +59,13 @@ export default class WorkGallery extends Vue {
   public mapProjectName(name: string): string {
     const project: Project = this.getProject(name);
     if (project) return project.title;
-    return "Not Specific";
+    return 'Not Specific';
   }
 
   public mapProjectIcon(name: string): string {
     const project: Project = this.getProject(name);
     if (project) return project.icon;
-    return "";
+    return '';
   }
 }
 </script>

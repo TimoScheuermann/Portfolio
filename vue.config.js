@@ -1,19 +1,21 @@
 module.exports = {
   pwa: {
     manifestOptions: {
-      display: "fullscreen",
+      display: 'fullscreen',
+      // eslint-disable-next-line @typescript-eslint/camelcase
+      start_url: '.',
     },
-    name: "Portfolio",
-    themeColor: "#f0f0f0",
-    msTileColor: "#111111",
-    appleMobileWebAppCapable: "yes",
-    appleMobileWebAppStatusBarStyle: "black-translucent",
+    name: 'Portfolio',
+    themeColor: '#000',
+    msTileColor: '#ffffff',
+    appleMobileWebAppCapable: 'yes',
+    appleMobileWebAppStatusBarStyle: 'black-translucent',
     iconPaths: {
-      favicon32: "img/icons/favicon-32x32.png",
-      favicon16: "img/icons/favicon-16x16.png",
-      appleTouchIcon: "img/icons/icon-152x152.png",
-      maskIcon: "img/icons/icon.svg",
-      msTileImage: "img/icons/icon-144x144.png",
+      favicon32: 'pwa/favicon-32.png',
+      favicon16: 'pwa/favicon-16.png',
+      appleTouchIcon: 'pwa/splash/apple-icon-152.jpg',
+      maskIcon: 'pwa/maskIcon.svg',
+      msTileImage: 'pwa/msTileImage-144.png',
     },
   },
   css: {

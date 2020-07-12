@@ -6,14 +6,14 @@
   </div>
 </template>
 <script lang="ts">
-import { Vue, Component } from "vue-property-decorator";
-import ProjectsMobile from "./Projects-Mobile.vue";
-import ProjectsDesktop from "./Projects-Desktop.vue";
+import { Vue, Component } from 'vue-property-decorator';
+import ProjectsMobile from './Projects-Mobile.vue';
+import ProjectsDesktop from './Projects-Desktop.vue';
 
 @Component({
   components: {
-    "projects-mobile": ProjectsMobile,
-    "projects-desktop": ProjectsDesktop,
+    'projects-mobile': ProjectsMobile,
+    'projects-desktop': ProjectsDesktop,
   },
 })
 export default class Projects extends Vue {}
@@ -30,7 +30,6 @@ export default class Projects extends Vue {}
     display: none;
   }
 }
-
 .projects {
   display: flex;
   justify-content: center;

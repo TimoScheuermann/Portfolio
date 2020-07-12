@@ -1,10 +1,11 @@
 <template>
   <div class="github">
-    <tc-header variant="sticky" :dark="true" title="GitHub" />
-    <tc-hero>
+    <tc-header variant="sticky" :autoBackground="true" title="GitHub" />
+    <tc-hero tc-dark-container>
       <img
         slot="background"
-        src="https://www.hd-freewallpapers.com/earth-wallpaper/desktop-pictures-of-the-earth-from-space-wallpaper.jpg"
+        src="https://images.unsplash.com/photo-1548625149-720134d51a3a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1900&q=80"
+        style="filter: blur(20px)"
       />
       <div v-if="!loaded" class="loading">
         <tc-spinner size="35" />
@@ -14,7 +15,7 @@
         <div
           class="icon"
           :style="{ background: 'url(' + profile.avatar_url + ')' }"
-        ></div>
+        />
         <div class="informations">
           <div class="name">{{ profile.name }}</div>
           <div class="date">
@@ -32,10 +33,9 @@
     </tc-hero>
 
     <div content v-if="loaded">
-      <project-title title="Repositories" subtitle="Most Recent" />
-      <!-- <h1>Repositories</h1> -->
-      <tl-grid minWidth="330" class="__repositories">
-        <github-repo-tile
+      <portfolio-big-heading title="Repositories" subtitle="Most Recent" />
+      <tl-grid minWidth="330">
+        <portfolio-repository
           v-for="(repo, index) in getRepos"
           :dark="index === 0 || true"
           :repo="repo"
@@ -47,23 +47,24 @@
   </div>
 </template>
 <script lang="ts">
-import { Vue, Component } from "vue-property-decorator";
-import GitHubRepoTile from "./GitHub--Repotile.vue";
-import axios from "@/axios";
-import ProjectsTitle from "@/components/projects/common/Projects--Title.vue";
-import IGitHubProfile from "@/models/GitHub/IGitHubProfile";
-import IGitHubRepo from "@/models/GitHub/IGitHubRepo";
+import { Vue, Component } from 'vue-property-decorator';
+
+import axios from '@/axios';
+import PortfolioRepository from '@/components/Portfolio-Repository.vue';
+import PortfolioBigHeading from '@/components/Portfolio-BigHeading.vue';
 
 @Component({
   components: {
-    "github-repo-tile": GitHubRepoTile,
-    "project-title": ProjectsTitle,
+    'portfolio-repository': PortfolioRepository,
+    'portfolio-big-heading': PortfolioBigHeading,
   },
 })
 export default class GitHubView extends Vue {
   public loaded = false;
-  public profile!: IGitHubProfile;
-  public repositories: IGitHubRepo[] = [];
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  public profile!: any;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  public repositories: any[] = [];
 
   async mounted(): Promise<void> {
     await this.loadRepos();
@@ -74,7 +75,7 @@ export default class GitHubView extends Vue {
   get creationDate(): string {
     return this.convertDate(this.profile.created_at);
   }
-  get getRepos(): IGitHubRepo[] {
+  get getRepos(): Record<string, unknown>[] {
     return this.repositories.sort(
       (b, a) =>
         this.getLongFromDate(a.updated_at) - this.getLongFromDate(b.updated_at)
@@ -84,7 +85,7 @@ export default class GitHubView extends Vue {
   public async loadRepos(): Promise<void> {
     if (!this.$store.state.repositories) {
       const { data } = await axios.get(
-        "https://api.github.com/users/timoscheuermann/repos"
+        'https://api.github.com/users/timoscheuermann/repos'
       );
       this.repositories = data;
       this.$store.state.repositories = data;
@@ -96,7 +97,7 @@ export default class GitHubView extends Vue {
   public async loadProfile(): Promise<void> {
     if (!this.$store.state.profile) {
       const { data } = await axios.get(
-        "https://api.github.com/users/timoscheuermann"
+        'https://api.github.com/users/timoscheuermann'
       );
       this.profile = data;
       this.$store.state.profile = data;
@@ -114,23 +115,10 @@ export default class GitHubView extends Vue {
 }
 </script>
 <style lang="scss" scoped>
-.tc-hero {
-  margin-top: -50px;
-}
-.github {
-  background: #000;
-}
-[content] {
-  color: #fff;
-}
 .loading,
 .loaded {
   height: 150px;
-  // background: linear-gradient(
-  //   rgba(0, 0, 0, 0),
-  //   rgba(0, 0, 0, 0.5),
-  //   rgba(0, 0, 0, 0)
-  // );
+
   color: #fff;
   display: flex;
   align-items: center;

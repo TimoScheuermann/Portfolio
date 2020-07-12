@@ -1,33 +1,26 @@
 <template>
   <div class="projects--dhbwrichie">
-    <tc-header
-      variant="sticky"
-      :title="project.title"
-      backName="Projects"
-      :backTo="{ name: constants.routes.projects }"
-      :autoBackground="true"
-    />
-    <projects-default-hero
-      :title="project.title"
-      :src="project.assets.combined"
-    />
+    <portfolio-project-header /><portfolio-project-hero />
     <div content>
-      <project-title :title="project.type" :subtitle="project.title" />
+      <portfolio-big-heading :title="project.type" :subtitle="project.title" />
     </div>
   </div>
 </template>
 <script lang="ts">
-import { Vue, Component } from "vue-property-decorator";
-import constants from "@/constants";
-import ProjectsDefaultHero from "@/components/projects/common/Projects--Default-Hero.vue";
-import ProjectsTitle from "@/components/projects/common/Projects--Title.vue";
-import { getProject } from "@/utils/ProjectUtils";
-import { Project } from "@/models/Projects/Project.model";
+import { Vue, Component } from 'vue-property-decorator';
+
+import constants from '@/constants';
+import { getProject } from '@/utils';
+import { Project } from '@/models/Project.model';
+import PortfolioProjectHeader from '@/components/project/Portfolio-ProjectHeader.vue';
+import PortfolioProjectHero from '@/components/project/Portfolio-ProjectHero.vue';
+import PortfolioBigHeading from '@/components/Portfolio-BigHeading.vue';
 
 @Component({
   components: {
-    "projects-default-hero": ProjectsDefaultHero,
-    "project-title": ProjectsTitle,
+    'portfolio-project-header': PortfolioProjectHeader,
+    'portfolio-project-hero': PortfolioProjectHero,
+    'portfolio-big-heading': PortfolioBigHeading,
   },
 })
 export default class DHBWRichie extends Vue {
@@ -38,8 +31,4 @@ export default class DHBWRichie extends Vue {
   }
 }
 </script>
-<style lang="scss" scoped>
-.projects--dhbwrichie {
-  color: inherit;
-}
-</style>
+<style lang="scss" scoped></style>

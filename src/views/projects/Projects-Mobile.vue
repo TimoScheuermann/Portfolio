@@ -23,19 +23,19 @@
         @click="open()"
       />
     </div>
-    <!-- <project-list /> -->
+    <!-- <portfolio-project-list /> -->
   </div>
 </template>
 <script lang="ts">
-import { Vue, Component } from "vue-property-decorator";
-import projects from "@/projects";
-import { Project } from "@/models/Projects/Project.model";
+import { Vue, Component } from 'vue-property-decorator';
+import projects from '@/projects';
+import { Project } from '@/models/Project.model';
 
-import "./swipe-events.js";
-import ProjectsProjectlist from "@/components/projects/ProjectsOverview/Projects-Projectlist.vue";
+import './swipe-events.js';
+import PortfolioProjectlist from '@/components/Portfolio-ProjectList.vue';
 @Component({
   components: {
-    "project-list": ProjectsProjectlist,
+    'portfolio-project-list': PortfolioProjectlist,
   },
 })
 export default class ProjectsMobile extends Vue {
@@ -71,12 +71,12 @@ export default class ProjectsMobile extends Vue {
 
   mounted(): void {
     this.next(0);
-    const elem = document.getElementById("phone");
+    const elem = document.getElementById('phone');
     if (elem) {
-      elem.addEventListener("swiped-right", () => {
+      elem.addEventListener('swiped-right', () => {
         this.next();
       });
-      elem.addEventListener("swiped-left", () => {
+      elem.addEventListener('swiped-left', () => {
         this.prev();
       });
     }

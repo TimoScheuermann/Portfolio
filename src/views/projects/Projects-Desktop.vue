@@ -1,6 +1,6 @@
 <template>
   <div content class="projects-desktop">
-    <project-title title="Most Recent" subtitle="Projects" />
+    <portfolio-big-heading title="Most Recent" subtitle="Projects" />
 
     <tl-grid minWidth="100" arrangement="auto-fit" class="project-grid">
       <router-link
@@ -28,16 +28,15 @@
   </div>
 </template>
 <script lang="ts">
-import { Vue, Component } from "vue-property-decorator";
-import projects from "@/projects";
-import { Project } from "@/models/Projects/Project.model";
-import ProjectsTitle from "@/components/projects/common/Projects--Title.vue";
-import ProjectsDefaultHero from "@/components/projects/common/Projects--Default-Hero.vue";
+import { Vue, Component } from 'vue-property-decorator';
+import projects from '@/projects';
+import { Project } from '@/models/Project.model';
+
+import PortfolioBigHeading from '@/components/Portfolio-BigHeading.vue';
 
 @Component({
   components: {
-    "project-title": ProjectsTitle,
-    "project-default-hero": ProjectsDefaultHero,
+    'portfolio-big-heading': PortfolioBigHeading,
   },
 })
 export default class ProjectsDesktop extends Vue {

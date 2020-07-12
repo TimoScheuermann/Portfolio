@@ -1,25 +1,9 @@
 <template>
   <div class="projects--ams-pro">
-    <tc-header
-      variant="sticky"
-      :title="project.title"
-      backName="Projects"
-      :backTo="{ name: constants.routes.projects }"
-      :autoBackground="true"
-    >
-      <tc-button
-        name="Website"
-        variant="filled"
-        icon="amspro"
-        href="https://ams-pro.de"
-      />
-    </tc-header>
-    <projects-default-hero
-      :title="project.title"
-      :src="project.assets.combined"
-    />
+    <portfolio-project-header /><portfolio-project-hero />
+
     <div content>
-      <project-title :title="project.type" :subtitle="project.title" />
+      <portfolio-big-heading :title="project.type" :subtitle="project.title" />
 
       <tl-grid class="ams-pro--icons" arrangement="auto-fit">
         <tc-card class="ams-pro--icon" v-for="i in icons" :key="i">
@@ -31,17 +15,20 @@
   </div>
 </template>
 <script lang="ts">
-import { Vue, Component } from "vue-property-decorator";
-import ProjectsDefaultHero from "@/components/projects/common/Projects--Default-Hero.vue";
-import constants from "@/constants";
-import ProjectsTitle from "@/components/projects/common/Projects--Title.vue";
-import { getProject } from "@/utils/ProjectUtils";
-import { Project } from "@/models/Projects/Project.model";
+import { Vue, Component } from 'vue-property-decorator';
+
+import constants from '@/constants';
+import { getProject } from '@/utils';
+import { Project } from '@/models/Project.model';
+import PortfolioProjectHeader from '@/components/project/Portfolio-ProjectHeader.vue';
+import PortfolioProjectHero from '@/components/project/Portfolio-ProjectHero.vue';
+import PortfolioBigHeading from '@/components/Portfolio-BigHeading.vue';
 
 @Component({
   components: {
-    "projects-default-hero": ProjectsDefaultHero,
-    "project-title": ProjectsTitle,
+    'portfolio-project-header': PortfolioProjectHeader,
+    'portfolio-project-hero': PortfolioProjectHero,
+    'portfolio-big-heading': PortfolioBigHeading,
   },
 })
 export default class AMSPro extends Vue {
@@ -52,18 +39,18 @@ export default class AMSPro extends Vue {
   }
 
   public icons: string[] = [
-    "ams-1",
-    "ams-2",
-    "ams-3",
-    "ams-4",
-    "ams-5",
-    "ams-6",
-    "ams-6-2",
-    "ams-7",
-    "ams-8",
-    "ams-9",
-    "ams-10",
-    "ams-11",
+    'ams-1',
+    'ams-2',
+    'ams-3',
+    'ams-4',
+    'ams-5',
+    'ams-6',
+    'ams-6-2',
+    'ams-7',
+    'ams-8',
+    'ams-9',
+    'ams-10',
+    'ams-11',
   ];
 }
 </script>
@@ -104,43 +91,43 @@ export default class AMSPro extends Vue {
   }
 }
 
-$icomoon-font-family: "ams-pro-icons" !default;
-$icomoon-font-path: "fonts" !default;
+$icomoon-font-family: 'ams-pro-icons' !default;
+$icomoon-font-path: 'fonts' !default;
 
-$ams-1-path1: "\e900";
-$ams-1-path2: "\e901";
-$ams-2-path1: "\e902";
-$ams-2-path2: "\e903";
-$ams-3-path1: "\e904";
-$ams-3-path2: "\e905";
-$ams-4-path1: "\e906";
-$ams-4-path2: "\e907";
-$ams-5-path1: "\e908";
-$ams-5-path2: "\e909";
-$ams-6-path1: "\e90a";
-$ams-6-path2: "\e90b";
-$ams-6-2-path1: "\e90c";
-$ams-6-2-path2: "\e90d";
-$ams-7-path1: "\e90e";
-$ams-7-path2: "\e90f";
-$ams-8: "\e910";
-$ams-9-path1: "\e911";
-$ams-9-path2: "\e912";
-$ams-10: "\e913";
-$ams-11-path1: "\e914";
-$ams-11-path2: "\e915";
+$ams-1-path1: '\e900';
+$ams-1-path2: '\e901';
+$ams-2-path1: '\e902';
+$ams-2-path2: '\e903';
+$ams-3-path1: '\e904';
+$ams-3-path2: '\e905';
+$ams-4-path1: '\e906';
+$ams-4-path2: '\e907';
+$ams-5-path1: '\e908';
+$ams-5-path2: '\e909';
+$ams-6-path1: '\e90a';
+$ams-6-path2: '\e90b';
+$ams-6-2-path1: '\e90c';
+$ams-6-2-path2: '\e90d';
+$ams-7-path1: '\e90e';
+$ams-7-path2: '\e90f';
+$ams-8: '\e910';
+$ams-9-path1: '\e911';
+$ams-9-path2: '\e912';
+$ams-10: '\e913';
+$ams-11-path1: '\e914';
+$ams-11-path2: '\e915';
 
 @font-face {
-  font-family: "#{$icomoon-font-family}";
-  src: url("#{$icomoon-font-path}/#{$icomoon-font-family}.eot?7r1q3x");
-  src: url("#{$icomoon-font-path}/#{$icomoon-font-family}.eot?7r1q3x#iefix")
-      format("embedded-opentype"),
-    url("#{$icomoon-font-path}/#{$icomoon-font-family}.ttf?7r1q3x")
-      format("truetype"),
-    url("#{$icomoon-font-path}/#{$icomoon-font-family}.woff?7r1q3x")
-      format("woff"),
-    url("#{$icomoon-font-path}/#{$icomoon-font-family}.svg?7r1q3x##{$icomoon-font-family}")
-      format("svg");
+  font-family: '#{$icomoon-font-family}';
+  src: url('#{$icomoon-font-path}/#{$icomoon-font-family}.eot?7r1q3x');
+  src: url('#{$icomoon-font-path}/#{$icomoon-font-family}.eot?7r1q3x#iefix')
+      format('embedded-opentype'),
+    url('#{$icomoon-font-path}/#{$icomoon-font-family}.ttf?7r1q3x')
+      format('truetype'),
+    url('#{$icomoon-font-path}/#{$icomoon-font-family}.woff?7r1q3x')
+      format('woff'),
+    url('#{$icomoon-font-path}/#{$icomoon-font-family}.svg?7r1q3x##{$icomoon-font-family}')
+      format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -148,7 +135,7 @@ $ams-11-path2: "\e915";
 
 i {
   /* use !important to prevent issues with browser extensions that change fonts */
-  font-family: "#{$icomoon-font-family}" !important;
+  font-family: '#{$icomoon-font-family}' !important;
 
   font-style: normal;
   font-weight: normal;
