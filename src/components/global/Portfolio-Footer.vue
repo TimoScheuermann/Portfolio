@@ -36,6 +36,10 @@ export default class PortfolioFooter extends Vue {
 .portfolio-footer {
   background: darken($paragraph, 7.5%);
   color: $color;
+  padding-bottom: env(safe-area-inset-bottom);
+  @media #{$isMobile} {
+    padding-bottom: calc(50px + env(safe-area-inset-bottom));
+  }
   &.dark {
     background: lighten($paragraph_dark, 5%);
     color: $color_dark;

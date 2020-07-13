@@ -1,11 +1,11 @@
 <template>
   <div class="github">
     <tc-header variant="sticky" :autoBackground="true" title="GitHub" />
-    <tc-hero tc-dark-container>
+    <tc-hero tc-dark-container background="#000">
       <img
-        slot="background"
-        src="https://images.unsplash.com/photo-1548625149-720134d51a3a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1900&q=80"
-        style="filter: blur(20px)"
+        slot="backgrounds"
+        src="https://images.unsplash.com/photo-1593642532400-2682810df593?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80"
+        style="filter: brightness(80%)"
       />
       <div v-if="!loaded" class="loading">
         <tc-spinner size="35" />
@@ -143,6 +143,9 @@ export default class GitHubView extends Vue {
     & > a {
       display: none;
     }
+  }
+  & > a {
+    margin-right: 30px;
   }
   flex-direction: row;
 

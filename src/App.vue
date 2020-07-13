@@ -1,7 +1,7 @@
 <template lang="html">
   <div id="timos-portfolio" :class="{ dark: !!$route.meta.dark }">
     <tl-sidebar
-      sidebarBackgroundImage="https://images.unsplash.com/photo-1548625149-720134d51a3a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1900&q=80"
+      sidebarBackgroundImage="https://images.unsplash.com/photo-1594240094495-1b9177b5fefc?h=500&q=3"
       :blurred="true"
     >
       <portfolio-sidebar-head slot="sidebar-header" v-if="sidebarVisible" />

@@ -1,7 +1,10 @@
 <template>
   <div class="home">
     <tc-hero>
-      <img src="assets/home/hero.jpg" slot="background" />
+      <img
+        src="https://images.unsplash.com/photo-1541362254971-29e9b6af8d05?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&h=400&q=100"
+        slot="background"
+      />
       <div class="title">Timo Scheuermann</div>
       <div class="subtitle">UI / UX Designer from Mannheim, Germany</div>
     </tc-hero>
@@ -22,8 +25,10 @@
             :title="p.title"
             :subtitle="p.description"
           >
-            <img :src="p.assets[p.displayAs]" alt="" /> </tc-card
-        ></router-link>
+            <portfolio-project-appicon :src="p.assets.appIcon" />
+            <img :src="p.assets[p.displayAs]" alt="" />
+          </tc-card>
+        </router-link>
       </div>
       <tc-headline :dark="true" title="Resume">
         <tc-button :to="{ name: 'uno' }" icon="photos" name="Uno" />
@@ -42,10 +47,12 @@ import { Vue, Component } from 'vue-property-decorator';
 import projects from '@/projects';
 import { Project } from '@/models/Project.model';
 import PortfolioBigHeading from '@/components/Portfolio-BigHeading.vue';
+import PortfolioProjectAppIcon from '@/components/project/Portfolio-ProjectAppIcon.vue';
 
 @Component({
   components: {
     'portfolio-big-heading': PortfolioBigHeading,
+    'portfolio-project-appicon': PortfolioProjectAppIcon,
   },
 })
 export default class Home extends Vue {
@@ -77,6 +84,9 @@ export default class Home extends Vue {
     @media #{$isDesktop} {
       text-align: center;
     }
+    @media #{$isMobile} {
+      margin-top: -50px;
+    }
     img {
       filter: brightness(70%);
     }
@@ -95,6 +105,14 @@ export default class Home extends Vue {
 
   .projects {
     @include custom-scrollbar__dark();
+
+    .portfolio-project-appicon {
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform: scale(0.2);
+      transform-origin: top left;
+    }
 
     .tc-card {
       cursor: pointer;

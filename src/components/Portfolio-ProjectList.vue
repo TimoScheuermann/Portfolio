@@ -6,7 +6,7 @@
           v-for="p in projects"
           :key="p.title"
           :title="p.title"
-          :icon="'ti-' + p.icon"
+          :icon="p.icon"
           :to="p.routeName"
         />
       </tc-list>
@@ -43,6 +43,8 @@ export default class PortfolioProjectlist extends Vue {
   transform: translateX(-50%);
   text-align: center;
   transition: 0.2s ease-in-out;
+
+  border: 1px solid rgba($color, 0);
   .projects-list-container {
     max-height: 0px;
     min-width: 0px;
@@ -60,8 +62,10 @@ export default class PortfolioProjectlist extends Vue {
     }
   }
   &.projects-list__opened {
+    transition: all 0.2s ease-in-out, border 0.4s ease-in-out 0.2s;
     background: $paragraph;
     border-radius: 10px;
+    border: 1px solid rgba($color, 0.25);
     .projects-list-container {
       overflow: auto;
       margin: 10px {

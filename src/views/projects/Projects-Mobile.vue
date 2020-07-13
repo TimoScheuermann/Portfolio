@@ -23,7 +23,7 @@
         @click="open()"
       />
     </div>
-    <!-- <portfolio-project-list /> -->
+    <portfolio-project-list />
   </div>
 </template>
 <script lang="ts">
@@ -116,7 +116,6 @@ export default class ProjectsMobile extends Vue {
     top: calc(70px + env(safe-area-inset-top));
     bottom: calc(70px + env(safe-area-inset-bottom));
   }
-  margin-top: -50px;
   height: calc(
     100vh - 140px - env(safe-area-inset-top) - env(safe-area-inset-bottom)
   );

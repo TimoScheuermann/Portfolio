@@ -3,4 +3,5 @@ export interface ProjectAssets {
   desktop: string;
   combined: string;
   thumbnail: string;
+  appIcon?: string;
 }

@@ -69,7 +69,7 @@ export default class PortfolioProjectHead extends Vue {
   .img {
     position: absolute;
     width: 700px;
-    max-width: 80vw;
+    max-width: 130vw;
     left: 50%;
     top: -70px;
     animation: appear 0.8s ease-in-out both;
