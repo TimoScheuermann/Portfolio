@@ -1,17 +1,13 @@
 <template>
-  <div class="projects--ams-pro">
-    <portfolio-project-header /><portfolio-project-hero />
+  <div content class="projects--ams-pro">
+    <portfolio-big-heading :title="project.type" :subtitle="project.title" />
 
-    <div content>
-      <portfolio-big-heading :title="project.type" :subtitle="project.title" />
-
-      <tl-grid class="ams-pro--icons" arrangement="auto-fit">
-        <tc-card class="ams-pro--icon" v-for="i in icons" :key="i">
-          <i :class="i"></i>
-          <div class="name">{{ i }}</div>
-        </tc-card>
-      </tl-grid>
-    </div>
+    <tl-grid class="ams-pro--icons" arrangement="auto-fit">
+      <tc-card class="ams-pro--icon" v-for="i in icons" :key="i">
+        <i :class="i"></i>
+        <div class="name">{{ i }}</div>
+      </tc-card>
+    </tl-grid>
   </div>
 </template>
 <script lang="ts">
@@ -20,14 +16,10 @@ import { Vue, Component } from 'vue-property-decorator';
 import constants from '@/constants';
 import { getProject } from '@/utils';
 import { Project } from '@/models/Project.model';
-import PortfolioProjectHeader from '@/components/project/Portfolio-ProjectHeader.vue';
-import PortfolioProjectHero from '@/components/project/Portfolio-ProjectHero.vue';
 import PortfolioBigHeading from '@/components/Portfolio-BigHeading.vue';
 
 @Component({
   components: {
-    'portfolio-project-header': PortfolioProjectHeader,
-    'portfolio-project-hero': PortfolioProjectHero,
     'portfolio-big-heading': PortfolioBigHeading,
   },
 })

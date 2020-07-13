@@ -1,16 +1,15 @@
 <template>
   <tc-hero tc-dark-container :height="400">
     <div class="hero-container" v-if="project">
-      <div class="hero--title">
+      <div class="hero--title" :key="project.title">
         <svg height="160" width="10000">
           <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle">
             {{ project.title }}
           </text>
         </svg>
       </div>
-      <div class="img">
+      <div class="img" :key="project.title">
         <tc-image :src="project.assets.combined" />
-        <!-- <img :src="project.assets.combined" /> -->
       </div>
     </div>
   </tc-hero>
@@ -23,7 +22,7 @@ import { getProject } from '@/utils';
 @Component
 export default class PortfolioProjectHead extends Vue {
   get project(): Project {
-    return getProject();
+    return getProject(this.$route.name);
   }
 }
 </script>
@@ -35,36 +34,37 @@ export default class PortfolioProjectHead extends Vue {
 .hero-container {
   position: relative;
   .hero--title {
+    position: absolute;
+    top: -170px;
+    left: 50%;
+    transform: translateX(-50%);
     svg {
       position: relative;
       font: inherit;
-      // height: 100px;
-      // width: 100vw;
     }
 
     text {
       fill: none;
-      stroke: #fff;
+      stroke: $color_dark;
       stroke-linejoin: round;
-      animation: 1s pulsate ease-in;
+
+      font-size: 7em;
+      font-weight: 800;
+      white-space: nowrap;
+
+      animation: 1s pulsate ease-in-out both;
       @keyframes pulsate {
         from {
           stroke-width: 0px;
+          opacity: 0;
+          letter-spacing: -20px;
         }
         to {
-          stroke-width: 1px;
+          stroke-width: 1.5px;
+          opacity: 0.6;
         }
       }
     }
-    color: $color_dark;
-    top: -170px;
-    font-size: 7em;
-    // opacity: 0.2;
-    font-weight: 800;
-    white-space: nowrap;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
   }
   .img {
     position: absolute;
@@ -72,11 +72,21 @@ export default class PortfolioProjectHead extends Vue {
     max-width: 80vw;
     left: 50%;
     top: -70px;
-    transform: translateX(-50%);
+    animation: appear 0.8s ease-in-out both;
     img {
       width: 100%;
       height: 100%;
       object-fit: contain;
+    }
+    @keyframes appear {
+      from {
+        opacity: 0;
+        transform: translate(-50%, 50px);
+      }
+      to {
+        opacity: 1;
+        transform: translate(-50%, 0);
+      }
     }
   }
 }

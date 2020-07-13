@@ -1,10 +1,6 @@
 <template>
-  <div class="projects--nhlstats">
-    <portfolio-project-header /><portfolio-project-hero />
-
-    <div content>
-      <portfolio-big-heading :title="project.type" :subtitle="project.title" />
-    </div>
+  <div content class="projects--nhlstats">
+    <portfolio-big-heading :title="project.type" :subtitle="project.title" />
   </div>
 </template>
 <script lang="ts">
@@ -14,13 +10,9 @@ import constants from '@/constants';
 import { getProject } from '@/utils';
 import { Project } from '@/models/Project.model';
 import PortfolioBigHeading from '@/components/Portfolio-BigHeading.vue';
-import PortfolioProjectHeader from '@/components/project/Portfolio-ProjectHeader.vue';
-import PortfolioProjectHero from '@/components/project/Portfolio-ProjectHero.vue';
 
 @Component({
   components: {
-    'portfolio-project-header': PortfolioProjectHeader,
-    'portfolio-project-hero': PortfolioProjectHero,
     'portfolio-big-heading': PortfolioBigHeading,
   },
 })

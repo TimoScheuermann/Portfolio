@@ -1,9 +1,6 @@
 <template>
-  <div class="projects--dhbwrichie">
-    <portfolio-project-header /><portfolio-project-hero />
-    <div content>
-      <portfolio-big-heading :title="project.type" :subtitle="project.title" />
-    </div>
+  <div content class="projects--dhbwrichie">
+    <portfolio-big-heading :title="project.type" :subtitle="project.title" />
   </div>
 </template>
 <script lang="ts">
@@ -12,14 +9,11 @@ import { Vue, Component } from 'vue-property-decorator';
 import constants from '@/constants';
 import { getProject } from '@/utils';
 import { Project } from '@/models/Project.model';
-import PortfolioProjectHeader from '@/components/project/Portfolio-ProjectHeader.vue';
-import PortfolioProjectHero from '@/components/project/Portfolio-ProjectHero.vue';
+
 import PortfolioBigHeading from '@/components/Portfolio-BigHeading.vue';
 
 @Component({
   components: {
-    'portfolio-project-header': PortfolioProjectHeader,
-    'portfolio-project-hero': PortfolioProjectHero,
     'portfolio-big-heading': PortfolioBigHeading,
   },
 })

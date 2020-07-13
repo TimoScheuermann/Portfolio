@@ -41,8 +41,10 @@
         </tc-sidebar-group>
       </template>
 
-      <div class="view">
+      <div class="router-view">
         <router-view />
+        <div class="router-view__grower" />
+        <portfolio-footer />
       </div>
     </tl-sidebar>
 
@@ -56,11 +58,13 @@ import projects from '@/projects';
 import { Project } from '@/models/Project.model';
 import PortfolioTabbar from '@/components/global/Portfolio-Tabbar.vue';
 import PortfolioSidebarHead from '@/components/global/Portfolio-SidebarHead.vue';
+import PortfolioFooter from '@/components/global/Portfolio-Footer.vue';
 
 @Component({
   components: {
     'portfolio-tabbar': PortfolioTabbar,
     'portfolio-sidebar-head': PortfolioSidebarHead,
+    'portfolio-footer': PortfolioFooter,
   },
 })
 export default class App extends Vue {
@@ -88,9 +92,16 @@ html {
 body {
   margin: 0;
 }
+.router-view {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  .router-view__grower {
+    flex-grow: 1;
+  }
+}
 
 #timos-portfolio {
-  min-height: 100vh;
   background: $background;
   color: $color;
   &.dark {

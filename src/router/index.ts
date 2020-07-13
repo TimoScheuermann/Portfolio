@@ -1,5 +1,6 @@
 import constants from '@/constants';
 import EmptyRouter from '@/views/EmptyRouter.vue';
+import ProjectSubview from '@/views/projects/Project-Subview.vue';
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 
@@ -54,8 +55,35 @@ const router = new VueRouter({
       },
     },
     {
-      path: '/projects',
+      path: '/legal',
       component: EmptyRouter,
+      children: [
+        {
+          path: '',
+          redirect: { name: 'home' },
+        },
+        {
+          path: 'privacy',
+          name: 'privacy',
+          component: () => import('@/views/legal/PrivacyPolicy.vue'),
+          meta: {
+            title: prefix + 'Privacy',
+          },
+        },
+        {
+          path: 'terms',
+          name: 'terms',
+          component: () => import('@/views/legal/TermsOfUse.vue'),
+          meta: {
+            title: prefix + 'Terms of use',
+          },
+        },
+        { path: '*', redirect: { name: 'home' } },
+      ],
+    },
+    {
+      path: '/projects',
+      component: ProjectSubview,
       children: [
         {
           path: '',
@@ -63,6 +91,7 @@ const router = new VueRouter({
           component: () => import('@/views/projects/Projects.vue'),
           meta: {
             title: prefix + 'Projects',
+            customHero: true,
           },
         },
         {

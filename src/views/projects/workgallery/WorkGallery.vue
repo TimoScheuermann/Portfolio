@@ -1,22 +1,19 @@
 <template>
-  <div class="projects-workgallery">
-    <portfolio-project-header /><portfolio-project-hero />
-    <div content>
-      <div class="gallery">
-        <div class="gallery-item" v-for="item in gallery" :key="item.fileName">
-          <tc-card :title="item.display" rounded="true" hover="true">
-            <tc-image
-              slot="media"
-              :src="'assets/projects/workgallery/designs/' + item.fileName"
-            />
-            <tc-button
-              :icon="mapProjectIcon(item.project)"
-              :disabled="!item.project"
-              :to="{ name: constants.projectRoutes[item.project] }"
-              :name="mapProjectName(item.project)"
-            />
-          </tc-card>
-        </div>
+  <div content class="projects--workgallery">
+    <div class="gallery">
+      <div class="gallery-item" v-for="item in gallery" :key="item.fileName">
+        <tc-card :title="item.display" rounded="true">
+          <tc-image
+            slot="media"
+            :src="'assets/projects/workgallery/designs/' + item.fileName"
+          />
+          <tc-button
+            :icon="mapProjectIcon(item.project)"
+            :disabled="!item.project"
+            :to="{ name: constants.projectRoutes[item.project] }"
+            :name="mapProjectName(item.project)"
+          />
+        </tc-card>
       </div>
     </div>
   </div>
@@ -30,30 +27,17 @@ import projects from '@/projects';
 import { Project } from '@/models/Project.model';
 
 import { getProject } from '@/utils';
-import PortfolioProjectHeader from '@/components/project/Portfolio-ProjectHeader.vue';
-import PortfolioProjectHero from '@/components/project/Portfolio-ProjectHero.vue';
 
-@Component({
-  components: {
-    'portfolio-project-header': PortfolioProjectHeader,
-    'portfolio-project-hero': PortfolioProjectHero,
-  },
-})
+@Component
 export default class WorkGallery extends Vue {
   public constants: Record<string, unknown> = constants;
   public projects: Project[] = projects;
   public gallery: WorkGalleryItem[] = workGalleryItems;
 
-  get project(): Project {
-    return getProject();
-  }
-
-  private getProject(routeName: string): Project {
-    return this.projects.filter(
-      (x: Project) =>
-        x.routeName ===
-        (constants.projectRoutes as Record<string, unknown>)[routeName]
-    )[0];
+  private getProject(
+    routeName: string | null = this.$route.name + ''
+  ): Project {
+    return getProject(routeName);
   }
 
   public mapProjectName(name: string): string {
@@ -81,7 +65,7 @@ export default class WorkGallery extends Vue {
   margin-top: 30px;
   column-gap: 30px;
   @for $i from 1 through 20 {
-    @media only screen and(max-width: #{$i * 300}px) and(min-width: #{-1 + ($i - 1) * 300}px) {
+    @media only screen and(max-width: #{$i * 400}px) and(min-width: #{-1 + ($i - 1) * 400}px) {
       columns: $i;
     }
   }

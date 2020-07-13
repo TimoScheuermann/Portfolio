@@ -24,8 +24,9 @@ import constants from '@/constants';
 @Component
 export default class PortfolioProjectHeader extends Vue {
   public constants = constants;
+
   get project(): Project {
-    return getProject();
+    return getProject(this.$route.name);
   }
 }
 </script>
