@@ -23,8 +23,8 @@
 </template>
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator';
-import projects from '@/projects';
-import { Project } from '@/models/Project.model';
+import projects from '@/constants/projects';
+import { Project } from '@/models';
 
 @Component
 export default class ProjectsNotFound extends Vue {

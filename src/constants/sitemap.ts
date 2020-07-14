@@ -1,9 +1,7 @@
-import projects from '@/projects';
+import projects from '@/constants/projects';
+import { SitemapGroup } from '@/models';
 
-const sitemap: {
-  group: string;
-  items: { name: string; href?: string; to?: { name: string } }[];
-}[] = [
+const sitemap: SitemapGroup[] = [
   {
     group: 'About me',
     items: [

@@ -19,8 +19,8 @@
 </template>
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator';
-import projects from '@/projects';
-import { Project } from '@/models/Project.model';
+import projects from '@/constants/projects';
+import { Project } from '@/models';
 
 @Component
 export default class PortfolioProjectlist extends Vue {
@@ -63,11 +63,12 @@ export default class PortfolioProjectlist extends Vue {
   }
   &.projects-list__opened {
     transition: all 0.2s ease-in-out, border 0.4s ease-in-out 0.2s;
-    background: $paragraph;
+    background: $background;
     border-radius: 10px;
     border: 1px solid rgba($color, 0.25);
     .projects-list-container {
       overflow: auto;
+      border-radius: $border-radius;
       margin: 10px {
         bottom: 20px;
       }
@@ -92,6 +93,9 @@ export default class PortfolioProjectlist extends Vue {
   }
   .projects-list-opener {
     background: $paragraph;
+    &.project-list__opened {
+      background: $background;
+    }
     color: #111;
     display: inline-block;
     padding: 10px 20px;

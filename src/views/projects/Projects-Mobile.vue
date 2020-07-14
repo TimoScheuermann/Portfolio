@@ -8,6 +8,7 @@
     </div>
 
     <div class="head" :key="project.title">
+      <portfolio-project-appicon :src="project.assets.appIcon" />
       <div class="title">{{ project.title }}</div>
       <div class="description">{{ project.description }}</div>
     </div>
@@ -28,14 +29,16 @@
 </template>
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator';
-import projects from '@/projects';
-import { Project } from '@/models/Project.model';
+import projects from '@/constants/projects';
+import { Project } from '@/models';
 
 import './swipe-events.js';
 import PortfolioProjectlist from '@/components/Portfolio-ProjectList.vue';
+import PortfolioProjectAppIcon from '@/components/project/Portfolio-ProjectAppIcon.vue';
 @Component({
   components: {
     'portfolio-project-list': PortfolioProjectlist,
+    'portfolio-project-appicon': PortfolioProjectAppIcon,
   },
 })
 export default class ProjectsMobile extends Vue {
@@ -107,6 +110,18 @@ export default class ProjectsMobile extends Vue {
     transform: translateY(30px);
   }
 }
+@keyframes icon-appear {
+  0% {
+    transform: translateY(-600px) rotateX(30deg) scale(6.5);
+    transform-origin: 50% 200%;
+    opacity: 0;
+  }
+  100% {
+    transform: translate(-50%, 0) rotateX(0) scale(0.3);
+    transform-origin: center center;
+    opacity: 1;
+  }
+}
 
 .projects-mobile {
   @media #{$isDesktop} {
@@ -139,7 +154,16 @@ export default class ProjectsMobile extends Vue {
       align-items: center;
     }
     text-align: center;
+    .portfolio-project-appicon {
+      position: absolute;
+      top: env(safe-area-inset-top);
+      left: 50%;
+      transform-origin: center center;
+      box-shadow: $shadow;
+      animation: icon-appear 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+    }
     .title {
+      margin-top: 50px;
       font-size: 2em;
       font-weight: bold;
       animation: title-appear 0.3s ease-in-out both;

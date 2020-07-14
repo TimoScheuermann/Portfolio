@@ -54,8 +54,8 @@
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator';
-import projects from '@/projects';
-import { Project } from '@/models/Project.model';
+import projects from '@/constants/projects';
+import { Project } from '@/models';
 import PortfolioTabbar from '@/components/global/Portfolio-Tabbar.vue';
 import PortfolioSidebarHead from '@/components/global/Portfolio-SidebarHead.vue';
 import PortfolioFooter from '@/components/global/Portfolio-Footer.vue';

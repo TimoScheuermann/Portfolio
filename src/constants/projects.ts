@@ -1,9 +1,10 @@
-import constants from '@/constants';
-import { Project } from '@/models/Project.model';
+import routes from '@/constants/routes';
+import { Project } from '@/models';
+import tools from './tools';
 
 const projects: Project[] = [
   {
-    routeName: constants.projectRoutes.tccomponents,
+    routeName: routes.tccomponents,
     title: 'TC Components',
     shortName: 'tc',
     description:
@@ -21,9 +22,21 @@ const projects: Project[] = [
     displayAs: 'combined',
     website: 'https://components.timos.design',
     latest: true,
+    tools: [
+      tools.adobexd,
+      tools.css3,
+      tools.html5,
+      tools.vuejs,
+      tools.npm,
+      tools.git,
+      tools.typescript,
+      tools.javascript,
+      tools.nodejs,
+      tools.yarn,
+    ],
   },
   {
-    routeName: constants.projectRoutes.timosicons,
+    routeName: routes.timosicons,
     title: "Timo's Icons",
     shortName: 'ti',
     description:
@@ -40,9 +53,20 @@ const projects: Project[] = [
     },
     displayAs: 'combined',
     website: 'https://icons.timos.design',
+    tools: [
+      tools.adobexd,
+      tools.css3,
+      tools.html5,
+      tools.vuejs,
+      tools.git,
+      tools.typescript,
+      tools.nodejs,
+      tools.yarn,
+      tools.icomoon,
+    ],
   },
   {
-    routeName: constants.projectRoutes.investingcollectors,
+    routeName: routes.investingcollectors,
     title: 'Investing Collectors',
     shortName: 'ic',
     description:
@@ -61,9 +85,20 @@ const projects: Project[] = [
     },
     displayAs: 'mobile',
     website: 'https://wip-investing-collectors.netlify.app',
+    tools: [
+      tools.adobexd,
+      tools.css3,
+      tools.html5,
+      tools.git,
+      tools.typescript,
+      tools.nodejs,
+      tools.yarn,
+      tools.affinityphoto,
+      tools.nuxtjs,
+    ],
   },
   {
-    routeName: constants.projectRoutes.workgallery,
+    routeName: routes.workgallery,
     title: 'Work Gallery',
     shortName: 'wg',
     description:
@@ -80,7 +115,7 @@ const projects: Project[] = [
     displayAs: 'mobile',
   },
   {
-    routeName: constants.projectRoutes.dhbwrichie,
+    routeName: routes.dhbwrichie,
     title: 'DHBW Richie',
     shortName: 'dh',
     description:
@@ -95,11 +130,23 @@ const projects: Project[] = [
       desktop: 'assets/projects/dhbwrichie/preview_desktop.png',
       appIcon: 'https://dhbw-richie.netlify.app/assets/logo.png',
     },
-    displayAs: 'desktop',
+    displayAs: 'combined',
     website: 'https://dhbw-richie.netlify.app',
+    tools: [
+      tools.adobexd,
+      tools.css3,
+      tools.html5,
+      tools.angular,
+      tools.git,
+      tools.typescript,
+      tools.nodejs,
+      tools.yarn,
+      tools.mongodb,
+      tools.nestjs,
+    ],
   },
   {
-    routeName: constants.projectRoutes.nhlstats,
+    routeName: routes.nhlstats,
     title: 'NHL Stats',
     shortName: 'ns',
     description:
@@ -114,9 +161,20 @@ const projects: Project[] = [
       desktop: 'assets/projects/nhlstats/preview_desktop.png',
     },
     displayAs: 'desktop',
+    tools: [
+      tools.css3,
+      tools.html5,
+      tools.vuejs,
+      tools.git,
+      tools.javascript,
+      tools.nodejs,
+      tools.npm,
+      tools.nestjs,
+      tools.cassandra,
+    ],
   },
   {
-    routeName: constants.projectRoutes.amspro,
+    routeName: routes.amspro,
     title: 'AMS Pro',
     shortName: 'am',
     description: 'Arbeitsschutzsoftware, die sich lohnt.',
@@ -131,6 +189,7 @@ const projects: Project[] = [
     },
     displayAs: 'combined',
     website: 'https://ams-pro.de',
+    tools: [tools.adobexd, tools.css3, tools.icomoon],
   },
 ];
 

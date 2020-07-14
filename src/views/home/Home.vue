@@ -44,8 +44,8 @@
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator';
 
-import projects from '@/projects';
-import { Project } from '@/models/Project.model';
+import projects from '@/constants/projects';
+import { Project } from '@/models';
 import PortfolioBigHeading from '@/components/Portfolio-BigHeading.vue';
 import PortfolioProjectAppIcon from '@/components/project/Portfolio-ProjectAppIcon.vue';
 

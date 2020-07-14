@@ -4,23 +4,9 @@
   </div>
 </template>
 <script lang="ts">
-import { Vue, Component } from 'vue-property-decorator';
-import constants from '@/constants';
+import { Component, Mixins } from 'vue-property-decorator';
+import ProjectView from '@/views/projects/ProjectView.mixin';
 
-import { getProject } from '@/utils';
-import { Project } from '@/models/Project.model';
-import PortfolioBigHeading from '@/components/Portfolio-BigHeading.vue';
-
-@Component({
-  components: {
-    'porfolio-big-heading': PortfolioBigHeading,
-  },
-})
-export default class TCComponents extends Vue {
-  public constants: Record<string, unknown> = constants;
-
-  get project(): Project {
-    return getProject();
-  }
-}
+@Component
+export default class TCComponents extends Mixins(ProjectView) {}
 </script>

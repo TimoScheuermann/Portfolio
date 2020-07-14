@@ -1,4 +1,4 @@
-import constants from '@/constants';
+import routes from '@/constants/routes';
 import EmptyRouter from '@/views/EmptyRouter.vue';
 import ProjectSubview from '@/views/projects/Project-Subview.vue';
 import Vue from 'vue';
@@ -15,7 +15,7 @@ const router = new VueRouter({
   routes: [
     {
       path: '/',
-      name: 'home',
+      name: routes.home,
       component: () => import('@/views/home/Home.vue'),
       meta: {
         title: prefix + 'Home',
@@ -24,7 +24,7 @@ const router = new VueRouter({
     },
     {
       path: '/repertoire',
-      name: 'repertoire',
+      name: routes.repertoire,
       component: () => import('@/views/repertoire/Repertoire.vue'),
       meta: {
         title: prefix + 'Repertoire',
@@ -32,7 +32,7 @@ const router = new VueRouter({
     },
     {
       path: '/contact',
-      name: 'contact',
+      name: routes.contact,
       component: () => import('@/views/contact/Contact.vue'),
       meta: {
         title: prefix + 'Contact',
@@ -40,7 +40,7 @@ const router = new VueRouter({
     },
     {
       path: '/github',
-      name: 'github',
+      name: routes.github,
       component: () => import('@/views/github/GitHub.vue'),
       meta: {
         title: prefix + 'GitHub',
@@ -48,7 +48,7 @@ const router = new VueRouter({
     },
     {
       path: '/resume',
-      name: 'resume',
+      name: routes.resume,
       component: () => import('@/views/resume/Resume.vue'),
       meta: {
         title: prefix + 'Resume',
@@ -64,7 +64,7 @@ const router = new VueRouter({
         },
         {
           path: 'privacy',
-          name: 'privacy',
+          name: routes.privacy,
           component: () => import('@/views/legal/PrivacyPolicy.vue'),
           meta: {
             title: prefix + 'Privacy',
@@ -72,7 +72,7 @@ const router = new VueRouter({
         },
         {
           path: 'terms',
-          name: 'terms',
+          name: routes.termsofuse,
           component: () => import('@/views/legal/TermsOfUse.vue'),
           meta: {
             title: prefix + 'Terms of use',
@@ -87,7 +87,7 @@ const router = new VueRouter({
       children: [
         {
           path: '',
-          name: constants.routes.projects,
+          name: routes.projects,
           component: () => import('@/views/projects/Projects.vue'),
           meta: {
             title: prefix + 'Projects',
@@ -96,7 +96,7 @@ const router = new VueRouter({
         },
         {
           path: 'amspro',
-          name: constants.projectRoutes.amspro,
+          name: routes.amspro,
           component: () => import('@/views/projects/amspro/AMSPro.vue'),
           meta: {
             title: prefix + 'AMS Pro',
@@ -113,7 +113,7 @@ const router = new VueRouter({
         },
         {
           path: 'investingcollectors',
-          name: constants.projectRoutes.investingcollectors,
+          name: routes.investingcollectors,
           component: () =>
             import(
               '@/views/projects/investingcollectors/InvestingCollectors.vue'
@@ -124,7 +124,7 @@ const router = new VueRouter({
         },
         {
           path: 'dhbwrichie',
-          name: constants.projectRoutes.dhbwrichie,
+          name: routes.dhbwrichie,
           component: () => import('@/views/projects/dhbwrichie/DHBWRichie.vue'),
           meta: {
             title: prefix + 'DHBW Richie',
@@ -132,7 +132,7 @@ const router = new VueRouter({
         },
         {
           path: 'nhlstats',
-          name: constants.projectRoutes.nhlstats,
+          name: routes.nhlstats,
           component: () => import('@/views/projects/nhlstats/NHLStats.vue'),
           meta: {
             title: prefix + 'NHL Stats',
@@ -140,7 +140,7 @@ const router = new VueRouter({
         },
         {
           path: 'tccomponents',
-          name: constants.projectRoutes.tccomponents,
+          name: routes.tccomponents,
           component: () =>
             import('@/views/projects/tccomponents/TCComponents.vue'),
           meta: {
@@ -149,7 +149,7 @@ const router = new VueRouter({
         },
         {
           path: 'timosicons',
-          name: constants.projectRoutes.timosicons,
+          name: routes.timosicons,
           component: () => import('@/views/projects/timosicons/TimosIcons.vue'),
           meta: {
             title: prefix + "Timo's Icons",
@@ -157,7 +157,7 @@ const router = new VueRouter({
         },
         {
           path: 'workgallery',
-          name: constants.projectRoutes.workgallery,
+          name: routes.workgallery,
           component: () =>
             import('@/views/projects/workgallery/WorkGallery.vue'),
           meta: {
@@ -166,7 +166,7 @@ const router = new VueRouter({
         },
         {
           path: '*',
-          name: constants.projectRoutes.notfound,
+          name: routes.notfound,
           component: () => import('@/views/projects/NotFound.vue'),
           meta: {
             title: prefix + 'Projects',

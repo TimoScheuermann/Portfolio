@@ -1,4 +1,4 @@
-import { WorkGalleryItem } from '@/models/WorkGalleryItem';
+import { WorkGalleryItem } from '@/models';
 
 const workgalleryItems: WorkGalleryItem[] = [
   {

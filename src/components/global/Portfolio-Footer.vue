@@ -25,7 +25,7 @@
 </template>
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator';
-import sitemap from '@/sitemap';
+import sitemap from '@/constants/sitemap';
 
 @Component
 export default class PortfolioFooter extends Vue {

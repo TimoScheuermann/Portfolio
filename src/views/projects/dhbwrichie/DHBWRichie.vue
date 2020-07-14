@@ -4,25 +4,10 @@
   </div>
 </template>
 <script lang="ts">
-import { Vue, Component } from 'vue-property-decorator';
+import { Component, Mixins } from 'vue-property-decorator';
+import ProjectView from '@/views/projects/ProjectView.mixin';
 
-import constants from '@/constants';
-import { getProject } from '@/utils';
-import { Project } from '@/models/Project.model';
-
-import PortfolioBigHeading from '@/components/Portfolio-BigHeading.vue';
-
-@Component({
-  components: {
-    'portfolio-big-heading': PortfolioBigHeading,
-  },
-})
-export default class DHBWRichie extends Vue {
-  public constants: Record<string, unknown> = constants;
-
-  get project(): Project {
-    return getProject();
-  }
-}
+@Component
+export default class DHBWRichie extends Mixins(ProjectView) {}
 </script>
 <style lang="scss" scoped></style>

@@ -8,9 +8,9 @@
       />
     </tc-hero>
     <div content>
-      <portfolio-big-heading title="Creative Design" subtitle="Tools" />
-      <tl-grid first arrangement="auto-fit">
-        <div class="tool" v-for="(tool, index) in tools[0]" :key="'t_' + index">
+      <portfolio-big-heading title="Creative Design" subtitle="Applications" />
+      <tl-grid>
+        <div v-for="tool in design" :key="tool.name">
           <tc-card rounded="true">
             <div class="tool-header">
               <img :src="tool.img" />
@@ -19,12 +19,22 @@
           </tc-card>
         </div>
       </tl-grid>
-      <portfolio-big-heading
-        title="Web Development"
-        subtitle="Frameworks & more"
-      />
-      <tl-grid arrangement="auto-fit">
-        <div class="tool" v-for="(tool, index) in tools[1]" :key="'t_' + index">
+
+      <portfolio-big-heading title="Web Development" subtitle="Frameworks" />
+      <tl-grid>
+        <div v-for="tool in framework" :key="tool.name">
+          <tc-card rounded="true">
+            <div class="tool-header">
+              <img :src="tool.img" />
+              <h1>{{ tool.name }}</h1>
+            </div>
+          </tc-card>
+        </div>
+      </tl-grid>
+
+      <portfolio-big-heading title="Web Technologies" subtitle="Tools & more" />
+      <tl-grid>
+        <div v-for="tool in development" :key="tool.name">
           <tc-card rounded="true">
             <div class="tool-header">
               <img :src="tool.img" />
@@ -39,9 +49,9 @@
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator';
 
-import tools from '@/tools';
-import { Tool } from '@/models/Tool';
+import { Tool } from '@/models';
 import PortfolioBigHeading from '@/components/Portfolio-BigHeading.vue';
+import { getTools } from '@/utils';
 
 @Component({
   components: {
@@ -49,15 +59,22 @@ import PortfolioBigHeading from '@/components/Portfolio-BigHeading.vue';
   },
 })
 export default class Repertoire extends Vue {
-  public tools: Tool[][] = tools;
+  get development(): Tool[] {
+    return getTools('development');
+  }
+  get design(): Tool[] {
+    return getTools('design');
+  }
+  get framework(): Tool[] {
+    return getTools('framework');
+  }
 }
 </script>
 <style lang="scss" scoped>
 [content] {
   .tl-grid {
-    margin: 30px 0;
-    &[first] {
-      margin-bottom: 160px;
+    margin: 30px 0 {
+      bottom: 160px;
     }
   }
 

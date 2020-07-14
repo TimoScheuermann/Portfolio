@@ -15,16 +15,11 @@
   </tc-hero>
 </template>
 <script lang="ts">
-import { Vue, Component } from 'vue-property-decorator';
-import { Project } from '@/models/Project.model';
-import { getProject } from '@/utils';
+import { Component, Mixins } from 'vue-property-decorator';
+import ProjectView from '@/views/projects/ProjectView.mixin';
 
 @Component
-export default class PortfolioProjectHead extends Vue {
-  get project(): Project {
-    return getProject(this.$route.name);
-  }
-}
+export default class PortfolioProjectHead extends Mixins(ProjectView) {}
 </script>
 <style lang="scss" scoped>
 .tc-hero {

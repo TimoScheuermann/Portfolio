@@ -10,7 +10,7 @@
           <tc-button
             :icon="mapProjectIcon(item.project)"
             :disabled="!item.project"
-            :to="{ name: constants.projectRoutes[item.project] }"
+            :to="{ name: routes[item.project] }"
             :name="mapProjectName(item.project)"
           />
         </tc-card>
@@ -19,18 +19,20 @@
   </div>
 </template>
 <script lang="ts">
-import { Vue, Component } from 'vue-property-decorator';
-import constants from '@/constants';
-import workGalleryItems from '@/projects/workgallery';
-import { WorkGalleryItem } from '@/models/WorkGalleryItem';
-import projects from '@/projects';
-import { Project } from '@/models/Project.model';
+import { Component, Mixins } from 'vue-property-decorator';
+import routes from '@/constants/routes';
+import workGalleryItems from '@/constants/workgalleryItems';
+import { WorkGalleryItem } from '@/models';
+import projects from '@/constants/projects';
+import { Project } from '@/models';
 
 import { getProject } from '@/utils';
 
+import ProjectView from '@/views/projects/ProjectView.mixin';
+
 @Component
-export default class WorkGallery extends Vue {
-  public constants: Record<string, unknown> = constants;
+export default class TimosIcons extends Mixins(ProjectView) {
+  public routes: Record<string, unknown> = routes;
   public projects: Project[] = projects;
   public gallery: WorkGalleryItem[] = workGalleryItems;
 

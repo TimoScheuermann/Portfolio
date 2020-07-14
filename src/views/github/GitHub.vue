@@ -49,7 +49,7 @@
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator';
 
-import axios from '@/axios';
+import axios from '@/constants/axios';
 import PortfolioRepository from '@/components/Portfolio-Repository.vue';
 import PortfolioBigHeading from '@/components/Portfolio-BigHeading.vue';
 

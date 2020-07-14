@@ -2,7 +2,7 @@
   <div content class="projects--ams-pro">
     <portfolio-big-heading :title="project.type" :subtitle="project.title" />
 
-    <tl-grid class="ams-pro--icons" arrangement="auto-fit">
+    <tl-grid class="ams-pro--icons">
       <tc-card class="ams-pro--icon" v-for="i in icons" :key="i">
         <i :class="i"></i>
         <div class="name">{{ i }}</div>
@@ -11,25 +11,11 @@
   </div>
 </template>
 <script lang="ts">
-import { Vue, Component } from 'vue-property-decorator';
+import { Component, Mixins } from 'vue-property-decorator';
+import ProjectView from '@/views/projects/ProjectView.mixin';
 
-import constants from '@/constants';
-import { getProject } from '@/utils';
-import { Project } from '@/models/Project.model';
-import PortfolioBigHeading from '@/components/Portfolio-BigHeading.vue';
-
-@Component({
-  components: {
-    'portfolio-big-heading': PortfolioBigHeading,
-  },
-})
-export default class AMSPro extends Vue {
-  public constants: Record<string, unknown> = constants;
-
-  get project(): Project {
-    return getProject();
-  }
-
+@Component
+export default class AMSPro extends Mixins(ProjectView) {
   public icons: string[] = [
     'ams-1',
     'ams-2',
