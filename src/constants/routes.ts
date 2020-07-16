@@ -16,4 +16,5 @@ export default {
   notfound: 'notfound',
   privacy: 'privacy',
   termsofuse: 'termsofuse',
+  newsroom: 'newsroom',
 };

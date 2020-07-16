@@ -22,6 +22,11 @@
           name="Contact"
           :to="{ name: 'contact' }"
         />
+        <tc-sidebar-item
+          icon="newspaper"
+          name="Newsroom"
+          :to="{ name: 'newsroom' }"
+        />
         <tc-sidebar-item icon="github" name="GitHub" :to="{ name: 'github' }" />
         <tc-sidebar-item icon="pin" name="Resume" :to="{ name: 'resume' }" />
         <tc-divider />

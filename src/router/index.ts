@@ -55,6 +55,14 @@ const router = new VueRouter({
       },
     },
     {
+      path: '/newsroom',
+      name: routes.newsroom,
+      component: () => import('@/views/newsroom/Newsroom.vue'),
+      meta: {
+        title: prefix + 'Newsroom',
+      },
+    },
+    {
       path: '/legal',
       component: EmptyRouter,
       children: [

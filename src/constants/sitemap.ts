@@ -22,6 +22,10 @@ const sitemap: SitemapGroup[] = [
         to: { name: 'contact' },
       },
       {
+        name: 'Newsroom',
+        to: { name: 'newsroom' },
+      },
+      {
         name: 'GitHub',
         to: { name: 'github' },
       },
@@ -82,6 +86,15 @@ const sitemap: SitemapGroup[] = [
       {
         name: 'Demos',
         href: 'https://components.timos.design/demos/',
+      },
+    ],
+  },
+  {
+    group: "Timo's Newsroom",
+    items: [
+      {
+        name: 'Home',
+        href: 'https://newsroom.timos.design/',
       },
     ],
   },
