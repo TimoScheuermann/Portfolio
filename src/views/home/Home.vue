@@ -1,12 +1,16 @@
 <template>
   <div class="home">
-    <tc-hero>
-      <img
-        src="https://images.unsplash.com/photo-1541362254971-29e9b6af8d05?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&h=400&q=100"
-        slot="background"
-      />
-      <div class="title">Timo Scheuermann</div>
-      <div class="subtitle">UI / UX Designer from Mannheim, Germany</div>
+    <tc-hero height="200">
+      <img src="assets/home/hero.jpg" slot="background" id="bg" />
+      <div class="hero-container">
+        <div class="me">
+          <img src="assets/home/me.jpg" alt="" />
+        </div>
+        <div class="info">
+          <div class="title">Timo Scheuermann</div>
+          <div class="subtitle">UI / UX Designer from Mannheim, Germany</div>
+        </div>
+      </div>
     </tc-hero>
     <div content>
       <portfolio-big-heading title="Projects" subtitle="I've worked on" />
@@ -30,13 +34,26 @@
           </tc-card>
         </router-link>
       </div>
-      <tc-headline :dark="true" title="Resume">
-        <tc-button :to="{ name: 'uno' }" icon="photos" name="Uno" />
-      </tc-headline>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam minus
-      deleniti ut vitae tempore nulla error aperiam quis pariatur omnis adipisci
-      reprehenderit, optio deserunt, minima facilis corporis ipsum aspernatur
-      temporibus!
+
+      <portfolio-big-heading
+        title="Newsroom"
+        subtitle="Always stay up to date"
+      />
+
+      <section id="newsroom">
+        <img src="https://newsroom.timos.design/pwa/maskIcon.svg" alt="" />
+        <div>
+          <p>
+            Timo's Newsroom is the source for news about all of my projects.
+            Read annoucements, get updates and learn new features.
+          </p>
+          <tc-button
+            name="Newsroom"
+            icon="newspaper"
+            href="https://newsroom.timos.design"
+          />
+        </div>
+      </section>
     </div>
   </div>
 </template>
@@ -81,25 +98,53 @@ export default class Home extends Vue {
   }
 
   .tc-hero {
-    @media #{$isDesktop} {
-      text-align: center;
-    }
-    @media #{$isMobile} {
-      margin-top: -50px;
-    }
-    img {
-      filter: brightness(70%);
+    img#bg {
+      filter: brightness(60%);
     }
     color: #fff;
-    .title {
-      font-size: 1.5em;
-      font-weight: bold;
-      animation: title-appear 0.6s ease-in-out 0.5s both;
-    }
-    .subtitle {
-      color: $primary;
-      white-space: nowrap;
-      animation: description-appear 0.6s ease-in-out 0.5s both;
+    .hero-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .info,
+      .me {
+        margin: 0 20px;
+      }
+
+      $scale: 115px;
+      @media #{$isMobile} {
+        $scale: 90px;
+        margin-top: -55px;
+        flex-direction: column;
+        text-align: center;
+        .me {
+          margin-bottom: 20px;
+        }
+      }
+      .me {
+        height: $scale;
+        width: $scale;
+        img {
+          border-radius: $scale;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+      .info {
+        .title {
+          font-weight: bold;
+          margin-bottom: 5px;
+          font-size: 1.5em;
+          animation: title-appear 0.6s ease-in-out 0.5s both;
+        }
+        .subtitle {
+          color: $alarm;
+          font-weight: 500;
+          white-space: nowrap;
+          animation: description-appear 0.6s ease-in-out 0.5s both;
+        }
+      }
     }
   }
 
@@ -121,6 +166,7 @@ export default class Home extends Vue {
     }
     padding-bottom: 10px;
     margin-top: 20px;
+    margin-bottom: 130px;
     overflow: hidden {
       x: auto;
     }
@@ -138,6 +184,32 @@ export default class Home extends Vue {
       grid-template-areas: 'tc ti ic wg dh ns am';
       grid-template-columns: repeat(7, minmax(300px, 30vw));
       grid-template-rows: 250px;
+    }
+  }
+}
+
+section#newsroom {
+  display: flex;
+  justify-content: center;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px;
+  @media only screen and(max-width: 480px) {
+    flex-direction: column;
+    div {
+      text-align: center;
+    }
+  }
+  background: $paragraph_dark;
+  border-radius: $border-radius;
+  margin-top: 20px;
+  img,
+  p {
+    font-weight: 500;
+  }
+  p {
+    margin: 3px {
+      bottom: 7px;
     }
   }
 }

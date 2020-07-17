@@ -197,7 +197,7 @@ export default class GitHubView extends Vue {
   }
 }
 .tl-grid {
-  margin-top: 20px;
+  margin-top: 30px;
   .tc-card:nth-child(1) {
     @media only screen and (min-width: 780px) {
       grid-column: 1 / 3;

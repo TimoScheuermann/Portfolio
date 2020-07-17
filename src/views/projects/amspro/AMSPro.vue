@@ -2,8 +2,8 @@
   <div content class="projects--ams-pro">
     <portfolio-big-heading :title="project.type" :subtitle="project.title" />
 
-    <tl-grid class="ams-pro--icons">
-      <tc-card class="ams-pro--icon" v-for="i in icons" :key="i">
+    <tl-grid minWidth="250" class="ams-pro--icons">
+      <tc-card rounded="true" class="ams-pro--icon" v-for="i in icons" :key="i">
         <i :class="i"></i>
         <div class="name">{{ i }}</div>
       </tc-card>

@@ -90,7 +90,6 @@ export default class ProjectsMobile extends Vue {
   }
 }
 </script>
-
 <style lang="scss" scoped>
 @keyframes title-appear {
   0% {
@@ -124,6 +123,7 @@ export default class ProjectsMobile extends Vue {
 }
 
 .projects-mobile {
+  z-index: 30;
   @media #{$isDesktop} {
     display: none;
   }

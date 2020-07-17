@@ -27,6 +27,9 @@ router.beforeEach((to: Route, from: Route, next) => {
   const og = document.querySelector('meta[property="og:title"]');
   if (og) og.setAttribute('content', title);
 
+  document.body.scrollTop = 0; // For Safari
+  document.documentElement.scrollTop = 0;
+  window.scrollTo(0, 0);
   next();
 });
 

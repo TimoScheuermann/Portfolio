@@ -1,10 +1,5 @@
 <template>
-  <tc-card
-    rounded="true"
-    :shadow="false"
-    :title="repo.name"
-    :subtitle="repo.description"
-  >
+  <tc-card rounded="true" :title="repo.name" :subtitle="repo.description">
     <div v-if="index == 0" class="indicator latest">
       Latest changes
     </div>
@@ -58,7 +53,7 @@ export default class PortfolioRepository extends Vue {
   position: absolute;
   top: $pad;
   border: 1px solid white;
-  border-radius: 10px;
+  border-radius: $border-radius;
   padding: 5px 10px;
   transform: scale(0.8);
   &:not(.latest) {
@@ -68,8 +63,6 @@ export default class PortfolioRepository extends Vue {
   &.latest {
     transform-origin: top right;
     right: $pad;
-    color: #e74c3c;
-    border-color: #e74c3c;
   }
 
   $lang: (
@@ -80,11 +73,11 @@ export default class PortfolioRepository extends Vue {
     HTML: #e67e22,
     TypeScript: #2980b9,
   );
+  color: #fff;
 
   @each $l, $c in $lang {
     &.#{$l} {
-      color: $c;
-      border-color: $c;
+      background: $c;
     }
   }
 }

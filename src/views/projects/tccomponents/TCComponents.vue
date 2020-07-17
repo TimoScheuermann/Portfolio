@@ -1,6 +1,6 @@
 <template>
   <div content class="projects--tccomponents">
-    <porfolio-big-heading :title="project.type" :subtitle="project.title" />
+    <portfolio-big-heading :title="project.type" :subtitle="project.title" />
   </div>
 </template>
 <script lang="ts">

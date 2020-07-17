@@ -1,5 +1,11 @@
 <template>
-  <div class="portfolio-footer" :class="{ dark: !!$route.meta.dark }">
+  <div
+    class="portfolio-footer"
+    :class="{
+      dark: !!$route.meta.dark,
+      isProjectView: $route.name === 'projects',
+    }"
+  >
     <div class="footer-sitemap">
       <template v-for="g in sitemap">
         <div class="sitemap-title" :key="'sm_' + g.group">{{ g.group }}</div>
@@ -43,6 +49,11 @@ export default class PortfolioFooter extends Vue {
   &.dark {
     background: lighten($paragraph_dark, 5%);
     color: $color_dark;
+  }
+  &.isProjectView {
+    @media #{$isMobile} {
+      display: none;
+    }
   }
   font-size: 14px;
   .footer-items {

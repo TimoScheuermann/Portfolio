@@ -4,7 +4,7 @@
     <tc-hero tc-dark-container background="#f1c40f">
       <img
         slot="background"
-        src="https://images.unsplash.com/photo-1567852384292-ab6358906959?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2132&q=80"
+        src="https://newsroom.timos.design/assets/hero.jpg"
         alt=""
       />
       <div class="hero-content">
