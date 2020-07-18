@@ -1,36 +1,29 @@
 <template>
   <div class="github">
     <tc-header variant="sticky" :autoBackground="true" title="GitHub" />
-    <tc-hero tc-dark-container background="#000">
-      <img
-        slot="backgrounds"
-        src="https://images.unsplash.com/photo-1593642532400-2682810df593?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80"
-        style="filter: brightness(80%)"
-      />
-      <div v-if="!loaded" class="loading">
-        <tc-spinner size="35" />
-        <div class="title">Fetching data</div>
-      </div>
-      <div v-else class="loaded">
-        <div
-          class="icon"
-          :style="{ background: 'url(' + profile.avatar_url + ')' }"
-        />
-        <div class="informations">
-          <div class="name">{{ profile.name }}</div>
-          <div class="date">
-            Member since
-            <span>{{ creationDate }}</span>
-          </div>
-          <a :href="profile.html_url" target="_blank" rel="noopener noreferrer">
-            View on GitHub
-          </a>
-        </div>
-        <a :href="profile.html_url" target="_blank" rel="noopener noreferrer">
-          View on GitHub
-        </a>
-      </div>
+    <tc-hero tc-dark-container height="300">
+      <img slot="background" src="assets/github-hero.jpg" />
     </tc-hero>
+    <tc-card
+      profile
+      :title="loaded ? profile.name : 'Fetching data'"
+      :frosted="true"
+      :dark="!true"
+      :rounded="true"
+    >
+      <tl-flow flow="column">
+        <tc-spinner v-if="!loaded" variant="dots-wave" />
+        <template v-else>
+          <tc-avatar :src="profile.avatar_url" />
+          <tc-button
+            name="View on GitHub"
+            icon="github"
+            :href="profile.html_url"
+            variant="filled"
+          />
+        </template>
+      </tl-flow>
+    </tc-card>
 
     <div content v-if="loaded">
       <portfolio-big-heading title="Repositories" subtitle="Most Recent" />
@@ -115,85 +108,13 @@ export default class GitHubView extends Vue {
 }
 </script>
 <style lang="scss" scoped>
-.loading,
-.loaded {
-  height: 150px;
-
-  color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  @media #{$isDesktop} {
-    margin-left: 45px;
-  }
-}
-.loading {
-  flex-direction: column;
-  .title {
-    font-weight: bold;
-    font-size: 1.5em;
-  }
-}
-
-.loaded {
-  justify-content: space-between;
-  width: 80vw;
-
-  @media #{$isMobile} {
-    & > a {
-      display: none;
-    }
-  }
-  & > a {
-    margin-right: 30px;
-  }
-  flex-direction: row;
-
-  .icon {
-    $size: 100px;
-    width: $size;
-    height: $size;
-    border-radius: $size;
-    background: {
-      size: cover !important;
-    }
-  }
-  .informations {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    .name,
-    .date span {
-      font-weight: bold;
-    }
-    .name {
-      font-size: 1.25em;
-    }
-    .date {
-      opacity: 0.8;
-    }
-    a {
-      @media #{$isDesktop} {
-        display: none;
-      }
-      margin-top: 10px;
-      width: fit-content;
-      display: block;
-    }
-  }
-  a {
-    padding: 10px 20px;
-    border-radius: 5px;
-    text-decoration: none;
-    color: inherit;
-    @include backdrop-blur(#666);
-    font-weight: bold;
-    transition: 0.2s ease-in-out;
-    border: 1px solid transparent;
-    &:hover {
-      border: 1px solid currentColor;
-    }
+.tc-card[profile] {
+  width: 300px;
+  position: relative;
+  left: calc(50% - 150px);
+  margin-top: -200px;
+  .tc-button {
+    margin-top: 20px;
   }
 }
 .tl-grid {

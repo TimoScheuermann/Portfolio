@@ -1,9 +1,6 @@
 <template lang="html">
   <div id="timos-portfolio" :class="{ dark: !!$route.meta.dark }">
-    <tl-sidebar
-      sidebarBackgroundImage="https://images.unsplash.com/photo-1594240094495-1b9177b5fefc?h=500&q=3"
-      :blurred="true"
-    >
+    <tl-sidebar sidebarBackgroundImage="assets/sidebar.jpg" :blurred="true">
       <portfolio-sidebar-head slot="sidebar-header" v-if="sidebarVisible" />
       <template v-if="sidebarVisible" slot="sidebar-content">
         <tc-sidebar-item icon="house" name="Home" :to="{ name: 'home' }" />

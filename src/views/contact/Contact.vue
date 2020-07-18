@@ -11,7 +11,7 @@
           href="assets/contact/Timo Scheuermann.vcf"
         />
         <div class="head">
-          <img src="https://avatars0.githubusercontent.com/u/48986503" />
+          <img src="assets/me.png" />
           <div class="fullname">Timo Scheuermann</div>
           <div class="description">UI / UX Designer</div>
         </div>

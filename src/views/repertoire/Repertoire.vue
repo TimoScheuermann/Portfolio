@@ -2,10 +2,7 @@
   <div class="view--repertoire">
     <tc-header variant="sticky" title="Repertoire" :autoBackground="true" />
     <tc-hero height="300" tc-dark-container>
-      <img
-        slot="background"
-        src="https://mir-s3-cdn-cf.behance.net/project_modules/1400_opt_1/f1cb3694468795.5e7f96bd2de7b.jpg"
-      />
+      <img slot="background" src="assets/repertoire-hero.jpg" />
     </tc-hero>
     <div content>
       <portfolio-big-heading title="Creative Design" subtitle="Applications" />

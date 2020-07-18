@@ -1,11 +1,10 @@
 <template>
   <div class="home">
     <tc-hero height="200">
-      <img src="assets/home/hero.jpg" slot="background" id="bg" />
+      <img src="assets/home-hero.jpg" slot="background" id="bg" />
       <div class="hero-container">
-        <div class="me">
-          <img src="assets/home/me.jpg" alt="" />
-        </div>
+        <tc-avatar src="assets/me.jpg"></tc-avatar>
+
         <div class="info">
           <div class="title">Timo Scheuermann</div>
           <div class="subtitle">UI / UX Designer from Mannheim, Germany</div>
@@ -117,18 +116,8 @@ export default class Home extends Vue {
         margin-top: -55px;
         flex-direction: column;
         text-align: center;
-        .me {
+        .tc-avatar {
           margin-bottom: 20px;
-        }
-      }
-      .me {
-        height: $scale;
-        width: $scale;
-        img {
-          border-radius: $scale;
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
         }
       }
       .info {
