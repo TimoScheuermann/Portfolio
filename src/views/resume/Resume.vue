@@ -1,7 +1,7 @@
 <template>
   <div class="view--repertoire">
     <tc-header variant="sticky" title="Resume" />
-    <div content>Resume</div>
+    <div content><h1>Soon.</h1></div>
   </div>
 </template>
 <script lang="ts">

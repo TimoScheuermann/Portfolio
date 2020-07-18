@@ -11,6 +11,7 @@ export interface Project {
   website?: string;
   latest?: boolean;
   tools?: Tool[];
+  hideInSidebar?: boolean;
 }
 export interface ProjectAssets {
   mobile: string;

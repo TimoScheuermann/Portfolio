@@ -152,6 +152,11 @@ export default class Home extends Vue {
       cursor: pointer;
       height: 100%;
       max-height: 100%;
+      img {
+        object-fit: contain;
+        width: 100%;
+        height: 100%;
+      }
     }
     padding-bottom: 10px;
     margin-top: 20px;
@@ -167,7 +172,7 @@ export default class Home extends Vue {
         'tc tc ic wg dh ns'
         'ti ti ic wg am am';
       grid-template-columns: repeat(6, minmax(300px, 60vw));
-      grid-template-rows: repeat(2, minmax(250px, 20vw));
+      grid-template-rows: repeat(2, minmax(300px, 25vw));
     }
     @media #{$isMobile} {
       grid-template-areas: 'tc ti ic wg dh ns am';

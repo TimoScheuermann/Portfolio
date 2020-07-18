@@ -29,7 +29,7 @@
         <tc-divider />
         <tc-sidebar-group icon="book-p" name="Projects">
           <tc-badge
-            v-for="p in projects"
+            v-for="p in projects.filter(x => !x.hideInSidebar)"
             :key="p.title"
             position="inside"
             color="error"

@@ -92,6 +92,9 @@ export default class PortfolioFooter extends Vue {
     }
     .tc-link {
       color: inherit;
+      &::after {
+        background: currentColor;
+      }
     }
   }
 }

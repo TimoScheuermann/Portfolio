@@ -7,20 +7,29 @@
         src="https://newsroom.timos.design/assets/hero.jpg"
         alt=""
       />
-      <div class="hero-content">
+      <tl-flow flow="column">
         <img src="https://newsroom.timos.design/pwa/maskIcon.svg" alt="" />
         <h1>Timo's Newsroom</h1>
-      </div>
+      </tl-flow>
     </tc-hero>
     <div content>
-      <h1>Timo's Newsroom is the source for news about all of my projects.</h1>
-      <p>Read annoucements, get updates and learn new features.</p>
-      <tc-button
-        href="https://newsroom.timos.design/"
-        icon="newspaper"
-        name="Timo's Newsroom"
-        variant="filled"
-      />
+      <tl-grid minWidth="200">
+        <div class="grid-image">
+          <img ex src="assets/newsroom-thumbnail.png" alt="" />
+        </div>
+        <tl-flow flow="column" class="grid-info">
+          <h1>
+            Timo's Newsroom is the source for news about all of my projects.
+          </h1>
+          <p>Read annoucements, get updates and learn new features.</p>
+          <tc-button
+            href="https://newsroom.timos.design/"
+            icon="newspaper"
+            name="Timo's Newsroom"
+            variant="filled"
+          />
+        </tl-flow>
+      </tl-grid>
     </div>
   </div>
 </template>
@@ -38,11 +47,21 @@ export default class Newsroom extends Vue {}
 </script>
 
 <style lang="scss" scoped>
-.hero-content {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+.grid-image {
+  img {
+    height: 75%;
+    width: 75%;
+    object-fit: contain;
+  }
+}
+.grid-info {
+  h1 {
+    margin: 0;
+    text-align: center;
+  }
+}
+
+.tc-hero .tl-flow {
   img {
     width: 120px;
     height: 120px;
@@ -51,8 +70,5 @@ export default class Newsroom extends Vue {}
     margin: 0;
     color: #fff;
   }
-}
-h1 {
-  margin: 0;
 }
 </style>
