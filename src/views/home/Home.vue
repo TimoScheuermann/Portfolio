@@ -49,7 +49,7 @@
           <tc-button
             name="Newsroom"
             icon="newspaper"
-            href="https://newsroom.timos.design"
+            :to="{ name: 'newsroom' }"
           />
         </div>
       </section>

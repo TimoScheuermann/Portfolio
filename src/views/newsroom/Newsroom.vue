@@ -22,9 +22,7 @@
             Timo's Newsroom is the source for news about all of my projects.
           </h1>
           <p>
-            Read annoucements, get updates and learn new features.{{
-              news.length
-            }}
+            Read annoucements, get updates and learn new features.
           </p>
           <tc-button
             href="https://newsroom.timos.design/"
@@ -34,6 +32,26 @@
           />
         </tl-flow>
       </tl-grid>
+
+      <h2>Latest news</h2>
+
+      <div v-for="(n, i) in news" :key="n._id">
+        <tc-divider v-if="i !== 0" />
+        <div class="news-container">
+          <tl-flow flow="column">
+            <tc-avatar
+              border="rounded"
+              :src="'https://newsroom.timos.design/' + n.thumbnail"
+            />
+
+            <span>{{ formatDate(n.date) }}</span>
+          </tl-flow>
+          <div class="news-info">
+            <h3>{{ n.title }}</h3>
+            <p>{{ n.description }}</p>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -42,6 +60,7 @@
 import { Vue, Component } from 'vue-property-decorator';
 import PortfolioProjectAppIcon from '@/components/project/Portfolio-ProjectAppIcon.vue';
 import axios from '@/constants/axios';
+import { formatDate } from '@/utils';
 
 @Component({
   components: {
@@ -52,25 +71,64 @@ export default class Newsroom extends Vue {
   public news = [];
   async mounted() {
     const { data } = await axios.get(
-      'https://timos-newsroom.herokuapp.com/news'
+      'https://timos-newsroom.herokuapp.com/news/latest'
     );
     this.news = data;
+  }
+  public formatDate(n: number): string {
+    return formatDate(n);
   }
 }
 </script>
 
 <style lang="scss" scoped>
+.grid-info {
+  h1 {
+    margin: 0;
+  }
+  h1,
+  p {
+    text-align: center;
+  }
+}
 .grid-image {
+  @media only screen and (max-width: 650px) {
+    display: none;
+  }
   img {
     height: 75%;
     width: 75%;
     object-fit: contain;
   }
 }
-.grid-info {
-  h1 {
-    margin: 0;
-    text-align: center;
+.tc-divider {
+  margin: 20px 0;
+}
+.news-container {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-gap: 20px;
+  .tl-flow {
+    span {
+      margin-top: 10px;
+      font-weight: 500;
+      opacity: 0.7;
+    }
+  }
+  .news-info {
+    h3 {
+      margin: 0;
+    }
+    p {
+      margin-bottom: 0;
+    }
+    div {
+      text-align: right;
+      span {
+        opacity: 0.7;
+        font-weight: 500;
+      }
+    }
   }
 }
 
