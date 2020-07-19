@@ -21,7 +21,11 @@
           <h1>
             Timo's Newsroom is the source for news about all of my projects.
           </h1>
-          <p>Read annoucements, get updates and learn new features.</p>
+          <p>
+            Read annoucements, get updates and learn new features.{{
+              news.length
+            }}
+          </p>
           <tc-button
             href="https://newsroom.timos.design/"
             icon="newspaper"
@@ -37,13 +41,22 @@
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator';
 import PortfolioProjectAppIcon from '@/components/project/Portfolio-ProjectAppIcon.vue';
+import axios from '@/constants/axios';
 
 @Component({
   components: {
     'portfolio-project-appicon': PortfolioProjectAppIcon,
   },
 })
-export default class Newsroom extends Vue {}
+export default class Newsroom extends Vue {
+  public news = [];
+  async mounted() {
+    const { data } = await axios.get(
+      'https://timos-newsroom.herokuapp.com/news'
+    );
+    this.news = data;
+  }
+}
 </script>
 
 <style lang="scss" scoped>
