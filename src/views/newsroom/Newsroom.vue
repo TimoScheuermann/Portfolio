@@ -71,7 +71,7 @@ export default class Newsroom extends Vue {
   public news = [];
   async mounted() {
     const { data } = await axios.get(
-      'https://timos-newsroom.herokuapp.com/news/latest'
+      'https://api.timos.design/newsroom/latest'
     );
     this.news = data;
   }
