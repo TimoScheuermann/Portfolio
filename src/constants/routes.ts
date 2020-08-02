@@ -17,4 +17,5 @@ export default {
   privacy: 'privacy',
   termsofuse: 'termsofuse',
   newsroom: 'newsroom',
+  timosaccounts: 'timosaccounts',
 };

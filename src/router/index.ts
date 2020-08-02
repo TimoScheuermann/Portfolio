@@ -173,6 +173,15 @@ const router = new VueRouter({
           },
         },
         {
+          path: 'timosaccounts',
+          name: routes.timosaccounts,
+          component: () =>
+            import('@/views/projects/timosaccounts/TimosAccounts.vue'),
+          meta: {
+            title: prefix + 'Timos Accounts',
+          },
+        },
+        {
           path: '*',
           name: routes.notfound,
           component: () => import('@/views/projects/NotFound.vue'),

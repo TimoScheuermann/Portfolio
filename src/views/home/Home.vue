@@ -149,6 +149,7 @@ export default class Home extends Vue {
     }
 
     .tc-card {
+      justify-self: stretch;
       cursor: pointer;
       height: 100%;
       max-height: 100%;
@@ -168,15 +169,21 @@ export default class Home extends Vue {
     grid-gap: 20px;
 
     @media #{$isDesktop} {
+      // grid-template-areas:
+      //   'tc tc ic wg dh ns'
+      //   'ti ti ic wg am ta';
+      // grid-template-columns: repeat(6, minmax(300px, 60vw));
+      // grid-template-rows: repeat(2, minmax(300px, 25vw));
+
       grid-template-areas:
-        'tc tc ic wg dh ns'
-        'ti ti ic wg am am';
-      grid-template-columns: repeat(6, minmax(300px, 60vw));
+        'tc tc ic wg dh dh ns .'
+        'ti ti ic wg am am ta ta';
+      grid-template-columns: repeat(8, minmax(300px, 60vw));
       grid-template-rows: repeat(2, minmax(300px, 25vw));
     }
     @media #{$isMobile} {
-      grid-template-areas: 'tc ti ic wg dh ns am';
-      grid-template-columns: repeat(7, minmax(300px, 30vw));
+      grid-template-areas: 'tc ti ic wg dh ns am ta';
+      grid-template-columns: repeat(8, minmax(300px, 30vw));
       grid-template-rows: 250px;
     }
   }

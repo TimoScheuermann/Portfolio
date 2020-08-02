@@ -191,6 +191,35 @@ const projects: Project[] = [
     website: 'https://ams-pro.de',
     tools: [tools.adobexd, tools.css3, tools.icomoon],
   },
+  {
+    routeName: routes.timosaccounts,
+    title: 'Timos Accounts',
+    shortName: 'ta',
+    description: 'One account for everything',
+    type: 'Website',
+    mainComponent: '@/views/projects/timosaccounts/TimosAccounts.vue',
+    icon: 'user',
+    assets: {
+      thumbnail: 'assets/projects/amspro/thumbnail.png',
+      combined: 'assets/projects/amspro/preview.png',
+      mobile: 'assets/projects/amspro/preview_mobile.png',
+      desktop: 'assets/projects/amspro/preview_desktop.png',
+      appIcon: 'https://accounts.timos.design/pwa/splash/apple-icon-180.jpg',
+    },
+    displayAs: 'combined',
+    website: 'https://accounts.timos.design',
+    tools: [
+      tools.nestjs,
+      tools.css3,
+      tools.git,
+      tools.mongodb,
+      tools.html5,
+      tools.yarn,
+      tools.vuejs,
+      tools.typescript,
+      tools.adobexd,
+    ],
+  },
 ];
 
 export default projects;

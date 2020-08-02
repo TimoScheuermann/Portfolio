@@ -9,11 +9,6 @@
         v-for="p in projects"
         :key="p.title"
         :to="{ name: p.routeName }"
-        :class="{
-          'span-c': p.displayAs == 'combined',
-          'span-r': p.displayAs == 'mobile',
-          'span-c2': p.displayAs == 'desktop',
-        }"
       >
         <tc-card
           :title="p.title"
@@ -56,15 +51,13 @@ export default class ProjectsDesktop extends Vue {
     margin-top: 30px;
     grid-auto-flow: dense;
     .project-item {
-      &.span-c {
-        grid-column: span 4;
+      grid-column: span 4;
+      justify-self: stretch;
+      .tc-card {
+        height: 100%;
       }
-      &.span-r {
-        grid-column: span 2;
-        grid-row: span 3;
-      }
-      &.span-c2 {
-        grid-column: span 3;
+      img {
+        max-height: 200px;
       }
     }
 
