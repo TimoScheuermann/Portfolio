@@ -9,7 +9,6 @@
       />
       <tl-flow flow="column">
         <img src="https://newsroom.timos.design/pwa/maskIcon.svg" alt="" />
-        <h1>Timo's Newsroom</h1>
       </tl-flow>
     </tc-hero>
     <div content>

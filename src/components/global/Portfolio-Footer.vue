@@ -20,10 +20,10 @@
         © Timo Scheuermann {{ new Date().getFullYear() }}
       </div>
       <div class="footer-grow" />
-      <tc-link class="footer-item" :to="{ name: 'privacy' }">
+      <tc-link class="footer-item" :to="{ name: routes.privacy }">
         Privacy Policy
       </tc-link>
-      <tc-link class="footer-item" :to="{ name: 'terms' }">
+      <tc-link class="footer-item" :to="{ name: routes.termsofuse }">
         Terms of Use
       </tc-link>
     </div>
@@ -32,10 +32,12 @@
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator';
 import sitemap from '@/constants/sitemap';
+import routes from '@/constants/routes';
 
 @Component
 export default class PortfolioFooter extends Vue {
   public sitemap = sitemap;
+  public routes = routes;
 }
 </script>
 <style lang="scss" scoped>

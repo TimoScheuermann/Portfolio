@@ -223,7 +223,7 @@ export default class Contact extends Vue {
       margin-top: 20px;
       width: 100%;
       i {
-        font-size: 2em;
+        font-size: 1.5em;
         margin-right: 10px;
       }
     }

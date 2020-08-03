@@ -193,7 +193,7 @@ const projects: Project[] = [
   },
   {
     routeName: routes.timosaccounts,
-    title: 'Timos Accounts',
+    title: "Timo's Accounts",
     shortName: 'ta',
     description: 'One account for everything',
     type: 'Website',

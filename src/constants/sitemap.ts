@@ -98,6 +98,15 @@ const sitemap: SitemapGroup[] = [
       },
     ],
   },
+  {
+    group: "Timo's Accounts",
+    items: [
+      {
+        name: 'Home',
+        href: 'https://accounts.timos.design/',
+      },
+    ],
+  },
 ];
 
 export default sitemap;
