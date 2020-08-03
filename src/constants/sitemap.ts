@@ -41,6 +41,10 @@ const sitemap: SitemapGroup[] = [
       ...projects.map(x => {
         return { name: x.title, to: { name: x.routeName } };
       }),
+      {
+        name: "Timo's Translator",
+        href: 'https://translator.timos.design',
+      },
     ],
   },
   {

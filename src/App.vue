@@ -48,6 +48,7 @@
         <div class="router-view__grower" />
         <portfolio-footer />
       </div>
+      <portfolio-cookie-banner />
     </tl-sidebar>
 
     <portfolio-tabbar />
@@ -61,12 +62,14 @@ import { Project } from '@/models';
 import PortfolioTabbar from '@/components/global/Portfolio-Tabbar.vue';
 import PortfolioSidebarHead from '@/components/global/Portfolio-SidebarHead.vue';
 import PortfolioFooter from '@/components/global/Portfolio-Footer.vue';
+import PortfolioCookieBanner from '@/components/global/Portfolio-Cookie-Banner.vue';
 
 @Component({
   components: {
     'portfolio-tabbar': PortfolioTabbar,
     'portfolio-sidebar-head': PortfolioSidebarHead,
     'portfolio-footer': PortfolioFooter,
+    'portfolio-cookie-banner': PortfolioCookieBanner,
   },
 })
 export default class App extends Vue {

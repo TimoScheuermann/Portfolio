@@ -83,7 +83,15 @@ const router = new VueRouter({
           name: routes.termsofuse,
           component: () => import('@/views/legal/TermsOfUse.vue'),
           meta: {
-            title: prefix + 'Terms of use',
+            title: prefix + 'Terms of Use',
+          },
+        },
+        {
+          path: 'cookies',
+          name: routes.cookies,
+          component: () => import('@/views/legal/CookiePolicy.vue'),
+          meta: {
+            title: prefix + 'Cookies',
           },
         },
         { path: '*', redirect: { name: 'home' } },

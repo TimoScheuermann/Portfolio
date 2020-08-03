@@ -71,3 +71,22 @@ export function formatDate(time: any): string {
     }
   return time;
 }
+
+export function setCookie(name, value): void {
+  document.cookie = `${name}=${value};path=/`;
+}
+
+export function getCookie(cname): string | null {
+  var name = cname + '=';
+  var ca = document.cookie.split(';');
+  for (var i = 0; i < ca.length; i++) {
+    var c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return null;
+}

@@ -26,6 +26,9 @@
       <tc-link class="footer-item" :to="{ name: routes.termsofuse }">
         Terms of Use
       </tc-link>
+      <tc-link class="footer-item" :to="{ name: routes.cookies }">
+        Cookies
+      </tc-link>
     </div>
   </div>
 </template>

@@ -121,7 +121,7 @@ const projects: Project[] = [
     description:
       'Fun little school project. Ask Richie specific questions to a lesson.',
     type: 'University Project',
-    icon: 'book',
+    icon: 'lens',
     mainComponent: '@/views/projects/dhbwrichie/DHBWRichie.vue',
     assets: {
       thumbnail: 'assets/projects/dhbwrichie/thumbnail.png',
