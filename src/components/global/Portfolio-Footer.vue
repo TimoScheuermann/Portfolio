@@ -20,6 +20,9 @@
         © Timo Scheuermann {{ new Date().getFullYear() }}
       </div>
       <div class="footer-grow" />
+      <!-- <tc-link class="footer-item" :to="{ name: routes.impressum }">
+        Impressum
+      </tc-link> -->
       <tc-link class="footer-item" :to="{ name: routes.privacy }">
         Privacy Policy
       </tc-link>
@@ -51,9 +54,17 @@ export default class PortfolioFooter extends Vue {
   @media #{$isMobile} {
     padding-bottom: calc(50px + env(safe-area-inset-bottom));
   }
+
+  .tc-link {
+    color: $color !important;
+    white-space: nowrap;
+  }
   &.dark {
     background: lighten($paragraph_dark, 5%);
     color: $color_dark;
+    .tc-link {
+      color: $color_dark !important;
+    }
   }
   &.isProjectView {
     @media #{$isMobile} {
@@ -62,12 +73,15 @@ export default class PortfolioFooter extends Vue {
   }
   font-size: 14px;
   .footer-items {
-    padding: 10px calc(5vw - 5px) {
+    padding: 5px calc(5vw - 5px) {
       top: 0px;
     }
     display: flex;
+    flex-wrap: wrap;
     .footer-item {
-      margin: 0 5px;
+      margin: 0 5px {
+        bottom: 5px;
+      }
       color: inherit;
     }
     .footer-grow {
@@ -94,12 +108,6 @@ export default class PortfolioFooter extends Vue {
       padding-top: 3px;
       font-weight: bold;
       user-select: none;
-    }
-    .tc-link {
-      color: inherit;
-      &::after {
-        background: currentColor;
-      }
     }
   }
 }

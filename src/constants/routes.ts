@@ -19,4 +19,5 @@ export default {
   newsroom: 'newsroom',
   timosaccounts: 'timosaccounts',
   cookies: 'cookies',
+  impressum: 'impressum',
 };

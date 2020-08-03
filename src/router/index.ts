@@ -97,6 +97,15 @@ const router = new VueRouter({
         { path: '*', redirect: { name: 'home' } },
       ],
     },
+
+    {
+      path: 'impressum',
+      name: routes.impressum,
+      component: () => import('@/views/impressum/Impressum.vue'),
+      meta: {
+        title: prefix + 'Impressum',
+      },
+    },
     {
       path: '/projects',
       component: ProjectSubview,
