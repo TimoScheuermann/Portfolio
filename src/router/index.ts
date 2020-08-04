@@ -97,15 +97,6 @@ const router = new VueRouter({
         { path: '*', redirect: { name: 'home' } },
       ],
     },
-
-    {
-      path: 'impressum',
-      name: routes.impressum,
-      component: () => import('@/views/impressum/Impressum.vue'),
-      meta: {
-        title: prefix + 'Impressum',
-      },
-    },
     {
       path: '/projects',
       component: ProjectSubview,
@@ -120,7 +111,7 @@ const router = new VueRouter({
           },
         },
         {
-          path: 'amspro',
+          path: 'ams-pro',
           name: routes.amspro,
           component: () => import('@/views/projects/amspro/AMSPro.vue'),
           meta: {
@@ -137,7 +128,7 @@ const router = new VueRouter({
           },
         },
         {
-          path: 'investingcollectors',
+          path: 'investing-collectors',
           name: routes.investingcollectors,
           component: () =>
             import(
@@ -148,7 +139,7 @@ const router = new VueRouter({
           },
         },
         {
-          path: 'dhbwrichie',
+          path: 'dhbw-richie',
           name: routes.dhbwrichie,
           component: () => import('@/views/projects/dhbwrichie/DHBWRichie.vue'),
           meta: {
@@ -156,7 +147,7 @@ const router = new VueRouter({
           },
         },
         {
-          path: 'nhlstats',
+          path: 'nhl-stats',
           name: routes.nhlstats,
           component: () => import('@/views/projects/nhlstats/NHLStats.vue'),
           meta: {
@@ -173,7 +164,7 @@ const router = new VueRouter({
           },
         },
         {
-          path: 'timosicons',
+          path: 'timos-icons',
           name: routes.timosicons,
           component: () => import('@/views/projects/timosicons/TimosIcons.vue'),
           meta: {
@@ -190,12 +181,21 @@ const router = new VueRouter({
           },
         },
         {
-          path: 'timosaccounts',
+          path: 'timos-accounts',
           name: routes.timosaccounts,
           component: () =>
             import('@/views/projects/timosaccounts/TimosAccounts.vue'),
           meta: {
             title: prefix + 'Timos Accounts',
+          },
+        },
+        {
+          path: 'gastro-assistant',
+          name: routes.gastroassistant,
+          component: () =>
+            import('@/views/projects/gastroassistant/GastroAssistant.vue'),
+          meta: {
+            title: prefix + 'Gastro Assistant',
           },
         },
         {

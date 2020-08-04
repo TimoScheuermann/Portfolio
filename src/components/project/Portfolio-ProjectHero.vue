@@ -9,7 +9,7 @@
         </svg>
       </div>
       <div class="img" :key="project.title">
-        <tc-image :src="project.assets.combined" />
+        <tc-image :src="project.assets.hero" />
       </div>
     </div>
   </tc-hero>

@@ -86,9 +86,9 @@ export default class App extends Vue {
 
 <style lang="scss">
 html {
-  font-family: -apple-system, BlinkMacSystemFont, SF Pro Display, Segoe UI,
-    Roboto, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji,
-    Segoe UI Symbol;
+  font-family: -apple-system, BlinkMacSystemFont, SF Pro Display, Inter,
+    Segoe UI, Roboto, Helvetica, Arial, sans-serif, Apple Color Emoji,
+    Segoe UI Emoji, Segoe UI Symbol;
   scroll-behavior: smooth;
   text-rendering: auto;
   -webkit-font-smoothing: antialiased;

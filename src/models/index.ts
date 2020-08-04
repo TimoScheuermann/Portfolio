@@ -18,6 +18,7 @@ export interface ProjectAssets {
   desktop: string;
   combined: string;
   thumbnail: string;
+  hero: string;
   appIcon?: string;
 }
 export interface Tool {

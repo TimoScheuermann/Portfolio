@@ -13,6 +13,7 @@ const projects: Project[] = [
     icon: 'tccomponents',
     mainComponent: '@/views/projects/tccomponents/TC-Components.vue',
     assets: {
+      hero: 'assets/projects/tccomponents/preview.png',
       thumbnail: 'assets/projects/tccomponents/thumbnail.png',
       combined: 'assets/projects/tccomponents/preview.png',
       mobile: 'assets/projects/tccomponents/preview_mobile.png',
@@ -45,6 +46,7 @@ const projects: Project[] = [
     icon: 'timos-icons',
     mainComponent: '@/views/projects/timosicons/TimosIcons.vue',
     assets: {
+      hero: 'assets/projects/timosicons/preview.png',
       thumbnail: 'assets/projects/timosicons/thumbnail.png',
       combined: 'assets/projects/timosicons/preview.png',
       mobile: 'assets/projects/timosicons/preview_mobile.png',
@@ -76,6 +78,7 @@ const projects: Project[] = [
       '@/views/projects/investingcollectors/InvestingCollectors.vue',
     icon: 'vehicle-front',
     assets: {
+      hero: 'assets/projects/investingcollectors/preview.png',
       thumbnail: 'assets/projects/investingcollectors/thumbnail.png',
       combined: 'assets/projects/investingcollectors/preview.png',
       mobile: 'assets/projects/investingcollectors/preview_mobile.png',
@@ -107,6 +110,7 @@ const projects: Project[] = [
     icon: 'photos',
     mainComponent: '@/views/projects/workgallery/WorkGallery.vue',
     assets: {
+      hero: 'assets/projects/workgallery/hero.png',
       thumbnail: 'assets/projects/workgallery/thumbnail.png',
       combined: 'assets/projects/workgallery/hero.png',
       mobile: 'assets/projects/workgallery/preview_mobile.png',
@@ -124,6 +128,7 @@ const projects: Project[] = [
     icon: 'lens',
     mainComponent: '@/views/projects/dhbwrichie/DHBWRichie.vue',
     assets: {
+      hero: 'assets/projects/dhbwrichie/preview.png',
       thumbnail: 'assets/projects/dhbwrichie/thumbnail.png',
       combined: 'assets/projects/dhbwrichie/preview.png',
       mobile: 'assets/projects/dhbwrichie/preview_mobile.png',
@@ -155,6 +160,7 @@ const projects: Project[] = [
     icon: 'hockey-stick',
     mainComponent: '@/views/projects/nhlstats/NHLStats.vue',
     assets: {
+      hero: 'assets/projects/nhlstats/preview.png',
       thumbnail: 'assets/projects/nhlstats/thumbnail.png',
       combined: 'assets/projects/nhlstats/preview.png',
       mobile: 'assets/projects/nhlstats/preview_mobile.png',
@@ -182,6 +188,7 @@ const projects: Project[] = [
     mainComponent: '@/views/projects/amspro/AMSPro.vue',
     icon: 'amspro',
     assets: {
+      hero: 'assets/projects/amspro/preview.png',
       thumbnail: 'assets/projects/amspro/thumbnail.png',
       combined: 'assets/projects/amspro/preview.png',
       mobile: 'assets/projects/amspro/preview_mobile.png',
@@ -200,6 +207,7 @@ const projects: Project[] = [
     mainComponent: '@/views/projects/timosaccounts/TimosAccounts.vue',
     icon: 'timos-accounts',
     assets: {
+      hero: 'assets/projects/timosaccounts/hero.png',
       thumbnail: 'assets/projects/amspro/thumbnail.png',
       combined: 'assets/projects/amspro/preview.png',
       mobile: 'assets/projects/amspro/preview_mobile.png',
@@ -218,6 +226,38 @@ const projects: Project[] = [
       tools.vuejs,
       tools.typescript,
       tools.adobexd,
+    ],
+  },
+  {
+    routeName: routes.gastroassistant,
+    title: 'Gastro Assistant',
+    shortName: 'ga',
+    description: 'soon.',
+    type: 'Website',
+    mainComponent: '@/views/projects/gastroassistant/GastroAssistant.vue',
+    icon: 'gastro-assistant',
+    assets: {
+      hero: 'assets/projects/gastroassistant/hero.png',
+      thumbnail: 'assets/projects/amspro/thumbnail.png',
+      combined: 'assets/projects/amspro/preview.png',
+      mobile: 'assets/projects/amspro/preview_mobile.png',
+      desktop: 'assets/projects/amspro/preview_desktop.png',
+    },
+    displayAs: 'combined',
+    website: 'https://gaestro.org',
+    tools: [
+      tools.nestjs,
+      tools.css3,
+      tools.git,
+      tools.mongodb,
+      tools.html5,
+      tools.yarn,
+      tools.npm,
+      tools.vuejs,
+      tools.typescript,
+      tools.adobexd,
+      tools.css3,
+      tools.html5,
     ],
   },
 ];
