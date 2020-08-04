@@ -98,7 +98,7 @@
               </tc-link>
             </tl-flow>
             <tl-flow horizontal="start">
-              <i class="ti-chat-bubbles" />
+              <i class="ti-telegram" />
               <tc-link href="https://t.me/timo_scheuermann">
                 Telegram
               </tc-link>

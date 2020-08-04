@@ -10,7 +10,7 @@ const projects: Project[] = [
     description:
       'A library of high-quality ready to use components that will help you speed up your development workflow.',
     type: 'Vue Component Library',
-    icon: 'component',
+    icon: 'tccomponents',
     mainComponent: '@/views/projects/tccomponents/TC-Components.vue',
     assets: {
       thumbnail: 'assets/projects/tccomponents/thumbnail.png',
@@ -42,7 +42,7 @@ const projects: Project[] = [
     description:
       'With loved designed, highly professional, minimalistic icons for your next project.',
     type: 'Icon Library',
-    icon: 'heart',
+    icon: 'timos-icons',
     mainComponent: '@/views/projects/timosicons/TimosIcons.vue',
     assets: {
       thumbnail: 'assets/projects/timosicons/thumbnail.png',
@@ -198,7 +198,7 @@ const projects: Project[] = [
     description: 'One account for everything',
     type: 'Website',
     mainComponent: '@/views/projects/timosaccounts/TimosAccounts.vue',
-    icon: 'user',
+    icon: 'timos-accounts',
     assets: {
       thumbnail: 'assets/projects/amspro/thumbnail.png',
       combined: 'assets/projects/amspro/preview.png',
