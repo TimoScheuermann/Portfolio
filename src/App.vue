@@ -3,43 +3,30 @@
     <tl-sidebar sidebarBackgroundImage="assets/sidebar.jpg" :blurred="true">
       <portfolio-sidebar-head slot="sidebar-header" v-if="sidebarVisible" />
       <template v-if="sidebarVisible" slot="sidebar-content">
-        <tc-sidebar-item icon="house" name="Home" :to="{ name: 'home' }" />
-        <tc-sidebar-item
-          name="Projects"
-          icon="todo"
-          :to="{ name: 'projects' }"
-        />
+        <tc-sidebar-item icon="house" name="Home" routeName="home" />
+        <tc-sidebar-item name="Projects" icon="todo" routeName="projects" />
         <tc-sidebar-item
           icon="tools"
           name="Reportoire"
-          :to="{ name: 'repertoire' }"
+          routeName="repertoire"
         />
-        <tc-sidebar-item
-          icon="user-card"
-          name="Contact"
-          :to="{ name: 'contact' }"
-        />
+        <tc-sidebar-item icon="user-card" name="Contact" routeName="contact" />
         <tc-sidebar-item
           icon="newspaper"
           name="Newsroom"
-          :to="{ name: 'newsroom' }"
+          routeName="newsroom"
         />
-        <tc-sidebar-item icon="github" name="GitHub" :to="{ name: 'github' }" />
-        <tc-sidebar-item icon="pin" name="Resume" :to="{ name: 'resume' }" />
-        <tc-divider />
+        <tc-sidebar-item icon="github" name="GitHub" routeName="github" />
+        <tc-sidebar-item icon="pin" name="Resume" routeName="resume" />
+        <tc-divider :dark="true" />
         <tc-sidebar-group icon="book-p" name="Projects">
-          <tc-badge
+          <tc-sidebar-item
             v-for="p in projects.filter(x => !x.hideInSidebar)"
             :key="p.title"
-            position="inside"
-            color="error"
-          >
-            <tc-sidebar-item
-              :icon="p.icon"
-              :name="p.title"
-              :to="{ name: p.routeName }"
-            />
-          </tc-badge>
+            :icon="p.icon"
+            :name="p.title"
+            :routeName="p.routeName"
+          />
         </tc-sidebar-group>
       </template>
 
@@ -48,7 +35,6 @@
         <div class="router-view__grower" />
         <portfolio-footer />
       </div>
-      <portfolio-cookie-banner />
     </tl-sidebar>
 
     <portfolio-tabbar />
@@ -62,14 +48,12 @@ import { Project } from '@/models';
 import PortfolioTabbar from '@/components/global/Portfolio-Tabbar.vue';
 import PortfolioSidebarHead from '@/components/global/Portfolio-SidebarHead.vue';
 import PortfolioFooter from '@/components/global/Portfolio-Footer.vue';
-import PortfolioCookieBanner from '@/components/global/Portfolio-Cookie-Banner.vue';
 
 @Component({
   components: {
     'portfolio-tabbar': PortfolioTabbar,
     'portfolio-sidebar-head': PortfolioSidebarHead,
     'portfolio-footer': PortfolioFooter,
-    'portfolio-cookie-banner': PortfolioCookieBanner,
   },
 })
 export default class App extends Vue {

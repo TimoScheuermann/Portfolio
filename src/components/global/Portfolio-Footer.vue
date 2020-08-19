@@ -14,24 +14,27 @@
         </div>
       </template>
     </div>
-    <tc-divider />
+    <tc-divider :dark="!!$route.meta.dark" />
     <div class="footer-items">
       <div class="footer-item">
         © Timo Scheuermann {{ new Date().getFullYear() }}
       </div>
       <div class="footer-grow" />
-      <!-- <tc-link class="footer-item" :to="{ name: routes.impressum }">
+      <!-- <tc-link class="footer-item" :routeName="routes.impressum">
         Impressum
       </tc-link> -->
-      <tc-link class="footer-item" :to="{ name: routes.privacy }">
+      <tc-link class="footer-item" :routeName="routes.privacy">
         Privacy Policy
       </tc-link>
-      <tc-link class="footer-item" :to="{ name: routes.termsofuse }">
+      <tc-link class="footer-item" :routeName="routes.termsofuse">
         Terms of Use
       </tc-link>
-      <tc-link class="footer-item" :to="{ name: routes.cookies }">
-        Cookies
+      <tc-link class="footer-item" :routeName="routes.contact">
+        Contact
       </tc-link>
+      <!-- <tc-link class="footer-item" :routeName="routes.cookies">
+        Cookies
+      </tc-link> -->
     </div>
   </div>
 </template>

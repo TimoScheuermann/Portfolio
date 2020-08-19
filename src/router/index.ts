@@ -1,6 +1,6 @@
 import routes from '@/constants/routes';
-import EmptyRouter from '@/views/EmptyRouter.vue';
-import ProjectSubview from '@/views/projects/Project-Subview.vue';
+import EmptyRouter from '@/views-interim/EmptyRouter.vue';
+import ProjectsInterim from '@/views-interim/ProjectsInterim.vue';
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 
@@ -16,7 +16,7 @@ const router = new VueRouter({
     {
       path: '/',
       name: routes.home,
-      component: () => import('@/views/home/Home.vue'),
+      component: () => import('@/views/Home.vue'),
       meta: {
         title: prefix + 'Home',
         dark: true,
@@ -25,7 +25,7 @@ const router = new VueRouter({
     {
       path: '/repertoire',
       name: routes.repertoire,
-      component: () => import('@/views/repertoire/Repertoire.vue'),
+      component: () => import('@/views/Repertoire.vue'),
       meta: {
         title: prefix + 'Repertoire',
       },
@@ -33,7 +33,7 @@ const router = new VueRouter({
     {
       path: '/contact',
       name: routes.contact,
-      component: () => import('@/views/contact/Contact.vue'),
+      component: () => import('@/views/Contact.vue'),
       meta: {
         title: prefix + 'Contact',
       },
@@ -41,7 +41,7 @@ const router = new VueRouter({
     {
       path: '/github',
       name: routes.github,
-      component: () => import('@/views/github/GitHub.vue'),
+      component: () => import('@/views/GitHub.vue'),
       meta: {
         title: prefix + 'GitHub',
       },
@@ -49,7 +49,7 @@ const router = new VueRouter({
     {
       path: '/resume',
       name: routes.resume,
-      component: () => import('@/views/resume/Resume.vue'),
+      component: () => import('@/views/Resume.vue'),
       meta: {
         title: prefix + 'Resume',
       },
@@ -57,9 +57,16 @@ const router = new VueRouter({
     {
       path: '/newsroom',
       name: routes.newsroom,
-      component: () => import('@/views/newsroom/Newsroom.vue'),
+      component: () => import('@/views/Newsroom.vue'),
       meta: {
         title: prefix + 'Newsroom',
+      },
+    },
+    {
+      path: '/playground',
+      component: () => import('@/views/Playground.vue'),
+      meta: {
+        title: prefix + 'Playground',
       },
     },
     {
@@ -99,12 +106,12 @@ const router = new VueRouter({
     },
     {
       path: '/projects',
-      component: ProjectSubview,
+      component: ProjectsInterim,
       children: [
         {
           path: '',
           name: routes.projects,
-          component: () => import('@/views/projects/Projects.vue'),
+          component: () => import('@/views/projects/subviews/Projects.vue'),
           meta: {
             title: prefix + 'Projects',
             customHero: true,
@@ -113,7 +120,7 @@ const router = new VueRouter({
         {
           path: 'ams-pro',
           name: routes.amspro,
-          component: () => import('@/views/projects/amspro/AMSPro.vue'),
+          component: () => import('@/views/projects/AMSPro.vue'),
           meta: {
             title: prefix + 'AMS Pro',
           },
@@ -125,15 +132,13 @@ const router = new VueRouter({
           meta: {
             title: prefix + 'Uno',
             dark: true,
+            customHero: true,
           },
         },
         {
           path: 'investing-collectors',
           name: routes.investingcollectors,
-          component: () =>
-            import(
-              '@/views/projects/investingcollectors/InvestingCollectors.vue'
-            ),
+          component: () => import('@/views/projects/InvestingCollectors.vue'),
           meta: {
             title: prefix + 'Investing Collectors',
           },
@@ -141,7 +146,7 @@ const router = new VueRouter({
         {
           path: 'dhbw-richie',
           name: routes.dhbwrichie,
-          component: () => import('@/views/projects/dhbwrichie/DHBWRichie.vue'),
+          component: () => import('@/views/projects/DHBWRichie.vue'),
           meta: {
             title: prefix + 'DHBW Richie',
           },
@@ -149,7 +154,7 @@ const router = new VueRouter({
         {
           path: 'nhl-stats',
           name: routes.nhlstats,
-          component: () => import('@/views/projects/nhlstats/NHLStats.vue'),
+          component: () => import('@/views/projects/NHLStats.vue'),
           meta: {
             title: prefix + 'NHL Stats',
           },
@@ -157,8 +162,7 @@ const router = new VueRouter({
         {
           path: 'tccomponents',
           name: routes.tccomponents,
-          component: () =>
-            import('@/views/projects/tccomponents/TCComponents.vue'),
+          component: () => import('@/views/projects/TCComponents.vue'),
           meta: {
             title: prefix + 'TC Components',
           },
@@ -166,7 +170,7 @@ const router = new VueRouter({
         {
           path: 'timos-icons',
           name: routes.timosicons,
-          component: () => import('@/views/projects/timosicons/TimosIcons.vue'),
+          component: () => import('@/views/projects/TimosIcons.vue'),
           meta: {
             title: prefix + "Timo's Icons",
           },
@@ -174,8 +178,7 @@ const router = new VueRouter({
         {
           path: 'workgallery',
           name: routes.workgallery,
-          component: () =>
-            import('@/views/projects/workgallery/WorkGallery.vue'),
+          component: () => import('@/views/projects/WorkGallery.vue'),
           meta: {
             title: prefix + 'Work Gallery',
           },
@@ -183,8 +186,7 @@ const router = new VueRouter({
         {
           path: 'timos-accounts',
           name: routes.timosaccounts,
-          component: () =>
-            import('@/views/projects/timosaccounts/TimosAccounts.vue'),
+          component: () => import('@/views/projects/TimosAccounts.vue'),
           meta: {
             title: prefix + 'Timos Accounts',
           },
@@ -192,18 +194,34 @@ const router = new VueRouter({
         {
           path: 'gastro-assistant',
           name: routes.gastroassistant,
-          component: () =>
-            import('@/views/projects/gastroassistant/GastroAssistant.vue'),
+          component: () => import('@/views/projects/GastroAssistant.vue'),
           meta: {
             title: prefix + 'Gastro Assistant',
           },
         },
         {
+          path: 'timos-translator',
+          name: routes.timostranslator,
+          component: () => import('@/views/projects/TimosTranslator.vue'),
+          meta: {
+            title: prefix + "Timo's Translator",
+          },
+        },
+        {
+          path: 'website-builder',
+          name: routes.websitebuilder,
+          component: () => import('@/views/projects/WebsiteBuilder.vue'),
+          meta: {
+            title: prefix + 'Website Builder',
+          },
+        },
+        {
           path: '*',
           name: routes.notfound,
-          component: () => import('@/views/projects/NotFound.vue'),
+          component: () => import('@/views/projects/subviews/NotFound.vue'),
           meta: {
             title: prefix + 'Projects',
+            customHero: true,
           },
         },
       ],

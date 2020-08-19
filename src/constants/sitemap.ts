@@ -41,10 +41,6 @@ const sitemap: SitemapGroup[] = [
       ...projects.map(x => {
         return { name: x.title, to: { name: x.routeName } };
       }),
-      {
-        name: "Timo's Translator",
-        href: 'https://translator.timos.design',
-      },
     ],
   },
   {
@@ -108,6 +104,24 @@ const sitemap: SitemapGroup[] = [
       {
         name: 'Home',
         href: 'https://accounts.timos.design/',
+      },
+    ],
+  },
+  {
+    group: "Timo's Translator",
+    items: [
+      {
+        name: 'Home',
+        href: 'https://translator.timos.design/',
+      },
+    ],
+  },
+  {
+    group: 'Website Builder',
+    items: [
+      {
+        name: 'Home',
+        href: 'https://websitebuilder.timos.design/',
       },
     ],
   },

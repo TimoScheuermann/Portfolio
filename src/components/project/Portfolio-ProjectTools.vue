@@ -5,14 +5,6 @@
       :subtitle="'in ' + project.title"
     />
 
-    <!-- <div v-for="type in types" :key="type.type" class="tool-type">
-      <div class="tool-type--name">{{ type.type }}</div>
-      <div class="tool-type--entries">
-        <tc-card v-for="tool in type.tools" :key="tool.name" :title="tool.name">
-          <img :src="tool.img" alt="" />
-        </tc-card>
-      </div>
-    </div> -->
     <div class="tool-types" v-for="type in types" :key="type.type">
       <h1>{{ type.type }}</h1>
       <tl-grid minWidth="240">
@@ -31,7 +23,7 @@
 
 <script lang="ts">
 import { Component, Mixins } from 'vue-property-decorator';
-import ProjectView from '@/views/projects/ProjectView.mixin';
+import ProjectView from '@/views/projects/_ProjectView.mixin';
 import { getTools } from '@/utils';
 import { Tool } from '@/models';
 

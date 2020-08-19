@@ -5,7 +5,7 @@ import { Project, Tool } from '@/models';
 import router from '@/router';
 
 export function getProject(
-  routeName: string | null = router.currentRoute.name + ''
+  routeName: string | null | undefined = router.currentRoute.name
 ): Project {
   return projects.filter((x: Project) => x.routeName === routeName)[0];
 }
@@ -15,6 +15,7 @@ export function getTools(
   toolsArray: Tool[] = Object.values(tools)
 ): Tool[] {
   return toolsArray
+    .filter((x, index) => toolsArray.indexOf(x) === index)
     .filter(x => x.type === type)
     .sort((a, b) => a.name.localeCompare(b.name));
 }
@@ -70,23 +71,4 @@ export function formatDate(time: any): string {
         return Math.floor(seconds / +format[2]) + ' ' + format[1] + ' ' + token;
     }
   return time;
-}
-
-export function setCookie(name, value): void {
-  document.cookie = `${name}=${value};path=/`;
-}
-
-export function getCookie(cname): string | null {
-  var name = cname + '=';
-  var ca = document.cookie.split(';');
-  for (var i = 0; i < ca.length; i++) {
-    var c = ca[i];
-    while (c.charAt(0) == ' ') {
-      c = c.substring(1);
-    }
-    if (c.indexOf(name) == 0) {
-      return c.substring(name.length, c.length);
-    }
-  }
-  return null;
 }

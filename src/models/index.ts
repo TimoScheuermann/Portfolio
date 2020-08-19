@@ -3,23 +3,18 @@ export interface Project {
   description: string;
   type: string;
   routeName: string;
-  mainComponent: string;
   icon: string;
   assets: ProjectAssets;
-  displayAs: 'mobile' | 'desktop' | 'combined';
-  shortName: string;
+  github?: string;
   website?: string;
-  latest?: boolean;
   tools?: Tool[];
   hideInSidebar?: boolean;
+  brightThumbnail?: boolean;
+  showOnHome?: boolean;
 }
 export interface ProjectAssets {
-  mobile: string;
-  desktop: string;
-  combined: string;
   thumbnail: string;
   hero: string;
-  appIcon?: string;
 }
 export interface Tool {
   name: string;

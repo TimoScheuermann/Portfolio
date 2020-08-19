@@ -1,5 +1,5 @@
 <template>
-  <tc-hero tc-dark-container :height="400">
+  <tc-hero tc-dark-container tfbackground="backgroundDark" :height="400">
     <div class="hero-container" v-if="project">
       <div class="hero--title" :key="project.title">
         <svg height="160" width="10000">
@@ -16,16 +16,12 @@
 </template>
 <script lang="ts">
 import { Component, Mixins } from 'vue-property-decorator';
-import ProjectView from '@/views/projects/ProjectView.mixin';
+import ProjectView from '@/views/projects/_ProjectView.mixin';
 
 @Component
 export default class PortfolioProjectHead extends Mixins(ProjectView) {}
 </script>
 <style lang="scss" scoped>
-.tc-hero {
-  background: $background_dark;
-}
-
 .hero-container {
   position: relative;
   .hero--title {

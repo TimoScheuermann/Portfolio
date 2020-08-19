@@ -20,4 +20,6 @@ export default {
   timosaccounts: 'timosaccounts',
   cookies: 'cookies',
   gastroassistant: 'gastroassistant',
+  websitebuilder: 'websitebuilder',
+  timostranslator: 'timostranslator',
 };

@@ -1,5 +1,5 @@
 <template>
-  <div content class="project-uno">
+  <div class="project-uno">
     <tc-modal :dark="true" v-model="modalOpened" title="Spieler hinzufügen">
       <tc-input
         :dark="true"
@@ -21,91 +21,93 @@
       <tc-button variant="filled" icon="plus" @click="modalOpened = true" />
     </tc-header>
 
-    <div class="players">
-      <div class="player" v-for="(p, i) in players" :key="p.name">
-        <div class="name" :class="{ w: p.name == getWinner().name }">
-          {{ p.name }}
-        </div>
-        <div class="perc">{{ getWinPerc(p) || '0' }}</div>
-        <div class="points">{{ getPoints(p) }}</div>
-        <div class="kd">{{ getWins(p) }}/{{ getLoses(p) }}</div>
-        <div class="myTurn" v-if="games.length % players.length == i">
-          <i class="ti-circle"></i>
+    <div content="">
+      <div class="players">
+        <div class="player" v-for="(p, i) in players" :key="p.name">
+          <div class="name" :class="{ w: p.name == getWinner().name }">
+            {{ p.name }}
+          </div>
+          <div class="perc">{{ getWinPerc(p) || '0' }}</div>
+          <div class="points">{{ getPoints(p) }}</div>
+          <div class="kd">{{ getWins(p) }}/{{ getLoses(p) }}</div>
+          <div class="myTurn" v-if="games.length % players.length == i">
+            <i class="ti-circle"></i>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div v-if="players.length == 2">
+      <div v-if="players.length == 2">
+        <div class="options">
+          Aktuell muss <b>{{ getLooser().name }}</b>
+          <b style="color: #08f;">
+            {{ (getPoints(getLooser()) - getPoints(getWinner())) / 100 }}€
+          </b>
+          zahlen
+        </div>
+      </div>
+
       <div class="options">
-        Aktuell muss <b>{{ getLooser().name }}</b>
-        <b style="color: #08f;">
-          {{ (getPoints(getLooser()) - getPoints(getWinner())) / 100 }}€
-        </b>
-        zahlen
-      </div>
-    </div>
+        <div class="head">
+          <h2>Rundenergebnis #{{ games.length + 1 }}</h2>
+          <tc-button name="Speichern" @click="save()" />
+        </div>
+        <div v-if="players.length != 2">
+          <tc-select
+            v-model="player_winner"
+            :values="playerNames"
+            placeholder="Gewinner"
+            title="Gewinner"
+            :dark="true"
+          />
+        </div>
 
-    <div class="options">
-      <div class="head">
-        <h2>Rundenergebnis #{{ games.length + 1 }}</h2>
-        <tc-button name="Speichern" @click="save()" />
-      </div>
-      <div v-if="players.length != 2">
         <tc-select
-          v-model="player_winner"
+          v-model="player_looser"
           :values="playerNames"
-          placeholder="Gewinner"
-          title="Gewinner"
+          placeholder="Verlierer"
+          title="Verlierer"
           :dark="true"
+        />
+
+        <tc-input
+          title="Punktzahl"
+          type="number"
+          :dark="true"
+          :buttons="true"
+          v-model="newPoints"
         />
       </div>
 
-      <tc-select
-        v-model="player_looser"
-        :values="playerNames"
-        placeholder="Verlierer"
-        title="Verlierer"
-        :dark="true"
-      />
+      <div class="options">
+        <h2>Graph</h2>
+        <apexchart
+          height="400"
+          ref="chart"
+          type="line"
+          :options="options"
+          :series="series"
+        />
+      </div>
 
-      <tc-input
-        title="Punktzahl"
-        type="number"
-        :dark="true"
-        :buttons="true"
-        v-model="newPoints"
-      />
-    </div>
-
-    <div class="options">
-      <h2>Graph</h2>
-      <apexchart
-        height="400"
-        ref="chart"
-        type="line"
-        :options="options"
-        :series="series"
-      />
-    </div>
-
-    <div class="options">
-      <h2>Spiele</h2>
-      <tc-table :dark="true">
-        <tr>
-          <th>Spiel #</th>
-          <th>Gewinner</th>
-          <th>Verlierer</th>
-          <th>Punkte</th>
-          <th></th>
-        </tr>
-        <tr v-for="(g, index) in games" :key="index">
-          <td>{{ index + 1 }}</td>
-          <td>{{ g.winner.name }}</td>
-          <td>{{ g.looser.name }}</td>
-          <td>{{ g.points }}</td>
-          <td @click="removeGame(index)"><i class="ti-cross"></i></td>
-        </tr>
-      </tc-table>
+      <div class="options">
+        <h2>Spiele</h2>
+        <tc-table :dark="true">
+          <tr>
+            <th>Spiel #</th>
+            <th>Gewinner</th>
+            <th>Verlierer</th>
+            <th>Punkte</th>
+            <th></th>
+          </tr>
+          <tr v-for="(g, index) in games" :key="index">
+            <td>{{ index + 1 }}</td>
+            <td>{{ g.winner.name }}</td>
+            <td>{{ g.looser.name }}</td>
+            <td>{{ g.points }}</td>
+            <td @click="removeGame(index)"><i class="ti-cross"></i></td>
+          </tr>
+        </tc-table>
+      </div>
     </div>
   </div>
 </template>
