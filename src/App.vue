@@ -121,6 +121,7 @@ a {
 .tc-header {
   @media #{$isMobile} {
     position: fixed !important;
+    top: 0 !important;
     right: 0 !important;
     left: 0 !important;
     padding: 0 5vw !important;

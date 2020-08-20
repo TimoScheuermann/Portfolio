@@ -59,11 +59,11 @@
 
       <section id="newsroom">
         <img src="https://newsroom.timos.design/pwa/maskIcon.svg" alt="" />
-        <p>
-          Timo's Newsroom is the source for news about all of my projects. Read
-          annoucements, get updates and learn new features.
-        </p>
-        <p>
+        <div>
+          <p>
+            Timo's Newsroom is the source for news about all of my projects.
+            Read annoucements, get updates and learn new features.
+          </p>
           <tc-button
             tfbackground="alarm"
             name="Newsroom"
@@ -71,7 +71,7 @@
             variant="opaque"
             routeName="newsroom"
           />
-        </p>
+        </div>
       </section>
     </div>
   </div>

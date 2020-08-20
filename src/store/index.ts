@@ -12,10 +12,14 @@ const store = new Vuex.Store({
       series: [],
     },
     repositories: [],
+    ghevents: [],
   },
   mutations: {
     addRepositories: (state: any, repos: any[]) => {
       state.repositories.push(...repos);
+    },
+    addGHEvents: (state: any, events: any[]) => {
+      state.ghevents.push(...events);
     },
   },
   getters: {
@@ -24,6 +28,9 @@ const store = new Vuex.Store({
         (b: any, a: any) =>
           getLongFromDate(a.updated_at) - getLongFromDate(b.updated_at)
       );
+    },
+    ghevents: state => {
+      return state.ghevents;
     },
   },
 });

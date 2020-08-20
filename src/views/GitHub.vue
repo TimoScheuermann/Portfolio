@@ -9,73 +9,66 @@
         variant="filled"
       />
     </tc-header>
-    <tc-hero tc-dark-container height="300">
+    <tc-hero tc-dark-container height="200">
       <img
         slot="background"
-        src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80"
+        src="https://images.unsplash.com/photo-1561211974-8a2737b4dcac?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80"
       />
 
       <tc-spinner v-if="!loaded" variant="dots-wave" />
-
-      <tl-grid head v-else minWidth="100">
-        <tl-flow>
-          <tc-avatar size="small" :src="profile.avatar_url" />
+      <tc-card v-else :rounded="true" :frosted="true">
+        <tl-flow horizontal="space-around">
+          <div class="tile">
+            <div>{{ repos.length }}</div>
+            <div>public repos</div>
+          </div>
+          <div class="tile">
+            <div>{{ yearsActive() }}</div>
+            <div>years active</div>
+          </div>
+          <div class="tile">
+            <div>3</div>
+            <div>private repos</div>
+          </div>
         </tl-flow>
-        <tc-card :rounded="true" :dark="true" background="#000" :frosted="true">
-          <div huge>{{ repos.length }}</div>
-          <div title>public repos</div>
-        </tc-card>
-
-        <tc-card :rounded="true" :dark="true" background="#000" :frosted="true">
-          <div huge>{{ yearsActive() }}</div>
-          <div title>years active</div>
-        </tc-card>
-
-        <tc-card :rounded="true" :dark="true" background="#000" :frosted="true">
-          <div huge>3</div>
-          <div title>private repos</div>
-        </tc-card>
-      </tl-grid>
+      </tc-card>
     </tc-hero>
 
     <div content v-if="loaded">
       <portfolio-big-heading title="Repositories" subtitle="Most Recent" />
-      <tl-grid minWidth="330" v-if="!true">
-        <portfolio-repository
-          v-for="(repo, index) in getRepos"
-          :dark="index === 0 || true"
-          :repo="repo"
-          :index="index"
-          :key="repo.id"
-        />
-      </tl-grid>
 
-      <tl-grid repos>
-        <tc-card
-          v-for="repo in repos"
-          :key="repo.id"
-          :rounded="true"
-          :dark="isArchive(repo)"
-          :title="repo.name"
-          :subtitle="repo.description"
-          :shadow="false"
-        >
-          <div class="archived" v-if="isArchive(repo)">Archived</div>
-          <tl-flow horizontal="space-around">
-            <tl-flow flow="column" info>
-              <i class="ti-calendar-alt" />
-              <span>created</span>
-              <div>{{ convertDate(repo.created_at) }}</div>
-            </tl-flow>
-            <tl-flow flow="column" info>
-              <i class="ti-gears" />
-              <span>updated</span>
-              <div>{{ formatDate(repo.updated_at) }}</div>
-            </tl-flow>
-          </tl-flow>
-          <tc-link :href="repo.html_url">View on GitHub</tc-link>
-        </tc-card>
-      </tl-grid>
+      <tc-table :striped="true" :border="false" @sort="s => (sort = s)">
+        <tc-table-search slot="search" v-model="query" />
+        <template slot="head">
+          <tc-th attribute="name">Repository</tc-th>
+          <tc-th attribute="project">Project</tc-th>
+          <tc-th attribute="created">Created</tc-th>
+          <tc-th attribute="updated">Updated</tc-th>
+          <tc-th>GitHub</tc-th>
+        </template>
+        <tc-tr v-for="r in repos" :key="r.id">
+          <tc-td :tfcolor="isArchive(r) ? 'error' : undefined">
+            {{ r.name }}
+          </tc-td>
+          <tc-td :tfcolor="isArchive(r) ? 'error' : undefined">
+            <template v-if="isArchive(r)">
+              archived
+            </template>
+            <template v-else-if="getProject(r)">
+              <tc-link :routeName="getProject(r).routeName">
+                {{ getProject(r).title }}
+              </tc-link>
+            </template>
+          </tc-td>
+          <!-- <tc-td>{{ r.description }}</tc-td> -->
+          <tc-td>{{ convertDate(r.created_at) }}</tc-td>
+          <tc-td>{{ formatDate(r.updated_at) }}</tc-td>
+          <tc-td><tc-link :href="r.html_url">GitHub</tc-link></tc-td>
+          <!-- <template slot="expander">
+            <p>{{ r.description }}</p>
+          </template> -->
+        </tc-tr>
+      </tc-table>
     </div>
   </div>
 </template>
@@ -86,6 +79,8 @@ import axios from '@/constants/axios';
 import PortfolioRepository from '@/components/Portfolio-Repository.vue';
 import PortfolioBigHeading from '@/components/Portfolio-BigHeading.vue';
 import { formatDate } from '../utils';
+import { Project } from '@/models';
+import projects from '@/constants/projects';
 
 @Component({
   components: {
@@ -97,8 +92,13 @@ export default class GitHubView extends Vue {
   public loaded = false;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   public profile!: any;
+  public query = '';
+  public sort: { attribute: string; direction: number } = {
+    attribute: 'updated',
+    direction: -1,
+  };
 
-  mounted() {
+  async mounted() {
     this.loadRepos();
     this.loadProfile();
   }
@@ -108,7 +108,42 @@ export default class GitHubView extends Vue {
   }
 
   get repos() {
-    return this.$store.getters.repos;
+    return this.$store.getters.repos
+      .filter(x => {
+        if (this.query.length > 0) {
+          return JSON.stringify(x)
+            .toLowerCase()
+            .includes(this.query.toLowerCase());
+        }
+        return true;
+      })
+      .sort((a, b) => {
+        let compared = 0;
+        if (this.sort.attribute === 'name') {
+          compared = a.name.localeCompare(b.name);
+        } else if (this.sort.attribute === 'project') {
+          compared = this.getProjectName(a).localeCompare(
+            this.getProjectName(b)
+          );
+        } else if (this.sort.attribute === 'created') {
+          compared = a.created_at.localeCompare(b.created_at);
+        } else if (this.sort.attribute === 'updated') {
+          compared = a.updated_at.localeCompare(b.updated_at);
+        }
+
+        return this.sort.direction * compared;
+      });
+  }
+
+  public getProject(repo): Project {
+    return projects.filter(x => x.github === repo.html_url)[0];
+  }
+  public getProjectName(repo): string {
+    const project = this.getProject(repo);
+    if (project) {
+      return project.title;
+    }
+    return 'ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ';
   }
 
   isArchive(repo) {
@@ -164,67 +199,23 @@ export default class GitHubView extends Vue {
 }
 </script>
 <style lang="scss" scoped>
-.tl-grid {
-  &[head] {
-    @media #{$isDesktop} {
-      width: calc(90vw - 212px);
-    }
-    @media #{$isMobile} {
-      width: 90vw;
-    }
+.tc-card {
+  @media #{$isDesktop} {
+    width: calc(90vw - 212px);
   }
-  &[repos] {
-    margin-top: 30px;
-    .tc-card:first-child {
-      grid-column: 1 / 3;
-    }
-    .tc-card {
-      overflow: visible;
-    }
-    .archived {
-      position: absolute;
-      user-select: none;
-      top: -10px;
-      right: -10px;
-      box-shadow: $shadow;
-      background: $error;
-      color: #fff;
-      font-size: 12px;
-      $scale: 20px;
-      height: $scale;
-      padding: 0px #{$scale / 3};
-      min-width: #{$scale / 3};
-      border-radius: $scale;
-      line-height: $scale;
-    }
+  @media #{$isMobile} {
+    width: 90vw;
   }
 }
-.tc-card [huge] {
+.tl-flow .tile div:first-child {
   color: $primary;
   font-size: 2em;
   font-weight: 800;
 }
-.tl-flow[info] {
-  margin: 10px 0;
-  position: relative;
-  i {
-    font-size: 1.6em;
-    $scale: 60px;
-    width: $scale;
-    height: $scale;
-    line-height: $scale;
-    text-align: center;
-    border-radius: $scale;
-    background: $background_dark;
-    color: $color_dark;
-  }
-  span {
-    margin: 5px 0;
-    font-weight: bold;
-  }
-  div {
-    margin-bottom: 5px;
-    font-weight: 500;
-  }
+.tc-table-2 {
+  margin-top: 20px;
+}
+.tc-td {
+  padding: 10px;
 }
 </style>
