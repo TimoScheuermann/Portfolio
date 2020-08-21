@@ -134,12 +134,18 @@ export default class Contact extends Vue {
 
   public async send() {
     this.sending = true;
-    const { data } = await axios.post(
-      'https://timos-notifier.herokuapp.com/bot/contactForm',
-      this.message
-    );
-    this.status = data ? 'success' : 'error';
-    this.sending = false;
+    axios
+      // .post('http://localhost:3000/contact', this.message)
+      .post('https://api.timos.design/contact', this.message)
+      .then(() => {
+        this.status = 'success';
+      })
+      .catch(() => {
+        this.status = 'error';
+      })
+      .finally(() => {
+        this.sending = false;
+      });
   }
 }
 </script>
