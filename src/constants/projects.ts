@@ -68,6 +68,7 @@ const projects: Project[] = [
       thumbnail: 'assets/projects/timosaccounts/thumbnail.png',
     },
     showOnHome: true,
+    brightThumbnail: true,
     website: 'https://accounts.timos.design',
     github: 'https://github.com/TimoScheuermann/Timos-Accounts',
     tools: [
@@ -238,7 +239,7 @@ const projects: Project[] = [
     title: "Timo's Translator",
     description: 'soon.',
     type: 'Mobile App (PWA)',
-    icon: 'globe',
+    icon: 'timos-translator',
     assets: {
       hero: 'assets/projects/timostranslator/hero.png',
       thumbnail: 'assets/projects/timostranslator/thumbnail.png',

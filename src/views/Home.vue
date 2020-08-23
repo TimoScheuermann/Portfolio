@@ -25,6 +25,7 @@
           :title="p.title"
           :subtitle="p.type"
           :dark="true"
+          :class="{ brightThumbnail: p.brightThumbnail }"
         >
           <div class="featured-container">
             <h1>{{ p.title }}</h1>
@@ -59,7 +60,7 @@
 
       <section id="newsroom">
         <img src="https://newsroom.timos.design/pwa/maskIcon.svg" alt="" />
-        <div>
+        <tl-flow flow="column" vertical="start">
           <p>
             Timo's Newsroom is the source for news about all of my projects.
             Read annoucements, get updates and learn new features.
@@ -71,7 +72,7 @@
             variant="opaque"
             routeName="newsroom"
           />
-        </div>
+        </tl-flow>
       </section>
     </div>
   </div>
@@ -198,27 +199,24 @@ export default class Home extends Vue {
     }
   }
 }
+.tc-magic-card.brightThumbnail /deep/ .tc-magic-card--thumbnail {
+  color: #111 !important;
+}
 
 section#newsroom {
-  display: flex;
-  justify-content: center;
-  justify-content: space-around;
-  align-items: center;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-gap: 10px;
   padding: 10px;
-  @media only screen and(max-width: 480px) {
-    flex-direction: column;
-    div {
-      text-align: center;
-    }
-  }
+
   background: $paragraph_dark;
   border-radius: $border-radius;
   margin-top: 20px;
-  img,
-  p {
-    font-weight: 500;
+  img {
+    max-height: 100px;
   }
   p {
+    font-weight: 500;
     margin: 3px {
       bottom: 7px;
     }
