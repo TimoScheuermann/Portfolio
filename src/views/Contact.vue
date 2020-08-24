@@ -1,111 +1,105 @@
 <template>
   <div class="contact">
-    <tc-hero height="400">
-      <img src="assets/contact-hero.webp" slot="background" alt="" />
+    <tc-header title="Contact" variant="sticky" />
+    <tc-hero :dark="true">
+      <img src="assets/contact-hero.jpg" slot="background" alt="" />
+      <h1>Contact</h1>
     </tc-hero>
-    <div content>
-      <tc-card :rounded="true" :frosted="true" :dark="true">
-        <div class="contact-grid">
-          <transition-group tag="div" class="contact-form" name="swap">
-            <tl-flow flow="column" key="sending" v-if="sending">
-              <tc-spinner :dark="true" variant="dots-wave" />
-              <b>Sending</b>
-            </tl-flow>
-
-            <tl-flow e flow="column" key="error" v-if="status === 'error'">
-              <i class="ti-cross-circle"></i>
-              <h2>Oops. Something went wrong :(</h2>
-              <p>
-                Try sending a new message, or contact me by mail or telegram
-              </p>
-              <tc-button
-                @click="reset(false)"
-                variant="filled"
-                tfbackground="error"
-                icon="repeat"
-                name="Retry sending"
+    <div content="">
+      <h1>Get In Touch</h1>
+      <div class="contact-grid">
+        <transition-group tag="div" class="contact-form" name="swap">
+          <div class="form" key="form" v-if="!sending && status === 'unknown'">
+            <tl-grid minWidth="200">
+              <tc-input
+                icon="user"
+                v-model="message.name"
+                title="Your name"
+                placeholder="John Doe"
               />
-            </tl-flow>
-
-            <tl-flow s flow="column" key="success" v-if="status === 'success'">
-              <i class="ti-checkmark-circle"></i>
-              <h2>Thank's for submitting your message :)</h2>
-              <p>I'll answer your message a soon as possible.</p>
-              <tc-button
-                @click="reset"
-                variant="filled"
-                tfbackground="success"
-                icon="pencil"
-                name="New Message"
+              <tc-input
+                icon="mail"
+                v-model="message.email"
+                title="How can I contact you?"
+                placeholder="E-Mail, phone number, ..."
               />
-            </tl-flow>
-
-            <div key="form" v-if="!sending && status === 'unknown'">
-              <h1>Lets talk</h1>
-              <tl-grid minWidth="200">
-                <tc-input
-                  icon="user"
-                  :frosted="true"
-                  :dark="true"
-                  v-model="message.name"
-                  title="Your name"
-                  placeholder="John Doe"
-                />
-                <tc-input
-                  icon="mail"
-                  :frosted="true"
-                  :dark="true"
-                  v-model="message.email"
-                  title="How can I contact you?"
-                  placeholder="E-Mail, phone number, ..."
-                />
-              </tl-grid>
-              <tc-textarea
-                :frosted="true"
-                :dark="true"
-                v-model="message.message"
-                title="Message"
-                placeholder="What do you want to say :)"
-              />
-              <tc-button
-                name="Send Message"
-                variant="filled"
-                icon="reply"
-                @click="send()"
-              />
-            </div>
-          </transition-group>
-          <tl-flow flow="column" class="contact-info">
-            <tc-avatar src="assets/me.jpg" />
-            <tl-flow horizontal="start">
-              <i class="ti-mail" />
-              <tc-link href="mailto:timo.scheuermann@gmx.de">
-                Write me an E-Mail
-              </tc-link>
-            </tl-flow>
-            <tl-flow horizontal="start">
-              <i class="ti-pin" />
-              <tc-link
-                href="https://duckduckgo.com/?q=mannheim&ia=about&iaxm=maps"
-              >
-                Mannheim, Germany
-              </tc-link>
-            </tl-flow>
-            <tl-flow horizontal="start">
-              <i class="ti-user-card" />
-              <tc-link href="assets/contact/Timo Scheuermann.vcf">
-                Contact
-              </tc-link>
-            </tl-flow>
-            <tl-flow horizontal="start">
-              <i class="ti-telegram" />
-              <tc-link href="https://t.me/timo_scheuermann">
-                Telegram
-              </tc-link>
-            </tl-flow>
+            </tl-grid>
+            <tc-textarea
+              v-model="message.message"
+              :rows="3"
+              title="Message"
+              placeholder="What do you want to say :)"
+            />
+            <tc-button
+              name="Send Message"
+              variant="filled"
+              icon="reply"
+              @click="send()"
+            />
+          </div>
+          <tl-flow
+            flow="column"
+            key="sending"
+            class="sending"
+            v-else-if="sending"
+          >
+            <tc-spinner size="30" />
+            <h2>Sending...</h2>
           </tl-flow>
-        </div>
-      </tc-card>
+          <tl-flow
+            flow="column"
+            key="error"
+            class="error"
+            v-else-if="status === 'error'"
+          >
+            <h2>Oops. Something went wrong :(</h2>
+            <p>
+              Try sending a new message, or contact me by mail or telegram
+            </p>
+            <tc-button
+              @click="reset(false)"
+              variant="filled"
+              tfbackground="error"
+              icon="repeat"
+              name="Retry sending"
+            />
+          </tl-flow>
+          <tl-flow flow="column" key="success" class="success" v-else>
+            <h2>Thank's for submitting your message :)</h2>
+            <p>I'll answer your message a soon as possible.</p>
+            <tc-button
+              @click="reset"
+              variant="filled"
+              tfbackground="success"
+              icon="pencil"
+              name="New Message"
+            />
+          </tl-flow>
+        </transition-group>
+        <div class="bar" />
+        <tl-flow flow="column" class="details">
+          <tl-flow flow="column">
+            <tc-avatar src="assets/me.jpg" />
+          </tl-flow>
+          <tl-flow horizontal="space-around">
+            <a href="mailto:timo.scheuermann@gmx.de">
+              <i class="ti-mail" />
+            </a>
+
+            <a href="https://duckduckgo.com/?q=mannheim&ia=about&iaxm=maps">
+              <i class="ti-pin" />
+            </a>
+
+            <a href="assets/contact/Timo Scheuermann.vcf">
+              <i class="ti-user-card" />
+            </a>
+
+            <a href="https://t.me/timo_scheuermann">
+              <i class="ti-telegram" />
+            </a>
+          </tl-flow>
+        </tl-flow>
+      </div>
     </div>
   </div>
 </template>
@@ -150,16 +144,47 @@ export default class Contact extends Vue {
 }
 </script>
 <style lang="scss" scoped>
-.tc-hero img {
-  object-position: 50% -50px;
-}
-.tc-card {
-  margin-top: -250px;
+.contact {
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 2px 300px;
+    grid-gap: 20px;
+    .bar {
+      background: black;
+      opacity: 0.1;
+      border-radius: 2px;
+      margin: 20px 0;
+    }
+    .details .tl-flow:nth-child(2) {
+      margin-top: 20px;
+      a {
+        $scale: 50px;
+        margin: 10px;
+        background: $paragraph;
+        width: $scale;
+        height: $scale;
+        border-radius: $scale;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: $color;
+        i {
+          font-size: 20px;
+        }
+        transition: all 0.2s ease-in-out;
+        &:hover {
+          background: $primary;
+          color: #fff;
+          box-shadow: $shadow;
+        }
+      }
+    }
+  }
 }
 
 .swap-enter-active,
 .swap-leave-active {
-  transition: all 1s;
+  transition: all 0.5s;
 }
 .swap-enter {
   opacity: 0;
@@ -175,64 +200,5 @@ export default class Contact extends Vue {
   right: 0;
   bottom: 0;
   position: absolute;
-}
-
-.contact-grid {
-  display: grid;
-  @media only screen and (min-width: 580px) {
-    grid-template-columns: 1fr 200px;
-  }
-  grid-gap: 50px;
-  .contact-form {
-    position: relative;
-    min-height: 350px;
-
-    .tl-grid {
-      grid-gap: 0 30px;
-    }
-    .tc-button {
-      margin-top: 20px;
-    }
-
-    & > .tl-flow {
-      min-height: 350px;
-      &[s],
-      &[e] {
-        h2 {
-          margin: 0;
-        }
-        i {
-          margin-bottom: 20px;
-          font-size: 4em;
-          &.ti-checkmark-circle {
-            color: $success;
-          }
-          &.ti-cross-circle {
-            color: $error;
-          }
-        }
-      }
-    }
-  }
-  .contact-info {
-    background: rgba($paragraph_dark, 0.5);
-    margin: -30px;
-    padding: 30px;
-
-    .tc-link {
-      color: inherit;
-      &::after {
-        background: currentColor;
-      }
-    }
-    .tl-flow {
-      margin-top: 20px;
-      width: 100%;
-      i {
-        font-size: 1.5em;
-        margin-right: 10px;
-      }
-    }
-  }
 }
 </style>
