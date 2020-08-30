@@ -22,4 +22,5 @@ export default {
   gastroassistant: 'gastroassistant',
   websitebuilder: 'websitebuilder',
   timostranslator: 'timostranslator',
+  fitnesshub: 'fitnesshub',
 };

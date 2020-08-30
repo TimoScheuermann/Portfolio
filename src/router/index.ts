@@ -216,6 +216,14 @@ const router = new VueRouter({
           },
         },
         {
+          path: 'fitnesshub',
+          name: routes.fitnesshub,
+          component: () => import('@/views/projects/FitnessHub.vue'),
+          meta: {
+            title: prefix + 'FitnessHub',
+          },
+        },
+        {
           path: '*',
           name: routes.notfound,
           component: () => import('@/views/projects/subviews/NotFound.vue'),
