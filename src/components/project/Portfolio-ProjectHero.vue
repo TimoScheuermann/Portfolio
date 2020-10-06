@@ -1,5 +1,5 @@
 <template>
-  <tc-hero tc-dark-container tfbackground="backgroundDark" :height="400">
+  <tc-hero tfbackground="backgroundDark" :height="400">
     <div class="hero-container" v-if="project">
       <div class="hero--title" :key="project.title">
         <svg height="160" width="10000">

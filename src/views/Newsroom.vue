@@ -1,7 +1,7 @@
 <template>
   <div class="newsroom">
-    <tc-header variant="sticky" title="Newsroom" :autoBackground="true" />
-    <tc-hero tc-dark-container background="#f1c40f">
+    <tc-header variant="sticky" title="Newsroom" />
+    <tc-hero background="#f1c40f">
       <img
         slot="background"
         src="https://newsroom.timos.design/assets/hero.jpg"
@@ -38,10 +38,7 @@
         <tc-divider v-if="i !== 0" />
         <div class="news-container">
           <tl-flow flow="column">
-            <tc-avatar
-              border="rounded"
-              :src="'https://newsroom.timos.design/' + n.thumbnail"
-            />
+            <tc-avatar border="rounded" :src="getImageUrl(n.thumbnail)" />
 
             <span>{{ formatDate(n.date) }}</span>
           </tl-flow>
@@ -76,6 +73,13 @@ export default class Newsroom extends Vue {
   }
   public formatDate(n: number): string {
     return formatDate(n);
+  }
+
+  public getImageUrl(src: string): string {
+    if (src.startsWith('http')) {
+      return src;
+    }
+    return 'https://newsroom.timos.design/' + src;
   }
 }
 </script>

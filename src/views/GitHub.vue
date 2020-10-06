@@ -1,6 +1,6 @@
 <template>
   <div class="github">
-    <tc-header variant="sticky" :autoBackground="true" title="GitHub">
+    <tc-header variant="sticky" title="GitHub">
       <tc-button
         v-if="loaded"
         name="View on GitHub"
@@ -9,7 +9,7 @@
         variant="filled"
       />
     </tc-header>
-    <tc-hero tc-dark-container height="200">
+    <tc-hero height="200">
       <img
         slot="background"
         src="https://images.unsplash.com/photo-1561211974-8a2737b4dcac?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80"

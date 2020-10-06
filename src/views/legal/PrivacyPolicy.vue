@@ -1,7 +1,7 @@
 <template>
   <div class="legal-privacy">
-    <tc-header variant="sticky" :autoBackground="true" title="Privacy Policy" />
-    <tc-hero tc-dark-container>
+    <tc-header variant="sticky" title="Privacy Policy" />
+    <tc-hero>
       <img src="assets/legal-hero.jpg" slot="background" alt="" />
       <tl-flow flow="column">
         <h1>Privacy Policy</h1>

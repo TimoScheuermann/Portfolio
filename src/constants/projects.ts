@@ -87,7 +87,8 @@ const projects: Project[] = [
   {
     routeName: routes.fitnesshub,
     title: 'FitnessHub',
-    description: 'soon.',
+    description:
+      'FitnessHub is an online oasis for all sports enthusiasts, sports aficionados and professionals who, regardless of their gender, age and fitness level, want to choose a healthy, active and conscious life. As a combination of an training and nutrition app, FitnessHub provides digital and personalized guidance in achieving personal fitness goals.',
     type: 'App',
     icon: 'gym',
     assets: {

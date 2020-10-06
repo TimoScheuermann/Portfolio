@@ -1,6 +1,10 @@
 import projects from '@/constants/projects';
 import { SitemapGroup } from '@/models';
 
+function getProjectPosition(name: string) {
+  return projects.map(x => x.title).indexOf(name);
+}
+
 const sitemap: SitemapGroup[] = [
   {
     group: 'About me',
@@ -43,88 +47,115 @@ const sitemap: SitemapGroup[] = [
       }),
     ],
   },
-  {
-    group: "Timo's Icons",
-    items: [
-      {
-        name: 'Home',
-        href: 'https://icons.timos.design',
-      },
-      {
-        name: 'Icons',
-        href: 'https://icons.timos.design/icons',
-      },
-      {
-        name: 'Versions',
-        href: 'https://icons.timos.design/version',
-      },
-      {
-        name: 'Issues',
-        href: 'https://icons.timos.design/issues',
-      },
-      {
-        name: 'Getting Started',
-        href: 'https://icons.timos.design/getting%20started',
-      },
-    ],
-  },
-  {
-    group: 'TC Components',
-    items: [
-      {
-        name: 'Home',
-        href: 'https://components.timos.design/',
-      },
-      {
-        name: 'Designer',
-        href: 'https://components.timos.design/designer/',
-      },
-      {
-        name: 'How to',
-        href: 'https://components.timos.design/howto/',
-      },
-      {
-        name: 'Demos',
-        href: 'https://components.timos.design/demos/',
-      },
-    ],
-  },
-  {
-    group: "Timo's Newsroom",
-    items: [
-      {
-        name: 'Home',
-        href: 'https://newsroom.timos.design/',
-      },
-    ],
-  },
-  {
-    group: "Timo's Accounts",
-    items: [
-      {
-        name: 'Home',
-        href: 'https://accounts.timos.design/',
-      },
-    ],
-  },
-  {
-    group: "Timo's Translator",
-    items: [
-      {
-        name: 'Home',
-        href: 'https://translator.timos.design/',
-      },
-    ],
-  },
-  {
-    group: 'Website Builder',
-    items: [
-      {
-        name: 'Home',
-        href: 'https://websitebuilder.timos.design/',
-      },
-    ],
-  },
+  ...[
+    {
+      group: "Timo's Icons",
+      items: [
+        {
+          name: 'Home',
+          href: 'https://icons.timos.design',
+        },
+        {
+          name: 'Icons',
+          href: 'https://icons.timos.design/icons',
+        },
+        {
+          name: 'Versions',
+          href: 'https://icons.timos.design/version',
+        },
+        {
+          name: 'Issues',
+          href: 'https://icons.timos.design/issues',
+        },
+        {
+          name: 'Getting Started',
+          href: 'https://icons.timos.design/getting%20started',
+        },
+      ],
+    },
+    {
+      group: 'TC Components',
+      items: [
+        {
+          name: 'Home',
+          href: 'https://components.timos.design/',
+        },
+        {
+          name: 'Designer',
+          href: 'https://components.timos.design/designer/',
+        },
+        {
+          name: 'How to',
+          href: 'https://components.timos.design/howto/',
+        },
+        {
+          name: 'Demos',
+          href: 'https://components.timos.design/demos/',
+        },
+      ],
+    },
+    {
+      group: "Timo's Newsroom",
+      items: [
+        {
+          name: 'Home',
+          href: 'https://newsroom.timos.design/',
+        },
+      ],
+    },
+    {
+      group: "Timo's Accounts",
+      items: [
+        {
+          name: 'Home',
+          href: 'https://accounts.timos.design/',
+        },
+      ],
+    },
+    {
+      group: "Timo's Translator",
+      items: [
+        {
+          name: 'Home',
+          href: 'https://translator.timos.design/',
+        },
+      ],
+    },
+    {
+      group: 'Website Builder',
+      items: [
+        {
+          name: 'Home',
+          href: 'https://websitebuilder.timos.design/',
+        },
+      ],
+    },
+    {
+      group: 'FitnessHub',
+      items: [
+        {
+          name: 'About',
+          href: 'https://fitnesshub.app/',
+        },
+        {
+          name: 'Training',
+          href: 'https://fitnesshub.app/training',
+        },
+        {
+          name: 'Nutrition',
+          href: 'https://fitnesshub.app/nutrition',
+        },
+        {
+          name: 'Feed',
+          href: 'https://fitnesshub.app/community',
+        },
+        {
+          name: 'Login',
+          href: 'https://fitnesshub.app/login',
+        },
+      ],
+    },
+  ].sort((a, b) => getProjectPosition(a.group) - getProjectPosition(b.group)),
 ];
 
 export default sitemap;

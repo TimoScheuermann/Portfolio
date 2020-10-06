@@ -1,7 +1,7 @@
 <template>
   <div class="view--repertoire">
-    <tc-header variant="sticky" title="Repertoire" :autoBackground="true" />
-    <tc-hero height="300" tc-dark-container>
+    <tc-header variant="sticky" title="Repertoire" />
+    <tc-hero height="300">
       <img slot="background" src="assets/repertoire-hero.jpg" />
     </tc-hero>
     <div content>

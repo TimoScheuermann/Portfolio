@@ -1,7 +1,7 @@
 <template>
   <div class="legal-terms-of-use">
-    <tc-header variant="sticky" :autoBackground="true" title="Terms of Use" />
-    <tc-hero tc-dark-container>
+    <tc-header variant="sticky" title="Terms of Use" />
+    <tc-hero>
       <img src="assets/legal-hero.jpg" slot="background" alt="" />
       <tl-flow flow="column">
         <h1>Terms of Use</h1>

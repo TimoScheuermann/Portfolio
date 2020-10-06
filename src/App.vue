@@ -2,7 +2,7 @@
   <div id="timos-portfolio" :class="{ dark: !!$route.meta.dark }">
     <tl-sidebar sidebarBackgroundImage="assets/sidebar.jpg" :blurred="true">
       <portfolio-sidebar-head slot="sidebar-header" v-if="sidebarVisible" />
-      <template v-if="sidebarVisible" slot="sidebar-content">
+      <div v-if="sidebarVisible" slot="sidebar-content">
         <tc-sidebar-item icon="house" name="Home" routeName="home" />
         <tc-sidebar-item name="Projects" icon="todo" routeName="projects" />
         <tc-sidebar-item
@@ -28,7 +28,7 @@
             :routeName="p.routeName"
           />
         </tc-sidebar-group>
-      </template>
+      </div>
 
       <div class="router-view">
         <router-view />

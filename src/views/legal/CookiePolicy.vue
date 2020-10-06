@@ -1,7 +1,7 @@
 <template>
   <div class="legal-cookies">
-    <tc-header variant="sticky" :autoBackground="true" title="Cookie Policy" />
-    <tc-hero tc-dark-container>
+    <tc-header variant="sticky" title="Cookie Policy" />
+    <tc-hero>
       <img src="assets/legal-hero.jpg" slot="background" alt="" />
       <tl-flow flow="column">
         <h1>Cookie Policy</h1>
