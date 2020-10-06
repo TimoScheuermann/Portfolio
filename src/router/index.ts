@@ -1,4 +1,5 @@
 import routes from '@/constants/routes';
+import { getProject } from '@/utils';
 import EmptyRouter from '@/views-interim/EmptyRouter.vue';
 import ProjectsInterim from '@/views-interim/ProjectsInterim.vue';
 import Vue from 'vue';
@@ -60,6 +61,7 @@ const router = new VueRouter({
       component: () => import('@/views/Newsroom.vue'),
       meta: {
         title: prefix + 'Newsroom',
+        description: getProject(routes.newsroom).description,
       },
     },
     {
@@ -123,6 +125,7 @@ const router = new VueRouter({
           component: () => import('@/views/projects/AMSPro.vue'),
           meta: {
             title: prefix + 'AMS Pro',
+            description: getProject(routes.amspro).description,
           },
         },
         {
@@ -141,6 +144,7 @@ const router = new VueRouter({
           component: () => import('@/views/projects/InvestingCollectors.vue'),
           meta: {
             title: prefix + 'Investing Collectors',
+            description: getProject(routes.investingcollectors).description,
           },
         },
         {
@@ -149,6 +153,7 @@ const router = new VueRouter({
           component: () => import('@/views/projects/DHBWRichie.vue'),
           meta: {
             title: prefix + 'DHBW Richie',
+            description: getProject(routes.dhbwrichie).description,
           },
         },
         {
@@ -157,6 +162,7 @@ const router = new VueRouter({
           component: () => import('@/views/projects/NHLStats.vue'),
           meta: {
             title: prefix + 'NHL Stats',
+            description: getProject(routes.nhlstats).description,
           },
         },
         {
@@ -165,6 +171,7 @@ const router = new VueRouter({
           component: () => import('@/views/projects/TCComponents.vue'),
           meta: {
             title: prefix + 'TC Components',
+            description: getProject(routes.tccomponents).description,
           },
         },
         {
@@ -173,6 +180,7 @@ const router = new VueRouter({
           component: () => import('@/views/projects/TimosIcons.vue'),
           meta: {
             title: prefix + "Timo's Icons",
+            description: getProject(routes.timosicons).description,
           },
         },
         {
@@ -181,6 +189,7 @@ const router = new VueRouter({
           component: () => import('@/views/projects/WorkGallery.vue'),
           meta: {
             title: prefix + 'Work Gallery',
+            description: getProject(routes.workgallery).description,
           },
         },
         {
@@ -189,6 +198,7 @@ const router = new VueRouter({
           component: () => import('@/views/projects/TimosAccounts.vue'),
           meta: {
             title: prefix + 'Timos Accounts',
+            description: getProject(routes.timosaccounts).description,
           },
         },
         {
@@ -197,6 +207,7 @@ const router = new VueRouter({
           component: () => import('@/views/projects/GastroAssistant.vue'),
           meta: {
             title: prefix + 'Gastro Assistant',
+            description: getProject(routes.gastroassistant).description,
           },
         },
         {
@@ -205,6 +216,7 @@ const router = new VueRouter({
           component: () => import('@/views/projects/TimosTranslator.vue'),
           meta: {
             title: prefix + "Timo's Translator",
+            description: getProject(routes.timostranslator).description,
           },
         },
         {
@@ -213,6 +225,7 @@ const router = new VueRouter({
           component: () => import('@/views/projects/WebsiteBuilder.vue'),
           meta: {
             title: prefix + 'Website Builder',
+            description: getProject(routes.websitebuilder).description,
           },
         },
         {
@@ -221,6 +234,7 @@ const router = new VueRouter({
           component: () => import('@/views/projects/FitnessHub.vue'),
           meta: {
             title: prefix + 'FitnessHub',
+            description: getProject(routes.fitnesshub).description,
           },
         },
         {

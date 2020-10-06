@@ -16,16 +16,27 @@ for (const component in TCComponents) {
 
 router.beforeEach((to: Route, from: Route, next) => {
   const title = to.meta.title || 'Timo Scheuermann | Portfolio';
+  const description =
+    to.meta.description ||
+    "Portfolio about all my Projects I've done since May 2019";
   document.title = title;
 
   const gt = document.querySelector('meta[name="title"]');
   if (gt) gt.setAttribute('content', title);
+  const gd = document.querySelector('meta[name="description"]');
+  if (gd) gd.setAttribute('content', description);
 
-  const twitter = document.querySelector('meta[property="twitter:title"]');
-  if (twitter) twitter.setAttribute('content', title);
+  const twitterTitle = document.querySelector('meta[property="twitter:title"]');
+  if (twitterTitle) twitterTitle.setAttribute('content', title);
+  const twitterDesc = document.querySelector(
+    'meta[property="twitter:description"]'
+  );
+  if (twitterDesc) twitterDesc.setAttribute('content', description);
 
-  const og = document.querySelector('meta[property="og:title"]');
-  if (og) og.setAttribute('content', title);
+  const ogTitle = document.querySelector('meta[property="og:title"]');
+  if (ogTitle) ogTitle.setAttribute('content', title);
+  const ogDesc = document.querySelector('meta[property="og:description"]');
+  if (ogDesc) ogDesc.setAttribute('content', description);
 
   document.body.scrollTop = 0; // For Safari
   document.documentElement.scrollTop = 0;
