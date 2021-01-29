@@ -34,20 +34,26 @@
 
       <h2>Latest news</h2>
 
-      <div v-for="(n, i) in news" :key="n._id">
+      <a
+        v-for="(n, i) in news"
+        :key="n._id"
+        target="_blank"
+        rel="noopener noreferrer"
+        :href="'https://newsroom.timos.design/news/' + n._id"
+      >
         <tc-divider v-if="i !== 0" />
         <div class="news-container">
           <tl-flow flow="column">
-            <tc-avatar border="rounded" :src="getImageUrl(n.thumbnail)" />
+            <tc-avatar border="rounded" :src="n.thumbnail" />
 
-            <span>{{ formatDate(n.date) }}</span>
+            <span>{{ formatDate(n.timestamp) }}</span>
           </tl-flow>
           <div class="news-info">
             <h3>{{ n.title }}</h3>
-            <p>{{ n.description }}</p>
+            <p>{{ n.content }}</p>
           </div>
         </div>
-      </div>
+      </a>
     </div>
   </div>
 </template>
@@ -65,21 +71,15 @@ import { formatDate } from '@/utils';
 })
 export default class Newsroom extends Vue {
   public news = [];
+
   async mounted() {
     const { data } = await axios.get(
-      'https://api.timos.design/newsroom/latest'
+      'https://api.timos.design:3002/newsroom?limit=5'
     );
     this.news = data;
   }
   public formatDate(n: number): string {
     return formatDate(n);
-  }
-
-  public getImageUrl(src: string): string {
-    if (src.startsWith('http')) {
-      return src;
-    }
-    return 'https://newsroom.timos.design/' + src;
   }
 }
 </script>
@@ -108,6 +108,7 @@ export default class Newsroom extends Vue {
   margin: 20px 0;
 }
 .news-container {
+  color: $color;
   display: grid;
   grid-template-columns: auto 1fr;
   grid-gap: 20px;
@@ -124,6 +125,11 @@ export default class Newsroom extends Vue {
     }
     p {
       margin-bottom: 0;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 4;
+      -webkit-box-orient: vertical;
+      text-overflow: ellipsis;
     }
     div {
       text-align: right;
