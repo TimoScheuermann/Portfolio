@@ -1,5 +1,7 @@
 <template>
   <div class="home">
+    <PHeader title="Timo Scheuermann" rootRoute="home" backTitle="Home" />
+
     <tc-hero height="200" :dark="true">
       <img src="assets/home-hero.jpg" slot="background" id="bg" />
       <div class="hero-container">
@@ -12,39 +14,16 @@
     </tc-hero>
 
     <div content>
-      <portfolio-big-heading
-        title="Featured Projects"
-        subtitle="I've worked on"
-      />
-
-      <div class="featured-projects">
-        <tc-magic-card
-          v-for="p in projects.filter(x => x.showOnHome)"
-          :key="p.title"
-          :src="p.assets.thumbnail"
-          :title="p.title"
-          :subtitle="p.type"
-          :dark="true"
-          :class="{ brightThumbnail: p.brightThumbnail }"
-        >
-          <div class="featured-container">
-            <h1>{{ p.title }}</h1>
-            <p>{{ p.description }}</p>
-            <tc-button
-              name="Find out more"
-              :icon="p.icon"
-              variant="filled"
-              :routeName="p.routeName"
-            />
-          </div>
-        </tc-magic-card>
+      <PHeading title="Featured Projects" subtitle="I've worked on" />
+      <div max-width class="featured-projects">
+        <PProjectPreview v-for="p in projects" :key="p._id" :project="p" />
       </div>
 
       <tl-flow>
         <tc-button
           large
-          background="#fff"
-          color="#000"
+          :background="$store.getters.darkmode ? '#fff' : '#111'"
+          :color="$store.getters.darkmode ? '#111' : '#fff'"
           name="All projects"
           icon="chevron-right"
           iconPosition="right"
@@ -53,13 +32,12 @@
         />
       </tl-flow>
 
-      <portfolio-big-heading
-        title="Newsroom"
-        subtitle="Always stay up to date"
-      />
+      <PHeading title="Newsroom" subtitle="Always stay up to date" />
 
-      <section id="newsroom">
-        <img src="https://newsroom.timos.design/pwa/maskIcon.svg" alt="" />
+      <section id="newsroom" max-width :dark="$store.getters.darkmode">
+        <tl-flow>
+          <img :src="$newsIcon" alt="" />
+        </tl-flow>
         <tl-flow flow="column" vertical="start">
           <p>
             Timo's Newsroom is the source for news about all of my projects.
@@ -75,25 +53,28 @@
         </tl-flow>
       </section>
     </div>
+
+    <PFooter />
   </div>
 </template>
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator';
 
-import projects from '@/constants/projects';
-import { Project } from '@/models';
-import PortfolioBigHeading from '@/components/Portfolio-BigHeading.vue';
-import PortfolioProjectAppIcon from '@/components/project/Portfolio-ProjectAppIcon.vue';
+import PProjectPreview from '@/components/PProjectPreview.vue';
+import { IProject } from '@/utils/interfaces';
 
 @Component({
   components: {
-    'portfolio-big-heading': PortfolioBigHeading,
-    'portfolio-project-appicon': PortfolioProjectAppIcon,
+    PProjectPreview,
   },
 })
 export default class Home extends Vue {
-  public projects: Project[] = projects;
+  get projects(): IProject[] | null {
+    const projects: IProject[] | null = this.$store.getters.projects;
+    if (!projects) return null;
+    return projects.filter(x => x.displayOnHome);
+  }
 }
 </script>
 <style lang="scss" scoped>
@@ -107,7 +88,7 @@ export default class Home extends Vue {
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
-    .tc-magic-card {
+    .portfolio-project-preview {
       $space: 20px;
       margin-bottom: $space;
 
@@ -209,11 +190,15 @@ section#newsroom {
   grid-gap: 10px;
   padding: 10px;
 
-  background: $paragraph_dark;
+  background: $paragraph;
+  &[dark] {
+    background: $paragraph_dark;
+  }
   border-radius: $border-radius;
   margin-top: 20px;
   img {
     max-height: 100px;
+    border-radius: $border-radius;
   }
   p {
     font-weight: 500;

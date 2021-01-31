@@ -1,6 +1,4 @@
-import { WorkGalleryItem } from '@/models';
-
-const workgalleryItems: WorkGalleryItem[] = [
+const workgalleryItems = [
   {
     fileName: 'ams button - loading unschön.gif',
     project: 'amspro',

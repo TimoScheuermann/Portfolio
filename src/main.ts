@@ -1,46 +1,56 @@
 /* eslint-disable */
 import App from '@/App.vue';
+import PFooter from '@/components/PFooter.vue';
+import PHeader from '@/components/PHeader.vue';
+import PHeading from '@/components/PHeading.vue';
 import '@/registerServiceWorker';
-import router from '@/router';
+import router, { getTitle } from '@/router';
 import store from '@/store';
 import * as TCComponents from 'tccomponents_vue';
 import 'tccomponents_vue/lib/tccomponents_vue.css';
 import Vue from 'vue';
 import { Route } from 'vue-router';
+import { getDepth } from './utils/functions';
 
 Vue.config.productionTip = false;
+
+Vue.prototype.$newsIcon = 'https://newsroom.timos.design/pwa/maskIcon.svg';
 
 for (const component in TCComponents) {
   Vue.component(component, TCComponents[component]);
 }
 
+Vue.component(PHeading.name, PHeading);
+Vue.component(PHeader.name, PHeader);
+Vue.component(PFooter.name, PFooter);
+
 router.beforeEach((to: Route, from: Route, next) => {
-  const title = to.meta.title || 'Timo Scheuermann | Portfolio';
-  const description =
-    to.meta.description ||
-    "Portfolio about all my Projects I've done since May 2019";
+  const toDepth = getDepth(to);
+  const fromDepth = getDepth(from);
+  const toPath = to.fullPath.split('/').slice(0, 2);
+  const fromPath = from.fullPath.split('/').slice(0, 2);
+
+  if (fromPath.join('/') !== toPath.join('/')) {
+    store.commit('routeTransition', 'slide-bottom');
+  } else {
+    store.commit(
+      'routeTransition',
+      toDepth < fromDepth ? 'slide-right' : 'slide-left'
+    );
+  }
+
+  const title = getTitle(to);
   document.title = title;
 
   const gt = document.querySelector('meta[name="title"]');
   if (gt) gt.setAttribute('content', title);
-  const gd = document.querySelector('meta[name="description"]');
-  if (gd) gd.setAttribute('content', description);
 
-  const twitterTitle = document.querySelector('meta[property="twitter:title"]');
-  if (twitterTitle) twitterTitle.setAttribute('content', title);
-  const twitterDesc = document.querySelector(
-    'meta[property="twitter:description"]'
-  );
-  if (twitterDesc) twitterDesc.setAttribute('content', description);
+  const twitter = document.querySelector('meta[property="twitter:title"]');
+  if (twitter) twitter.setAttribute('content', title);
 
-  const ogTitle = document.querySelector('meta[property="og:title"]');
-  if (ogTitle) ogTitle.setAttribute('content', title);
-  const ogDesc = document.querySelector('meta[property="og:description"]');
-  if (ogDesc) ogDesc.setAttribute('content', description);
+  const og = document.querySelector('meta[property="og:title"]');
+  if (og) og.setAttribute('content', title);
 
-  document.body.scrollTop = 0; // For Safari
-  document.documentElement.scrollTop = 0;
-  window.scrollTo(0, 0);
   next();
 });
 

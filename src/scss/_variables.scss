@@ -1,30 +1,27 @@
 // Main Colors
 $background: #f5f5f7;
 $background_dark: #1f2024;
-$paragraph: #fff;
+$paragraph: #ffffff;
 $paragraph_dark: #28292d;
+$container: #e7e5e5;
+$container_dark: #3a3b41;
 $color: #111;
-$color_dark: #fff;
+$color_dark: #eee;
 
 $primary: #0088ff;
 $error: #ff4757;
 $success: #25ca49;
 $alarm: #f1c40f;
 
-$color_colors: (
-    primary: $primary,
-    error: $error,
-    success: $success,
-    alarm: $alarm,
-    paragraph: darken($paragraph, 5%),
-);
-
 // Media Queries
+$isDark: "(prefers-color-scheme: dark)";
 $isMobile: "only screen and(max-width: 850px)";
 $isDesktop: "only screen and(min-width: 851px)";
 
 // Options
-$border-radius: 5px;
+$sidebar-width: 230px;
+
+$border-radius: 10px;
 
 $shadow-light: 2px 4px 10px rgba(0, 0, 0, 0.08);
 $shadow: 4px 8px 20px rgba(0, 0, 0, 0.1);

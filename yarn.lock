@@ -2232,9 +2232,9 @@ caniuse-api@^3.0.0:
     lodash.uniq "^4.5.0"
 
 caniuse-lite@^1.0.0, caniuse-lite@^1.0.30001087, caniuse-lite@^1.0.30001093:
-  version "1.0.30001094"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001094.tgz#0b11d02e1cdc201348dbd8e3e57bd9b6ce82b175"
-  integrity sha512-ufHZNtMaDEuRBpTbqD93tIQnngmJ+oBknjvr0IbFympSdtFpAUFmNv4mVKbb53qltxFx0nK3iy32S9AqkLzUNA==
+  version "1.0.30001181"
+  resolved "https://registry.npmjs.org/caniuse-lite/-/caniuse-lite-1.0.30001181.tgz"
+  integrity sha512-m5ul/ARCX50JB8BSNM+oiPmQrR5UmngaQ3QThTTp5HcIIQGP/nPBs82BYLE+tigzm3VW+F4BJIhUyaVtEweelQ==
 
 case-sensitive-paths-webpack-plugin@^2.3.0:
   version "2.3.0"
@@ -8227,10 +8227,10 @@ tar@^2.0.0:
     fstream "^1.0.12"
     inherits "2"
 
-tccomponents_vue@^0.5.19:
-  version "0.5.19"
-  resolved "https://registry.yarnpkg.com/tccomponents_vue/-/tccomponents_vue-0.5.19.tgz#234e0d26874ec22672a07f9153b7adbf4a83595b"
-  integrity sha512-oqam3Ike9shtHCXV9UjVGdmTSK/E9UogzCZleae9kpDleKbFLYlOFn4cyiy4TXYrvRKPt7DQ4cP7zSdNAC3yKw==
+tccomponents_vue@^0.6.0:
+  version "0.6.0"
+  resolved "https://registry.yarnpkg.com/tccomponents_vue/-/tccomponents_vue-0.6.0.tgz#1ce1ac82be89523d797d4757772b236262850d47"
+  integrity sha512-H6mvVbDXEeue+k8KQfgOuG4IVDJaPZu4Hhd7Nob+Ec/SBg3Yu2PNOJeWQdMD3yOjGixnNaKSjfpExdQr8kzSLA==
   dependencies:
     core-js "^3.6.5"
     node-sass "^4.14.1"

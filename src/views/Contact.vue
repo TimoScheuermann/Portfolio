@@ -1,23 +1,27 @@
 <template>
   <div class="contact">
-    <tc-header title="Contact" variant="sticky" />
-    <tc-hero :dark="true">
-      <img src="assets/contact-hero.jpg" slot="background" alt="" />
+    <PHeader title="Contact" rootRoute="contact" backTitle="Contact" />
+
+    <tc-hero :hasFixedHeader="false" :dark="true">
+      <img src="assets/contact-hero.webp" slot="background" alt="" />
       <h1>Contact</h1>
     </tc-hero>
-    <div content="">
+
+    <div content>
       <h1>Get In Touch</h1>
       <div class="contact-grid">
         <transition-group tag="div" class="contact-form" name="swap">
           <div class="form" key="form" v-if="!sending && status === 'unknown'">
             <tl-grid minWidth="200">
               <tc-input
+                :dark="$store.getters.darkmode"
                 icon="user"
                 v-model="message.name"
                 title="Your name"
                 placeholder="John Doe"
               />
               <tc-input
+                :dark="$store.getters.darkmode"
                 icon="mail"
                 v-model="message.email"
                 title="How can I contact you?"
@@ -25,6 +29,7 @@
               />
             </tl-grid>
             <tc-textarea
+              :dark="$store.getters.darkmode"
               v-model="message.message"
               :rows="3"
               title="Message"
@@ -105,7 +110,8 @@
 </template>
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator';
-import axios from '@/constants/axios';
+
+import backend from '@/utils/backend';
 
 @Component
 export default class Contact extends Vue {
@@ -128,8 +134,7 @@ export default class Contact extends Vue {
 
   public async send() {
     this.sending = true;
-    axios
-      // .post('http://localhost:3000/contact', this.message)
+    backend
       .post('https://api.timos.design/contact', this.message)
       .then(() => {
         this.status = 'success';
@@ -145,6 +150,9 @@ export default class Contact extends Vue {
 </script>
 <style lang="scss" scoped>
 .contact {
+  a {
+    text-decoration: none;
+  }
   .contact-grid {
     display: grid;
     grid-template-columns: 1fr 2px 300px;

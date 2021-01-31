@@ -1,14 +1,6 @@
 <template>
-  <div class="legal-cookies">
-    <tc-header variant="sticky" title="Cookie Policy" />
-    <tc-hero>
-      <img src="assets/legal-hero.jpg" slot="background" alt="" />
-      <tl-flow flow="column">
-        <h1>Cookie Policy</h1>
-        <p><b>Last updated August 03, 2020</b></p>
-      </tl-flow>
-    </tc-hero>
-    <div content>
+  <div class="legal-cookies" content>
+    <div max-width>
       <h2>What Are Cookies</h2>
 
       <p>
@@ -107,12 +99,3 @@ import { Vue, Component } from 'vue-property-decorator';
 @Component
 export default class CookiePolicy extends Vue {}
 </script>
-
-<style lang="scss" scoped>
-.tc-hero {
-  h1,
-  p {
-    margin: 0;
-  }
-}
-</style>

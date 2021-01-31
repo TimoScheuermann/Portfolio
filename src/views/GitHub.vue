@@ -1,191 +1,194 @@
 <template>
   <div class="github">
-    <tc-header variant="sticky" title="GitHub">
-      <tc-button
-        v-if="loaded"
-        name="View on GitHub"
-        icon="github"
-        :href="profile.html_url"
-        variant="filled"
-      />
-    </tc-header>
-    <tc-hero height="200">
+    <PHeader
+      title="GitHub"
+      rootRoute="github"
+      backTitle="GitHub"
+      :trigger="100"
+    />
+
+    <tc-hero :hasFixedHeader="false" height="200" :dark="true">
       <img
         slot="background"
-        src="https://images.unsplash.com/photo-1561211974-8a2737b4dcac?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80"
+        src="https://api.timos.design:3002/drive/file/863445d26e204abba059c8e5c5666e18.webp"
       />
 
-      <tc-spinner v-if="!loaded" variant="dots-wave" />
-      <tc-card v-else :rounded="true" :frosted="true">
-        <tl-flow horizontal="space-around">
-          <div class="tile">
-            <div>{{ repos.length }}</div>
-            <div>public repos</div>
-          </div>
-          <div class="tile">
-            <div>{{ yearsActive() }}</div>
-            <div>years active</div>
-          </div>
-          <div class="tile">
-            <div>3</div>
-            <div>private repos</div>
-          </div>
+      <tc-spinner v-if="!profile" :dark="true" variant="dots-wave" />
+      <tl-flow v-else>
+        <tc-avatar :src="profile.avatar_url" />
+        <div class="spacer" />
+        <tl-flow flow="column">
+          <div class="number">{{ yearsActive }}</div>
+          <div class="desc">years active</div>
         </tl-flow>
-      </tc-card>
+        <template v-if="repos">
+          <div class="spacer" />
+          <tl-flow flow="column">
+            <div class="number">{{ repos.length }}</div>
+            <div class="desc">repositories</div>
+          </tl-flow>
+        </template>
+      </tl-flow>
     </tc-hero>
 
-    <div content v-if="loaded">
-      <portfolio-big-heading title="Repositories" subtitle="Most Recent" />
-
-      <tc-table :striped="true" :border="false" @sort="s => (sort = s)">
-        <tc-table-search slot="search" v-model="query" />
-        <template slot="head">
-          <tc-th attribute="name">Repository</tc-th>
-          <tc-th attribute="project">Project</tc-th>
-          <tc-th attribute="created">Created</tc-th>
-          <tc-th attribute="updated">Updated</tc-th>
-          <tc-th>GitHub</tc-th>
-        </template>
-        <tc-tr v-for="r in repos" :key="r.id">
-          <tc-td :tfcolor="isArchive(r) ? 'error' : undefined">
-            {{ r.name }}
-          </tc-td>
-          <tc-td :tfcolor="isArchive(r) ? 'error' : undefined">
-            <template v-if="isArchive(r)">
-              archived
-            </template>
-            <template v-else-if="getProject(r)">
-              <tc-link :routeName="getProject(r).routeName">
-                {{ getProject(r).title }}
-              </tc-link>
-            </template>
-          </tc-td>
-          <!-- <tc-td>{{ r.description }}</tc-td> -->
-          <tc-td>{{ convertDate(r.created_at) }}</tc-td>
-          <tc-td>{{ formatDate(r.updated_at) }}</tc-td>
-          <tc-td><tc-link :href="r.html_url">GitHub</tc-link></tc-td>
-          <!-- <template slot="expander">
-            <p>{{ r.description }}</p>
-          </template> -->
-        </tc-tr>
-      </tc-table>
+    <div content v-if="repos">
+      <PHeading title="Repositories" subtitle="Most Recent" />
+      <br />
+      <br />
+      <div class="repo-grid" max-width>
+        <div
+          class="repository"
+          v-for="r in repos"
+          :key="r.id"
+          :dark="$store.getters.darkmode"
+        >
+          <h2 center>{{ r.name }}</h2>
+          <tl-flow class="repo-stats">
+            <tl-flow flow="column">
+              <div class="type">updated</div>
+              <i class="ti-repeat" />
+              <div class="desc">{{ formatDate(r.updated_at) }}</div>
+            </tl-flow>
+            <div class="spacer" />
+            <tl-flow flow="column">
+              <div class="type">created</div>
+              <i class="ti-calendar-alt" />
+              <div class="desc">{{ convertDate(r.created_at) }}</div>
+            </tl-flow>
+            <div class="spacer" />
+            <tl-flow flow="column">
+              <div class="type">Repository</div>
+              <i class="ti-github" />
+              <tc-link :href="getHTMLUrl(r)">GitHub</tc-link>
+            </tl-flow>
+          </tl-flow>
+          <div class="project-info" v-if="getProjectOf(r)">
+            <tl-flow>
+              <tc-avatar border="rounded" :src="getProjectOf(r).thumbnail" />
+            </tl-flow>
+            <tc-table :dark="$store.getters.darkmode">
+              <tc-tr key="p">
+                <tc-td>Project</tc-td>
+                <tc-td>
+                  <tc-link
+                    :to="{
+                      name: 'project',
+                      params: { project: getProjectOf(r).title },
+                    }"
+                  >
+                    {{ getProjectOf(r).title }}
+                  </tc-link>
+                </tc-td>
+              </tc-tr>
+              <tc-tr key="w" v-if="getProjectOf(r).website">
+                <tc-td>Website</tc-td>
+                <tc-td>
+                  <tc-link :href="getProjectOf(r).website">
+                    {{ getProjectOf(r).website }}
+                  </tc-link>
+                </tc-td>
+              </tc-tr>
+              <tc-tr key="n">
+                <tc-td>Newsroom</tc-td>
+                <tc-td>
+                  <tc-link
+                    :href="
+                      'https://newsroom.timos.design/project/' +
+                        getProjectOf(r).title
+                    "
+                  >
+                    https://newsroom.timos.design/
+                  </tc-link>
+                </tc-td>
+              </tc-tr>
+              <tc-tr key="npm" v-if="getProjectOf(r).npmjs">
+                <tc-td>NPM.js</tc-td>
+                <tc-td>
+                  <tc-link :href="getProjectOf(r).npmjs">
+                    {{ getProjectOf(r).npmjs }}
+                  </tc-link>
+                </tc-td>
+              </tc-tr>
+            </tc-table>
+          </div>
+        </div>
+      </div>
     </div>
+
+    <PFooter />
   </div>
 </template>
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator';
 
-import axios from '@/constants/axios';
-import PortfolioRepository from '@/components/Portfolio-Repository.vue';
-import PortfolioBigHeading from '@/components/Portfolio-BigHeading.vue';
-import { formatDate } from '../utils';
-import { Project } from '@/models';
-import projects from '@/constants/projects';
+import { IProject } from '@/utils/interfaces';
+import { formatDate } from '@/utils/functions';
 
-@Component({
-  components: {
-    'portfolio-repository': PortfolioRepository,
-    'portfolio-big-heading': PortfolioBigHeading,
-  },
-})
+@Component
 export default class GitHubView extends Vue {
-  public loaded = false;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  public profile!: any;
-  public query = '';
-  public sort: { attribute: string; direction: number } = {
-    attribute: 'updated',
-    direction: -1,
-  };
-
-  async mounted() {
-    this.loadRepos();
-    this.loadProfile();
-  }
-
-  get creationDate(): string {
-    return this.convertDate(this.profile.created_at);
-  }
-
-  get repos() {
-    return this.$store.getters.repos
-      .filter(x => {
-        if (this.query.length > 0) {
-          return JSON.stringify(x)
-            .toLowerCase()
-            .includes(this.query.toLowerCase());
-        }
-        return true;
-      })
-      .sort((a, b) => {
-        let compared = 0;
-        if (this.sort.attribute === 'name') {
-          compared = a.name.localeCompare(b.name);
-        } else if (this.sort.attribute === 'project') {
-          compared = this.getProjectName(a).localeCompare(
-            this.getProjectName(b)
-          );
-        } else if (this.sort.attribute === 'created') {
-          compared = a.created_at.localeCompare(b.created_at);
-        } else if (this.sort.attribute === 'updated') {
-          compared = a.updated_at.localeCompare(b.updated_at);
-        }
-
-        return this.sort.direction * compared;
-      });
-  }
-
-  public getProject(repo): Project {
-    return projects.filter(x => x.github === repo.html_url)[0];
-  }
-  public getProjectName(repo): string {
-    const project = this.getProject(repo);
-    if (project) {
-      return project.title;
+  mounted() {
+    if (!this.profile) {
+      fetch('https://api.github.com/users/timoscheuermann')
+        .then(res => res.json())
+        .then(res => this.$store.commit('ghProfile', res));
     }
-    return 'ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ';
+    if (!this.reposInventory) {
+      fetch('https://api.github.com/users/timoscheuermann/repos')
+        .then(res => res.json())
+        .then(res => this.$store.commit('ghRepos', res));
+    }
+    if (!this.reposArchive) {
+      fetch('https://api.github.com/users/timoscheuermannarchive/repos')
+        .then(res => res.json())
+        .then(res => this.$store.commit('ghReposArchive', res));
+    }
   }
 
-  isArchive(repo) {
-    return JSON.stringify(repo).includes(
-      'https://github.com/TimoScheuermannArchive'
+  get loaded(): boolean {
+    return !!this.repos && !!this.profile;
+  }
+
+  get profile(): null | Record<string, string> {
+    return this.$store.getters.ghProfile;
+  }
+
+  get reposInventory(): null | Record<string, string>[] {
+    return this.$store.getters.ghRepos;
+  }
+
+  get reposArchive(): null | Record<string, string>[] {
+    return this.$store.getters.ghReposArchive;
+  }
+
+  get repos(): null | Record<string, string>[] {
+    if (!this.reposInventory || !this.reposArchive) return null;
+    return [...this.reposInventory, ...this.reposArchive].sort(
+      (a, b) => this.getTSUpdate(b) - this.getTSUpdate(a)
     );
   }
 
-  yearsActive(): number {
+  get yearsActive(): number {
     const ageDifMs = Date.now() - new Date('2014-07-19T05:51:55Z').getTime();
     const ageDate = new Date(ageDifMs);
     return Math.abs(ageDate.getUTCFullYear() - 1970);
   }
 
-  public loadRepos(): void {
-    if (this.$store.getters.repos.length <= 0) {
-      axios
-        .get('https://api.github.com/users/timoscheuermann/repos')
-        .then(res => {
-          this.$store.commit('addRepositories', res.data);
-        });
-      axios
-        .get('https://api.github.com/users/timoscheuermannarchive/repos')
-        .then(res => {
-          this.$store.commit('addRepositories', res.data);
-        });
-    }
+  getTSUpdate(repo: Record<string, string>): number {
+    return new Date(repo.updated_at).getTime();
   }
 
-  public async loadProfile(): Promise<void> {
-    if (!this.$store.state.profile) {
-      const { data } = await axios.get(
-        'https://api.github.com/users/timoscheuermann'
-      );
+  getTSCreated(repo: Record<string, string>): number {
+    return new Date(repo.created_at).getTime();
+  }
 
-      this.profile = data;
-      this.$store.state.profile = data;
-      this.loaded = true;
-    } else {
-      this.profile = this.$store.state.profile;
-      this.loaded = true;
-    }
+  getHTMLUrl(repo: Record<string, string>): string {
+    return repo.html_url;
+  }
+
+  getProjectOf(repo: Record<string, string>): IProject | null {
+    const projects: IProject[] | null = this.$store.getters.projects;
+    if (!projects) return null;
+    return projects.filter(x => x.github && x.github === repo.html_url)[0];
   }
 
   public convertDate(dateString: string): string {
@@ -199,23 +202,71 @@ export default class GitHubView extends Vue {
 }
 </script>
 <style lang="scss" scoped>
-.tc-card {
-  @media #{$isDesktop} {
-    width: calc(90vw - 212px);
+.github {
+  .spacer {
+    width: 5vw;
+    max-width: 40px;
   }
-  @media #{$isMobile} {
-    width: 90vw;
+
+  .repo-grid {
+    display: grid;
+    grid-gap: 0 20px;
+    @media only screen and(min-width: 1000px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .repository {
+      border-bottom: 1px solid rgba($color, 0.25);
+      padding-bottom: 20px;
+      &[dark] {
+        border-color: rgba($color_dark, 0.25);
+      }
+    }
   }
-}
-.tl-flow .tile div:first-child {
-  color: $primary;
-  font-size: 2em;
-  font-weight: 800;
-}
-.tc-table-2 {
-  margin-top: 20px;
-}
-.tc-td {
-  padding: 10px;
+
+  .tc-hero {
+    img {
+      filter: blur(5px);
+    }
+    .tl-flow {
+      .number {
+        font-weight: bolder;
+        font-size: 24px;
+        margin: 5px 0;
+      }
+      .desc {
+        font-weight: 500;
+        opacity: 0.75;
+        font-size: 14px;
+        text-transform: uppercase;
+      }
+    }
+  }
+  .project-info {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-gap: 20px;
+    .tc-table-2 {
+      height: fit-content;
+      margin: auto 0;
+    }
+  }
+  .repo-stats {
+    margin-bottom: 10px;
+    i {
+      font-size: 24px;
+      margin: 10px 0;
+    }
+    .type,
+    .desc,
+    .tc-link {
+      opacity: 0.75;
+      font-weight: bolder;
+      font-size: 14px;
+    }
+    .type {
+      font-weight: 500;
+      text-transform: uppercase;
+    }
+  }
 }
 </style>
