@@ -10,7 +10,7 @@
       <div class="section-form" content>
         <div max-width>
           <h1>Get In Touch</h1>
-          <form @submit.prevent="sendForm">
+          <form @submit.prevent="sendForm" :dark="$store.getters.darkmode">
             <div class="form-element">
               <input
                 id="name"
@@ -220,6 +220,13 @@ export default class Contact extends Vue {
   .section-form {
     form {
       margin-top: 10px;
+
+      &[dark] .form-element {
+        input,
+        textarea {
+          background: $container_dark;
+        }
+      }
       .form-element {
         position: relative;
         $space-top: 35px;
@@ -231,7 +238,7 @@ export default class Contact extends Vue {
           outline: none;
           border: none;
           border-radius: $border-radius;
-          background: $container_dark;
+          background: $paragraph;
           margin-top: $space-top;
           padding: 10px;
           width: calc(100% - 20px);
