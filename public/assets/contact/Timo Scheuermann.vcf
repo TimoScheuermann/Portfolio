@@ -3,10 +3,10 @@ VERSION:3.0
 PRODID:-//Apple Inc.//iOS 13.5//EN
 N:Scheuermann;Timo;;;
 FN:Timo Scheuermann
-item1.EMAIL;type=INTERNET;type=pref:timo.scheuermann@gmx.de
+item1.EMAIL;type=INTERNET;type=pref:contact@timos.design
 item1.X-ABLabel:privat
 NOTE:You can contact me via mail or Telegram (@timo_scheuermann)
-item2.URL;type=pref:https://timoscheuermann.netlify.app/
+item2.URL;type=pref:https://timos.design/
 item2.X-ABLabel:_$!<HomePage>!$_
 BDAY;value=date:2000-04-17
 X-SOCIALPROFILE;type=Telegram;x-user=timo_scheuermann;x-teamidentifier=C67C
