@@ -2,10 +2,7 @@
   <div class="portfolio-sidebar" :style="sidebarBackground">
     <div class="container">
       <div class="logo">
-        <img
-          src="https://api.timos.design:3002/drive/file/59facc42addf4433982f2d9828db8472.svg"
-          alt=""
-        />
+        <img src="assets/logo.svg" alt="" />
         <div class="name">Timo Scheuermann</div>
       </div>
 
@@ -39,9 +36,6 @@
 import { Vue, Component } from 'vue-property-decorator';
 import PSidebarItem from './PSidebarItem.vue';
 
-const sidebarImg =
-  'https://api.timos.design:3002/drive/file/124750b60bcd4fa5bac926d5ba7b4446.webp';
-
 @Component({
   components: {
     PSidebarItem,
@@ -49,7 +43,7 @@ const sidebarImg =
 })
 export default class PSidebar extends Vue {
   get sidebarBackground(): string {
-    return `background-image: url(${sidebarImg})`;
+    return `background-image: url(assets/sidebar.webp)`;
   }
 }
 </script>

@@ -8,10 +8,7 @@
     />
 
     <tc-hero :hasFixedHeader="false" height="200" :dark="true">
-      <img
-        slot="background"
-        src="https://api.timos.design:3002/drive/file/863445d26e204abba059c8e5c5666e18.webp"
-      />
+      <img slot="background" src="assets/github-hero.webp" />
 
       <tc-spinner v-if="!profile" :dark="true" variant="dots-wave" />
       <tl-flow v-else>
