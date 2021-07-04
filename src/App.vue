@@ -29,7 +29,7 @@ export default class App extends Vue {
     const dark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     this.$store.commit('darkmode', dark);
     if (!this.$store.getters.projects) {
-      backend.get('project').then(res => {
+      backend.get('/projects').then(res => {
         this.$store.commit('projects', res.data);
       });
     }

@@ -23,7 +23,7 @@
       <template v-if="$store.getters.projects">
         <PSidebarItem
           v-for="p in $store.getters.projects"
-          :key="p._id"
+          :key="p.id"
           :icon="p.icon"
           :title="p.title"
           :to="{ name: 'project', params: { project: p.title } }"

@@ -14,7 +14,7 @@
       </tl-flow>
       <template v-else>
         <img :src="project.hero" slot="background" alt="" />
-        <svg height="160" :key="project._id">
+        <svg height="160" :key="project.id">
           <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle">
             {{ project.title }}
           </text>
@@ -44,8 +44,7 @@ export default class InterimProject extends Vue {
     if (!this.projects) return null;
     const param = this.$route.params.project.toLowerCase();
     const project = this.projects.filter(
-      x =>
-        x.title.toLowerCase().includes(param) || x._id.toLowerCase() === param
+      x => x.title.toLowerCase().includes(param) || x.id.toLowerCase() === param
     )[0];
     if (!project) {
       this.$router.push({ name: 'projects' });

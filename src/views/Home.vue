@@ -16,7 +16,7 @@
     <div content>
       <PHeading title="Featured Projects" subtitle="I've worked on" />
       <div max-width class="featured-projects">
-        <PProjectPreview v-for="p in projects" :key="p._id" :project="p" />
+        <PProjectPreview v-for="p in projects" :key="p.id" :project="p" />
       </div>
 
       <tl-flow>

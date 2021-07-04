@@ -1,6 +1,6 @@
 <template>
   <div class="view-project">
-    <div content v-if="project" :key="project._id">
+    <div content v-if="project" :key="project.id">
       <div max-width>
         <h3 center>{{ project.description }}</h3>
 

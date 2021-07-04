@@ -20,9 +20,9 @@ for (const component in TCComponents) {
   Vue.component(component, TCComponents[component]);
 }
 
-Vue.component("PHeading", PHeading);
-Vue.component("PHeader", PHeader);
-Vue.component("PFooter", PFooter);
+Vue.component('PHeading', PHeading);
+Vue.component('PHeader', PHeader);
+Vue.component('PFooter', PFooter);
 
 router.beforeEach((to: Route, from: Route, next) => {
   const toDepth = getDepth(to);

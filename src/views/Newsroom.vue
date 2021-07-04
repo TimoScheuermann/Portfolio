@@ -37,10 +37,10 @@
 
         <a
           v-for="(n, i) in news"
-          :key="n._id"
+          :key="n.id"
           target="_blank"
           rel="noopener noreferrer"
-          :href="'https://newsroom.timos.design/news/' + n._id"
+          :href="'https://newsroom.timos.design/news/' + n.id"
         >
           <tc-divider :dark="$store.getters.darkmode" v-if="i !== 0" />
           <div class="news-container">

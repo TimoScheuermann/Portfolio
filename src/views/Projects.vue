@@ -12,7 +12,7 @@
       <div max-width class="projects-wrapper" v-if="$store.getters.projects">
         <PProjectPreview
           v-for="p in $store.getters.projects"
-          :key="p._id"
+          :key="p.id"
           :project="p"
         />
       </div>

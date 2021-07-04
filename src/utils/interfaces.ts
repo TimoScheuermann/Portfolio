@@ -1,5 +1,5 @@
 export interface INewsExtended {
-  _id: string;
+  id: string;
   title: string;
   project: IProjectNewsroom;
   type: 'update' | 'release' | 'feature';
@@ -10,7 +10,7 @@ export interface INewsExtended {
 }
 
 export interface IProject {
-  _id: string;
+  id: string;
   title: string;
   description: string;
   icon: string;
@@ -32,14 +32,14 @@ export interface IProject {
 }
 
 export interface IProjectNewsroom {
-  _id: string;
+  id: string;
   title: string;
   icon: string;
   website: string;
 }
 
 export interface IUser {
-  _id: string;
+  id: string;
   thirdPartyId: string;
   group: string;
   provider: string;
